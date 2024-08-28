@@ -12,7 +12,7 @@ export default function Navbar() {
   
         {/* Right-side navigation and phone number */}
         <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 z-10">
             <li tabIndex={0}>
               <details>
                 <summary>Services</summary>
