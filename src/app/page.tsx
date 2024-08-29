@@ -10,7 +10,7 @@ export default function HomePage() {
       <Navbar />
 
    {/* Hero section */}
-<div className="hero min-h-screen relative">
+  <div className="hero min-h-screen relative">
   {/* Background Video */}
   <video
     autoPlay
