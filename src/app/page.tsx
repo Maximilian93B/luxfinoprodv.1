@@ -204,6 +204,57 @@ export default function HomePage() {
       </div>
       </div>
     </div>
+
+    <div className="bg-grey py-16">
+    <div className="container mx-auto text-center">
+      <h2 className="text-4xl font-bold text-gray-800 mb-8">Exclusive Corporate Lunches at Lux Remote</h2>
+      <p className="max-w-3xl mx-auto text-lg text-gray-700 mb-12">
+        Elevate your next corporate meeting with an unforgettable lunch experience at Lux Remote. Fly in by float plane or arrive by sea, conduct your business in the serene wilderness, enjoy a gourmet meal, and then return home — all in a single day.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Corporate Lunch Experience */}
+        <div className="card bg-base-100 shadow-xl">
+          <figure>
+            <img
+              src="/path/to/floatplane-image.jpg" // Replace with your actual image path
+              alt="Float Plane Arrival"
+              className="w-full h-64 object-cover"
+            />
+          </figure>
+          <div className="card-body">
+            <h3 className="card-title text-2xl font-bold">Arrive in Style</h3>
+            <p className="text-gray-600">
+              Begin your exclusive day by flying in on a float plane or cruising in by sea. Experience the ultimate in convenience and luxury as you arrive at Lux Remote.
+            </p>
+          </div>
+        </div>
+
+        {/* Gourmet Lunch and Meeting */}
+        <div className="card bg-base-100 shadow-xl">
+          <figure>
+            <img
+              src="/path/to/gourmet-lunch-image.jpg" // Replace with your actual image path
+              alt="Gourmet Lunch"
+              className="w-full h-64 object-cover"
+            />
+          </figure>
+          <div className="card-body">
+            <h3 className="card-title text-2xl font-bold">Gourmet Lunch & Meeting</h3>
+            <p className="text-gray-600">
+              Host your corporate meeting in the serene surroundings of Lux Remote. Enjoy a gourmet lunch prepared by our top chefs, making your business day both productive and indulgent.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-12">
+        <button className="btn btn-primary mr-4">Book Your Corporate Lunch</button>
+        <button className="btn btn-outline">Learn More</button>
+      </div>
+    </div>
+  </div>
+
       {/* Tribal Parks Allies Section */}
 <div className="bg-gray-100 py-12">
   <div className="container mx-auto text-center space-y-6">
