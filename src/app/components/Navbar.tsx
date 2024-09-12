@@ -9,9 +9,45 @@ export default function Navbar() {
             Luxury Services
           </Link>
         </div>
-  
+         {/* Hamburger menu for mobile */}
+          <div className="dropdown dropdown-end lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50"
+            >
+              <li>
+                <Link href="/luxpicnic">Luxury Picnic</Link>
+              </li>
+              <li>
+                <Link href="/luxremote">Luxury Glamping</Link>
+              </li>
+              <li>
+                <Link href="/luxcatering">In-House Catering</Link>
+              </li>
+              <li>
+                <a href="tel:+11234567890">Call Us: +1 (123) 456-7890</a>
+              </li>
+            </ul>
+          </div>
+      
         {/* Right-side navigation and phone number */}
-        <div className="flex-none">
+        <div className="hidden lg:flex flex-none">
           <ul className="menu menu-horizontal px-1 z-10">
             <li tabIndex={0}>
               <details>
@@ -30,6 +66,7 @@ export default function Navbar() {
               </details>
             </li>
           </ul>
+
   
           {/* Phone number display */}
           <div className="ml-4">

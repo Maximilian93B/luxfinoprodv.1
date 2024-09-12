@@ -36,8 +36,8 @@ export default function HomePage() {
       </div>
 
       {/* About Section */}
-      <div className="about py-12 bg-white text-black">
-        <div className="container mx-auto text-center">
+      <div className="about py-12 bg-white text-blac">
+        <div className="container mx-auto text-center sm: px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-6">About LuxFino</h2>
           <p className="text-lg mb-5">
             LuxFino offers premium experiences that blend luxury, nature, and indulgence. From curated picnics to bespoke glamping and chef-catered gourmet dining, we create moments that are both intimate and extraordinary.
@@ -47,113 +47,111 @@ export default function HomePage() {
           <div className="divider border-gray-300"></div>
 
           {/* Grid Layout About Section */}
-          <div className="grid grid-rows-3 grid-flow-col gap-4 mt-6">
-            {/* Our Mission */}
-            <div className="row-span-3 bg-gray-100 text-black flex items-center justify-center p-4 rounded-lg shadow-none">
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Our Mission</h3>
-                <p>
-                  At LuxFino, we aim to provide exclusive, high-end luxury experiences that connect our clients with nature, indulgence, and relaxation.
-                </p>
-              </div>
-            </div>
-
-            <div className="col-span-2 bg-gray-50 text-black flex items-center justify-center p-4 rounded-lg shadow-none">
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Services</h3>
-                <p>
-                  LuxFino offers premium experiences that blend luxury, nature, and indulgence. From curated picnics to bespoke glamping and chef-catered gourmet dining, we create moments that are both intimate and extraordinary.
-                </p>
-              </div>
-            </div>
-
-            <div className="row-span-2 col-span-2 bg-gray-50 text-black flex items-center justify-center p-4 rounded-lg shadow-none">
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Unique Experiences</h3>
-                <p>
-                  We specialize in curating unforgettable moments, from beachside dinners to star-lit glamping setups, all designed to immerse you in the beauty of Tofino.
-                </p>
-              </div>
+          <div className="grid grid-cols-1 gap-4 mt-6 md:grid-cols-3">
+          {/* Our Mission */}
+          <div className="bg-gray-100 text-black flex items-center justify-center p-4 rounded-lg shadow-none">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">Our Mission</h3>
+              <p>
+                At LuxFino, we aim to provide exclusive, high-end luxury experiences that connect our clients with nature, indulgence, and relaxation.
+              </p>
             </div>
           </div>
 
-          <div className="mt-2 py-6">
-          <button className="btn bg-black text-white">Book Now</button>
-            <button className="btn bg-white border-black text-black">Contact LuxFino</button>
-          </div>
-        </div>
-      </div>
-
-      {/* Hero Sections */}
-      <div className="hero-sections bg-white py-12 text-black">
-        <div className="container mx-auto space-y-6">
-          {/* Section 1: LuxPicnics */}
-          <div className="hero h-80">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-              <Image
-                src=""
-                alt="LuxPicnics"
-                width={500}
-                height={300}
-                className="rounded-lg shadow-none object-cover"
-              />
-              <div>
-                <h1 className="text-4xl font-bold">Unforgettable Picnics: Where Luxury Meets Nature</h1>
-                <p className="py-6">
-                  At LuxFino, our Lux Picnics offer more than just a meal — they are curated experiences designed to indulge your senses and immerse you in the breathtaking beauty of Tofino.
-                </p>
-                <button className="btn btn-outline-black border-black text-black">Choose a Picnic</button>
-              </div>
+          <div className="bg-gray-50 text-black flex items-center justify-center p-4 rounded-lg shadow-none md:col-span-2">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">Services</h3>
+              <p>
+                LuxFino offers premium experiences that blend luxury, nature, and indulgence. From curated picnics to bespoke glamping and chef-catered gourmet dining, we create moments that are both intimate and extraordinary.
+              </p>
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="divider border-gray-300"></div>
-
-          {/* Section 2: Lux Remote */}
-          <div className="hero h-80">
-            <div className="hero-content flex-col lg:flex-row">
-              <Image
-                src=""
-                alt="Lux Remote"
-                width={500}
-                height={300}
-                className="rounded-lg shadow-none object-cover"
-              />
-              <div>
-                <h1 className="text-4xl font-bold">Wild Luxury: Escape with Lux Remote</h1>
-                <p className="py-6">
-                  Escape into the heart of Tofino with our Lux Remote experience — a carefully curated glamping adventure that blends the comforts of luxury with the serenity of nature.
-                </p>
-                <button className="btn btn-outline-black border-black text-black">Explore Lux Remote</button>
-              </div>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="divider border-gray-300"></div>
-
-          {/* Section 3: Lux Catering */}
-          <div className="hero h-80">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-              <Image
-                src=""
-                alt="Lux Remote"
-                width={500}
-                height={300}
-                className="rounded-lg shadow-none object-cover"
-              />
-              <div>
-                <h1 className="text-4xl font-bold">Tofino Tailored to Your Taste</h1>
-                <p className="py-6">
-                  Elevate your dining with Lux Catering, where our executive chef crafts personalized, gourmet meals tailored to your tastes.
-                </p>
-                <button className="btn btn-outline-black border-black text-black">Book LuxFino Catering</button>
-              </div>
+          <div className="bg-gray-50 text-black flex items-center justify-center p-4 rounded-lg shadow-none md:col-span-2">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">Unique Experiences</h3>
+              <p>
+                We specialize in curating unforgettable moments, from beachside dinners to star-lit glamping setups, all designed to immerse you in the beauty of Tofino.
+              </p>
             </div>
           </div>
         </div>
+        </div>
       </div>
+
+      {/* Services Section */}
+          <div className="hero-sections bg-white py-12 text-black">
+          <div className="container mx-auto space-y-6">
+            {/* Section 1: LuxPicnics */}
+            <div className="hero h-auto lg:h-80">
+              <div className="hero-content flex-col lg:flex-row-reverse space-y-6 lg:space-y-0">
+                <Image
+                  src=""
+                  alt="LuxPicnics"
+                  width={500}
+                  height={300}
+                  className="rounded-lg shadow-none object-cover w-full lg:w-auto"
+                />
+                <div className="text-center lg:text-left">
+                  <h1 className="text-3xl lg:text-4xl font-bold">Unforgettable Picnics: Where Luxury Meets Nature</h1>
+                  <p className="py-4 lg:py-6">
+                    At LuxFino, our Lux Picnics offer more than just a meal — they are curated experiences designed to indulge your senses and immerse you in the breathtaking beauty of Tofino.
+                  </p>
+                  <button className="btn btn-outline-black border-black text-black">Choose a Picnic</button>
+                </div>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="divider border-gray-300"></div>
+
+            {/* Section 2: Lux Remote */}
+            <div className="hero h-auto lg:h-80">
+              <div className="hero-content flex-col lg:flex-row space-y-6 lg:space-y-0">
+                <Image
+                  src=""
+                  alt="Lux Remote"
+                  width={500}
+                  height={300}
+                  className="rounded-lg shadow-none object-cover w-full lg:w-auto"
+                />
+                <div className="text-center lg:text-left">
+                  <h1 className="text-3xl lg:text-4xl font-bold">Wild Luxury: Escape with Lux Remote</h1>
+                  <p className="py-4 lg:py-6">
+                    Escape into the heart of Tofino with our Lux Remote experience — a carefully curated glamping adventure that blends the comforts of luxury with the serenity of nature.
+                  </p>
+                  <button className="btn btn-outline-black border-black text-black">Explore Lux Remote</button>
+                </div>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="divider border-gray-300"></div>
+
+            {/* Section 3: Lux Catering */}
+            <div className="hero h-auto lg:h-80">
+              <div className="hero-content flex-col lg:flex-row-reverse space-y-6 lg:space-y-0">
+                <Image
+                  src=""
+                  alt="Lux Catering"
+                  width={500}
+                  height={300}
+                  className="rounded-lg shadow-none object-cover w-full lg:w-auto"
+                />
+                <div className="text-center lg:text-left">
+                  <h1 className="text-3xl lg:text-4xl font-bold">Tofino Tailored to Your Taste</h1>
+                  <p className="py-4 lg:py-6">
+                    Elevate your dining with Lux Catering, where our executive chef crafts personalized, gourmet meals tailored to your tastes.
+                  </p>
+                  <button className="btn btn-outline-black border-black text-black">Book LuxFino Catering</button>
+                </div>
+              </div>
+            </div>
+      </div>
+      </div>
+
+       {/* Divider */}
+       <div className="divider border-gray-300"></div>
 
       {/* Owner & Founder Section */}
       <div className="about bg-white py-12 text-black">
@@ -165,6 +163,8 @@ export default function HomePage() {
 
           {/* Avatars */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div className="flex w-full">
             {/* Morgans Bio */}
             <div className="bg-gray-100 p-6 rounded-lg flex items-center">
               <div className="avatar mr-4">
@@ -179,6 +179,9 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
+            <div className="divider divider-horizontal"></div>
+            
+          </div>
 
             {/* Andres Bio */}
             <div className="bg-gray-100 p-6 rounded-lg flex items-center">
@@ -198,6 +201,10 @@ export default function HomePage() {
         </div>
       </div>
 
+       {/* Divider */}
+       <div className="divider border-gray-300"></div>
+      
+      {/* Corporate Lunches */}
       <div className="bg-white py-16">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold text-black mb-8">Exclusive Corporate Lunches at Lux Remote</h2>
@@ -205,51 +212,31 @@ export default function HomePage() {
             Elevate your next corporate meeting with an unforgettable lunch experience at Lux Remote. Fly in by float plane or arrive by sea, conduct your business in the serene wilderness, enjoy a gourmet meal, and then return home — all in a single day.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Corporate Lunch Experience */}
-            <div className="card bg-white shadow-none border border-gray-200">
-              <figure>
-                <img
-                  src="/path/to/floatplane-image.jpg" // Replace with your actual image path
-                  alt="Float Plane Arrival"
-                  className="w-full h-64 object-cover"
-                />
-              </figure>
-              <div className="card-body">
-                <h3 className="card-title text-2xl font-bold text-black">Arrive in Style</h3>
-                <p className="text-black">
-                  Begin your exclusive day by flying in on a float plane or cruising in by sea. Experience the ultimate in convenience and luxury as you arrive at Lux Remote.
-                </p>
+          {/* Gourmet Lunch Card */}
+          <div className="card lg:card-side bg-white shadow-xl border border-gray-200 mb-12">
+            <figure className="w-full lg:w-1/2 h-64 lg:h-auto overflow-hidden">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
+                alt="Gourmet Lunch"
+                className="w-full h-full object-cover"
+              />
+            </figure>
+            <div className="card-body p-6 lg:w-1/2">
+              <h2 className="card-title text-2xl font-bold text-black">Gourmet Lunch & Meeting</h2>
+              <p className="text-black mt-4">
+                Host your corporate meeting in the serene surroundings of Lux Remote. Enjoy a gourmet lunch prepared by our top chefs, making your business day both productive and indulgent.
+              </p>
+              <div className="card-actions justify-start mt-6">
+                <button className="btn bg-black text-white mr-4">Book Now</button>
+                <button className="btn btn-outline border-black text-black">Learn More</button>
               </div>
             </div>
-
-            {/* Gourmet Lunch and Meeting */}
-            <div className="card bg-white shadow-none border border-gray-200">
-              <figure>
-                <img
-                  src="/path/to/gourmet-lunch-image.jpg" // Replace with your actual image path
-                  alt="Gourmet Lunch"
-                  className="w-full h-64 object-cover"
-                />
-              </figure>
-              <div className="card-body">
-                <h3 className="card-title text-2xl font-bold text-black">Gourmet Lunch & Meeting</h3>
-                <p className="text-black">
-                  Host your corporate meeting in the serene surroundings of Lux Remote. Enjoy a gourmet lunch prepared by our top chefs, making your business day both productive and indulgent.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12">
-            <button className="btn bg-black text-white mr-4">Book Your Corporate Lunch</button>
-            <button className="btn btn-outline-black border-black text-black">Learn More</button>
           </div>
         </div>
       </div>
 
       {/* Tribal Parks Allies Section */}
-      <div className="bg-white py-12">
+      <div className="bg-black py-12">
         <div className="container mx-auto text-center space-y-6">
           {/* Tribal Parks Allies Symbol */}
           <div className="flex justify-center">
@@ -263,7 +250,7 @@ export default function HomePage() {
           </div>
 
           {/* Text Section */}
-          <div className="text-black bg-white">
+          <div className="text-white bg-black py-12">
             <h2 className="text-3xl font-bold mb-4">Proud Allies of Tribal Parks</h2>
             <p className="max-w-2xl mx-auto">
               LuxFino is proud to work in collaboration with Tribal Parks Allies, supporting initiatives that preserve the natural beauty of Tofino and respecting the rights and traditions of First Nations communities. Our commitment extends beyond luxury experiences — we aim to contribute positively to the environment and the cultural landscape in which we operate, fostering sustainable tourism and community-driven practices.

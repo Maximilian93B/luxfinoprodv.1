@@ -1,9 +1,22 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     
-    <footer className="footer bg-neutral text-neutral-content p-10">
+    <footer className="footer bg-white text-black p-10">
+
+      {/** logo */}
+      <div className="logo-container mb-6 bg-white">
+        <Image
+        src="/lux fino-icon.pdf.svg" //
+        alt="Company Logo"
+        width={200} 
+        height={50} 
+        className="mx-auto" 
+        />
+      </div>
+
       <nav>
         <h6 className="footer-title">Services</h6>
         <Link href="/branding" className="link link-hover">
@@ -48,6 +61,9 @@ export default function Footer() {
           Cookie policy
         </Link>
       </nav>
+
     </footer>
   );
 }
+
+
