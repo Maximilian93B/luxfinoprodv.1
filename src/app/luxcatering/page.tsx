@@ -12,7 +12,7 @@ export default function HeroComponent() {
           {/* Executive Chef Image */}
           <div className="max-w-sm rounded-lg shadow-2xl overflow-hidden">
             <Image
-              src="/path-to-chef-image.jpg" // Replace with actual path to the chef's image
+              src="/path-to-chef-image.jpg" // Replace with path to Dres Head pic 
               alt="Executive Chef"
               width={400} 
               height={500} 
@@ -37,9 +37,7 @@ export default function HeroComponent() {
         <div>
         <Gallery/>
         </div>
-
-        
-      
+  
       </div>
     );
   }

@@ -3,23 +3,39 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <div className="navbar bg-base-100 flex items-center justify-between">
-      {/* Logo or brand name */}
-      <div className="flex-1 flex items-center">
-        <Link href="/" className="btn btn-ghost normal-case text-xl">
+    <nav className="navbar bg-base-100 flex items-center justify-between">
+      {/* Logo */}
+      <div className="flex items-center">
+        <Link href="/" className="normal-case text-xl">
           <Image
-            src="/lux fino-icon.pdf.svg"
+            src="/lux-fino-icon.svg"
             alt="Company Logo"
-            width={100}
-            height={100}
+            width={30}
+            height={30}
             className="object-contain"
           />
         </Link>
       </div>
 
-      {/* Hamburger menu for mobile */}
+      {/* Web Menu */}
+      <div className="hidden lg:flex items-center space-x-4">
+        <Link href="/luxpicnic" className="btn btn-ghost">
+         Picnics
+        </Link>
+        <Link href="/luxremote" className="btn btn-ghost">
+          Lux Remote
+        </Link>
+        <Link href="/luxcatering" className="btn btn-ghost">
+          Exclusive & Corporate Catering
+        </Link>
+        <a href="tel:+11234567890" className="btn btn-outline">
+          Call Us: +1 (800) 589-3466
+        </a>
+      </div>
+
+      {/* Mobile Menu */}
       <div className="dropdown dropdown-end lg:hidden">
-        <label tabIndex={0} className="btn btn-ghost lg:hidden">
+        <label tabIndex={0} className="btn btn-ghost" aria-label="Menu">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -30,7 +46,7 @@ export default function Navbar() {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth={2}
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
@@ -53,42 +69,6 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-
-      {/* Right-side navigation and phone number */}
-      <div className="hidden lg:flex flex-none">
-        <ul className="menu menu-horizontal px-1 z-10">
-          <li tabIndex={0}>
-            <details>
-              <summary>
-                <Image
-                  src="lux fino-icon.pdf.svg"
-                  alt="Company Logo"
-                  width={80} // Adjust the width as needed
-                  height={80} // Adjust the height as needed
-                />
-              </summary>
-              <ul className="flex flex-wrap w-48 p-2 bg-base-600">
-                <li>
-                  <Link href="/luxpicnic">Lux Picnics</Link>
-                </li>
-                <li>
-                  <Link href="/luxremote">Lux Remote</Link>
-                </li>
-                <li>
-                  <Link href="/luxcatering">LuxFino Catering</Link>
-                </li>
-              </ul>
-            </details>
-          </li>
-        </ul>
-
-        {/* Phone number display */}
-        <div className="ml-4">
-          <a href="tel:+11234567890" className="btn btn-outline">
-            Call Us: +1 (123) 456-7890
-          </a>
-        </div>
-      </div>
-    </div>
+    </nav>
   );
 }
