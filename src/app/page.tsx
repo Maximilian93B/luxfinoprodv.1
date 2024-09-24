@@ -1,8 +1,10 @@
+'use client'
+
 import { NextPage } from "next";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Image from "next/image";
-
+import QuoteRequestDrawer from "./components/FormDrawer";
 
 
 {/* Page Structure */}
@@ -26,35 +28,42 @@ const HomePage: NextPage = () => {
 export default HomePage;
 
 const HeroSection: React.FC = () => {
-  return (
-    <div className="hero min-h-screen relative bg-white text-black">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src="/11899340_3840_2160_24fps.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+  return(
+  <div className="hero min-h-screen relative bg-white text-black flex justify-center items-center">
+  {/* Background Video */}
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="absolute inset-0 w-full h-full object-cover z-0"
+  >
+    <source src="/11899340_3840_2160_24fps.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-      {/* Hero Content */}
-      <div className="hero-content text-white text-center relative z-10">
-        <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Welcome to LuxFino</h1>
-          <p className="mb-5">
-            LuxFino offers premium experiences that blend luxury, nature, and indulgence.
-          </p>
-          <button className="btn btn-outline mr-2 border-black text-black">
-            Explore LuxFino
-          </button>
-          <button className="btn bg-black text-white">Book Now</button>
-        </div>
+  {/* Hero Content */}
+  <div className="hero-content text-white text-center relative z-10">
+    <div className="max-w-md">
+      {/* Heading */}
+      <h1 className="mb-5 text-5xl font-bold">Welcome to LuxFino</h1>
+      {/* Subheading */}
+      <p className="mb-5">
+        LuxFino offers premium experiences that blend luxury, nature, and indulgence.
+      </p>
+      {/* Buttons Container */}
+      <div className="flex justify-center items-center space-x-4">
+        {/* Explore Button */}
+        <button className="btn btn border-black text-black">
+          Explore LuxFino
+        </button>
+        {/* Quote Request Drawer */}
+        <QuoteRequestDrawer />
       </div>
     </div>
-  );
+  </div>
+</div>
+);
 };
 
 const AboutSection: React.FC = () => {
