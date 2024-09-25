@@ -72,7 +72,8 @@ const AboutSection: React.FC = () => {
       <div className="container mx-auto text-center sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold mb-6">About LuxFino</h2>
         <p className="text-lg mb-5">
-          LuxFino offers premium experiences that blend luxury, nature, and indulgence. From curated picnics to bespoke glamping and chef-catered gourmet dining, we create moments that are both intimate and extraordinary.
+        Welcome to Lux.Fino – Tofino’s top choice for luxury pop-up picnics, catering, and remote glamping experiences. We’re dedicated to making your special moments unforgettable, whether you’re enjoying a beachside picnic or an off-grid getaway. Rooted in Tofino’s natural beauty and community, we pride ourselves on delivering luxury with a local touch.
+
         </p>
 
         {/* Divider */}
@@ -83,20 +84,20 @@ const AboutSection: React.FC = () => {
           {/* Our Mission */}
           <InfoCard
             title="Our Mission"
-            content="At LuxFino, we aim to provide exclusive, high-end luxury experiences that connect our clients with nature, indulgence, and relaxation."
+            content="At Lux.Fino, we create memorable, nature-inspired experiences that bring people together. From elegant picnics to remote glamping, our goal is to blend luxury with adventure while celebrating the beauty of Tofino."
           />
 
           {/* Services */}
           <InfoCard
             title="Services"
-            content="We offer curated picnics, bespoke glamping, and chef-catered gourmet dining, creating moments that are both intimate and extraordinary."
+            content="Lux.Fino offers bespoke luxury picnics, in-house catering with locally-inspired menus, and exclusive remote glamping. We also partner with local artisans for handcrafted details like charcuterie boards and floral arrangements, making every experience truly special."
           />
 
           {/* Unique Experiences - Full width under the two above */}
           <div className="col-span-1 md:col-span-2">
             <InfoCard
               title="Unique Experiences"
-              content="We specialize in curating unforgettable moments, from beachside dinners to star-lit glamping setups, all designed to immerse you in the beauty of Tofino."
+              content="At Lux.Fino, we specialize in crafting unique, luxury experiences that immerse you in Tofino’s natural beauty. From personalized pop-up picnics on the beach to remote, off-grid glamping escapes, we offer unforgettable moments designed just for you. Our services blend elegance with adventure, ensuring that every experience is tailored to create lasting memories in one of the world’s most breathtaking locations"
             />
           </div>
         </div>
@@ -127,7 +128,7 @@ const ServiceSections: React.FC = () => {
       <Divider />
       <ServiceSection
         title="Luxury Pop-up Picnics"
-        description="Enjoy a curated luxury picnic experience in Tofino's most scenic locations. Perfect for a romantic getaway or group gathering with friends."
+        description="Lux.Fino’s pop-up picnics combine luxury and nature for an unforgettable beachside experience. Enjoy cozy seating, elegant décor, and locally-sourced food, perfect for any occasion. Relax, connect, and savor Tofino’s beauty in style."
         buttonText="Book a Lux Picnic"
         imageSrc="/LuxPicMain.jpeg"
         imageAlt="Lux Picnic"
@@ -136,7 +137,7 @@ const ServiceSections: React.FC = () => {
       <Divider />
       <ServiceSection
         title="Wild Luxury: Escape with Lux Remote"
-        description="Escape into the heart of Tofino with our Lux Remote experience—a carefully curated glamping adventure that blends the comforts of luxury with the serenity of nature."
+        description="Lux Remote offers a luxurious off-grid escape in Tofino’s wilderness. Enjoy the perfect blend of comfort and adventure with cozy accommodations, stunning ocean views, and total seclusion. It’s the ultimate way to unwind and experience nature in style."
         buttonText="Explore Lux Remote"
         imageSrc="/pexels-cottonbro-5359324.jpg"
         imageAlt="Lux Remote"
@@ -145,7 +146,7 @@ const ServiceSections: React.FC = () => {
       <Divider />
       <ServiceSection
         title="Tofino Tailored to Your Taste"
-        description="Elevate your dining with Lux Catering, where our executive chef crafts personalized, gourmet meals tailored to your tastes."
+        description="Lux Catering brings gourmet, locally-inspired cuisine to your special event. Whether it’s an intimate gathering or a grand celebration, our in-house catering delivers fresh, delicious meals crafted to impress, making every moment feel indulgent and memorable."
         buttonText="Book LuxFino Catering"
         imageSrc="/Catering1.JPG"
         imageAlt="Lux Catering"
@@ -209,9 +210,9 @@ const OwnerFounderSection: React.FC = () => {
       <Divider />
       <div className="about bg-white py-12 text-black">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">Owner &amp; Founder</h2>
+          <h2 className="text-4xl font-bold mb-6">Owners &amp; Founders</h2>
           <p className="text-lg mb-12">
-            LuxFino was founded by two passionate individuals, Morgan and Andres, who wanted to create unforgettable, luxury experiences in the heart of Tofino.
+          At the heart of Lux.Fino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures. Their unique talents and vision are the foundation of Lux.Fino, making every experience feel personal, thoughtful, and truly special.
           </p>
 
           {/* Avatars */}
@@ -219,13 +220,13 @@ const OwnerFounderSection: React.FC = () => {
             <BioCard
               name="Morgan"
               imageSrc="/Copy of IMG_7096.jpeg"
-              bio="Morgan's bio goes here."
+              bio="Morgan is dedicated to crafting unforgettable experiences for guests, believing that every moment begins with a lasting first impression. As a curator of beautiful aesthetics, she has a keen eye for hidden treasures and exquisite textiles, ensuring you feel like royalty while you relax and take in the breathtaking views."
             />
 
             <BioCard
               name="Andres"
               imageSrc="/Copy of IMG_7096.jpeg"
-              bio="Andres's bio goes here."
+              bio="Chef Andres, known as Dre, made his way to Tofino seven years ago, drawn by a deep passion for luxury and culinary artistry. His journey began at the stunning Clayoquot Wilderness Resort, where he infused his Latin American roots into every dish, blending comfort food with vibrant global influences. With over a decade of experience, nothing brings him more joy than seeing a smile after the first bite."
             />
           </div>
         </div>

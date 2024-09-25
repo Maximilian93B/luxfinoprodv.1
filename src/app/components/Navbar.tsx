@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <nav className="navbar bg-base-100 flex items-center justify-between">
+    <nav className="navbar bg-base-100 flex items-center justify-between sticky top-0 z-50">
       {/* Logo */}
       <div className="flex items-center">
         <Link href="/" className="normal-case text-xl">
