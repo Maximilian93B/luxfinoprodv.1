@@ -1,11 +1,54 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLinkedin,
+  faInstagram,
+  faFacebook,
+  faAirbnb,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Navbar() {
   return (
-    <nav className="navbar bg-base-100 flex items-center justify-between sticky top-0 z-50">
-      {/* Logo */}
-      <div className="flex items-center">
+    <nav className="navbar bg-base-100 flex justify-between items-center sticky top-0 z-50">
+      {/* Social Media Icons (Left of Logo) */}
+      <div className="flex items-center space-x-4">
+        <a
+          href="https://www.linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900"
+        >
+          <FontAwesomeIcon icon={faLinkedin} size="lg" />
+        </a>
+        <a
+          href="https://www.instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900"
+        >
+          <FontAwesomeIcon icon={faInstagram} size="lg" />
+        </a>
+        <a
+          href="https://www.facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900"
+        >
+          <FontAwesomeIcon icon={faFacebook} size="lg" />
+        </a>
+        <a
+          href="https://www.airbnb.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900"
+        >
+          <FontAwesomeIcon icon={faAirbnb} size="lg" />
+        </a>
+      </div>
+
+      {/* Logo (Centered) */}
+      <div className="flex justify-center">
         <Link href="/" className="normal-case text-xl">
           <Image
             src="/lux-fino-icon.svg"
@@ -17,10 +60,10 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Web Menu */}
-      <div className="hidden lg:flex items-center space-x-4">
+      {/* Web Menu (Right of Logo) */}
+      <div className="hidden lg:flex items-center space-x-2">
         <Link href="/luxpicnic" className="btn btn-ghost">
-         Picnics
+          Picnics
         </Link>
         <Link href="/luxremote" className="btn btn-ghost">
           Lux Remote

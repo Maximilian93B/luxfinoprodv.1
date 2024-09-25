@@ -9,7 +9,7 @@ const CallToAction: React.FC = () => {
           Ready to Embark on Your Adventure?
         </h2>
         <p className="mb-8">
-          Contact us today to learn more or to reserve your exclusive Lux Remote experience.
+          Contact us  to learn more or to reserve your exclusive Lux Remote experience.
         </p>
         <button className="btn btn-primary mr-2">Book Now</button>
         <button className="btn btn-primary">Contact Us</button>
