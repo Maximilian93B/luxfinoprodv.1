@@ -11,7 +11,7 @@ const HeroSection: React.FC = () => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/4476816-hd_1920_1080_24fps.mp4" type="video/mp4" />
+        <source src="/luxfino drone no music.MP4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="hero-content text-neutral-content text-center relative z-10">

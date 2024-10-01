@@ -80,7 +80,7 @@ const AboutSection: React.FC = () => {
         <Divider />
 
         {/* Grid Layout About Section */}
-        <div className="grid grid-cols-1 gap-4 mt-6 md:grid-cols-2 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 mt-6 md:grid-cols-2 lg:grid-cols-2 ">
           {/* Our Mission */}
           <InfoCard
             title="Our Mission"
@@ -113,7 +113,7 @@ interface InfoCardProps {
 
 const InfoCard: React.FC<InfoCardProps> = ({ title, content }) => {
   return (
-    <div className="bg-gray-100 text-black flex items-center justify-center p-4 rounded-lg shadow-none">
+    <div className="bg-gray-100 text-black flex items-center justify-center p-4 rounded-lg shadow-none mx-auto">
       <div>
         <h3 className="text-2xl font-bold mb-2">{title}</h3>
         <p>{content}</p>
@@ -139,7 +139,7 @@ const ServiceSections: React.FC = () => {
         title="Wild Luxury: Escape with Lux Remote"
         description="Lux Remote offers a luxurious off-grid escape in Tofino’s wilderness. Enjoy the perfect blend of comfort and adventure with cozy accommodations, stunning ocean views, and total seclusion. It’s the ultimate way to unwind and experience nature in style."
         buttonText="Explore Lux Remote"
-        imageSrc="/pexels-cottonbro-5359324.jpg"
+        imageSrc="/DiscoverLuxRemote.JPG"
         imageAlt="Lux Remote"
         reverse={true}
       />
@@ -184,7 +184,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         <Image
           src={imageSrc}
           alt={imageAlt}
-          width={150}
+          width={350}
           height={150}
           className="rounded-lg shadow-none object-cover w-full lg:w-auto lg:h-auto"
         />
