@@ -1,5 +1,6 @@
 'use client'
 
+import React, {useState, useEffect} from "react";
 import { NextPage } from "next";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -16,7 +17,7 @@ const HomePage: NextPage = () => {
       <AboutSection />
       <ServiceSections />
       <OwnerFounderSection />
-      <CorporateLunchSection />
+      <SpecialEventsSection />
       <TribalParksSection />
       <Footer />
     </div>
@@ -28,51 +29,113 @@ const HomePage: NextPage = () => {
 export default HomePage;
 
 const HeroSection: React.FC = () => {
-  return(
-  <div className="hero min-h-screen relative bg-white text-black flex justify-center items-center">
-  {/* Background Video */}
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="absolute inset-0 w-full h-full object-cover z-0"
-  >
-    <source src="/11899340_3840_2160_24fps.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+  const slides = [
+    {
+      id: 1,
+      image: '/LuxPicMain.jpeg',
+      alt: 'Luxury Pop-up Picnics',
+    },
+    {
+      id: 2,
+      image: '/LuxRemoteIndex.JPG',
+      alt: 'Wild Luxury: Escape with Lux Remote',
+    },
+    {
+      id: 3,
+      image: '/Catering1.JPG',
+      alt: 'Tofino Tailored to Your Taste',
+    },
+  ];
 
-  {/* Hero Content */}
-  <div className="hero-content text-white text-center relative z-10">
-    <div className="max-w-md">
-      {/* Heading */}
-      <h1 className="mb-5 text-5xl font-bold">Welcome to LuxFino</h1>
-      {/* Subheading */}
-      <p className="mb-5">
-        LuxFino offers premium experiences that blend luxury, nature, and indulgence.
-      </p>
-      {/* Buttons Container */}
-      <div className="flex justify-center items-center space-x-4">
-        {/* Explore Button */}
-        <button className="btn btn border-black text-black">
-          Explore LuxFino
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideCount = slides.length;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((currentSlide) => (currentSlide + 1) % slideCount);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval); // Clean up on unmount
+  }, [slideCount]);
+
+  // Handler for navigation buttons
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index % slideCount);
+  };
+
+  return (
+    <div className="hero min-h-screen relative bg-black text-white flex items-center justify-center">
+      {/* Carousel Background */}
+      <div className="absolute inset-0">
+        <div className="w-full h-full relative">
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image
+                src={slide.image}
+                alt={slide.alt}
+                layout="fill"
+                objectFit="cover"
+                className="w-full h-full"
+                priority={index === currentSlide} // Preload current slide
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Hero Content */}
+      <div className="hero-content text-center relative z-10">
+        <div className="max-w-md">
+          {/* Heading */}
+          <h1 className="mb-5 text-5xl font-bold">Welcome to LuxFino</h1>
+          {/* Subheading */}
+          <p className="mb-5">
+            LuxFino offers premium experiences that blend luxury, nature, and indulgence.
+          </p>
+          {/* Buttons Container */}
+          <div className="flex justify-center items-center space-x-4">
+            {/* Explore Button */}
+            <button className="btn border-white text-white bg-transparent">
+              Explore LuxFino
+            </button>
+            {/* Quote Request Drawer */}
+            <QuoteRequestDrawer />
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="absolute left-5 top-1/2 transform -translate-y-1/2 z-20">
+        <button
+          className="btn btn-circle btn-outline"
+          onClick={() => goToSlide((currentSlide - 1 + slideCount) % slideCount)}
+        >
+          ❮
         </button>
-        {/* Quote Request Drawer */}
-        <QuoteRequestDrawer />
+      </div>
+      <div className="absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
+        <button
+          className="btn btn-circle btn-outline"
+          onClick={() => goToSlide((currentSlide + 1) % slideCount)}
+        >
+          ❯
+        </button>
       </div>
     </div>
-  </div>
-</div>
-);
+  );
 };
-
 const AboutSection: React.FC = () => {
   return (
     <div className="about py-12 bg-white text-black">
       <div className="container mx-auto text-center sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold mb-6">About LuxFino</h2>
         <p className="text-lg mb-5">
-        Welcome to Lux.Fino – Tofino’s top choice for luxury pop-up picnics, catering, and remote glamping experiences. We’re dedicated to making your special moments unforgettable, whether you’re enjoying a beachside picnic or an off-grid getaway. Rooted in Tofino’s natural beauty and community, we pride ourselves on delivering luxury with a local touch.
+        Lux.Fino is Tofino’s premier provider of luxury pop-up picnics, in-house catering, and remote glamping. We create unforgettable moments with locally inspired touches that showcase the natural beauty of Tofino.
 
         </p>
 
@@ -84,20 +147,20 @@ const AboutSection: React.FC = () => {
           {/* Our Mission */}
           <InfoCard
             title="Our Mission"
-            content="At Lux.Fino, we create memorable, nature-inspired experiences that bring people together. From elegant picnics to remote glamping, our goal is to blend luxury with adventure while celebrating the beauty of Tofino."
+            content="At Lux.Fino, we blend luxury and nature to offer unique experiences that bring people together. Whether it’s a beach picnic or a remote glamping retreat, our services celebrate the stunning landscapes of Tofino."
           />
 
           {/* Services */}
           <InfoCard
             title="Services"
-            content="Lux.Fino offers bespoke luxury picnics, in-house catering with locally-inspired menus, and exclusive remote glamping. We also partner with local artisans for handcrafted details like charcuterie boards and floral arrangements, making every experience truly special."
+            content="Lux.Fino offers tailored luxury picnics, gourmet catering with local flavors, and exclusive remote glamping experiences. Our partnerships with local artisans ensure that every detail, from charcuterie boards to floral arrangements, is thoughtfully crafted."
           />
 
           {/* Unique Experiences - Full width under the two above */}
           <div className="col-span-1 md:col-span-2">
             <InfoCard
               title="Unique Experiences"
-              content="At Lux.Fino, we specialize in crafting unique, luxury experiences that immerse you in Tofino’s natural beauty. From personalized pop-up picnics on the beach to remote, off-grid glamping escapes, we offer unforgettable moments designed just for you. Our services blend elegance with adventure, ensuring that every experience is tailored to create lasting memories in one of the world’s most breathtaking locations"
+              content="Experience the best of Tofino with personalized luxury services, including pop-up beach picnics and off-grid glamping escapes. We combine adventure with elegance to create unforgettable memories in one of the world’s most stunning locations.."
             />
           </div>
         </div>
@@ -185,7 +248,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           src={imageSrc}
           alt={imageAlt}
           width={350}
-          height={150}
+          height={100}
           className="rounded-lg shadow-none object-cover w-full lg:w-auto lg:h-auto"
         />
         <div className="text-center lg:text-left">
@@ -212,20 +275,20 @@ const OwnerFounderSection: React.FC = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">Owners &amp; Founders</h2>
           <p className="text-lg mb-12">
-          At the heart of Lux.Fino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures. Their unique talents and vision are the foundation of Lux.Fino, making every experience feel personal, thoughtful, and truly special.
+            At the heart of Lux.Fino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures. Their unique talents and vision are the foundation of Lux.Fino, making every experience feel personal, thoughtful, and truly special.
           </p>
 
           {/* Avatars */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <BioCard
               name="Morgan"
-              imageSrc="/Copy of IMG_7096.jpeg"
+              imageSrc="/MorganBoiPIc.JPG" // Update with correct image path
               bio="Morgan is dedicated to crafting unforgettable experiences for guests, believing that every moment begins with a lasting first impression. As a curator of beautiful aesthetics, she has a keen eye for hidden treasures and exquisite textiles, ensuring you feel like royalty while you relax and take in the breathtaking views."
             />
 
             <BioCard
               name="Andres"
-              imageSrc="/Copy of IMG_7096.jpeg"
+              imageSrc="/DreHeadShot.JPG" // Update with correct image path
               bio="Chef Andres, known as Dre, made his way to Tofino seven years ago, drawn by a deep passion for luxury and culinary artistry. His journey began at the stunning Clayoquot Wilderness Resort, where he infused his Latin American roots into every dish, blending comfort food with vibrant global influences. With over a decade of experience, nothing brings him more joy than seeing a smile after the first bite."
             />
           </div>
@@ -243,13 +306,20 @@ interface BioCardProps {
 
 const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio }) => {
   return (
-    <div className="bg-gray-100 p-6 rounded-lg flex items-center">
-      <div className="avatar mr-4">
-        <div className="mask mask-hexagon w-48 h-48">
-          <Image src={imageSrc} alt={name} width={192} height={192} />
+    <div className="bg-gray-100 p-6 rounded-lg flex flex-col md:flex-row items-center">
+      <div className="avatar mb-6 md:mb-0 md:mr-6">
+        <div className="relative w-48 h-48 mask mask-hexagon">
+          <Image
+            src={imageSrc}
+            alt={name}
+            width={100}
+            height={100}
+            objectFit="cover"
+            className="rounded-lg"
+          />
         </div>
       </div>
-      <div>
+      <div className="text-center md:text-left">
         <h3 className="text-2xl font-bold mb-2">{name}</h3>
         <p>{bio}</p>
       </div>
@@ -257,42 +327,81 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio }) => {
   );
 };
 
-const CorporateLunchSection: React.FC = () => {
+const SpecialEventsSection: React.FC = () => {
   return (
     <>
       <Divider />
       <div className="bg-white py-16">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold text-black mb-8">
-            Exclusive Corporate Lunches at Lux Remote
+            Exclusive Events at Lux Remote
           </h2>
           <p className="max-w-3xl mx-auto text-lg text-black mb-12">
-            Elevate your next corporate meeting with an unforgettable lunch experience at Lux Remote. Fly in by float plane or arrive by sea, conduct your business in the serene wilderness, enjoy a gourmet meal, and then return home—all in a single day.
+            Elevate your special occasions with unforgettable experiences at Lux Remote. Whether you're hosting a corporate meeting or celebrating a wedding, arrive in style, conduct your event in the serene wilderness, enjoy gourmet meals, and create memories that last a lifetime.
           </p>
 
-          {/* Gourmet Lunch Card */}
-          <div className="card lg:card-side bg-white shadow-xl border border-gray-200 mb-12">
-            <figure className="w-full lg:w-1/2 h-64 lg:h-auto overflow-hidden">
-              <Image
-                src="/CorporateLunches.jpeg"
-                alt="Gourmet Lunch"
-                width={800}
-                height={600}
-                className="w-full h-full object-cover"
-              />
-            </figure>
-            <div className="card-body p-6 lg:w-1/2">
-              <h2 className="card-title text-2xl font-bold text-black">
-                Gourmet Lunch &amp; Meeting
-              </h2>
-              <p className="text-black mt-4">
-                Host your corporate meeting in the serene surroundings of Lux Remote. Enjoy a gourmet lunch prepared by our top chefs, making your business day both productive and indulgent.
-              </p>
-              <div className="card-actions justify-start mt-6">
-                <button className="btn bg-black text-white mr-4">Book Now</button>
-                <button className="btn btn-outline border-black text-black">
-                  Learn More
-                </button>
+          {/* Events Cards */}
+          <div className="flex flex-col lg:flex-row items-start w-full">
+            {/* Corporate Lunch Card */}
+            <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:mr-4 mb-8 lg:mb-0">
+              <div className="card-body p-6">
+                <figure className="relative w-full h-96 mb-6">
+                  <Image
+                    src="/CorporateLunches.jpeg"
+                    alt="Gourmet Corporate Lunch"
+                    width={700}
+                    height={100}
+                    objectFit="cover"
+                    className="rounded-lg"
+                  />
+                </figure>
+                <h2 className="card-title text-2xl font-bold text-black">
+                  Gourmet Corporate Lunch &amp; Meeting
+                </h2>
+                <p className="text-black mt-4">
+                  Host your corporate meeting in the serene surroundings of Lux Remote. Enjoy a gourmet lunch prepared by our top chefs, making your business day both productive and indulgent.
+                </p>
+                <div className="card-actions justify-start mt-6">
+                  <button className="btn bg-black text-white mr-4">
+                    Book Now
+                  </button>
+                  <button className="btn btn-outline border-black text-black">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="divider lg:divider-horizontal">&</div>
+
+            {/* Weddings Card */}
+            <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:ml-4">
+              <div className="card-body p-6">
+                <figure className="relative w-full h-96 mb-6">
+                  <Image
+                    src="/WeddingPIc.JPG" 
+                    alt="Lux Remote Weddings"
+                    width={700}
+                    height={100}
+                    objectFit="cover"
+                    className="rounded-lg"
+                  />
+                </figure>
+                <h2 className="card-title text-2xl font-bold text-black">
+                  Dream Proposalsat Lux Remote
+                </h2>
+                <p className="text-black mt-4">
+                  Say "I do" in the breathtaking wilderness of Lux Remote. Our exclusive location offers a romantic and intimate setting for your special day, complete with gourmet dining and unforgettable views.
+                </p>
+                <div className="card-actions justify-start mt-6">
+                  <button className="btn bg-black text-white mr-4">
+                    Book Now
+                  </button>
+                  <button className="btn btn-outline border-black text-black">
+                    Learn More
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -302,6 +411,7 @@ const CorporateLunchSection: React.FC = () => {
   );
 };
 
+{/* Tribal Parks Section */}
 const TribalParksSection: React.FC = () => {
   return (
     <div className="bg-black py-12">
@@ -328,3 +438,44 @@ const TribalParksSection: React.FC = () => {
     </div>
   );
 };
+
+
+{/*
+  const HeroSection: React.FC = () => {
+  return(
+  <div className="hero min-h-screen relative bg-white text-black flex justify-center items-center">
+
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="absolute inset-0 w-full h-full object-cover z-0"
+  >
+    <source src="/11899340_3840_2160_24fps.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+
+  <div className="hero-content text-white text-center relative z-10">
+    <div className="max-w-md">
+     
+      <h1 className="mb-5 text-5xl font-bold">Welcome to LuxFino</h1>
+    
+      <p className="mb-5">
+        LuxFino offers premium experiences that blend luxury, nature, and indulgence.
+      </p>
+   
+      <div className="flex justify-center items-center space-x-4">
+      
+        <button className="btn btn border-black text-black">
+          Explore LuxFino
+        </button>
+   
+        <QuoteRequestDrawer />
+      </div>
+    </div>
+  </div>
+</div>
+);
+} */}

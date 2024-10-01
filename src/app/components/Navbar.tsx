@@ -69,7 +69,7 @@ export default function Navbar() {
           Lux Remote
         </Link>
         <Link href="/luxcatering" className="btn btn-ghost">
-          Exclusive & Corporate Catering
+          Weddings & Corporate Catering
         </Link>
         <a href="tel:+11234567890" className="btn btn-outline">
           Call Us: +1 (800) 589-3466
