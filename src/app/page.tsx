@@ -64,7 +64,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <div className="hero min-h-screen relative bg-black text-white flex items-center justify-center">
+    <div className="hero min-h-screen relative text-white bg-black">
       {/* Carousel Background */}
       <div className="absolute inset-0">
         <div className="w-full h-full relative">
@@ -75,52 +75,57 @@ const HeroSection: React.FC = () => {
                 index === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <Image
-                src={slide.image}
-                alt={slide.alt}
-                layout="fill"
-                objectFit="cover"
-                className="w-full h-full"
-                priority={index === currentSlide} // Preload current slide
-              />
+              {/* Aspect Ratio Container */}
+              <div className="w-full h-full relative overflow-hidden">
+                <Image
+                  src={slide.image}
+                  alt={slide.alt}
+                  fill
+                  style={{ objectFit: 'cover', 
+                  objectPosition: 'center ' ,
+                  transform: 'scale(1.0)'
+                  }}
+                  priority={index === currentSlide}
+                />
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Hero Content */}
-      <div className="hero-content text-center relative z-10">
-        <div className="max-w-md">
-          {/* Heading */}
-          <h1 className="mb-5 text-5xl font-bold">Welcome to LuxFino</h1>
-          {/* Subheading */}
+      <div className="hero-content text-center relative z-10 flex flex-col w-full px-4">
+        {/* Top Section */}
+        <div>
+          <h1 className="mb-5 text-6xl sm:text-7xl font-bold">Welcome to LuxFino</h1>
           <p className="mb-5">
             LuxFino offers premium experiences that blend luxury, nature, and indulgence.
           </p>
-          {/* Buttons Container */}
-          <div className="flex justify-center items-center space-x-4">
-            {/* Explore Button */}
-            <button className="btn border-white text-white bg-transparent">
-              Explore LuxFino
-            </button>
-            {/* Quote Request Drawer */}
-            <QuoteRequestDrawer />
-          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+          {/* Explore Button */}
+          <button className="btn btn-outline bg-white border-black text-black bg-transparent w-full sm:w-auto">
+            Explore LuxFino
+          </button>
+          {/* Quote Request Drawer */}
+          <QuoteRequestDrawer />
         </div>
       </div>
 
       {/* Navigation Buttons */}
-      <div className="absolute left-5 top-1/2 transform -translate-y-1/2 z-20">
+      <div className="hidden md:flex absolute left-5 top-1/2 transform -translate-y-1/2">
         <button
-          className="btn btn-circle btn-outline"
+          className="btn btn-circle bg-white"
           onClick={() => goToSlide((currentSlide - 1 + slideCount) % slideCount)}
         >
           ❮
         </button>
       </div>
-      <div className="absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
+      <div className="hidden md:flex absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
         <button
-          className="btn btn-circle btn-outline"
+          className="btn btn-circle bg-white"
           onClick={() => goToSlide((currentSlide + 1) % slideCount)}
         >
           ❯
@@ -129,6 +134,8 @@ const HeroSection: React.FC = () => {
     </div>
   );
 };
+
+
 const AboutSection: React.FC = () => {
   return (
     <div className="about py-12 bg-white text-black">
@@ -185,6 +192,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, content }) => {
   );
 };
 
+{/*Services Section */}
 const ServiceSections: React.FC = () => {
   return (
     <>
@@ -211,7 +219,7 @@ const ServiceSections: React.FC = () => {
         title="Tofino Tailored to Your Taste"
         description="Lux Catering brings gourmet, locally-inspired cuisine to your special event. Whether it’s an intimate gathering or a grand celebration, our in-house catering delivers fresh, delicious meals crafted to impress, making every moment feel indulgent and memorable."
         buttonText="Book LuxFino Catering"
-        imageSrc="/Catering1.JPG"
+        imageSrc="/LuxCateringPic1.JPG"
         imageAlt="Lux Catering"
         reverse={false}
       />
@@ -263,10 +271,13 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   );
 };
 
+{/* Page Dividers */}
 const Divider: React.FC = () => {
   return <div className="divider border-gray-300"></div>;
 };
 
+
+{/* Founders Section  */}
 const OwnerFounderSection: React.FC = () => {
   return (
     <>
@@ -282,13 +293,13 @@ const OwnerFounderSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <BioCard
               name="Morgan"
-              imageSrc="/MorganBoiPIc.JPG" // Update with correct image path
+              imageSrc="/MorganBoiPIc.JPG" 
               bio="Morgan is dedicated to crafting unforgettable experiences for guests, believing that every moment begins with a lasting first impression. As a curator of beautiful aesthetics, she has a keen eye for hidden treasures and exquisite textiles, ensuring you feel like royalty while you relax and take in the breathtaking views."
             />
 
             <BioCard
               name="Andres"
-              imageSrc="/DreHeadShot.JPG" // Update with correct image path
+              imageSrc="/DreHeadShot.JPG" 
               bio="Chef Andres, known as Dre, made his way to Tofino seven years ago, drawn by a deep passion for luxury and culinary artistry. His journey began at the stunning Clayoquot Wilderness Resort, where he infused his Latin American roots into every dish, blending comfort food with vibrant global influences. With over a decade of experience, nothing brings him more joy than seeing a smile after the first bite."
             />
           </div>
@@ -308,13 +319,15 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio }) => {
   return (
     <div className="bg-gray-100 p-6 rounded-lg flex flex-col md:flex-row items-center">
       <div className="avatar mb-6 md:mb-0 md:mr-6">
-        <div className="relative w-48 h-48 mask mask-hexagon">
+        <div className="relative w-64 h-64 mask mask-hexagon">
           <Image
             src={imageSrc}
             alt={name}
             width={100}
             height={100}
-            objectFit="cover"
+            style={{ objectFit: 'cover',
+              objectPosition: 'center ',
+             }}
             className="rounded-lg"
           />
         </div>
@@ -334,7 +347,7 @@ const SpecialEventsSection: React.FC = () => {
       <div className="bg-white py-16">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold text-black mb-8">
-            Exclusive Events at Lux Remote
+            Marketing Slogan goes here.... 
           </h2>
           <p className="max-w-3xl mx-auto text-lg text-black mb-12">
             Elevate your special occasions with unforgettable experiences at Lux Remote. Whether you're hosting a corporate meeting or celebrating a wedding, arrive in style, conduct your event in the serene wilderness, enjoy gourmet meals, and create memories that last a lifetime.
@@ -345,21 +358,24 @@ const SpecialEventsSection: React.FC = () => {
             {/* Corporate Lunch Card */}
             <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:mr-4 mb-8 lg:mb-0">
               <div className="card-body p-6">
-                <figure className="relative w-full h-96 mb-6">
+              <figure className="relative w-full h-96 mb-6 rounded-lg">
                   <Image
-                    src="/CorporateLunches.jpeg"
+                    src="/LuxLunches.JPG"
                     alt="Gourmet Corporate Lunch"
                     width={700}
                     height={100}
-                    objectFit="cover"
+                    style={{ objectFit: 'cover',
+                      objectPosition: 'center',
+                      scale: '1',
+                     }}
                     className="rounded-lg"
                   />
                 </figure>
                 <h2 className="card-title text-2xl font-bold text-black">
-                  Gourmet Corporate Lunch &amp; Meeting
+                  Gourmet Lunch &amp; Meeting
                 </h2>
                 <p className="text-black mt-4">
-                  Host your corporate meeting in the serene surroundings of Lux Remote. Enjoy a gourmet lunch prepared by our top chefs, making your business day both productive and indulgent.
+                  Host your meeting in the serene surroundings of Tofino or Lux Remote. Enjoy a gourmet lunch prepared by our top chef, making your business day both productive and indulgent.
                 </p>
                 <div className="card-actions justify-start mt-6">
                   <button className="btn bg-black text-white mr-4">
@@ -376,20 +392,23 @@ const SpecialEventsSection: React.FC = () => {
             <div className="divider lg:divider-horizontal">&</div>
 
             {/* Weddings Card */}
-            <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:ml-4">
+            <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:mr-4 mb-8 lg:mb-0">
               <div className="card-body p-6">
-                <figure className="relative w-full h-96 mb-6">
+                <figure className="relative w-full h-96 mb-6 rounded-lg">
                   <Image
                     src="/WeddingPIc.JPG" 
                     alt="Lux Remote Weddings"
                     width={700}
                     height={100}
-                    objectFit="cover"
+                    style={{ objectFit: 'cover',
+                      objectPosition: 'center',
+                      scale: '1',
+                     }}
                     className="rounded-lg"
                   />
                 </figure>
                 <h2 className="card-title text-2xl font-bold text-black">
-                  Dream Proposalsat Lux Remote
+                  Dream Proposals at Lux Remote
                 </h2>
                 <p className="text-black mt-4">
                   Say "I do" in the breathtaking wilderness of Lux Remote. Our exclusive location offers a romantic and intimate setting for your special day, complete with gourmet dining and unforgettable views.
