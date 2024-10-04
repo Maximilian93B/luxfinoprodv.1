@@ -294,7 +294,7 @@ const QuoteRequestDrawer: React.FC = () => {
       <input id="quote-request-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Page content here */}
-        <label htmlFor="quote-request-drawer" className="btn btn-primary">
+        <label htmlFor="quote-request-drawer" className="btn btn-outline outline-white bg-white">
           Book Now
         </label>
        
@@ -436,12 +436,14 @@ const QuoteRequestDrawer: React.FC = () => {
             <div className="flex justify-center my-4 mt-12">
                 <Image
                 src={''}
+                width={100}
+                height={100}
                 alt="Company Logo"
                 className="h-16 w-auto"
                 />
             </div>
             {/* **Submit Button** */}
-            <button type="submit" className="btn btn-primary mb-2">
+            <button type="submit" className="btn btn-outline outline-white">
               Send
             </button>
           </form>
