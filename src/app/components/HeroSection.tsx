@@ -17,7 +17,7 @@ const HeroSection: React.FC = () => {
       <div className="hero-content text-neutral-content text-center relative z-10">
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">
-            Escape to Wild Luxury: Your Ultimate Remote Getaway
+            Escape to Wild Luxury
           </h1>
           <button className="btn mr-2" aria-label="Explore LuxRemote">
             Explore LuxRemote

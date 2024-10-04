@@ -436,6 +436,8 @@ const QuoteRequestDrawer: React.FC = () => {
             <div className="flex justify-center my-4 mt-12">
                 <Image
                 src={''}
+                width={100}
+                height={100}
                 alt="Company Logo"
                 className="h-16 w-auto"
                 />

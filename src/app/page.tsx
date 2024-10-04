@@ -183,7 +183,7 @@ interface InfoCardProps {
 
 const InfoCard: React.FC<InfoCardProps> = ({ title, content }) => {
   return (
-    <div className="bg-gray-100 text-black flex items-center justify-center p-4 rounded-lg shadow-none mx-auto">
+    <div className="bg-slate-300 text-black flex items-center justify-center p-4 rounded-lg shadow-none mx-auto">
       <div>
         <h3 className="text-2xl font-bold mb-2">{title}</h3>
         <p>{content}</p>
@@ -430,25 +430,27 @@ const SpecialEventsSection: React.FC = () => {
   );
 };
 
-{/* Tribal Parks Section */}
+
 const TribalParksSection: React.FC = () => {
   return (
-    <div className="bg-black py-12">
-      <div className="container mx-auto text-center space-y-6">
+    <div className="bg-black py-8">
+      <div className="container mx-auto text-center px-4">
         {/* Tribal Parks Allies Symbol */}
         <div className="flex justify-center">
           <Image
-            src="/path/to/tribal_parks_allies_symbol.jpg"
+            src="/TribalParksLogo.svg"
+            width={100}
+            height={100}
             alt="Tribal Parks Allies Symbol"
-            width={150}
-            height={150}
-            className="rounded-lg"
+            className="rounded-lg w-full max-w-md"
           />
         </div>
 
         {/* Text Section */}
-        <div className="text-white bg-black py-12">
-          <h2 className="text-3xl font-bold mb-4">Proud Allies of Tribal Parks</h2>
+        <div className="text-white bg-black py-4">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">
+            LuxFino is proud to support Tribal Parks 
+          </h2>
           <p className="max-w-2xl mx-auto">
             LuxFino is proud to work in collaboration with Tribal Parks Allies, supporting initiatives that preserve the natural beauty of Tofino and respecting the rights and traditions of First Nations communities. Our commitment extends beyond luxury experiences—we aim to contribute positively to the environment and the cultural landscape in which we operate, fostering sustainable tourism and community-driven practices.
           </p>
