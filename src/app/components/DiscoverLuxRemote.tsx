@@ -3,7 +3,7 @@ import React from 'react';
 
 const DiscoverSection: React.FC = () => {
   return (
-    <div className="py-12">
+    <div className="py-12 bg-white">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8">
         Escape to Ultimate Seclusion

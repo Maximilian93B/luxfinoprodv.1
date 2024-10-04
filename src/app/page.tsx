@@ -323,8 +323,8 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio }) => {
           <Image
             src={imageSrc}
             alt={name}
-            width={100}
-            height={100}
+            width={800}
+            height={500}
             style={{ objectFit: 'cover',
               objectPosition: 'center ',
              }}
@@ -362,8 +362,8 @@ const SpecialEventsSection: React.FC = () => {
                   <Image
                     src="/LuxLunches.JPG"
                     alt="Gourmet Corporate Lunch"
-                    width={700}
-                    height={100}
+                    width={800}
+                    height={500}
                     style={{ objectFit: 'cover',
                       objectPosition: 'center',
                       scale: '1',
