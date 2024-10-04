@@ -1,51 +1,22 @@
-// pages/luxpicnics.tsx
-import React from 'react';
+"use client";
+
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PicnicsTabs from '../components/PicnicsTabs';
+import PicnicsTestimonials from '../components/PicnicsTestimonials';
 
 const LuxPicnicsPage: React.FC = () => {
-  // Data for picnic packages
-  const picnicPackages = [
-    {
-      title: 'Package 1',
-      description:
-        'Experience the magic of a Tofino sunset with our Sunset Delight Picnic package. Enjoy gourmet treats and fine wine as the sun dips below the horizon.',
-      imageSrc: '/LuxPicMain.jpeg',
-      imageAlt: 'Sunset Delight Picnic',
-    },
-    {
-      title: 'Package 2',
-      description:
-        'Start your day with the soothing sounds of the ocean. Our Beachside Brunch Picnic offers a selection of fresh pastries, fruits, and beverages.',
-      imageSrc: '/images/beachside-brunch.jpg',
-      imageAlt: 'Beachside Brunch Picnic',
-    },
-    {
-      title: 'Package 3',
-      description:
-        'Surprise your loved one with a romantic picnic setup. Includes a curated menu, candles, and a cozy setting by the sea.',
-      imageSrc: '/images/romantic-escape.jpg',
-      imageAlt: 'Romantic Escape Picnic',
-    },
-  ];
+  const [isQuoteVisible, setIsQuoteVisible] = useState(false);
 
-  // Data for testimonials
-  const testimonials = [
-    {
-      name: 'Emily R.',
-      feedback:
-        'The Lux Picnic was the highlight of our trip! The setup was beautiful, and the food was delicious.',
-      imageSrc: '/images/testimonial-emily.jpg',
-      imageAlt: 'Customer Emily',
-    },
-    {
-      name: 'James P.',
-      feedback:
-        'A truly unforgettable experience. The staff went above and beyond to make our picnic special.',
-      imageSrc: '/images/testimonial-james.jpg',
-      imageAlt: 'Customer James',
-    },
-  ];
+  // Make the quote fade in after the page loads
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsQuoteVisible(true);
+    }, 200); // Adjust this delay if you want it to start fading in later
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div>
@@ -54,96 +25,75 @@ const LuxPicnicsPage: React.FC = () => {
 
       {/* Hero Section */}
       <div
-        className="hero min-h-screen bg-cover bg-center"
-        style={{ backgroundImage: `url('/images/picnic-hero.jpg')` }}
+        className="hero h-[85vh] bg-cover bg-center relative"
+        style={{ backgroundImage: `url('/pexels-cottonbro-5359324.jpg')` }}
       >
-        <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Lux Picnics</h1>
-            <p className="mb-5">
-              Indulge in a luxurious picnic experience set in the most picturesque locations of Tofino.
-            </p>
-            <button className="btn btn-primary mr-2">Book a Picnic</button>
-            <button className="btn btn-outline">Explore Packages</button>
-          </div>
+        <div className="hero-overlay bg-opacity-20"></div>
+
+        {/* Large Quote at the Bottom of Hero Section */}
+        <div className="absolute w-full text-center px-4">
+          <h2
+            className={`text-6xl text-white transition-opacity duration-[3000ms] ease-in-out ${
+              isQuoteVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ fontFamily: `'Playfair Display'` }}
+          >
+            Let us take care of your every need.
+          </h2>
+        </div>
+
+        {/* Explore Packages Button at the bottom right */}
+        <div className="absolute w-full flex justify-center bottom-80">
+          <a
+            href="#picnic-packages"
+            className="px-6 py-3 bg-white text-black font-semibold rounded-full shadow-md  transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-black hover:text-white"
+          >
+            Explore packages
+          </a>
         </div>
       </div>
 
-      {/* About Lux Picnics Section */}
-      <div className="py-12">
+      {/* Introducing the Picnics */}
+      <div className="bg-gray-100 py-16 px-6">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">About Lux Picnics</h2>
-          <p className="max-w-2xl mx-auto text-lg">
-            At Lux Picnics, we specialize in creating unforgettable outdoor dining experiences. Whether you're celebrating a special occasion or simply want to enjoy the beauty of nature with a gourmet twist, our meticulously planned picnics offer the perfect blend of luxury and comfort.
+          <p
+            id="picnic-packages"
+            className="text-xl md:text-2xl text-gray-700"
+            style={{ fontFamily: `'Playfair Display'` }}
+          >
+            Indulge in a luxurious picnic experience set in the most picturesque locations of Tofino, BC.
           </p>
         </div>
       </div>
 
-      {/* Picnic Packages Section */}
-        <div className="py-12">
-          <div className="container mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-8">Our Picnic Packages</h2>
-            <div className="space-y-8">
-              {picnicPackages.map((packageItem) => (
-                <div
-                  key={packageItem.title}
-                  className="card card-side bg-base-100 shadow-xl mx-auto flex flex-col md:flex-row md:max-w-4xl"
-                >
-                  <figure className="md:w-1/2">
-                    <img
-                      src={packageItem.imageSrc}
-                      alt={packageItem.imageAlt}
-                      className="w-full h-full object-cover"
-                    />
-                  </figure>
-                  <div className="card-body md:w-1/2">
-                    <h2 className="card-title">{packageItem.title}</h2>
-                    <p>{packageItem.description}</p>
-                    <div className="card-actions justify-end">
-                      <button className="btn btn-primary">Book Now</button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* Picnic Packages Section with Tabs */}
+      <div className="py-16 bg-gradient-to-b from-white to-gray-100">
+        <div className="container mx-auto px-4">
+          {/* Divider Line for a modern touch */}
+          <div className="w-16 mx-auto border-b-4 border-gray-300 mb-10"></div>
+
+          <h2 className="text-5xl font-bold text-center mb-6" style={{ fontFamily: `'Playfair Display', serif` }}>
+            Our Picnic Packages
+          </h2>
+
+          <p
+            className="text-lg text-center mb-10 max-w-xl mx-auto text-gray-600"
+            style={{ fontFamily: `'Playfair Display', serif` }}
+          >
+            All tables are a minimum of 2 hours long and include a beautifully styled tablescape complete with cozy &
+            luxurious pillow seating to comfortably lounge in, high-quality blankets, rugs and cushions, decor, infused
+            water, waste basket, and personalized welcome chalkboard.
+          </p>
+
+          {/* PicnicsTabs Component */}
+          <div className="shadow-lg rounded-lg overflow-hidden bg-white p-8">
+            <PicnicsTabs />
           </div>
         </div>
+      </div>
 
       {/* Testimonials Section */}
-      <div className="bg-gray-100 py-12">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8">What Our Guests Say</h2>
-          <div className="space-y-8">
-            {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.name}
-                className="bg-white p-6 rounded-lg shadow-md mx-auto max-w-md"
-              >
-                <img
-                  src={testimonial.imageSrc}
-                  alt={testimonial.imageAlt}
-                  className="w-24 h-24 rounded-full mx-auto"
-                />
-                <h3 className="mt-4 text-xl font-semibold">{testimonial.name}</h3>
-                <p className="mt-2 text-gray-600">{testimonial.feedback}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Call to Action Section */}
-      <div className="bg-gray-800 text-white py-12">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Ready for a Luxurious Picnic?</h2>
-          <p className="mb-8">
-            Contact us today to reserve your spot and create unforgettable memories.
-          </p>
-          <button className="btn btn-primary mr-2">Book a Picnic</button>
-          <button className="btn btn-primary">Contact Us</button>
-        </div>
-      </div>
+      <PicnicsTestimonials />
 
       {/* Footer */}
       <Footer />
