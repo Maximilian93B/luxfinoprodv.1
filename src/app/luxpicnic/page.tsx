@@ -5,18 +5,19 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PicnicsTabs from '../components/PicnicsTabs';
 import PicnicsTestimonials from '../components/PicnicsTestimonials';
+import PicnicTable from '../components/PicnicTable';
+
 
 const LuxPicnicsPage: React.FC = () => {
   const [isQuoteVisible, setIsQuoteVisible] = useState(false);
 
+
   // Make the quote fade in after the page loads
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsQuoteVisible(true);
-    }, 200); // Adjust this delay if you want it to start fading in later
-
-    return () => clearTimeout(timer);
+    const quoteTimer = setTimeout(() => { setIsQuoteVisible(true); }, 200);
+    return () => { clearTimeout(quoteTimer); };
   }, []);
+
 
   return (
     <div>
@@ -25,65 +26,52 @@ const LuxPicnicsPage: React.FC = () => {
 
       {/* Hero Section */}
       <div
-        className="hero h-[85vh] bg-cover bg-center relative"
-        style={{ backgroundImage: `url('/pexels-cottonbro-5359324.jpg')` }}
+        className="hero h-[70vh] bg-cover bg-bottom relative"
+        style={{ backgroundImage: `url('/picnic_hero.jpg')`, backgroundPosition: 'center 40%' }}
       >
         <div className="hero-overlay bg-opacity-20"></div>
 
-        {/* Large Quote at the Bottom of Hero Section */}
-        <div className="absolute w-full text-center px-4">
+        {/* Centered Content in Hero Section */}
+        <div className="absolute w-full text-center px-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          {/* Quote */}
           <h2
-            className={`text-6xl text-white transition-opacity duration-[3000ms] ease-in-out ${
+            className={`text-5xl text-white transition-opacity duration-[3000ms] ease-in-out ${
               isQuoteVisible ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ fontFamily: `'Playfair Display'` }}
           >
             Let us take care of your every need.
           </h2>
-        </div>
 
-        {/* Explore Packages Button at the bottom right */}
-        <div className="absolute w-full flex justify-center bottom-80">
-          <a
-            href="#picnic-packages"
-            className="px-6 py-3 bg-white text-black font-semibold rounded-full shadow-md  transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-black hover:text-white"
-          >
-            Explore packages
-          </a>
-        </div>
-      </div>
+          {/* Divider Line */}
+          <div className="bg-white py-[1px] mx-auto w-[70%] mt-[10px] mb-[10px]"></div>
 
-      {/* Introducing the Picnics */}
-      <div className="bg-gray-100 py-16 px-6">
-        <div className="container mx-auto text-center">
+          {/* Centered Text (Without Box Background) */}
           <p
             id="picnic-packages"
-            className="text-xl md:text-2xl text-gray-700"
-            style={{ fontFamily: `'Playfair Display'` }}
+            className={`text-2xl text-white opacity-90 transition-opacity duration-[3000ms] ease-in-out ${
+              isQuoteVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ fontFamily: 'Playfair Display' }}
           >
             Indulge in a luxurious picnic experience set in the most picturesque locations of Tofino, BC.
           </p>
         </div>
       </div>
 
+      {/* Spacer */}
+      <div className="bg-gray-100 py-5 px-6"></div>
+
       {/* Picnic Packages Section with Tabs */}
       <div className="py-16 bg-gradient-to-b from-white to-gray-100">
         <div className="container mx-auto px-4">
+
           {/* Divider Line for a modern touch */}
           <div className="w-16 mx-auto border-b-4 border-gray-300 mb-10"></div>
 
           <h2 className="text-5xl font-bold text-center mb-6" style={{ fontFamily: `'Playfair Display', serif` }}>
-            Our Picnic Packages
+            A glimpse at our tables
           </h2>
-
-          <p
-            className="text-lg text-center mb-10 max-w-xl mx-auto text-gray-600"
-            style={{ fontFamily: `'Playfair Display', serif` }}
-          >
-            All tables are a minimum of 2 hours long and include a beautifully styled tablescape complete with cozy &
-            luxurious pillow seating to comfortably lounge in, high-quality blankets, rugs and cushions, decor, infused
-            water, waste basket, and personalized welcome chalkboard.
-          </p>
 
           {/* PicnicsTabs Component */}
           <div className="shadow-lg rounded-lg overflow-hidden bg-white p-8">
@@ -92,6 +80,10 @@ const LuxPicnicsPage: React.FC = () => {
         </div>
       </div>
 
+      <div className="shadow-lg rounded-lg overflow-hidden bg-white p-8">
+            <PicnicTable />
+          </div>
+      
       {/* Testimonials Section */}
       <PicnicsTestimonials />
 

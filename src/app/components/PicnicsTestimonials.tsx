@@ -1,5 +1,3 @@
-// components/PicnicsTestimonials.tsx
-
 import React from 'react';
 
 const PicnicsTestimonials: React.FC = () => {
@@ -18,28 +16,43 @@ const PicnicsTestimonials: React.FC = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-white via-gray-100 to-white py-16 px-6">
+    <div className="bg-gradient-to-b from-white via-gray-100 to-white py-16">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-12" style={{ fontFamily: 'Playfair Display, serif' }}>
+        <h2
+          className="text-4xl font-bold mb-12 tracking-wide"
+          style={{ fontFamily: 'Playfair Display, serif' }}
+        >
           What Our Guests Say
         </h2>
-        <div className="space-y-12 md:space-y-0 md:flex md:space-x-8 justify-center">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8">
           {/* First Testimonial */}
-          <div className="flex flex-col bg-white p-8 rounded-lg shadow-xl mx-auto max-w-md hover:shadow-2xl transition-shadow duration-300 ease-in-out md:flex-1">
-            <p className="text-lg text-gray-700 italic leading-relaxed" style={{ fontFamily: 'Playfiar Display' }}>
+          <div className="bg-white p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out w-[35%]">
+            <p
+              className="text-2xl text-gray-600 italic leading-relaxed"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               "{testimonials[0].feedback}"
             </p>
-            <p className="mt-4 font-bold text-gray-900 text-right" style={{ fontFamily: 'Playfiar Display' }}>
+            <p
+              className="mt-6 text-xl font-bold text-gray-900 text-right"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               - {testimonials[0].name}
             </p>
           </div>
 
           {/* Second Testimonial */}
-          <div className="flex flex-col bg-white p-8 rounded-lg shadow-xl mx-auto max-w-md hover:shadow-2xl transition-shadow duration-300 ease-in-out md:flex-1">
-            <p className="text-lg text-gray-700 italic leading-relaxed" style={{ fontFamily: 'Playfiar Display' }}>
+          <div className="bg-white p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out w-[35%]">
+            <p
+              className="text-2xl text-gray-600 italic leading-relaxed"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               "{testimonials[1].feedback}"
             </p>
-            <p className="mt-4 font-bold text-gray-900 text-right" style={{ fontFamily: 'Playfiar Display' }}>
+            <p
+              className="mt-6 font-bold text-xl text-gray-900 text-right"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               - {testimonials[1].name}
             </p>
           </div>
