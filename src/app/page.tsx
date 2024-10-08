@@ -183,7 +183,7 @@ interface InfoCardProps {
 
 const InfoCard: React.FC<InfoCardProps> = ({ title, content }) => {
   return (
-    <div className="bg-slate-300 text-black flex items-center justify-center p-4 rounded-lg shadow-none mx-auto">
+    <div className="bg-white text-black flex items-center justify-center p-4 rounded-lg shadow-md mx-auto ">
       <div>
         <h3 className="text-2xl font-bold mb-2">{title}</h3>
         <p>{content}</p>
@@ -250,7 +250,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
       <div
         className={`hero-content flex-col lg:flex-row ${
           reverse ? "lg:flex-row-reverse" : ""
-        } space-y-6 lg:space-y-0`}
+        } space-y-6 lg:space-y-0 shadow-md`}
       >
         <Image
           src={imageSrc}
@@ -273,7 +273,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
 {/* Page Dividers */}
 const Divider: React.FC = () => {
-  return <div className="divider border-gray-300"></div>;
+  return <div className="divider border-black"></div>;
 };
 
 

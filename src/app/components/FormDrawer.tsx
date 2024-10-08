@@ -305,9 +305,11 @@ const QuoteRequestDrawer: React.FC = () => {
         <h2 className="text-xl md:text-2xl font-bold mt-4">Lux.Fino Quote Request</h2>
         <div className="flex justify-center my-4 mt-10">
                 <Image
-                src={''}
+                src={'/Lux.Fino.Logo2.svg'}
                 alt="Company Logo"
-                className="h-16 w-auto"
+                width={300}
+                height={100}
+                className="h-64 w-auto"
                 />
             </div>
           <form onSubmit={handleSubmit}>
@@ -433,13 +435,13 @@ const QuoteRequestDrawer: React.FC = () => {
             {/* **Additional Static Fields** */}
             {/* ...Add any other static fields needed... */}
                 {/* **Company Logo** */}
-            <div className="flex justify-center my-4 mt-12">
-                <Image
-                src={''}
-                width={100}
-                height={100}
+            <div className="flex justify-center my-4 mt-4">
+            <Image
+                src={'/Lux.Fino.logo.svg'}
                 alt="Company Logo"
-                className="h-16 w-auto"
+                width={300}
+                height={100}
+                className="h-48 w-auto"
                 />
             </div>
             {/* **Submit Button** */}

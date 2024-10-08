@@ -4,19 +4,19 @@ import { FC } from "react";
 
 const Footer: FC = () => {
   return (
-    <footer className="bg-white text-black p-10">
+    <footer className="bg-white text-black p-4">
       {/* Logo */}
-      <div className="logo-container mb-6">
+      <div className="logo-container mb-4">
         <Image
-          src="/lux-fino-icon.png" // Ensure the correct path and file extension
+          src="/Lux.Fino.logo.svg" // Ensure the correct path and file extension
           alt="Company Logo"
-          width={200}
+          width={300}
           height={50}
-          className="mx-auto"
+          className="mx-auto h-64"
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         <nav>
           <h6 className="footer-title font-semibold mb-4">Services</h6>
           <ul className="space-y-2">
