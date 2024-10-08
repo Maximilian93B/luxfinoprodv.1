@@ -219,7 +219,7 @@ const ServiceSections: React.FC = () => {
         title="Tofino Tailored to Your Taste"
         description="Lux Catering brings gourmet, locally-inspired cuisine to your special event. Whether it’s an intimate gathering or a grand celebration, our in-house catering delivers fresh, delicious meals crafted to impress, making every moment feel indulgent and memorable."
         buttonText="Book LuxFino Catering"
-        imageSrc="/LuxCateringPic1.JPG"
+        imageSrc="/LuxCateringCard.JPG"
         imageAlt="Lux Catering"
         reverse={false}
       />
