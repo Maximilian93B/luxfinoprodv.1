@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'; // If you're not using Next.js, you can use the regular <img> tag
 
 const PicnicTable: React.FC = () => {
   // Array of image paths
-  const images = ['/picnic_icon1.png', '/picnic_icon2.png', '/picnic_icon3.png'];
+  const images = ['/LuxPicMain.jpeg', '/LuxPicMain.jpeg', '/LuxPicMain.jpeg'];
   // State to hold the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -20,76 +21,99 @@ const PicnicTable: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full overflow-visible px-4">
-      <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-5 md:space-y-0 mb-10">
-        {/* Title "Package Review" - Left aligned on desktop */}
-        <h2 className="text-5xl font-bold text-center md:text-left">
-          Our Packages
-        </h2>
+    <div className="relative w-full overflow-visible px-4 py-8 md:py-12 bg-white">
+      {/* Title */}
+      <h2
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-gray-800"
+        style={{ fontFamily: 'Playfair Display, serif' }}
+      >
+        Our Packages
+      </h2>
 
-        {/* Right side content: paragraph and image */}
-        <div className="flex flex-col md:flex-row items-center justify-center md:justify-end md:space-x-10">
-          {/* Paragraph - Made wider on desktop */}
-          <p className="text-2xl mb-5 mt-5 md:mt-0 md:mb-0 md:text-center md:w-[600px] text-gray-600 text-center"
-            style={{ fontFamily: 'Playfair Display, serif' }}>
-            All tables include a beautifully styled tablescape complete with cozy and luxurious pillow seating, high-quality blankets, rugs, cushions, and decor. Each table also comes with a unique menu, infused water, a waste basket, and personalized welcome chalkboard.
-          </p>
-          
-          {/* Image container */}
-          <div
-            className="flex justify-center text-center md:justify-end items-center md:flex-shrink-0 overflow-hidden relative"
-            style={{ width: '100%', maxWidth: '250px', height: '300px' }} // Ensure image container has explicit size
-            onClick={nextImage} // Change image on click
+      {/* Content Section */}
+      <div className="flex flex-col md:flex-row justify-between items-center md:items-start mb-12 md:mb-16 space-y-8 md:space-y-0">
+        {/* Left Side - Description */}
+        <div className="md:w-1/2 px-2 md:px-4">
+          <p
+            className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed text-center md:text-left"
+            style={{ fontFamily: 'Playfair Display, serif' }}
           >
+            All tables include a beautifully styled tablescape complete with cozy and luxurious pillow
+            seating, high-quality blankets, rugs, cushions, and decor. Each table also comes with a
+            unique menu, infused water, a waste basket, and personalized welcome chalkboard.
+          </p>
+        </div>
+
+        {/* Right Side - Image Carousel */}
+        <div className="md:w-1/2 flex justify-center items-center px-2 md:px-4">
+          <div className="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
             {images.map((src, index) => (
-              <img
+              <Image
                 key={src}
                 src={src}
                 alt={`Picnic Table Setup ${index + 1}`}
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
-                style={{
-                  opacity: index === currentImageIndex ? 1 : 0,
-                  transitionDelay: `${index === currentImageIndex ? '150ms' : '0ms'}`,
-                }}
+                layout="fill"
+                objectFit="cover"
+                className={`rounded-lg shadow-lg transition-opacity duration-700 ease-in-out ${
+                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                }`}
               />
             ))}
+
+            {/* Navigation Dots */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full focus:outline-none ${
+                    index === currentImageIndex ? 'bg-gray-800' : 'bg-gray-400'
+                  }`}
+                  onClick={() => setCurrentImageIndex(index)}
+                  aria-label={`Go to image ${index + 1}`}
+                ></button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Reorganized DaisyUI Table for picnic packages */}
-      <div className="overflow-x-auto shadow-lg rounded-lg">
-      <table className="table w-full text-gray-700" style={{ fontFamily: 'Playfair Display, serif' }}>
-          <thead className="text-gray-800 bg-white text-xl text-center">
-            <tr>
-              <th></th>
-              <th style={{ whiteSpace: 'normal' }}>Beachside Brunch</th>
-              <th style={{ whiteSpace: 'normal' }}>Romantic Picnic</th>
-              <th style={{ whiteSpace: 'normal',  }}>Sunset Delight</th>
-            </tr>
-          </thead>
-          <tbody className="text-lg" style={{borderTop: '2px solid black'}}>
-            <tr>
-              <td className="font-bold">Themes</td>
-              <td>Tropical, Sunny</td>
-              <td>Elegant, Intimate</td>
-              <td>Vibrant, Colorful</td>
-            </tr>
-            <tr>
-              <td className="font-bold">Menu</td>
-              <td>Brunch menu</td>
-              <td>Menu for 2</td>
-              <td>Shareable menu</td>
-            </tr>
-            {/* Merged row for Duration */}
-            <tr>
-              <td className="text-center font-bold" colSpan="1">Duration </td>
-              <td className="text-center" colSpan="3">2 hours </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      {/* Packages Table */}
+        <div className="overflow-x-auto shadow-lg rounded-lg">
+      <table
+        className="min-w-full text-gray-700"
+        style={{ fontFamily: 'Playfair Display, serif' }}
+      >
+      <thead className="bg-gray-100 text-base sm:text-lg md:text-xl">
+        <tr>
+          <th className="py-3 px-4 text-left"></th>
+          <th className="py-3 px-4 text-center">Beachside Brunch</th>
+          <th className="py-3 px-4 text-center">Romantic Picnic</th>
+          <th className="py-3 px-4 text-center">Sunset Delight</th>
+        </tr>
+      </thead>
+      <tbody className="text-sm sm:text-base md:text-lg">
+        <tr className="border-b">
+          <td className="font-bold py-4 px-4">Themes</td>
+          <td className="py-4 px-4 text-center">Tropical, Sunny</td>
+          <td className="py-4 px-4 text-center">Elegant, Intimate</td>
+          <td className="py-4 px-4 text-center">Vibrant, Colorful</td>
+        </tr>
+        <tr className="border-b">
+          <td className="font-bold py-4 px-4">Menu</td>
+          <td className="py-4 px-4 text-center">Brunch menu</td>
+          <td className="py-4 px-4 text-center">Menu for 2</td>
+          <td className="py-4 px-4 text-center">Shareable menu</td>
+        </tr>
+        <tr>
+          <td className="font-bold py-4 px-4">Duration</td>
+          <td className="py-4 px-4 text-center" colSpan={3}>
+            2 hours
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
   );
 };
 
