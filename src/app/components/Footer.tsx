@@ -10,9 +10,9 @@ const Footer: FC = () => {
         <Image
           src="/Lux.Fino.logo.svg" // Ensure the correct path and file extension
           alt="Company Logo"
-          width={300}
+          width={250}
           height={50}
-          className="mx-auto h-64"
+          className="mx-auto h-auto"
         />
       </div>
 
@@ -37,7 +37,7 @@ const Footer: FC = () => {
             </li>
             <li>
               <Link href="/corporate-events" className="link link-hover">
-                Corporate Events
+                Corporate Events/Weddings
               </Link>
             </li>
           </ul>

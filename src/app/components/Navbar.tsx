@@ -55,7 +55,7 @@ export default function Navbar() {
             alt="Company Logo"
             width={250}
             height={100}
-            className="object-contain -mt-4"
+            className="object-contain -mt-4 h-auto"
           />
         </Link>
       </div>
