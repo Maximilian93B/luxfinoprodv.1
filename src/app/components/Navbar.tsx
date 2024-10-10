@@ -10,7 +10,7 @@ import {
 
 export default function Navbar() {
   return (
-    <nav className="navbar bg-base-100 flex justify-between items-center sticky top-0 z-50">
+    <nav className="navbar h-24 bg-base-100 flex justify-between items-center sticky top-0 z-50 shadow-md overflow-visible">
       {/* Social Media Icons (Left of Logo) */}
       <div className="flex items-center space-x-4">
         <a
@@ -48,14 +48,14 @@ export default function Navbar() {
       </div>
 
       {/* Logo (Centered) */}
-      <div className="flex justify-center">
+      <div className="flex justify-center relative mt-4">
         <Link href="/" className="normal-case text-xl">
           <Image
-            src="/lux-fino-icon.svg"
+            src="/Lux.Fino.logo.svg"
             alt="Company Logo"
-            width={30}
-            height={30}
-            className="object-contain"
+            width={250}
+            height={100}
+            className="object-contain -mt-4 h-auto"
           />
         </Link>
       </div>

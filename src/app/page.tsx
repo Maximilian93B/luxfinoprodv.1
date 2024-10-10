@@ -64,7 +64,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <div className="hero min-h-screen relative text-white bg-black">
+    <div className="hero min-h-[90vh] relative text-white bg-black">
       {/* Carousel Background */}
       <div className="absolute inset-0">
         <div className="w-full h-full relative">
@@ -77,32 +77,31 @@ const HeroSection: React.FC = () => {
             >
               {/* Aspect Ratio Container */}
               <div className="w-full h-full relative overflow-hidden">
-                <Image
-                  src={slide.image}
-                  alt={slide.alt}
-                  fill
-                  style={{ objectFit: 'cover', 
-                  objectPosition: 'center ' ,
-                  transform: 'scale(1.0)'
-                  }}
-                  priority={index === currentSlide}
-                />
+                <div className="w-full h-full aspect-w-16 aspect-h-9">
+                  <Image
+                    src={slide.image}
+                    alt={slide.alt}
+                    fill
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    priority
+                  />
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-
+  
       {/* Hero Content */}
       <div className="hero-content text-center relative z-10 flex flex-col w-full px-4">
         {/* Top Section */}
         <div>
           <h1 className="mb-5 text-6xl sm:text-7xl font-bold">Welcome to LuxFino</h1>
-          <p className="mb-5">
+          <p className="mb-5 text-xl font-bold">
             LuxFino offers premium experiences that blend luxury, nature, and indulgence.
           </p>
         </div>
-
+  
         {/* Bottom Section */}
         <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
           {/* Explore Button */}
@@ -113,7 +112,7 @@ const HeroSection: React.FC = () => {
           <QuoteRequestDrawer />
         </div>
       </div>
-
+  
       {/* Navigation Buttons */}
       <div className="hidden md:flex absolute left-5 top-1/2 transform -translate-y-1/2">
         <button
@@ -133,8 +132,7 @@ const HeroSection: React.FC = () => {
       </div>
     </div>
   );
-};
-
+};  
 
 const AboutSection: React.FC = () => {
   return (
@@ -183,7 +181,7 @@ interface InfoCardProps {
 
 const InfoCard: React.FC<InfoCardProps> = ({ title, content }) => {
   return (
-    <div className="bg-slate-300 text-black flex items-center justify-center p-4 rounded-lg shadow-none mx-auto">
+    <div className="bg-white text-black flex items-center justify-center p-4 rounded-lg shadow-md mx-auto ">
       <div>
         <h3 className="text-2xl font-bold mb-2">{title}</h3>
         <p>{content}</p>
@@ -219,7 +217,7 @@ const ServiceSections: React.FC = () => {
         title="Tofino Tailored to Your Taste"
         description="Lux Catering brings gourmet, locally-inspired cuisine to your special event. Whether it’s an intimate gathering or a grand celebration, our in-house catering delivers fresh, delicious meals crafted to impress, making every moment feel indulgent and memorable."
         buttonText="Book LuxFino Catering"
-        imageSrc="/LuxCateringPic1.JPG"
+        imageSrc="/LuxCateringCard.JPG"
         imageAlt="Lux Catering"
         reverse={false}
       />
@@ -250,7 +248,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
       <div
         className={`hero-content flex-col lg:flex-row ${
           reverse ? "lg:flex-row-reverse" : ""
-        } space-y-6 lg:space-y-0`}
+        } space-y-6 lg:space-y-0 shadow-md`}
       >
         <Image
           src={imageSrc}
@@ -273,7 +271,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
 {/* Page Dividers */}
 const Divider: React.FC = () => {
-  return <div className="divider border-gray-300"></div>;
+  return <div className="divider border-black"></div>;
 };
 
 
@@ -324,11 +322,11 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio }) => {
             src={imageSrc}
             alt={name}
             width={800}
-            height={500}
+            height={'100'}
             style={{ objectFit: 'cover',
               objectPosition: 'center ',
              }}
-            className="rounded-lg"
+            className="rounded-lg "
           />
         </div>
       </div>
@@ -364,11 +362,8 @@ const SpecialEventsSection: React.FC = () => {
                     alt="Gourmet Corporate Lunch"
                     width={800}
                     height={500}
-                    style={{ objectFit: 'cover',
-                      objectPosition: 'center',
-                      scale: '1',
-                     }}
-                    className="rounded-lg"
+                    style={{ objectFit: 'cover', objectPosition: 'center', scale: '1',}}
+                    className="rounded-lg h-auto"
                   />
                 </figure>
                 <h2 className="card-title text-2xl font-bold text-black">
