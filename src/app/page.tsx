@@ -4,22 +4,29 @@ import React, {useState, useEffect} from "react";
 import { NextPage } from "next";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import TribalParksSection from "./components/TribalParksAdvert";
 import Image from "next/image";
 import QuoteRequestDrawer from "./components/FormDrawer";
-
+import Link from "next/link";
 
 {/* Page Structure */}
 const HomePage: NextPage = () => {
+
+  
   return (
     <div className="bg-white text-black">
       <Navbar />
       <HeroSection />
       <AboutSection />
       <ServiceSections />
-      <OwnerFounderSection />
       <SpecialEventsSection />
+      <OwnerFounderSection />
       <TribalParksSection />
       <Footer />
+
+
+      {/* Place QuoteRequestDrawer at the root level of the HomePage */}
+     
     </div>
   );
 };
@@ -34,16 +41,25 @@ const HeroSection: React.FC = () => {
       id: 1,
       image: '/LuxPicMain.jpeg',
       alt: 'Luxury Pop-up Picnics',
+      title: 'LuxFino Picnics: Luxury Pop-up Picnics',
+      description:
+        'Elevate your next outing with a thoughtfully curated luxury picnic. Surrounded by Tofino’s stunning landscapes, each picnic is designed to offer elegance, comfort, and a moment of indulgence you’ll never forget.',
     },
     {
       id: 2,
       image: '/LuxRemoteIndex.JPG',
       alt: 'Wild Luxury: Escape with Lux Remote',
+      title: 'Wild Luxury: Escape to Lux Remote',
+      description:
+        'Discover the art of wild luxury with Lux Remote. Escape the ordinary and immerse yourself in an exclusive off-grid adventure, combining rugged beauty with unparalleled comfort in nature’s most breathtaking settings.',
     },
     {
       id: 3,
       image: '/Catering1.JPG',
-      alt: 'Tofino Tailored to Your Taste',
+      alt: 'Catering, Coroporate Events, Weddings',
+      title: 'Luxfino Catering: Tofino Tailored to Your Taste',
+      description:
+        'Delight your senses with Lux Catering’s tailored culinary experiences. Our executive chef crafts bespoke menus that marry the freshest local ingredients with global inspiration—creating a dining experience like no other in the heart of Tofino.',
     },
   ];
 
@@ -52,91 +68,96 @@ const HeroSection: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((currentSlide) => (currentSlide + 1) % slideCount);
-    }, 5000); // Change slide every 5 seconds
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slideCount);
+    }, 7000); 
 
     return () => clearInterval(interval); // Clean up on unmount
   }, [slideCount]);
 
   // Handler for navigation buttons
   const goToSlide = (index: number) => {
-    setCurrentSlide(index % slideCount);
+    setCurrentSlide((index + slideCount) % slideCount);
   };
 
   return (
-    <div className="hero min-h-[90vh] relative text-white bg-black">
+    <div className="relative min-h-screen md:min-h-[80vh] text-white">
       {/* Carousel Background */}
       <div className="absolute inset-0">
-        <div className="w-full h-full relative">
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              {/* Aspect Ratio Container */}
-              <div className="w-full h-full relative overflow-hidden">
-                <div className="w-full h-full aspect-w-16 aspect-h-9">
-                  <Image
-                    src={slide.image}
-                    alt={slide.alt}
-                    fill
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
-                    priority
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              className="object-cover"
+              priority={index === currentSlide}
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          </div>
+        ))}
       </div>
   
       {/* Hero Content */}
-      <div className="hero-content text-center relative z-10 flex flex-col w-full px-4">
-        {/* Top Section */}
-        <div>
-          <h1 className="mb-5 text-6xl sm:text-7xl font-bold">Welcome to LuxFino</h1>
-          <p className="mb-5 text-xl font-bold">
-            LuxFino offers premium experiences that blend luxury, nature, and indulgence.
-          </p>
-        </div>
+      <div className="relative z-10 flex items-center justify-center min-h-screen md:min-h-[80vh] px-4 sm:px-8 md:px-16 text-center">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 px-2">
+              {slide.title}
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl font-medium mb-6 max-w-md sm:max-w-lg md:max-w-xl mx-auto px-4">
+              {slide.description}
+            </p>
   
-        {/* Bottom Section */}
-        <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-          {/* Explore Button */}
-          <button className="btn btn-outline bg-white border-black text-black bg-transparent w-full sm:w-auto">
-            Explore LuxFino
-          </button>
-          {/* Quote Request Drawer */}
-          <QuoteRequestDrawer />
-        </div>
+            {/* Buttons Container */}
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <Link href="#about" className="btn btn-primary text-white px-6 py-3">
+                Learn More
+              </Link>
+              {/* Book Now Button to Open Drawer */}
+              <div className="flex justify-center">
+                <QuoteRequestDrawer />
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
   
       {/* Navigation Buttons */}
-      <div className="hidden md:flex absolute left-5 top-1/2 transform -translate-y-1/2">
-        <button
-          className="btn btn-circle bg-white"
-          onClick={() => goToSlide((currentSlide - 1 + slideCount) % slideCount)}
-        >
-          ❮
-        </button>
-      </div>
-      <div className="hidden md:flex absolute right-5 top-1/2 transform -translate-y-1/2 z-20">
-        <button
-          className="btn btn-circle bg-white"
-          onClick={() => goToSlide((currentSlide + 1) % slideCount)}
-        >
-          ❯
-        </button>
-      </div>
+      <button
+        className="btn btn-circle hidden md:flex absolute left-4 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-2 focus:outline-none"
+        onClick={() => goToSlide(currentSlide - 1)}
+        aria-label="Previous Slide"
+      >
+        ❮
+      </button>
+      <button
+        className="btn btn-circle hidden md:flex absolute right-4 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-2 focus:outline-none"
+        onClick={() => goToSlide(currentSlide + 1)}
+        aria-label="Next Slide"
+      >
+        ❯
+      </button>
     </div>
   );
-};  
+  
+};
 
+
+{/* Set id to allow buttons to have access to scroll */}
 const AboutSection: React.FC = () => {
   return (
-    <div className="about py-12 bg-white text-black">
+    <div id="about" className="about py-28 bg-white text-black">
       <div className="container mx-auto text-center sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold mb-6">About LuxFino</h2>
         <p className="text-lg mb-5">
@@ -198,19 +219,21 @@ const ServiceSections: React.FC = () => {
       <ServiceSection
         title="Luxury Pop-up Picnics"
         description="Lux.Fino’s pop-up picnics combine luxury and nature for an unforgettable beachside experience. Enjoy cozy seating, elegant décor, and locally-sourced food, perfect for any occasion. Relax, connect, and savor Tofino’s beauty in style."
-        buttonText="Book a Lux Picnic"
+        buttonText="Explore LuxFino Picnics"
         imageSrc="/LuxPicMain.jpeg"
         imageAlt="Lux Picnic"
         reverse={false}
+        linkHref='/luxpicnic'
       />
       <Divider />
       <ServiceSection
         title="Wild Luxury: Escape with Lux Remote"
         description="Lux Remote offers a luxurious off-grid escape in Tofino’s wilderness. Enjoy the perfect blend of comfort and adventure with cozy accommodations, stunning ocean views, and total seclusion. It’s the ultimate way to unwind and experience nature in style."
-        buttonText="Explore Lux Remote"
+        buttonText="Escape to Lux Remote"
         imageSrc="/DiscoverLuxRemote.JPG"
         imageAlt="Lux Remote"
         reverse={true}
+        linkHref='/luxremote'
       />
       <Divider />
       <ServiceSection
@@ -220,6 +243,7 @@ const ServiceSections: React.FC = () => {
         imageSrc="/LuxCateringCard.JPG"
         imageAlt="Lux Catering"
         reverse={false}
+        linkHref='/luxcatering'
       />
       <Divider />
     </>
@@ -233,6 +257,7 @@ interface ServiceSectionProps {
   imageSrc: string;
   imageAlt: string;
   reverse?: boolean;
+  linkHref: string;
 }
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({
@@ -242,6 +267,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   imageSrc,
   imageAlt,
   reverse = false,
+  linkHref,
 }) => {
   return (
     <div className="hero h-auto lg:h-80">
@@ -260,9 +286,11 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         <div className="text-center lg:text-left">
           <h1 className="text-3xl lg:text-4xl font-bold">{title}</h1>
           <p className="py-4 lg:py-6">{description}</p>
-          <button className="btn btn-outline border-black text-black">
-            {buttonText}
-          </button>
+          <Link href={linkHref}>
+            <button className="btn btn-outline border-black text-black">
+              {buttonText}
+            </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -373,9 +401,10 @@ const SpecialEventsSection: React.FC = () => {
                   Host your meeting in the serene surroundings of Tofino or Lux Remote. Enjoy a gourmet lunch prepared by our top chef, making your business day both productive and indulgent.
                 </p>
                 <div className="card-actions justify-start mt-6">
-                  <button className="btn bg-black text-white mr-4">
-                    Book Now
-                  </button>
+                  {/*Quote Drawer */}
+                <div className="flex justify-center">
+                <QuoteRequestDrawer />
+                </div>
                   <button className="btn btn-outline border-black text-black">
                     Learn More
                   </button>
@@ -409,9 +438,10 @@ const SpecialEventsSection: React.FC = () => {
                   Say "I do" in the breathtaking wilderness of Lux Remote. Our exclusive location offers a romantic and intimate setting for your special day, complete with gourmet dining and unforgettable views.
                 </p>
                 <div className="card-actions justify-start mt-6">
-                  <button className="btn bg-black text-white mr-4">
-                    Book Now
-                  </button>
+                  {/*Quote Drawer */}
+                <div className="flex justify-center">
+                <QuoteRequestDrawer />
+                </div>
                   <button className="btn btn-outline border-black text-black">
                     Learn More
                   </button>
@@ -424,74 +454,3 @@ const SpecialEventsSection: React.FC = () => {
     </>
   );
 };
-
-
-const TribalParksSection: React.FC = () => {
-  return (
-    <div className="bg-black py-8">
-      <div className="container mx-auto text-center px-4">
-        {/* Tribal Parks Allies Symbol */}
-        <div className="flex justify-center">
-          <Image
-            src="/TribalParksLogo.svg"
-            width={100}
-            height={100}
-            alt="Tribal Parks Allies Symbol"
-            className="rounded-lg w-full max-w-md"
-          />
-        </div>
-
-        {/* Text Section */}
-        <div className="text-white bg-black py-4">
-          <h2 className="text-xl md:text-2xl font-bold mb-4">
-            LuxFino is proud to support Tribal Parks 
-          </h2>
-          <p className="max-w-2xl mx-auto">
-            LuxFino is proud to work in collaboration with Tribal Parks Allies, supporting initiatives that preserve the natural beauty of Tofino and respecting the rights and traditions of First Nations communities. Our commitment extends beyond luxury experiences—we aim to contribute positively to the environment and the cultural landscape in which we operate, fostering sustainable tourism and community-driven practices.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
-{/*
-  const HeroSection: React.FC = () => {
-  return(
-  <div className="hero min-h-screen relative bg-white text-black flex justify-center items-center">
-
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="absolute inset-0 w-full h-full object-cover z-0"
-  >
-    <source src="/11899340_3840_2160_24fps.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-
-
-  <div className="hero-content text-white text-center relative z-10">
-    <div className="max-w-md">
-     
-      <h1 className="mb-5 text-5xl font-bold">Welcome to LuxFino</h1>
-    
-      <p className="mb-5">
-        LuxFino offers premium experiences that blend luxury, nature, and indulgence.
-      </p>
-   
-      <div className="flex justify-center items-center space-x-4">
-      
-        <button className="btn btn border-black text-black">
-          Explore LuxFino
-        </button>
-   
-        <QuoteRequestDrawer />
-      </div>
-    </div>
-  </div>
-</div>
-);
-} */}
