@@ -5,25 +5,25 @@ import Link from 'next/link';
 const PicnicsTabs: React.FC = () => {
   const picnicPackages = [
     {
-      title: 'Beachside Brunch',
+      title: 'The Ultimate Cuddle Puddle',
       description:
-        "Start your day with the soothing sounds of the ocean. Our Beachside Brunch Picnic offers a selection of fresh pastries, artisanal cheeses, and sparkling beverages, all set against the breathtaking backdrop of Tofino's pristine beaches.",
+        "Snuggle up with your cuddle buddy and watch the sunset melt into the horizon with this beautifully curated pillow and blanket setup. We will ensure you are warm and cozy with a variety of plush pillows and blankets set in the most picture perfect location!",
       imageSrc: '/LuxPicMain.jpeg',
       imageAlt: 'Beachside Brunch',
       link: '/packages/beachside-brunch',
     },
     {
-      title: 'Romantic Escape',
+      title: 'Golden Hour ',
       description:
-        'Create unforgettable memories with our Romantic Escape Picnic. Enjoy a curated menu featuring gourmet delights and fine wine, complemented by candles and elegant decor for an intimate setting by the sea.',
+        'A true Tofino picnic experience! Feeling peckish? We have you covered with our locally curated charcuterie grazing boards fit for Queens and Kings.  This table is the perfect match to ignite your ultimate vacation mode.',
       imageSrc: '/Catering2.jpg',
       imageAlt: 'Romantic Escape Picnic',
       link: '/packages/romantic-escape',
     },
     {
-      title: 'Sunset Delight',
+      title: 'The Perfect Proposal Package',
       description:
-        'Experience the magic of a Tofino sunset with our Sunset Delight Picnic package. Indulge in gourmet treats and premium champagne as the sun dips below the horizon, painting the sky with hues of gold and pink.',
+        'Create an unforgettable experience for you and the one you call forever with. This one of a kind, intimate and romantic picnic experience will have you falling head over heels all over again. Take this time to sit back, relax and leave all the special details to us, as we will help coordinate and prepare your special day to perfection. ',
       imageSrc: '/Catering3.jpg',
       imageAlt: 'Sunset Delight Picnic',
       link: '/packages/sunset-delight',
