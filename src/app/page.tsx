@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
       id: 1,
       image: '/LuxPicMain.jpeg',
       alt: 'Luxury Pop-up Picnics',
-      title: 'Lux Picnics',
+      title: 'LuxFino Picnics: Luxury Pop-up Picnics',
       description:
         'Elevate your next outing with a thoughtfully curated luxury picnic. Surrounded by Tofino’s stunning landscapes, each picnic is designed to offer elegance, comfort, and a moment of indulgence you’ll never forget.',
     },
@@ -49,15 +49,15 @@ const HeroSection: React.FC = () => {
       id: 2,
       image: '/LuxRemoteIndex.JPG',
       alt: 'Wild Luxury: Escape with Lux Remote',
-      title: 'Lux Remote',
+      title: 'Wild Luxury: Escape to Lux Remote',
       description:
         'Discover the art of wild luxury with Lux Remote. Escape the ordinary and immerse yourself in an exclusive off-grid adventure, combining rugged beauty with unparalleled comfort in nature’s most breathtaking settings.',
     },
     {
       id: 3,
       image: '/Catering1.JPG',
-      alt: 'Lux Catering: Tofino Tailored to Your Taste',
-      title: 'Lux Catering',
+      alt: 'Catering, Coroporate Events, Weddings',
+      title: 'Luxfino Catering: Tofino Tailored to Your Taste',
       description:
         'Delight your senses with Lux Catering’s tailored culinary experiences. Our executive chef crafts bespoke menus that marry the freshest local ingredients with global inspiration—creating a dining experience like no other in the heart of Tofino.',
     },
@@ -69,7 +69,7 @@ const HeroSection: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slideCount);
-    }, 8000); 
+    }, 7000); 
 
     return () => clearInterval(interval); // Clean up on unmount
   }, [slideCount]);
@@ -401,9 +401,10 @@ const SpecialEventsSection: React.FC = () => {
                   Host your meeting in the serene surroundings of Tofino or Lux Remote. Enjoy a gourmet lunch prepared by our top chef, making your business day both productive and indulgent.
                 </p>
                 <div className="card-actions justify-start mt-6">
-                  <button className="btn bg-black text-white mr-4">
-                    Book Now
-                  </button>
+                  {/*Quote Drawer */}
+                <div className="flex justify-center">
+                <QuoteRequestDrawer />
+                </div>
                   <button className="btn btn-outline border-black text-black">
                     Learn More
                   </button>
@@ -437,9 +438,10 @@ const SpecialEventsSection: React.FC = () => {
                   Say "I do" in the breathtaking wilderness of Lux Remote. Our exclusive location offers a romantic and intimate setting for your special day, complete with gourmet dining and unforgettable views.
                 </p>
                 <div className="card-actions justify-start mt-6">
-                  <button className="btn bg-black text-white mr-4">
-                    Book Now
-                  </button>
+                  {/*Quote Drawer */}
+                <div className="flex justify-center">
+                <QuoteRequestDrawer />
+                </div>
                   <button className="btn btn-outline border-black text-black">
                     Learn More
                   </button>
