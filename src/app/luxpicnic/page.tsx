@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PicnicsTabs from '../components/PicnicsTabs';
 import PicnicsTestimonials from '../components/PicnicsTestimonials';
-import PicnicTable from '../components/PicnicTable';
+import PicnicTable from '../components/PicnicInfo';
 import Image from 'next/image'; // If you're using Next.js
 import TribalParksSection from '../components/TribalParksAdvert';
 
