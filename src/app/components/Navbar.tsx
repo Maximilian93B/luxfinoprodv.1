@@ -17,15 +17,15 @@ export default function Navbar() {
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-900"
+          className="text-[#0077B5] hover:text-gray-900"
         >
           <FontAwesomeIcon icon={faLinkedin} size="lg" />
         </a>
         <a
-          href="https://www.instagram.com"
+          href="https://www.instagram.com/lux.fino/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-900"
+          className="text-[#E1306C] hover:text-gray-900"
         >
           <FontAwesomeIcon icon={faInstagram} size="lg" />
         </a>
@@ -33,46 +33,50 @@ export default function Navbar() {
           href="https://www.facebook.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-900"
+          className="text-[#1877F2] hover:text-gray-900"
         >
           <FontAwesomeIcon icon={faFacebook} size="lg" />
         </a>
         <a
-          href="https://www.airbnb.com"
+          href="https://www.airbnb.ca/rooms/742943181320412904?"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-900"
+          className="text-[#FF5A5F] hover:text-gray-900"
         >
           <FontAwesomeIcon icon={faAirbnb} size="lg" />
         </a>
       </div>
 
       {/* Logo (Centered) */}
-      <div className="flex justify-center relative mt-4">
+      <div className="flex justify-center items-center flex-grow relative mt-4">
         <Link href="/" className="normal-case text-xl">
           <Image
             src="/Lux.Fino.logo.svg"
             alt="Company Logo"
-            width={250}
-            height={100}
-            className="object-contain -mt-4 h-auto"
+            width={300}
+            height={300}
+            className="object-contain -mt-4 h-auto w-auto"
           />
         </Link>
       </div>
 
       {/* Web Menu (Right of Logo) */}
       <div className="hidden lg:flex items-center space-x-2">
-        <Link href="/luxpicnic" className="btn btn-ghost">
-          Picnics
+        <Link href="/luxpicnic" 
+          className="btn btn-ghost">
+            Picnics
         </Link>
-        <Link href="/luxremote" className="btn btn-ghost">
-          Lux Remote
+        <Link href="/luxremote" 
+          className="btn btn-ghost">
+            Lux Remote
         </Link>
-        <Link href="/luxcatering" className="btn btn-ghost">
-          Weddings & Corporate Catering
+        <Link href="/luxcatering" 
+          className="btn btn-ghost">
+            Weddings & Corporate Catering
         </Link>
-        <a href="tel:+11234567890" className="btn btn-outline">
-          Call Us: +1 (800) 589-3466
+        <a href="tel:+11234567890" 
+          className="btn btn-outline">
+            Call Us: +1 (800) 589-3466
         </a>
       </div>
 

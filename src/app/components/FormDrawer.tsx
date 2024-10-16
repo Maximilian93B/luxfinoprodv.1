@@ -171,6 +171,10 @@ type FormData = {
 type QuoteRequestDrawerProps = {
   isOpen: boolean;
   onClose: () => void;
+  formData: any;
+  onFormChange: (name: string, value: string | string[]) => void;
+  selectedService: string;
+  onServiceChange: (service: string) => void;
 };
 
 const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}) => {

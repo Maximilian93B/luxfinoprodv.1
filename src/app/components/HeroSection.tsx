@@ -9,7 +9,9 @@ const HeroSection: React.FC = () => {
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover z-0"
+        poster='/luxfino drone no music.MP4'
       >
         <source src="/luxfino drone no music.MP4" type="video/mp4" />
         Your browser does not support the video tag.
