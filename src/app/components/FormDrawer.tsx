@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 
+
+
 type FieldType = 'text' | 'select' | 'checkbox' | 'textarea' | 'date' | 'number' | 'time';
 
 type Field = {
@@ -166,9 +168,16 @@ type FormData = {
   [key: string]: any; // For dynamic fields
 };
 
-const QuoteRequestDrawer: React.FC = () => {
+type QuoteRequestDrawerProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}) => {
   // **State Declarations**
+
   const [selectedService, setSelectedService] = useState<string>('');
+
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -181,6 +190,7 @@ const QuoteRequestDrawer: React.FC = () => {
   const [successMessage, setSuccessMessage] = useState<string>('');
 
   // **Event Handlers**
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -394,10 +404,14 @@ const QuoteRequestDrawer: React.FC = () => {
   };
 
   // **Return Statement (JSX)**
-
   return (
     <div className="drawer">
-      <input id="quote-request-drawer" type="checkbox" className="drawer-toggle" />
+    <input id="quote-request-drawer" 
+          type="checkbox" 
+          className="drawer-toggle" 
+          checked={isOpen}
+          onChange={onClose}
+          />
       <div className="drawer-content">
         {/* Page content here */}
         <label htmlFor="quote-request-drawer" className="btn btn-outline outline-white bg-white">
