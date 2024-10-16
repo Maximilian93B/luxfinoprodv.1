@@ -14,12 +14,12 @@ const SecipalEventsSection: React.FC = () => {
     return (
       <>
         <Divider />
-        <div className="bg-white py-16">
+        <div className="bg-white p-8">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold text-black mb-8">
-              Marketing Slogan goes here.... 
+              Meetings & Weddings
             </h2>
-            <p className="max-w-3xl mx-auto text-lg text-black mb-12">
+            <p className="max-w-3xl mx-auto text-lg text-black mb-12 px-8">
               Elevate your special occasions with unforgettable experiences at Lux Remote. Whether you're hosting a corporate meeting or celebrating a wedding, arrive in style, conduct your event in the serene wilderness, enjoy gourmet meals, and create memories that last a lifetime.
             </p>
   
@@ -28,7 +28,7 @@ const SecipalEventsSection: React.FC = () => {
               {/* Corporate Lunch Card */}
               <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:mr-4 mb-8 lg:mb-0">
                 <div className="card-body p-6">
-                <figure className="relative w-full h-96 mb-6 rounded-lg">
+                <figure className="relative w-full h-full mb-6 rounded-lg">
                     <Image
                       src="/LuxLunches.JPG"
                       alt="Gourmet Corporate Lunch"
@@ -49,7 +49,7 @@ const SecipalEventsSection: React.FC = () => {
                   <div className="flex justify-center">
                 
                   </div>
-                    <button className="btn btn-outline border-black text-black">
+                    <button className="btn btn-outline  bg-black border-black text-white">
                       Learn More
                     </button>
                   </div>
@@ -61,8 +61,8 @@ const SecipalEventsSection: React.FC = () => {
   
               {/* Weddings Card */}
               <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:mr-4 mb-8 lg:mb-0">
-                <div className="card-body p-6">
-                  <figure className="relative w-full h-96 mb-6 rounded-lg">
+                <div className="card-body p-8">
+                  <figure className="relative w-full h-full mb-6 rounded-lg">
                     <Image
                       src="/WeddingPIc.JPG" 
                       alt="Lux Remote Weddings"
@@ -86,7 +86,7 @@ const SecipalEventsSection: React.FC = () => {
                   <div className="flex justify-center">
               
                   </div>
-                    <button className="btn btn-outline border-black text-black">
+                    <button className="btn btn-outline bg-black border-black text-white">
                       Learn More
                     </button>
                   </div>

@@ -5,7 +5,7 @@ import Image from "next/image";
 const TribalParksSection: React.FC = () => {
     return (
       <section className="bg-black py-8">
-        <div className="container mx-auto text-center px-4 min-h-[45vh]">
+        <div className="container mx-auto text-center px-8 min-h-[45vh]">
           {/* Tribal Parks Allies Symbol */}
           <div className="flex justify-center mb-4">
             <Image

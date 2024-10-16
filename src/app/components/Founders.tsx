@@ -13,7 +13,7 @@ const Divider: React.FC = () => {
     return (
       <>
         <Divider />
-        <div className="about bg-white py-12 text-black">
+        <div className="about bg-white py-12 text-black px-8">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">Owners &amp; Founders</h2>
             <p className="text-lg mb-12">
@@ -48,8 +48,8 @@ const Divider: React.FC = () => {
   
   const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio }) => {
     return (
-      <div className="bg-gray-100 p-6 rounded-lg flex flex-col md:flex-row items-center">
-        <div className="avatar mb-6 md:mb-0 md:mr-6">
+      <div className="bg-white p-8 rounded-lg flex flex-col md:flex-row items-center">
+        <div className="avatar mb-6 md:mb-0 md:mr-4">
           <div className="relative w-64 h-64 mask mask-hexagon">
             <Image
               src={imageSrc}

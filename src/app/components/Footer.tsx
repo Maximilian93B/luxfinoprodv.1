@@ -4,15 +4,15 @@ import { FC } from "react";
 
 const Footer: FC = () => {
   return (
-    <footer className="bg-white text-black p-4">
+    <footer className="bg-white text-black p-6">
       {/* Logo */}
       <div className="logo-container mb-4">
         <Image
           src="/Lux.Fino.logo.svg" // Ensure the correct path and file extension
           alt="Company Logo"
           width={250}
-          height={50}
-          className="mx-auto h-auto"
+          height={250}
+          className="mx-auto h-auto w-auto"
         />
       </div>
 
@@ -21,17 +21,17 @@ const Footer: FC = () => {
           <h6 className="footer-title font-semibold mb-4">Services</h6>
           <ul className="space-y-2">
             <li>
-              <Link href="/accommodations" className="link link-hover">
+              <Link href="/luxremote" className="link link-hover">
                 Accommodations
               </Link>
             </li>
             <li>
-              <Link href="/catering" className="link link-hover">
+              <Link href="/luxcatering" className="link link-hover">
                 Catering
               </Link>
             </li>
             <li>
-              <Link href="/picnics" className="link link-hover">
+              <Link href="/luxpicnics" className="link link-hover">
                 Picnics
               </Link>
             </li>

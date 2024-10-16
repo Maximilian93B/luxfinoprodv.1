@@ -76,7 +76,7 @@ const IndexHeroSection: React.FC = () => {
     };
   
     return (
-    <div className="relative min-h-screen md:min-h-[80vh] text-white">
+    <div className="relative min-h-screen md:min-h-[90vh] text-white">
       {/* Carousel Background */}
       <div className="absolute inset-0">
         {slides.map((slide, index) => (
@@ -93,7 +93,7 @@ const IndexHeroSection: React.FC = () => {
               className="object-cover"
               priority={index === currentSlide}
             />
-            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-30"></div>
           </div>
         ))}
       </div>
@@ -117,11 +117,11 @@ const IndexHeroSection: React.FC = () => {
 
             {/* Buttons Container */}
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link href="#about" className="btn btn-primary text-white px-6 py-3">
+              <Link href="#about" className="btn bg-black  text-white px-6 py-3">
                 Learn More
               </Link>
 
-             <button onClick={toggleDrawer} className="btn btn-primary">
+             <button onClick={toggleDrawer} className="btn bg-black text-white ">
               Book With LuxFino
             </button>
             

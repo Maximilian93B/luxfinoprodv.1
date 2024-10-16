@@ -7,11 +7,11 @@ import Link from 'next/link';
 const IndexServiceSections: React.FC = () => {
     return (
       <>
-        <Divider />
+       
         <ServiceSection
           title="Luxury Pop-up Picnics"
           description="Lux.Fino’s pop-up picnics combine luxury and nature for an unforgettable beachside experience. Enjoy cozy seating, elegant décor, and locally-sourced food, perfect for any occasion. Relax, connect, and savor Tofino’s beauty in style."
-          buttonText="Explore LuxFino Picnics"
+          buttonText="Explore Lux Picnics"
           imageSrc="/LuxPicMain.jpeg"
           imageAlt="Lux Picnic"
           reverse={false}
@@ -62,7 +62,7 @@ const IndexServiceSections: React.FC = () => {
     linkHref,
   }) => {
     return (
-      <div className="hero h-auto lg:h-80">
+      <div className="hero h-auto lg:h-80 px-8">
         <div
           className={`hero-content flex-col lg:flex-row ${
             reverse ? "lg:flex-row-reverse" : ""
@@ -75,11 +75,11 @@ const IndexServiceSections: React.FC = () => {
             height={100}
             className="rounded-lg shadow-none object-cover w-full lg:w-auto lg:h-auto"
           />
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left p-8">
             <h1 className="text-3xl lg:text-4xl font-bold">{title}</h1>
-            <p className="py-4 lg:py-6">{description}</p>
+            <p className="p-8 lg:py-6">{description}</p>
             <Link href={linkHref}>
-              <button className="btn btn-outline border-black text-black">
+              <button className="btn btn-outline bg-black border-black text-white">
                 {buttonText}
               </button>
             </Link>

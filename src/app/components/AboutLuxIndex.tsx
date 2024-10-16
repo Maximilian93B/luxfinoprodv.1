@@ -7,7 +7,7 @@ interface InfoCardProps {
   
   const InfoCard: React.FC<InfoCardProps> = ({ title, content }) => {
     return (
-      <div className="bg-white text-black flex items-center justify-center p-4 rounded-lg shadow-md mx-auto ">
+      <div className="bg-white text-black flex items-center justify-center p-8 rounded-lg shadow-md mx-auto ">
         <div>
           <h3 className="text-2xl font-bold mb-2">{title}</h3>
           <p>{content}</p>
@@ -26,7 +26,7 @@ const Divider: React.FC = () => {
 {/* Set id to allow buttons to have access to scroll */}
 const AboutSection: React.FC = () => {
     return (
-      <div id="about" className="about py-28 bg-white text-black">
+      <div id="about" className="about py-16 bg-white text-black px-8">
         <div className="container mx-auto text-center sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-6">About LuxFino</h2>
           <p className="text-lg mb-5">
