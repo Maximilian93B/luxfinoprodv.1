@@ -171,78 +171,87 @@ type FormData = {
 type QuoteRequestDrawerProps = {
   isOpen: boolean;
   onClose: () => void;
-  formData: any;
+  formData: FormData;
   onFormChange: (name: string, value: string | string[]) => void;
   selectedService: string;
   onServiceChange: (service: string) => void;
 };
 
-const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}) => {
-  // **State Declarations**
-
-  const [selectedService, setSelectedService] = useState<string>('');
-
-  const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    contactMethod: '',
-    selectedService: '',
-  });
+const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({
+  isOpen,
+  onClose,
+  formData,
+  onFormChange,
+  selectedService,
+  onServiceChange
+}) => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [successMessage, setSuccessMessage] = useState<string>('');
-
-  // **Event Handlers**
-
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    const target = e.target;
-    const { name, type, value } = target;
-
-    setFormData((prevData) => {
-      if (type === 'checkbox') {
-        const checked = (target as HTMLInputElement).checked;
-        const currentValues = prevData[name] || [];
-        if (checked) {
-          return {
-            ...prevData,
-            [name]: [...currentValues, value],
-          };
-        } else {
-          return {
-            ...prevData,
-            [name]: currentValues.filter((item: string) => item !== value),
-          };
-        }
-      } else {
-        return {
-          ...prevData,
-          [name]: value,
-        };
-      }
-    });
+    const { name, value, type } = e.target;
+    if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked;
+      const currentValues = formData[name] || [];
+      const newValue = checked
+        ? [...currentValues, value]
+        : currentValues.filter((item: string) => item !== value);
+      onFormChange(name, newValue);
+    } else {
+      onFormChange(name, value);
+    }
+    // Clear error for this field when it's changed
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
   };
 
-  // Basic form validation
+  // Form
   const validateFormData = (data: FormData) => {
     const newErrors: { [key: string]: string } = {};
 
-    // Validate required fields
-    if (!data.firstName) newErrors.firstName = 'First Name is required.';
-    if (!data.lastName) newErrors.lastName = 'Last Name is required.';
-    if (!data.phone) newErrors.phone = 'Phone number is required.';
-    if (!data.email) newErrors.email = 'Email is required.';
+    // Validate static fields
+    if (!data.firstName?.trim()) newErrors.firstName = 'First Name is required.';
+    if (!data.lastName?.trim()) newErrors.lastName = 'Last Name is required.';
+    if (!data.phone?.trim()) newErrors.phone = 'Phone number is required.';
+    if (!data.email?.trim()) newErrors.email = 'Email is required.';
+    else if (!/\S+@\S+\.\S+/.test(data.email)) newErrors.email = 'Email is invalid.';
     if (!data.contactMethod) newErrors.contactMethod = 'Preferred contact method is required.';
     if (!data.selectedService) newErrors.selectedService = 'Please select a service.';
 
     // Validate dynamic fields
     if (selectedService && serviceFields[selectedService]) {
       serviceFields[selectedService].forEach((field) => {
-        if (field.required && !data[field.name]) {
-          newErrors[field.name] = `${field.label} is required.`;
+        if (field.required) {
+          switch (field.type) {
+            case 'checkbox':
+              if (!data[field.name] || data[field.name].length === 0) {
+                newErrors[field.name] = `Please select at least one ${field.label}.`;
+              }
+              break;
+            case 'date':
+              if (!data[field.name] || !isValidDate(data[field.name])) {
+                newErrors[field.name] = `Please enter a valid date for ${field.label}.`;
+              }
+              break;
+            case 'time':
+              if (!data[field.name] || !isValidTime(data[field.name])) {
+                newErrors[field.name] = `Please enter a valid time for ${field.label}.`;
+              }
+              break;
+            case 'number':
+              if (!data[field.name] || isNaN(Number(data[field.name]))) {
+                newErrors[field.name] = `Please enter a valid number for ${field.label}.`;
+              }
+              break;
+            default:
+              if (!data[field.name] || data[field.name].trim() === '') {
+                newErrors[field.name] = `${field.label} is required.`;
+              }
+          }
         }
       });
     }
@@ -250,21 +259,47 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
     return newErrors;
   };
 
-  // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const isValidDate = (dateString: string) => {
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!regex.test(dateString)) return false;
+    const date = new Date(dateString);
+    return !isNaN(date.getTime());
+  };
+
+  const isValidTime = (timeString: string) => {
+    const regex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+    return regex.test(timeString);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setErrors({});
+    setSuccessMessage('');
+
     const validationErrors = validateFormData(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setSuccessMessage('');
+      setIsSubmitting(false);
     } else {
-      // Form is valid, submit data
-      console.log(formData);
-      setErrors({});
-      setSuccessMessage('Your quote request has been submitted successfully!');
-      // Reset form or redirect as needed
+      try {
+        // Simulating an API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log(formData);
+        setSuccessMessage('Your quote request has been submitted successfully!');
+        // Reset form
+        Object.keys(formData).forEach(key => onFormChange(key, ''));
+        onServiceChange('');
+      } catch (error) {
+        console.error('Form submission error:', error);
+        setErrors({ submit: 'An error occurred while submitting the form. Please try again.' });
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
+
+
 
   // **Reusable Input Components**
 
@@ -363,6 +398,7 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
             checked={values?.includes(option) || false}
             onChange={onChange}
             className="checkbox"
+            aria-label={option}
           />
           <span className="label-text">{option}</span>
         </label>
@@ -371,7 +407,6 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
     </div>
   );
 
-  // **Helper Function: renderDynamicFields**
   const renderDynamicFields = () => {
     if (!selectedService || !serviceFields[selectedService]) return null;
 
@@ -389,7 +424,7 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
             <CheckboxField
               key={index}
               field={field}
-              values={formData[field.name]}
+              values={formData[field.name] || []}
               onChange={handleChange}
               error={error}
             />
@@ -399,7 +434,6 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
             <TextAreaField key={index} field={field} value={value} onChange={handleChange} error={error} />
           );
         default:
-          // Handles 'text', 'date', 'number', 'time', etc.
           return (
             <InputField key={index} field={field} value={value} onChange={handleChange} error={error} />
           );
@@ -410,12 +444,12 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
   // **Return Statement (JSX)**
   return (
     <div className="drawer">
-    <input id="quote-request-drawer" 
-          type="checkbox" 
-          className="drawer-toggle" 
-          checked={isOpen}
-          onChange={onClose}
-          />
+      <input id="quote-request-drawer" 
+             type="checkbox" 
+             className="drawer-toggle" 
+             checked={isOpen}
+             onChange={onClose}
+      />
       <div className="drawer-content">
         {/* Page content here */}
         <label htmlFor="quote-request-drawer" className="btn btn-outline outline-white bg-white">
@@ -424,7 +458,12 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
       </div>
       <div className="drawer-side">
         <label htmlFor="quote-request-drawer" className="drawer-overlay"></label>
-        <div className="p-4 w-3/4 md:w-1/2 lg:w-1/3 bg-white text-base-content">
+        <div className="p-4 w-3/4 md:w-1/2 lg:w-1/3 bg-white text-base-content relative">
+          <button onClick={onClose} className="btn btn-circle btn-outline absolute top-4 right-4">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           <h2 className="text-xl md:text-2xl font-bold mt-4">Lux.Fino Quote Request</h2>
           <div className="flex justify-center my-4 mt-10">
             <Image
@@ -532,8 +571,8 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
               {errors.contactMethod && <p className="text-error">{errors.contactMethod}</p>}
             </div>
 
-            {/* **Service Selection** */}
-            <div className="form-control mb-4">
+             {/* **Service Selection** */}
+             <div className="form-control mb-4">
               <label className="label" htmlFor="selectedService">
                 <span className="label-text">Select a Service</span>
               </label>
@@ -542,8 +581,8 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
                 className={`select select-bordered w-full ${errors.selectedService ? 'select-error' : ''}`}
                 value={selectedService}
                 onChange={(e) => {
-                  setSelectedService(e.target.value);
-                  handleChange(e); // Update formData
+                  onServiceChange(e.target.value);
+                  handleChange(e);
                 }}
                 name="selectedService"
                 required
@@ -559,32 +598,39 @@ const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({isOpen, onClose}
               {errors.selectedService && <p className="text-error">{errors.selectedService}</p>}
             </div>
 
-            {/* **Dynamic Fields Based on Selected Service** */}
-            {renderDynamicFields()}
+             {/* **Dynamic Fields Based on Selected Service** */}
+             {renderDynamicFields()}
 
-            {/* **Success Message** */}
-            {successMessage && <p className="text-success">{successMessage}</p>}
+          {/* **Success Message** */}
+          {successMessage && <p className="text-success">{successMessage}</p>}
 
-            {/* **Company Logo** */}
-            <div className="flex justify-center my-4">
-              <Image
-                src={'/Lux.Fino.logo.svg'}
-                alt="Lux.Fino Company Logo"
-                width={350}
-                height={100}
-                className="h-auto"
-              />
-            </div>
+          {/* **Error Message** */}
+          {errors.submit && <p className="text-error">{errors.submit}</p>}
 
-            {/* **Submit Button** */}
-            <button type="submit" className="btn btn-outline outline-white w-1/3">
-              Send
-            </button>
+          {/* **Company Logo** */}
+          <div className="flex justify-center my-4">
+            <Image
+              src={'/Lux.Fino.logo.svg'}
+              alt="Lux.Fino Company Logo"
+              width={350}
+              height={100}
+              className="h-auto"
+            />
+          </div>
+
+          {/* **Submit Button** */}
+          <button 
+            type="submit" 
+            className="btn btn-outline outline-white w-full"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Sending...' : 'Send'}
+          </button>
           </form>
-        </div>
-      </div>
-    </div>
-  );
-};
+          </div>
+          </div>
+          </div>
+          );
+          };
 
 export default QuoteRequestDrawer;

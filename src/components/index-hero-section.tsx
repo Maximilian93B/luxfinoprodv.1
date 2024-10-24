@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import QuoteRequestDrawer from './FormDrawer'
+import QuoteRequestDrawer from './quote-request-drawer'
 
 interface Slide {
   id: number
@@ -22,7 +22,7 @@ const slides: Slide[] = [
     alt: 'Luxury Pop-up Picnics',
     title: 'LuxFino Picnics: Luxury Pop-up Picnics',
     description:
-      'Elevate your next outing with a thoughtfully curated luxury picnic. Surrounded by Tofinos stunning landscapes, each picnic is designed to offer elegance, comfort, and a moment of indulgence youll never forget.',
+      'Elevate your next outing with a thoughtfully curated luxury picnic. Surrounded by Tofino's stunning landscapes, each picnic is designed to offer elegance, comfort, and a moment of indulgence you'll never forget.',
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const slides: Slide[] = [
     alt: 'Wild Luxury: Escape with Lux Remote',
     title: 'Wild Luxury: Escape to Lux Remote',
     description:
-      'Discover the art of wild luxury with Lux Remote. Escape the ordinary and immerse yourself in an exclusive off-grid adventure, combining rugged beauty with unparalleled comfort in natures most breathtaking settings.',
+      'Discover the art of wild luxury with Lux Remote. Escape the ordinary and immerse yourself in an exclusive off-grid adventure, combining rugged beauty with unparalleled comfort in nature's most breathtaking settings.',
   },
   {
     id: 3,
@@ -38,11 +38,11 @@ const slides: Slide[] = [
     alt: 'Catering, Corporate Events, Weddings',
     title: 'Luxfino Catering: Tofino Tailored to Your Taste',
     description:
-      'Delight your senses with Lux Caterings tailored culinary experiences. Our executive chef crafts bespoke menus that marry the freshest local ingredients with global inspiration—creating a dining experience like no other in the heart of Tofino.',
+      'Delight your senses with Lux Catering's tailored culinary experiences. Our executive chef crafts bespoke menus that marry the freshest local ingredients with global inspiration—creating a dining experience like no other in the heart of Tofino.',
   },
 ]
 
-export default function IndexHeroSection() {
+export function IndexHeroSectionComponent() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [drawerIsOpen, setDrawerIsOpen] = useState(false)
   const [formData, setFormData] = useState({
@@ -56,13 +56,13 @@ export default function IndexHeroSection() {
 
   const toggleDrawer = () => setDrawerIsOpen(!drawerIsOpen)
 
-   const handleFormChange = (name: string, value: string | string[]) => {
+  const handleFormChange = (name: string, value: string) => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }))
   }
-  
+
   const handleServiceChange = (service: string) => {
     handleFormChange('selectedService', service)
   }
@@ -116,14 +116,14 @@ export default function IndexHeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-          <Button asChild variant="outline" size="lg">
-            <Link href="#about">Learn More</Link>
-          </Button>
-          <Button onClick={toggleDrawer} size="lg">
-            Book With LuxFino
-          </Button>
-        </div>
-      </div>
+              <Button asChild variant="outline" size="lg">
+                <Link href="#about">Learn More</Link>
+              </Button>
+              <Button onClick={toggleDrawer} size="lg">
+                Book With LuxFino
+              </Button>
+            </div>
+          </div>
         ))}
       </div>
 
