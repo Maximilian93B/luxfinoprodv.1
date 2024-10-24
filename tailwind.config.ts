@@ -13,10 +13,18 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        luxnavy: '#1A2B3C',
+        luxgold: '#D4AF37',
+        luxcream: '#F5E6D3',
+        luxcharcoal: '#36454F',
+        luxblush: '#E8C4C4',
+      },
     },
   },
   plugins: [
     require('daisyui'),
   ],
 };
+
 export default config;
