@@ -1,57 +1,127 @@
-// DiscoverSection.tsx
-import React from 'react';
+'use client'
+
+import React from 'react'
+import Image from 'next/image'
+import { motion, useScroll, useTransform } from 'framer-motion'
+
+interface DiscoverItemProps {
+  title: string;
+  imageSrc: string;
+  description: string;
+  reverse?: boolean;
+}
+
+const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, description, reverse = false }) => {
+  const { scrollYProgress } = useScroll({
+    offset: ["start end", "end start"]
+  })
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -100])
+
+  return (
+    <motion.div 
+      className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-16 mb-32`}
+      style={{ opacity, y }}
+    >
+      <motion.div 
+        className="w-full md:w-1/2"
+        initial={{ opacity: 0, x: reverse ? 50 : -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <motion.div 
+          className="relative h-[500px] overflow-hidden rounded-2xl shadow-2xl"
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+        >
+          <Image
+            src={imageSrc}
+            alt={title}
+            layout="fill"
+            objectFit="cover"
+            className="transition-transform duration-700 ease-out hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-luxnavy/30 to-transparent" />
+        </motion.div>
+      </motion.div>
+      <motion.div 
+        className="w-full md:w-1/2 text-left"
+        initial={{ opacity: 0, x: reverse ? -50 : 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <motion.h2 
+          className="text-4xl md:text-4xl font-light mb-6 font-playfair text-luxocedar leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          {title}
+        </motion.h2>
+        <motion.p 
+          className="text-xl mb-8 font-avenir text-luxcedar leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          {description}
+        </motion.p>
+        <motion.button
+          className="px-8 py-3 bg-luxsand/80 text-luxcedar rounded-full font-light text-lg hover:bg-luxcopper/80 transition-all duration-300 shadow-md hover:shadow-lg"
+          whileHover={{ scale: 1.05, backgroundColor: "rgba(203, 125, 85, 0.8)" }}
+          whileTap={{ scale: 0.98 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          viewport={{ once: true }}
+        >
+          Discover More
+        </motion.button>
+      </motion.div>
+    </motion.div>
+  )
+}
 
 const DiscoverSection: React.FC = () => {
   return (
-    <div className="py-12 bg-white">
-      <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">
-        Escape to Ultimate Seclusion
-        </h2>
-        <div className="flex justify-center">
-          <img
-            src="/DiscoverLuxRemote.JPG"
-            alt="Lux Remote Location"
-            className="w-full md:w-2/3 h-96 object-cover rounded-lg"
-          />
-        </div>
-        <p className="mt-6 max-w-2xl mx-auto">
-        Discover a haven untouched by time, where the only footprints are yours.** Nestled deep within Tofino's pristine wilderness, our exclusive retreat offers unparalleled privacy and tranquility. Leave the world behind and immerse yourself in the raw beauty of nature, all while enjoying the comforts of unparalleled luxury. 
-        </p>
+    <section id="discover" className="py-32 bg-luxsand/80 overflow-hidden">
+      <div className="container mx-auto px-6 relative">
+        <div className="absolute inset-0 bg-[url('/grain.png')] opacity-5" />
+        <motion.h1 
+          className="text-4xl md:text-5xl lg:text-6xl font-light text-center mb-24 font-playfair text-luxcedar leading-tight"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          Discover the Essence of LuxRemote
+        </motion.h1>
+        
+        <DiscoverItem
+          title="Escape to Ultimate Seclusion"
+          imageSrc="/DiscoverLuxRemote.JPG"
+          description="Uncover a haven untouched by time, where solitude reigns supreme. Nestled in Tofino's pristine wilderness, our exclusive retreat offers unparalleled privacy. Immerse yourself in nature's raw beauty while indulging in the pinnacle of luxury, leaving the world far behind."
+        />
+        
+        <DiscoverItem
+          title="Where Luxury Embraces Wilderness"
+          imageSrc="/LuxRemotePic2.JPG"
+          description="Experience the harmonious blend of untamed beauty and refined elegance. Our secluded accommodations seamlessly integrate with their natural surroundings, offering breathtaking panoramas, exquisite cuisine, and bespoke services. Every detail is meticulously curated to forge an intimate bond with nature without compromising on comfort."
+          reverse
+        />
+        
+        <DiscoverItem
+          title="Your Personal Sanctuary Beckons"
+          imageSrc="/LuxRemote3.JPG"
+          description="In this timeless sanctuary, find the space to unwind, rejuvenate, and rediscover your essence. Whether seeking peaceful solitude, a romantic retreat, or an extraordinary adventure, our remote haven adapts to your desires. Immerse yourself in personalized experiences that nourish your soul and craft enduring memories."
+        />
       </div>
-      <div className="container mx-auto text-center mt-6">
-        <h2 className="text-3xl font-bold mb-8">
-        Luxury Meets Wilderness
-        </h2>
-        <div className="flex justify-center">
-          <img
-            src="/LuxRemotePic2.JPG"
-            alt="Lux Remote Location"
-            className="w-full md:w-2/3 h-96 object-cover rounded-lg"
-          />
-        </div>
-        <p className="mt-6 max-w-2xl mx-auto">
-        Experience the perfect fusion of rugged wilderness and refined elegance.** Our secluded accommodations are designed to harmonize with the natural surroundings, offering panoramic views, gourmet dining, and bespoke services. Every detail is curated to provide you with an intimate connection to nature without sacrificing comfort. 
-        </p>
-      </div>
-      <div className="container mx-auto text-center mt-6">
-        <h2 className="text-3xl font-bold mb-8">
-        Your Personal Sanctuary Awaits
-        </h2>
-        <div className="flex justify-center">
-          <img
-            src="/LuxRemote3.JPG"
-            alt="Lux Remote Location"
-            className="w-full md:w-2/3 h-96 object-cover rounded-lg"
-          />
-        </div>
-        <p className="mt-6 max-w-2xl mx-auto">
-        Unwind, rejuvenate, and rediscover yourself in a place where time stands still.** Whether you're seeking solitude, a romantic escape, or a unique adventure, our remote retreat offers a sanctuary tailored to your desires. Indulge in personalized experiences that enrich your soul and create memories that last a lifetime. 
-        </p>
-      </div>
-    </div>
-    
-  );
-};
+    </section>
+  )
+}
 
 export default DiscoverSection;

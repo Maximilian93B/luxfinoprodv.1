@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import HeroSection from '../components/HeroSection';
 import DiscoverSection from '../components/DiscoverLuxRemote';
 import ExperienceAccordion from '../components/ExperienceAccordion';
-import CustomizationOptions from '../components/CustomizationOpstions';
+
 import CallToAction from '../components/CallToAction';
 
 const LuxRemotePage: React.FC = () => {
@@ -17,7 +17,6 @@ const LuxRemotePage: React.FC = () => {
       <HeroSection />
       <DiscoverSection />
       <ExperienceAccordion />
-      <CustomizationOptions />
       <CallToAction />
       <Footer />
     </div>
