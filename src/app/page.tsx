@@ -1,263 +1,483 @@
 'use client'
 
-import React, {useState, useEffect} from "react";
-import { NextPage } from "next";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import TribalParksSection from "./components/TribalParksAdvert";
-import Image from "next/image";
-import QuoteRequestDrawer from "./components/FormDrawer";
-import Link from "next/link";
+import { motion, AnimatePresence, useAnimation } from 'framer-motion'
+import React, { useState, useEffect, useCallback } from 'react'
+import Navbar from './components/Navbar'
+import { NextPage } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useInView } from 'react-intersection-observer'
+import TribalParksSection from './components/TribalParksAdvert'
+import Footer from './components/Footer'
+import QuoteRequestDrawer from './components/FormDrawer'
 
-{/* Page Structure */}
-const HomePage: NextPage = () => {
 
-  
+const AnimatedSection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    }
+  }, [controls, inView])
+
   return (
-    <div className="bg-white text-black">
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { 
+          opacity: 1, 
+          y: 0,
+          transition: { 
+            duration: 0.8, 
+            ease: [0.25, 0.1, 0.25, 1]
+          }
+        }
+      }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+const HomePage: NextPage = () => {
+  const [isQuoteDrawerOpen, setIsQuoteDrawerOpen] = useState(false)
+
+  const openQuoteDrawer = () => setIsQuoteDrawerOpen(true)
+  const closeQuoteDrawer = () => setIsQuoteDrawerOpen(false)
+
+  return (
+    <div className="bg-luxcopper/50 text-luxnavy">
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <ServiceSections />
-      <SpecialEventsSection />
-      <OwnerFounderSection />
-      <TribalParksSection />
+      <HeroSection openQuoteDrawer={openQuoteDrawer} />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection>
+          <AboutSection />
+        </AnimatedSection>
+        
+        <AnimatedSection>
+          <ServiceSections />
+        </AnimatedSection>
+        
+        <AnimatedSection>
+          <SpecialEventsSection openQuoteDrawer={openQuoteDrawer} />
+        </AnimatedSection>
+        
+        <AnimatedSection>
+          <OwnerFounderSection />
+        </AnimatedSection>
+      </div>
+      
+      <AnimatedSection>
+        <div className="bg-gradient-to-bl from-luxcopper/20 to-luxcream text-luxnavy py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <TribalParksSection />
+          </div>
+        </div>
+      </AnimatedSection>
+      
       <Footer />
 
-
-      {/* Place QuoteRequestDrawer at the root level of the HomePage */}
-     
+      <QuoteRequestDrawer isOpen={isQuoteDrawerOpen} onClose={closeQuoteDrawer} />
     </div>
-  );
-};
+  )
+}
 
+export default HomePage
 
-{/* Home Page Layout */}
-export default HomePage;
+const slides = [
+  {
+    id: 1,
+    image: '/LuxPicMain.jpeg',
+    alt: 'Luxury Pop-up Picnics in Tofino',    title: 'Exquisite Pop-up Picnics',
+    subtitle: 'LuxFino Picnics',
+    description:
+      'Immerse yourself in Tofinos breathtaking landscapes with our meticulously curated luxury picnics. Each experience is a perfect blend of elegance, comfort, and unforgettable moments.',
+  },
+  {
+    id: 2,
+    image: '/LuxRemoteIndex.JPG',
+    alt: 'Wild Luxury Escapes in Tofino',
+    title: 'Exclusive Off-Grid Adventures',
+    subtitle: 'Lux Remote Escapes',
+    description:
+      'Embark on an extraordinary journey into Tofinos wilderness. Our off-grid luxury experiences combine rugged beauty with unparalleled comfort, offering a unique escape from the ordinary.',
+  },
+  {
+    id: 3,
+    image: '/Catering1.JPG',
+    alt: 'Luxury Catering in Tofino',
+    title: 'Bespoke Culinary Experiences',
+    subtitle: 'LuxFino Catering',
+    description:
+      'Indulge in exquisite flavors crafted by our executive chef. Our bespoke menus blend the finest local ingredients with global inspiration, creating unparalleled dining experiences in the heart of Tofino.',
+  },
+]
 
-const HeroSection: React.FC = () => {
-  const slides = [
-    {
-      id: 1,
-      image: '/LuxPicMain.jpeg',
-      alt: 'Luxury Pop-up Picnics',
-      title: 'LuxFino Picnics: Luxury Pop-up Picnics',
-      description:
-        'Elevate your next outing with a thoughtfully curated luxury picnic. Surrounded by Tofino’s stunning landscapes, each picnic is designed to offer elegance, comfort, and a moment of indulgence you’ll never forget.',
-    },
-    {
-      id: 2,
-      image: '/LuxRemoteIndex.JPG',
-      alt: 'Wild Luxury: Escape with Lux Remote',
-      title: 'Wild Luxury: Escape to Lux Remote',
-      description:
-        'Discover the art of wild luxury with Lux Remote. Escape the ordinary and immerse yourself in an exclusive off-grid adventure, combining rugged beauty with unparalleled comfort in nature’s most breathtaking settings.',
-    },
-    {
-      id: 3,
-      image: '/Catering1.JPG',
-      alt: 'Catering, Coroporate Events, Weddings',
-      title: 'Luxfino Catering: Tofino Tailored to Your Taste',
-      description:
-        'Delight your senses with Lux Catering’s tailored culinary experiences. Our executive chef crafts bespoke menus that marry the freshest local ingredients with global inspiration—creating a dining experience like no other in the heart of Tofino.',
-    },
-  ];
+const HeroSection: React.FC<{ openQuoteDrawer: () => void }> = ({ openQuoteDrawer }) => {
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slideCount = slides.length;
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [direction, setDirection] = useState(0)
+  const slideCount = slides.length
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slideCount);
-    }, 7000); 
+      nextSlide()
+    }, 7000)
 
-    return () => clearInterval(interval); // Clean up on unmount
-  }, [slideCount]);
+    return () => clearInterval(interval)
+  }, [currentSlide])
 
-  // Handler for navigation buttons
-  const goToSlide = (index: number) => {
-    setCurrentSlide((index + slideCount) % slideCount);
-  };
+  const goToSlide = useCallback((index: number) => {
+    setDirection(index > currentSlide ? 1 : -1)
+    setCurrentSlide((index + slideCount) % slideCount)
+  }, [currentSlide, slideCount])
+
+  const nextSlide = () => goToSlide(currentSlide + 1)
+  const prevSlide = () => goToSlide(currentSlide - 1)
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0,
+      scale: 1.05,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 200, damping: 30, duration: 1.2 },
+        opacity: { duration: 1 },
+        scale: { duration: 1.2, ease: [0.34, 1.56, 0.64, 1] },
+      },
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 0,
+      scale: 1.05,
+      transition: {
+        x: { type: 'spring', stiffness: 200, damping: 30, duration: 1.2 },
+        opacity: { duration: 1 },
+        scale: { duration: 1.2, ease: [0.34, 1.56, 0.64, 1] },
+      },
+    }),
+  }
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { 
+        delay: custom * 0.2 + 0.5,
+        duration: 1,
+        ease: [0.34, 1.56, 0.64, 1],
+      },
+    }),
+    exit: { 
+      opacity: 0,
+      y: -20,
+      transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] },
+    },
+  }
 
   return (
-    <div className="relative min-h-screen md:min-h-[80vh] text-white">
-      {/* Carousel Background */}
-      <div className="absolute inset-0">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
+    <section className="relative min-h-screen overflow-hidden">
+      <AnimatePresence initial={false} custom={direction}>
+        <motion.div
+          key={currentSlide}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          className="absolute inset-0"
+        >
+          <Image
+            src={slides[currentSlide].image}
+            alt={slides[currentSlide].alt}
+            layout="fill"
+            objectFit="cover"
+            priority
+            className="transition-transform duration-7000 ease-out"
+          />
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-b from-luxnavy/20 to-luxnavy/80"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5 }}
+          />
+        </motion.div>
+      </AnimatePresence>
+      
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            className="text-center max-w-4xl"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
-            <Image
-              src={slide.image}
-              alt={slide.alt}
-              fill
-              className="object-cover"
-              priority={index === currentSlide}
+            <motion.h2 
+              className="text-xl font-semibold text-luxgold mb-2 font-avenir tracking-widest uppercase"
+              variants={textVariants}
+              custom={0}
+            >
+              {slides[currentSlide].subtitle}
+            </motion.h2>
+            <motion.h1 
+              className="text-4xl font-bold tracking-tight text-luxice sm:text-5xl md:text-6xl mb-6 font-playfair leading-tight"
+              variants={textVariants}
+              custom={1}
+            >
+              {slides[currentSlide].title}
+            </motion.h1>
+            <motion.p 
+              className="mt-3 text-base text-luxcream sm:text-lg sm:max-w-xl sm:mx-auto md:text-xl leading-relaxed font-avenir"
+              variants={textVariants}
+              custom={2}
+            >
+              {slides[currentSlide].description}
+            </motion.p>
+            <motion.div 
+              className="mt-10 sm:flex sm:justify-center"
+              variants={textVariants}
+              custom={3}
+            >
+              <motion.button
+                onClick={openQuoteDrawer}
+                className="bg-luxpearl text-luxnavy hover:bg-luxsand transition-colors duration-300 text-lg px-10 py-4 rounded-full font-avenir font-semibold tracking-wide shadow-lg hover:shadow-xl flex items-center justify-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Request a Quote
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 pb-8">
+        <motion.div 
+          className="mb-6 mx-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+        >
+          <motion.div 
+            className="h-1 bg-luxcream bg-opacity-20"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 7, ease: 'linear', repeat: Infinity }}
+          >
+            <motion.div
+              className="h-full bg-luxgold"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 7, ease: 'linear', repeat: Infinity }}
             />
-            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-          </div>
-        ))}
-      </div>
-  
-      {/* Hero Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen md:min-h-[80vh] px-4 sm:px-8 md:px-16 text-center">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ fontFamily: 'Playfair Display, serif' }}
-          >
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 px-2">
-              {slide.title}
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl font-medium mb-6 max-w-md sm:max-w-lg md:max-w-xl mx-auto px-4">
-              {slide.description}
-            </p>
-  
-            {/* Buttons Container */}
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link href="#about" className="btn btn-primary text-white px-6 py-3">
-                Learn More
-              </Link>
-              {/* Book Now Button to Open Drawer */}
-              <div className="flex justify-center">
-                <QuoteRequestDrawer />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-  
-      {/* Navigation Buttons */}
-      <button
-        className="btn btn-circle hidden md:flex absolute left-4 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-2 focus:outline-none"
-        onClick={() => goToSlide(currentSlide - 1)}
-        aria-label="Previous Slide"
-      >
-        ❮
-      </button>
-      <button
-        className="btn btn-circle hidden md:flex absolute right-4 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-2 focus:outline-none"
-        onClick={() => goToSlide(currentSlide + 1)}
-        aria-label="Next Slide"
-      >
-        ❯
-      </button>
-    </div>
-  );
-  
-};
+          </motion.div>
+        </motion.div>
 
+        <motion.div 
+          className="flex justify-center items-center space-x-3"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+        >
+          {slides.map((_, index) => (
+            <motion.button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide ? 'bg-luxgold w-12' : 'bg-luxcream bg-opacity-50 hover:bg-opacity-75'
+              }`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </motion.div>
+      </div>
 
-{/* Set id to allow buttons to have access to scroll */}
+      <motion.button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-luxnavy bg-opacity-50 text-luxice p-3 rounded-full hover:bg-opacity-75 transition-all duration-300"
+        whileHover={{ scale: 1.1, backgroundColor: 'rgba(26, 43, 60, 0.75)' }}
+        whileTap={{ scale: 0.9 }}
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-8 h-8" />
+      </motion.button>
+      <motion.button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-luxnavy bg-opacity-50 text-luxice p-3 rounded-full hover:bg-opacity-75 transition-all duration-300"
+        whileHover={{ scale: 1.1, backgroundColor: 'rgba(26, 43, 60, 0.75)' }}
+        whileTap={{ scale: 0.9 }}
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-8 h-8" />
+      </motion.button>
+    </section>
+  )
+}
+
+interface InfoCardProps {
+  title: string
+  content: string
+  icon: string
+}
+
+const InfoCard: React.FC<InfoCardProps> = ({ title, content, icon }) => {
+  return (
+    <motion.div 
+      className="bg-luxpearl/60 rounded-lg p-8 shadow-lg transition-all duration-300 hover:shadow-xl"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="flex items-center mb-4">
+        <Image src={icon} alt={`${title} icon`} width={40} height={40} className="text-luxgold" />
+        <h3 className="text-2xl font-playfair font-bold ml-4 text-luxnavy">{title}</h3>
+      </div>
+      <p className="font-avenir text-luxnavy/80 leading-relaxed">{content}</p>
+    </motion.div>
+  )
+}
+
 const AboutSection: React.FC = () => {
   return (
-    <div id="about" className="about py-28 bg-white text-black">
-      <div className="container mx-auto text-center sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold mb-6">About LuxFino</h2>
-        <p className="text-lg mb-5">
-        Lux.Fino is Tofino’s premier provider of luxury pop-up picnics, in-house catering, and remote glamping. We create unforgettable moments with locally inspired touches that showcase the natural beauty of Tofino.
+    <section id="about" className="py-24 bg-gradient-to-b from-luxsand/70 to-luxpearl/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2 
+          className="text-5xl font-playfair font-bold mb-8 text-center text-luxnavy"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          About LuxFino
+        </motion.h2>
+        <motion.p 
+          className="text-xl mb-16 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxnavy/80"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          Lux.Fino is Tofino's premier provider of luxury pop-up picnics, in-house catering, and remote glamping. We create unforgettable moments with locally inspired touches that showcase the natural beauty of Tofino.
+        </motion.p>
 
-        </p>
-
-        {/* Divider */}
-        <Divider />
-
-        {/* Grid Layout About Section */}
-        <div className="grid grid-cols-1 gap-4 mt-6 md:grid-cols-2 lg:grid-cols-2 ">
-          {/* Our Mission */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           <InfoCard
             title="Our Mission"
-            content="At Lux.Fino, we blend luxury and nature to offer unique experiences that bring people together. Whether it’s a beach picnic or a remote glamping retreat, our services celebrate the stunning landscapes of Tofino."
+            content="At Lux.Fino, we blend luxury and nature to offer unique experiences that bring people together. Whether it's a beach picnic or a remote glamping retreat, our services celebrate the stunning landscapes of Tofino."
+            icon="/Lux.Fino.Logo2.svg"
           />
-
-          {/* Services */}
           <InfoCard
             title="Services"
             content="Lux.Fino offers tailored luxury picnics, gourmet catering with local flavors, and exclusive remote glamping experiences. Our partnerships with local artisans ensure that every detail, from charcuterie boards to floral arrangements, is thoughtfully crafted."
+            icon="/services-icon.svg"
           />
-
-          {/* Unique Experiences - Full width under the two above */}
-          <div className="col-span-1 md:col-span-2">
-            <InfoCard
-              title="Unique Experiences"
-              content="Experience the best of Tofino with personalized luxury services, including pop-up beach picnics and off-grid glamping escapes. We combine adventure with elegance to create unforgettable memories in one of the world’s most stunning locations.."
-            />
-          </div>
+          <InfoCard
+            title="Unique Experiences"
+            content="Experience the best of Tofino with personalized luxury services, including pop-up beach picnics and off-grid glamping escapes. We combine adventure with elegance to create unforgettable memories in one of the world's most stunning locations."
+            icon="/experiences-icon.svg"
+          />
         </div>
-      </div>
-    </div>
-  );
-};
 
-interface InfoCardProps {
-  title: string;
-  content: string;
+        <motion.div 
+          className="relative h-[600px] rounded-xl overflow-hidden shadow-2xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <Image
+            src="/LuxRemotePic2.JPG"
+            alt="Tofino's beautiful landscape"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-xl"
+          />
+          <div className="absolute inset-0 bg-luxnavy bg-opacity-40 flex items-center justify-center backdrop-blur-sm">
+            <p className="text-luxice text-4xl font-playfair font-semibold text-center px-4 max-w-4xl leading-tight">
+              Discover the beauty of Tofino with LuxFino's curated experiences
+            </p>
+          </div>
+        </motion.div>
+      </div>
+      <div className="absolute left-0 right-0 bottom-0 h-24 bg-gradient-to-t from-luxsand to-transparent"></div>
+    </section>
+  )
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({ title, content }) => {
-  return (
-    <div className="bg-white text-black flex items-center justify-center p-4 rounded-lg shadow-md mx-auto ">
-      <div>
-        <h3 className="text-2xl font-bold mb-2">{title}</h3>
-        <p>{content}</p>
-      </div>
-    </div>
-  );
-};
-
-{/*Services Section */}
 const ServiceSections: React.FC = () => {
   return (
-    <>
-      <Divider />
-      <ServiceSection
-        title="Luxury Pop-up Picnics"
-        description="Lux.Fino’s pop-up picnics combine luxury and nature for an unforgettable beachside experience. Enjoy cozy seating, elegant décor, and locally-sourced food, perfect for any occasion. Relax, connect, and savor Tofino’s beauty in style."
-        buttonText="Explore LuxFino Picnics"
-        imageSrc="/LuxPicMain.jpeg"
-        imageAlt="Lux Picnic"
-        reverse={false}
-        linkHref='/luxpicnic'
-      />
-      <Divider />
-      <ServiceSection
-        title="Wild Luxury: Escape with Lux Remote"
-        description="Lux Remote offers a luxurious off-grid escape in Tofino’s wilderness. Enjoy the perfect blend of comfort and adventure with cozy accommodations, stunning ocean views, and total seclusion. It’s the ultimate way to unwind and experience nature in style."
-        buttonText="Escape to Lux Remote"
-        imageSrc="/DiscoverLuxRemote.JPG"
-        imageAlt="Lux Remote"
-        reverse={true}
-        linkHref='/luxremote'
-      />
-      <Divider />
-      <ServiceSection
-        title="Tofino Tailored to Your Taste"
-        description="Lux Catering brings gourmet, locally-inspired cuisine to your special event. Whether it’s an intimate gathering or a grand celebration, our in-house catering delivers fresh, delicious meals crafted to impress, making every moment feel indulgent and memorable."
-        buttonText="Book LuxFino Catering"
-        imageSrc="/LuxCateringCard.JPG"
-        imageAlt="Lux Catering"
-        reverse={false}
-        linkHref='/luxcatering'
-      />
-      <Divider />
-    </>
-  );
-};
+    <div className=" bg-gradient-to-b from-luxpearl/30 to-luxsand/70 py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-playfair font-bold mb-16 text-center text-luxnavy"
+        >
+          Exquisite Experiences in Tofino
+        </motion.h2>
+        <ServiceSection
+          title="Luxury Pop-up Picnics"
+          description="Immerse yourself in Tofino's breathtaking landscapes with our meticulously curated luxury picnics. Each experience is a perfect blend of elegance, comfort, and unforgettable moments, designed to elevate your outdoor dining adventure."
+          buttonText="Explore LuxFino Picnics"
+          imageSrc="/LuxPicMain.jpeg"
+          imageAlt="Luxury beachside picnic setup with elegant decor and gourmet food"
+          reverse={false}
+          linkHref='/luxpicnic'
+        />
+        <ServiceSection
+          title="Wild Luxury: Lux Remote Escapes"
+          description="Discover the art of wild luxury with our exclusive off-grid adventures. Lux Remote offers a perfect blend of rugged beauty and unparalleled comfort, allowing you to immerse yourself in Tofino's wilderness without compromising on luxury."
+          buttonText="Escape to Lux Remote"
+          imageSrc="/DiscoverLuxRemote.JPG"
+          imageAlt="Luxurious glamping setup with stunning ocean views"
+          reverse={true}
+          linkHref='/luxremote'
+        />
+        <ServiceSection
+          title="Bespoke Culinary Experiences"
+          description="Indulge in exquisite flavors crafted by our executive chef. Our bespoke catering service marries the finest local ingredients with global inspiration, creating unparalleled dining experiences that will delight your senses and impress your guests."
+          buttonText="Book LuxFino Catering"
+          imageSrc="/LuxCateringCard.JPG"
+          imageAlt="Elegantly plated gourmet dish showcasing local ingredients"
+          reverse={false}
+          linkHref='/luxcatering'
+        />
+      </div>
+    </div>
+  )
+}
 
 interface ServiceSectionProps {
-  title: string;
-  description: string;
-  buttonText: string;
-  imageSrc: string;
-  imageAlt: string;
-  reverse?: boolean;
-  linkHref: string;
+  title: string
+  description: string
+  buttonText: string
+  imageSrc: string
+  imageAlt: string
+  reverse?: boolean
+  linkHref: string
 }
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({
@@ -270,187 +490,198 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   linkHref,
 }) => {
   return (
-    <div className="hero h-auto lg:h-80">
-      <div
-        className={`hero-content flex-col lg:flex-row ${
-          reverse ? "lg:flex-row-reverse" : ""
-        } space-y-6 lg:space-y-0 shadow-md`}
-      >
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          width={350}
-          height={100}
-          className="rounded-lg shadow-none object-cover w-full lg:w-auto lg:h-auto"
-        />
-        <div className="text-center lg:text-left">
-          <h1 className="text-3xl lg:text-4xl font-bold">{title}</h1>
-          <p className="py-4 lg:py-6">{description}</p>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="mb-32 last:mb-0"
+    >
+      <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16`}>
+        <div className="w-full lg:w-1/2 relative overflow-hidden rounded-lg shadow-2xl">
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            width={800}
+            height={600}
+            className="object-cover w-full h-[500px] transition-transform duration-700 hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-luxnavy bg-opacity-20 transition-opacity duration-300 hover:bg-opacity-10"></div>
+        </div>
+        <div className="w-full lg:w-1/2 text-center lg:text-left">
+          <h3 className="text-3xl font-playfair font-bold mb-6 text-luxnavy">{title}</h3>
+          <p className="text-luxnavy/80 mb-8 font-avenir leading-relaxed text-lg">{description}</p>
           <Link href={linkHref}>
-            <button className="btn btn-outline border-black text-black">
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-luxnavy text-luxice hover:bg-luxocean transition-all duration-300 text-lg px-8 py-3 rounded-full font-avenir font-semibold tracking-wide"
+            >
               {buttonText}
-            </button>
+            </motion.button>
           </Link>
         </div>
       </div>
-    </div>
-  );
-};
+    </motion.div>
+  )
+}
 
-{/* Page Dividers */}
-const Divider: React.FC = () => {
-  return <div className="divider border-black"></div>;
-};
-
-
-{/* Founders Section  */}
 const OwnerFounderSection: React.FC = () => {
   return (
-    <>
-      <Divider />
-      <div className="about bg-white py-12 text-black">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">Owners &amp; Founders</h2>
-          <p className="text-lg mb-12">
-            At the heart of Lux.Fino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures. Their unique talents and vision are the foundation of Lux.Fino, making every experience feel personal, thoughtful, and truly special.
-          </p>
+    <div className="bg-gradient-to bg-luxice/30 to-luxsand/70 py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-playfair font-bold mb-8 text-center text-luxnavy"
+        >
+          The Visionaries Behind LuxFino
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-lg mb-16 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxnavy/80"
+        >
+          At the heart of Lux.Fino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures. Their unique talents and vision are the foundation of Lux.Fino, making every experience feel personal, thoughtful, and truly special.
+        </motion.p>
 
-          {/* Avatars */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <BioCard
-              name="Morgan"
-              imageSrc="/MorganBoiPIc.JPG" 
-              bio="Morgan is dedicated to crafting unforgettable experiences for guests, believing that every moment begins with a lasting first impression. As a curator of beautiful aesthetics, she has a keen eye for hidden treasures and exquisite textiles, ensuring you feel like royalty while you relax and take in the breathtaking views."
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <BioCard
+            name="Morgan"
+            imageSrc="/MorganBoiPIc.JPG" 
+            bio="Morgan is dedicated to crafting unforgettable experiences for guests, believing that every moment begins with a lasting first impression. As a curator of beautiful aesthetics, she has a keen eye for hidden treasures and exquisite textiles, ensuring you feel like royalty while you relax and take in the breathtaking views."
+          />
 
-            <BioCard
-              name="Andres"
-              imageSrc="/DreHeadShot.JPG" 
-              bio="Chef Andres, known as Dre, made his way to Tofino seven years ago, drawn by a deep passion for luxury and culinary artistry. His journey began at the stunning Clayoquot Wilderness Resort, where he infused his Latin American roots into every dish, blending comfort food with vibrant global influences. With over a decade of experience, nothing brings him more joy than seeing a smile after the first bite."
-            />
-          </div>
+          <BioCard
+            name="Andres"
+            imageSrc="/DreHeadShot.JPG" 
+            bio="Chef Andres, known as Dre, made his way to Tofino seven years ago, drawn by a deep passion for luxury and culinary artistry. His journey began at the stunning Clayoquot Wilderness Resort, where he infused his Latin American roots into every dish, blending comfort food with vibrant global influences. With over a decade of experience, nothing brings him more joy than seeing a smile after the first bite."
+          />
         </div>
       </div>
-    </>
-  );
-};
+    </div>
+  )
+}
 
 interface BioCardProps {
-  name: string;
-  imageSrc: string;
-  bio: string;
+  name: string
+  imageSrc: string
+  bio: string
 }
 
 const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio }) => {
   return (
-    <div className="bg-gray-100 p-6 rounded-lg flex flex-col md:flex-row items-center">
-      <div className="avatar mb-6 md:mb-0 md:mr-6">
-        <div className="relative w-64 h-64 mask mask-hexagon">
-          <Image
-            src={imageSrc}
-            alt={name}
-            width={800}
-            height={'100'}
-            style={{ objectFit: 'cover',
-              objectPosition: 'center ',
-             }}
-            className="rounded-lg "
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="bg-luxcream p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+    >
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="mb-6 md:mb-0 md:mr-8">
+          <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-luxsand">
+            <Image
+              src={imageSrc}
+              alt={name}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              className="transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+        </div>
+        <div className="text-center md:text-left flex-1">
+          <h3 className="text-2xl font-playfair font-bold mb-4 text-luxnavy">{name}</h3>
+          <p className="text-luxnavy/80 font-avenir leading-relaxed">{bio}</p>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+const SpecialEventsSection: React.FC<{ openQuoteDrawer: () => void }> = ({ openQuoteDrawer }) => {
+  return (
+    <div className="bg-gradient-to-b from-luxsand/70 to-luxpearl/30 py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-playfair font-bold mb-8 text-center text-luxnavy"
+        >
+          Extraordinary Moments, Unforgettable Experiences
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-3xl mx-auto text-lg text-luxnavy/80 mb-16 text-center font-avenir leading-relaxed"
+        >
+          Elevate your special occasions with unforgettable experiences at Lux Remote. Whether you're hosting a corporate meeting or celebrating a wedding, arrive in style, conduct your event in the serene wilderness, enjoy gourmet meals, and create memories that last a lifetime.
+        </motion.p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <EventCard
+            title="Gourmet Lunch & Meeting"
+            description="Host your meeting in the serene surroundings of Tofino or Lux Remote. Enjoy a gourmet lunch prepared by our top chef, making your business day both productive and indulgent."
+            imageSrc="/LuxLunches.JPG"
+            imageAlt="Gourmet Corporate Lunch"
+            openQuoteDrawer={openQuoteDrawer}
+          />
+          <EventCard
+            title="Dream Proposals at Lux Remote"
+            description="Say 'I do' in the breathtaking wilderness of Lux Remote. Our exclusive location offers a romantic and intimate setting for your special day, complete with gourmet dining and unforgettable views."
+            imageSrc="/WeddingPIc.JPG"
+            imageAlt="Lux Remote Weddings"
+            openQuoteDrawer={openQuoteDrawer}
           />
         </div>
       </div>
-      <div className="text-center md:text-left">
-        <h3 className="text-2xl font-bold mb-2">{name}</h3>
-        <p>{bio}</p>
-      </div>
     </div>
-  );
-};
+  )
+}
 
-const SpecialEventsSection: React.FC = () => {
+interface EventCardProps {
+  title: string
+  description: string
+  imageSrc: string
+  imageAlt: string
+  openQuoteDrawer: () => void
+}
+
+const EventCard: React.FC<EventCardProps> = ({ title, description, imageSrc, imageAlt, openQuoteDrawer }) => {
   return (
-    <>
-      <Divider />
-      <div className="bg-white py-16">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold text-black mb-8">
-            Marketing Slogan goes here.... 
-          </h2>
-          <p className="max-w-3xl mx-auto text-lg text-black mb-12">
-            Elevate your special occasions with unforgettable experiences at Lux Remote. Whether you're hosting a corporate meeting or celebrating a wedding, arrive in style, conduct your event in the serene wilderness, enjoy gourmet meals, and create memories that last a lifetime.
-          </p>
-
-          {/* Events Cards */}
-          <div className="flex flex-col lg:flex-row items-start w-full">
-            {/* Corporate Lunch Card */}
-            <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:mr-4 mb-8 lg:mb-0">
-              <div className="card-body p-6">
-              <figure className="relative w-full h-96 mb-6 rounded-lg">
-                  <Image
-                    src="/LuxLunches.JPG"
-                    alt="Gourmet Corporate Lunch"
-                    width={800}
-                    height={500}
-                    style={{ objectFit: 'cover', objectPosition: 'center', scale: '1',}}
-                    className="rounded-lg h-auto"
-                  />
-                </figure>
-                <h2 className="card-title text-2xl font-bold text-black">
-                  Gourmet Lunch &amp; Meeting
-                </h2>
-                <p className="text-black mt-4">
-                  Host your meeting in the serene surroundings of Tofino or Lux Remote. Enjoy a gourmet lunch prepared by our top chef, making your business day both productive and indulgent.
-                </p>
-                <div className="card-actions justify-start mt-6">
-                  {/*Quote Drawer */}
-                <div className="flex justify-center">
-                <QuoteRequestDrawer />
-                </div>
-                  <button className="btn btn-outline border-black text-black">
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="divider lg:divider-horizontal">&</div>
-
-            {/* Weddings Card */}
-            <div className="card bg-white shadow-xl border border-gray-200 flex-grow lg:mr-4 mb-8 lg:mb-0">
-              <div className="card-body p-6">
-                <figure className="relative w-full h-96 mb-6 rounded-lg">
-                  <Image
-                    src="/WeddingPIc.JPG" 
-                    alt="Lux Remote Weddings"
-                    width={700}
-                    height={100}
-                    style={{ objectFit: 'cover',
-                      objectPosition: 'center',
-                      scale: '1',
-                     }}
-                    className="rounded-lg"
-                  />
-                </figure>
-                <h2 className="card-title text-2xl font-bold text-black">
-                  Dream Proposals at Lux Remote
-                </h2>
-                <p className="text-black mt-4">
-                  Say "I do" in the breathtaking wilderness of Lux Remote. Our exclusive location offers a romantic and intimate setting for your special day, complete with gourmet dining and unforgettable views.
-                </p>
-                <div className="card-actions justify-start mt-6">
-                  {/*Quote Drawer */}
-                <div className="flex justify-center">
-                <QuoteRequestDrawer />
-                </div>
-                  <button className="btn btn-outline border-black text-black">
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="bg-luxcream rounded-lg shadow-xl overflow-hidden"
+    >
+      <div className="relative h-80 w-full">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          layout="fill"
+          objectFit="cover"
+          className="transition-transform duration-500 hover:scale-110"
+        />
+      </div>
+      <div className="p-10">
+        <h3 className="text-2xl font-playfair font-bold mb-4 text-luxnavy">{title}</h3>
+        <p className="text-luxnavy/80 mb-6 font-avenir leading-relaxed">{description}</p>
+        <div className="flex flex-col sm:flex-row items-center">
+          <motion.button
+            onClick={openQuoteDrawer}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-luxgold text-luxnavy hover:bg-luxsand transition-all duration-300 text-lg px-8 py-3 rounded-full font-avenir font-semibold tracking-wide"
+          >
+            Request a Quote
+          </motion.button>
         </div>
       </div>
-    </>
-  );
-};
+    </motion.div>
+  )
+}
+

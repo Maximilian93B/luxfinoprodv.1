@@ -1,68 +1,105 @@
-import React from 'react';
+import React from 'react'
+import { motion } from 'framer-motion'
+import { Star } from 'lucide-react'
 
 const PicnicsTestimonials: React.FC = () => {
-  // Data for testimonials
   const testimonials = [
     {
       name: 'Emily R.',
       feedback:
-        'The Lux Picnic was the highlight of our trip! The setup was beautiful, and the food was delicious.',
+        'The Lux Picnic was the highlight of our trip! The setup was beautiful, and the food was exquisite.',
+      rating: 5,
     },
     {
       name: 'James P.',
       feedback:
-        'A truly unforgettable experience. The staff went above and beyond to make our picnic special.',
+        'A truly unforgettable experience. The staff went above and beyond to make our picnic extraordinary.',
+      rating: 5,
     },
     {
       name: 'Sarah L.',
       feedback:
-        'An amazing way to celebrate our anniversary. Everything was perfect from start to finish.',
+        'An exceptional way to celebrate our anniversary. Every detail was perfect from start to finish.',
+      rating: 5,
     },
     {
       name: 'Michael S.',
       feedback:
-        'Exceptional service and attention to detail. Highly recommend Lux Picnics for any special occasion.',
+        'Impeccable service and meticulous attention to detail. Highly recommend Lux Picnics for any special occasion.',
+      rating: 5,
     },
     {
       name: 'Olivia K.',
       feedback:
-        'We felt so pampered! The picnic was stunning, and the location was breathtaking.',
+        'We felt utterly pampered! The picnic setting was stunning, and the location was absolutely breathtaking.',
+      rating: 5,
     },
-  ];
+  ]
 
   return (
-    <div className="bg-gradient-to-b from-white via-gray-100 to-white py-12 md:py-16">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="bg-luxcream py-16 md:py-24"
+    >
       <div className="container mx-auto px-4 text-center">
-        <h2
-          className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 tracking-wide"
+        <motion.h2
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 tracking-wide text-luxnavy"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
-          What Our Guests Say
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          Enchanting Experiences
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {testimonials.map((testimonial, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-luxcream"
             >
+              <div className="flex justify-center mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-luxgold fill-current" />
+                ))}
+              </div>
               <p
-                className="text-base md:text-lg text-gray-600 italic leading-relaxed"
+                className="text-lg md:text-xl text-luxcharcoal italic leading-relaxed mb-6"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 "{testimonial.feedback}"
               </p>
+              <div className="w-16 h-1 bg-luxcream mx-auto mb-4"></div>
               <p
-                className="mt-4 md:mt-6 text-sm md:text-base font-bold text-gray-900 text-right"
-                style={{ fontFamily: 'Playfair Display, serif' }}
+                className="text-base md:text-lg font-semibold text-luxcharcoal"
+                style={{ fontFamily: 'Avenir, sans-serif' }}
               >
-                - {testimonial.name}
+                {testimonial.name}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-16"
+        >
+          <a 
+            href="#book-now" 
+            className="inline-block bg-luxblush text-luxcharcoal font-bold py-4 px-8 rounded-full hover:bg-luxgold hover:text-luxnavy transition-colors duration-300 text-lg tracking-wide"
+            style={{ fontFamily: 'Avenir, sans-serif' }}
+          >
+            Experience Luxury
+          </a>
+        </motion.div>
       </div>
-    </div>
-  );
-};
+    </motion.div>
+  )
+}
 
-export default PicnicsTestimonials;
+export default PicnicsTestimonials

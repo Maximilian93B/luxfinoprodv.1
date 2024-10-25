@@ -1,190 +1,216 @@
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image'; // If you're not using Next.js, you can use the regular <img> tag
+import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Sunset, GlassWater, HeartHandshake, Sparkles } from 'lucide-react'
 
 const PicnicTable: React.FC = () => {
-  // Array of image paths
-  const images = ['/picnic_icon1.png', '/picnic_icon2.png', '/picnic_icon3.png','/picnic_icon3.png','/picnic_icon3.png','/picnic_icon3.png','/picnic_icon3.png','/picnic_icon3.png'];
-  // State to hold the current image index
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = [
+    '/LuxPicMain.jpeg',
+    '/Catering2.jpg',
+    '/Catering3.jpg',
+    '/DiscoverLuxRemote.JPG',
+    '/LuxCateringCard.JPG'
+  ]
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  // Function to advance to the next image
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  // Effect to change the image every 5 seconds
   useEffect(() => {
-    const intervalId = setInterval(nextImage, 5000); // Change image every 5 seconds
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 5000)
+    return () => clearInterval(intervalId)
+  }, [])
 
-    // Clear the interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
-
-  // Data for the packages
   const packages = [
     {
       name: 'The Ultimate Cuddle Puddle',
       price: '$250',
       people: '2 people',
       duration: '2 hours',
-      description:
-        'Snuggle up with your cuddle buddy and watch the sunset melt into the horizon with this beautifully curated pillow and blanket setup. We will ensure you are warm and cozy with a variety of plush pillows and blankets set in the most picture perfect location!',
+      description: 'Indulge in a sumptuous sunset experience with our lavish pillow and blanket ensemble.',
+      icon: Sunset
     },
     {
       name: 'Lux.Fino Golden Hour',
       price: '$470',
       people: '2 people',
       duration: '2 hours',
-      description:
-        'A true Tofino picnic experience! Feeling peckish? We have you covered with our locally curated charcuterie grazing boards fit for Queens and Kings. This table is the perfect match to ignite your ultimate vacation mode.',
+      description: 'Savor the epitome of Tofino luxury with our exquisite locally-curated charcuterie.',
+      icon: GlassWater
     },
     {
       name: 'The Perfect Proposal Package',
       price: '$800',
       people: '2 people',
       duration: '2 hours',
-      description:
-        'Create an unforgettable experience for you and the one you call forever with. This one-of-a-kind, intimate, and romantic picnic experience will have you falling head over heels all over again. Take this time to sit back, relax, and leave all the special details to us, as we will help coordinate and prepare your special day to perfection.',
+      description: 'Craft an unforgettable moment with our bespoke romantic setup and concierge service.',
+      icon: HeartHandshake
     },
     {
-      name: 'Two to Tango',
-      price: '$370',
-      people: '2 people',
-      duration: '2 hours',
-      description:
-        'Everything you need to have a picture-perfect picnic with our complete tablescape package detailed above. This is an ideal option if you want to bring your own food and beverage, as we will provide the dinnerware.',
-    },
-    {
-      name: 'Grand Luxury',
+      name: 'Grand Luxury Experience',
       price: '$770',
       people: '2 people',
       duration: '2 hours',
-      description:
-        'The ultimate luxury picnic experience is yours! Everything you need to have a picture-perfect picnic, plus a cherry on top! Have memories that last forever!',
+      description: 'Immerse yourself in the pinnacle of outdoor opulence with our most lavish offering.',
+      icon: Sparkles
     },
-    {
-      name: 'In Room Welcome Package',
-      price: '$150',
-      people: 'N/A',
-      duration: 'N/A',
-      description:
-        'Indulge in a welcome package for your hotel room and/or your Airbnb. This could be for you or as a gift to someone arriving here in Tofino. Let us create some memories for you!',
-    },
-  ];
+  ]
 
   return (
-    <div className="relative w-full overflow-visible px-4 py-8 md:py-12 bg-white">
-      {/* Title */}
-      <h2
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-gray-800"
-        style={{ fontFamily: 'Playfair Display, serif' }}
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2 }}
+      className="w-full px-2 py-12 sm:px-4 sm:py-24 bg-luxcream"
+    >
+      <motion.h2 
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 sm:mb-20 text-luxnavy font-playfair"
       >
-        Our Packages
-      </h2>
+        Exquisite Picnic Experiences
+      </motion.h2>
 
-      {/* Content Section */}
-      <div className="flex flex-col md:flex-row justify-between items-center md:items-start mb-12 md:mb-16 space-y-8 md:space-y-0">
-        {/* Left Side - Description */}
-        <div className="md:w-1/2 px-2 md:px-4">
-          <p
-            className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed text-center md:text-left"
-            style={{ fontFamily: 'Playfair Display, serif' }}
-          >
-            All tables include a beautifully styled tablescape complete with cozy and luxurious pillow
-            seating, high-quality blankets, rugs, cushions, and decor. Each table also comes with a
-            unique menu, infused water, a waste basket, and personalized welcome chalkboard.
-          </p>
-        </div>
-
-        {/* Right Side - Image Carousel */}
-        <div className="md:w-1/2 flex justify-center items-center px-2 md:px-4">
-          <div className="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-            {images.map((src, index) => (
-              <Image
-                key={src}
-                src={src}
-                alt={`Picnic Table Setup ${index + 1}`}
-                layout="fill"
-                objectFit="cover"
-                className={`rounded-lg shadow-lg transition-opacity duration-700 ease-in-out ${
-                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                }`}
-              />
-            ))}
-
-            {/* Navigation Dots */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-3 h-3 rounded-full focus:outline-none ${
-                    index === currentImageIndex ? 'bg-gray-800' : 'bg-gray-400'
-                  }`}
-                  onClick={() => setCurrentImageIndex(index)}
-                  aria-label={`Go to image ${index + 1}`}
-                ></button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Packages Table */}
-      <div className="overflow-x-auto shadow-lg rounded-lg">
-        <table
-          className="min-w-full text-gray-700"
-          style={{ fontFamily: 'Playfair Display, serif' }}
+      <div className="flex flex-col lg:flex-row justify-between items-center mb-12 sm:mb-24 space-y-8 sm:space-y-16 lg:space-y-0 lg:space-x-16">
+        <motion.div 
+          className="lg:w-1/2"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <thead className="bg-gray-100 text-base sm:text-lg md:text-xl">
-            <tr>
-              <th className="py-3 px-4 text-left">Package</th>
-              <th className="py-3 px-4 text-center">Price</th>
-              <th className="py-3 px-4 text-center">People</th>
-              <th className="py-3 px-4 text-center">Duration</th>
-            </tr>
-          </thead>
-          <tbody className="text-sm sm:text-base md:text-lg">
-            {packages.map((pkg, index) => (
-              <tr key={index} className="border-b">
-                <td className="font-bold py-4 px-4">{pkg.name}</td>
-                <td className="py-4 px-4 text-center">{pkg.price}</td>
-                <td className="py-4 px-4 text-center">{pkg.people}</td>
-                <td className="py-4 px-4 text-center">{pkg.duration}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <p className="text-lg sm:text-xl text-luxcharcoal leading-relaxed text-center lg:text-left font-avenir">
+            Immerse yourself in the pinnacle of outdoor luxury with our meticulously curated picnic experiences. Each setting is a masterpiece, featuring sumptuous seating, premium textiles, and elegant decor that transforms Tofino's natural splendor into your personal haven of indulgence.
+          </p>
+          <ul className="mt-6 sm:mt-10 space-y-4 sm:space-y-6 text-luxcharcoal font-avenir">
+            <li className="flex items-center">
+              <span className="mr-6 sm:mr-6">
+                <GlassWater className="w-6 sm:w-8 h-6 sm:h-8 text-luxnavy" />
+              </span>
+              <span className="text-lg">Bespoke menus crafted to tantalize your palate</span>
+            </li>
+            <li className="flex items-center">
+              <span className="mr-6 sm:mr-6">
+                <Sparkles className="w-6 sm:w-8 h-6 sm:h-8 text-luxnavy" />
+              </span>
+              <span className="text-lg">Eco-luxe amenities sourced from local artisans</span>
+            </li>
+            <li className="flex items-center">
+              <span className="mr-6 sm:mr-6">
+                <HeartHandshake className="w-6 sm:w-8 h-6 sm:h-8 text-luxnavy" />
+              </span>
+              <span className="text-lg">Personalized touches to elevate your special moment</span>
+            </li>
+          </ul>
+        </motion.div>
+
+        <motion.div 
+          className="lg:w-1/2 flex justify-center items-center"
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <div className="relative w-full h-64 sm:h-96 md:h-[600px] rounded-lg overflow-hidden shadow-2xl">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentImageIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={images[currentImageIndex]}
+                  alt={`Luxury Picnic Setup ${currentImageIndex + 1}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Package Descriptions */}
-      <div className="mt-12 space-y-8">
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10"
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+      >
         {packages.map((pkg, index) => (
-          <div key={index} className="bg-gray-50 p-6 rounded-lg shadow-md">
-            <h3
-              className="text-2xl font-bold mb-4 text-gray-800"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+          <motion.div 
+            key={pkg.name}
+            className="bg-white p-6 sm:p-10 rounded-lg shadow-xl overflow-hidden border border-luxcream"
+            initial={{ backgroundColor: "#FFFFFF" }}
+            whileHover={{ 
+              scale: 1.03,
+              backgroundColor: "#FAFAFA",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+              transition: { 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 20 
+              }
+            }}
+          >
+            <motion.div 
+              className="flex items-center mb-6 sm:mb-6"
+              initial={{ y: 0 }}
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              {pkg.name} - {pkg.price}
-            </h3>
-            <p
-              className="text-base sm:text-lg text-gray-700 leading-relaxed"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              <span className="mr-4 sm:mr-6 bg-luxcream p-2 sm:p-3 rounded-full">
+                <pkg.icon className="w-6 sm:w-8 h-6 sm:h-8 text-luxnavy" />
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-bold text-luxnavy font-playfair">{pkg.name}</h3>
+            </motion.div>
+            <motion.p 
+              className="text-2xl sm:text-3xl text-luxgold mb-4 sm:mb-6 font-avenir"
+              initial={{ opacity: 1 }}
+              whileHover={{ opacity: 0.8 }}
+              transition={{ duration: 0.2 }}
+            >
+              {pkg.price}
+            </motion.p>
+            <motion.p 
+              className="text-lg sm:text-xl text-luxcharcoal mb-6 sm:mb-8 font-avenir leading-relaxed"
+              initial={{ y: 0 }}
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               {pkg.description}
-            </p>
-            <div className="mt-4 text-gray-600">
-              <p>
-                <strong>People:</strong> {pkg.people}
-              </p>
-              <p>
-                <strong>Duration:</strong> {pkg.duration}
-              </p>
-            </div>
-          </div>
+            </motion.p>
+            <motion.div 
+              className="flex justify-between text-base sm:text-lg text-luxnavy font-avenir"
+              initial={{ opacity: 0.7 }}
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span>{pkg.people}</span>
+              <span>{pkg.duration}</span>
+            </motion.div>
+          </motion.div>
         ))}
-      </div>
-    </div>
-  );
-};
+      </motion.div>
 
-export default PicnicTable;
+      <motion.div 
+        className="mt-12 sm:mt-20 text-center"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+      >
+        <motion.a 
+          href="#book-now" 
+          className="inline-block bg-luxnavy text-white font-bold py-4 sm:py-5 px-8 sm:px-12 rounded-full hover:bg-luxgold hover:text-luxnavy transition-colors duration-300 font-avenir text-lg sm:text-xl tracking-wide"
+          whileHover={{ scale: 1.05, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)" }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Reserve Your Luxury Picnic
+        </motion.a>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+export default PicnicTable

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import React, { useState } from 'react';
+  import Portal from './Portal';
 
 type FieldType = 'text' | 'select' | 'checkbox' | 'textarea' | 'date' | 'number' | 'time';
 
@@ -166,7 +167,12 @@ type FormData = {
   [key: string]: any; // For dynamic fields
 };
 
-const QuoteRequestDrawer: React.FC = () => {
+interface QuoteRequestDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const QuoteRequestDrawer: React.FC<QuoteRequestDrawerProps> = ({ isOpen, onClose }) => {
   // **State Declarations**
   const [selectedService, setSelectedService] = useState<string>('');
   const [formData, setFormData] = useState<FormData>({
@@ -396,176 +402,192 @@ const QuoteRequestDrawer: React.FC = () => {
   // **Return Statement (JSX)**
 
   return (
-    <div className="drawer">
-      <input id="quote-request-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
-        {/* Page content here */}
-        <label htmlFor="quote-request-drawer" className="btn btn-outline outline-white bg-white">
-          Book Now
-        </label>
-      </div>
-      <div className="drawer-side">
-        <label htmlFor="quote-request-drawer" className="drawer-overlay"></label>
-        <div className="p-4 w-3/4 md:w-1/2 lg:w-1/3 bg-white text-base-content">
-          <h2 className="text-xl md:text-2xl font-bold mt-4">Lux.Fino Quote Request</h2>
-          <div className="flex justify-center my-4 mt-10">
-            <Image
-              src={'/Lux.Fino.Logo2.svg'}
-              alt="Lux.Fino Company Logo"
-              width={300}
-              height={100}
-              className="h-64 w-auto"
-            />
-          </div>
-          <form onSubmit={handleSubmit} noValidate>
-            {/* **Static Fields** */}
-
-            {/* First Name */}
-            <div className="form-control mb-4">
-              <label className="label" htmlFor="firstName">
-                <span className="label-text">First Name</span>
-              </label>
-              <input
-                id="firstName"
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                placeholder="First Name"
-                className={`input input-bordered w-full ${errors.firstName ? 'input-error' : ''}`}
-                required
-              />
-              {errors.firstName && <p className="text-error">{errors.firstName}</p>}
-            </div>
-
-            {/* Last Name */}
-            <div className="form-control mb-4">
-              <label className="label" htmlFor="lastName">
-                <span className="label-text">Last Name</span>
-              </label>
-              <input
-                id="lastName"
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                placeholder="Last Name"
-                className={`input input-bordered w-full ${errors.lastName ? 'input-error' : ''}`}
-                required
-              />
-              {errors.lastName && <p className="text-error">{errors.lastName}</p>}
-            </div>
-
-            {/* Phone */}
-            <div className="form-control mb-4">
-              <label className="label" htmlFor="phone">
-                <span className="label-text">Phone</span>
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Phone Number"
-                className={`input input-bordered w-full ${errors.phone ? 'input-error' : ''}`}
-                required
-              />
-              {errors.phone && <p className="text-error">{errors.phone}</p>}
-            </div>
-
-            {/* Email */}
-            <div className="form-control mb-4">
-              <label className="label" htmlFor="email">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address"
-                className={`input input-bordered w-full ${errors.email ? 'input-error' : ''}`}
-                required
-              />
-              {errors.email && <p className="text-error">{errors.email}</p>}
-            </div>
-
-            {/* Preferred Contact Method */}
-            <div className="form-control mb-4">
-              <label className="label" htmlFor="contactMethod">
-                <span className="label-text">Preferred Contact Method</span>
-              </label>
-              <select
-                id="contactMethod"
-                className={`select select-bordered w-full ${errors.contactMethod ? 'select-error' : ''}`}
-                name="contactMethod"
-                value={formData.contactMethod}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>
-                  Select an option
-                </option>
-                <option value="phone">Phone</option>
-                <option value="email">Email</option>
-              </select>
-              {errors.contactMethod && <p className="text-error">{errors.contactMethod}</p>}
-            </div>
-
-            {/* **Service Selection** */}
-            <div className="form-control mb-4">
-              <label className="label" htmlFor="selectedService">
-                <span className="label-text">Select a Service</span>
-              </label>
-              <select
-                id="selectedService"
-                className={`select select-bordered w-full ${errors.selectedService ? 'select-error' : ''}`}
-                value={selectedService}
-                onChange={(e) => {
-                  setSelectedService(e.target.value);
-                  handleChange(e); // Update formData
-                }}
-                name="selectedService"
-                required
-              >
-                <option value="" disabled>
-                  Choose a service
-                </option>
-                <option value="tables">Picnics</option>
-                <option value="luxRemote">Lux-Remote</option>
-                <option value="inHouseChef">Catering</option>
-                <option value="events">Corporate Events</option>
-              </select>
-              {errors.selectedService && <p className="text-error">{errors.selectedService}</p>}
-            </div>
-
-            {/* **Dynamic Fields Based on Selected Service** */}
-            {renderDynamicFields()}
-
-            {/* **Success Message** */}
-            {successMessage && <p className="text-success">{successMessage}</p>}
-
-            {/* **Company Logo** */}
-            <div className="flex justify-center my-4">
-              <Image
-                src={'/Lux.Fino.logo.svg'}
-                alt="Lux.Fino Company Logo"
-                width={350}
-                height={100}
-                className="h-auto"
-              />
-            </div>
-
-            {/* **Submit Button** */}
-            <button type="submit" className="btn btn-outline outline-white w-1/3">
-              Send
+    // Replace the drawer implementation with a modal-style drawer
+    <Portal>
+      <div className={`fixed inset-0 z-50 ${isOpen ? '' : 'pointer-events-none'}`}>
+        {/* Backdrop */}
+        <div 
+          className={`absolute inset-0 bg-black transition-opacity duration-300 ${
+            isOpen ? 'opacity-50' : 'opacity-0'
+          }`}
+          onClick={onClose}
+        />
+        
+        {/* Drawer Panel */}
+        <div 
+          className={`absolute top-0 right-0 h-full w-full md:w-1/2 lg:w-1/3 bg-white transform transition-transform duration-300 ${
+            isOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <div className="p-4 h-full overflow-y-auto">
+            <button 
+              onClick={onClose}
+              className="absolute top-4 right-4 p-2"
+              aria-label="Close drawer"
+            >
+              ✕
             </button>
-          </form>
+            
+            <h2 className="text-xl md:text-2xl font-bold mt-4">Lux.Fino Quote Request</h2>
+            <div className="flex justify-center my-4 mt-10">
+              <Image
+                src={'/Lux.Fino.Logo2.svg'}
+                alt="Lux.Fino Company Logo"
+                width={300}
+                height={100}
+                className="h-64 w-auto"
+              />
+            </div>
+            <form onSubmit={handleSubmit} noValidate>
+              {/* **Static Fields** */}
+
+              {/* First Name */}
+              <div className="form-control mb-4">
+                <label className="label" htmlFor="firstName">
+                  <span className="label-text">First Name</span>
+                </label>
+                <input
+                  id="firstName"
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  placeholder="First Name"
+                  className={`input input-bordered w-full ${errors.firstName ? 'input-error' : ''}`}
+                  required
+                />
+                {errors.firstName && <p className="text-error">{errors.firstName}</p>}
+              </div>
+
+              {/* Last Name */}
+              <div className="form-control mb-4">
+                <label className="label" htmlFor="lastName">
+                  <span className="label-text">Last Name</span>
+                </label>
+                <input
+                  id="lastName"
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Last Name"
+                  className={`input input-bordered w-full ${errors.lastName ? 'input-error' : ''}`}
+                  required
+                />
+                {errors.lastName && <p className="text-error">{errors.lastName}</p>}
+              </div>
+
+              {/* Phone */}
+              <div className="form-control mb-4">
+                <label className="label" htmlFor="phone">
+                  <span className="label-text">Phone</span>
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Phone Number"
+                  className={`input input-bordered w-full ${errors.phone ? 'input-error' : ''}`}
+                  required
+                />
+                {errors.phone && <p className="text-error">{errors.phone}</p>}
+              </div>
+
+              {/* Email */}
+              <div className="form-control mb-4">
+                <label className="label" htmlFor="email">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email Address"
+                  className={`input input-bordered w-full ${errors.email ? 'input-error' : ''}`}
+                  required
+                />
+                {errors.email && <p className="text-error">{errors.email}</p>}
+              </div>
+
+              {/* Preferred Contact Method */}
+              <div className="form-control mb-4">
+                <label className="label" htmlFor="contactMethod">
+                  <span className="label-text">Preferred Contact Method</span>
+                </label>
+                <select
+                  id="contactMethod"
+                  className={`select select-bordered w-full ${errors.contactMethod ? 'select-error' : ''}`}
+                  name="contactMethod"
+                  value={formData.contactMethod}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select an option
+                  </option>
+                  <option value="phone">Phone</option>
+                  <option value="email">Email</option>
+                </select>
+                {errors.contactMethod && <p className="text-error">{errors.contactMethod}</p>}
+              </div>
+
+              {/* **Service Selection** */}
+              <div className="form-control mb-4">
+                <label className="label" htmlFor="selectedService">
+                  <span className="label-text">Select a Service</span>
+                </label>
+                <select
+                  id="selectedService"
+                  className={`select select-bordered w-full ${errors.selectedService ? 'select-error' : ''}`}
+                  value={selectedService}
+                  onChange={(e) => {
+                    setSelectedService(e.target.value);
+                    handleChange(e); // Update formData
+                  }}
+                  name="selectedService"
+                  required
+                >
+                  <option value="" disabled>
+                    Choose a service
+                  </option>
+                  <option value="tables">Picnics</option>
+                  <option value="luxRemote">Lux-Remote</option>
+                  <option value="inHouseChef">Catering</option>
+                  <option value="events">Corporate Events</option>
+                </select>
+                {errors.selectedService && <p className="text-error">{errors.selectedService}</p>}
+              </div>
+
+              {/* **Dynamic Fields Based on Selected Service** */}
+              {renderDynamicFields()}
+
+              {/* **Success Message** */}
+              {successMessage && <p className="text-success">{successMessage}</p>}
+
+              {/* **Company Logo** */}
+              <div className="flex justify-center my-4">
+                <Image
+                  src={'/Lux.Fino.logo.svg'}
+                  alt="Lux.Fino Company Logo"
+                  width={350}
+                  height={100}
+                  className="h-auto"
+                />
+              </div>
+
+              {/* **Submit Button** */}
+              <button type="submit" className="btn btn-outline outline-white w-1/3">
+                Send
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </Portal>
   );
 };
 
