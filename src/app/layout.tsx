@@ -1,5 +1,6 @@
 import { Playfair_Display } from 'next/font/google'; // Import Playfair Display
 import { Metadata } from 'next'; // <-- Import the Metadata type
+import Navbar from './components/Navbar';
 import './globals.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfairDisplay.className} avenir-font`}>
+        <Navbar />
         {children}
       </body>
     </html>

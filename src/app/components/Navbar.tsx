@@ -53,10 +53,10 @@ export default function Navbar() {
           <Image
             src="/Lux.Fino.logo.svg"
             alt="LuxFino Logo"
-            width={200}
+            width={80}
             height={80}
             className={`object-contain transition-all duration-300 ${
-              isScrolled ? 'h-12 w-auto' : 'h-16 w-auto'
+              isScrolled ? 'h-auto w-16' : 'h-16 w-auto'
             }`}
           />
         </Link>
@@ -67,7 +67,7 @@ export default function Navbar() {
             <motion.div key={index} whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
               <Link 
                 href={item.href} 
-                className="font-avenir text-luxice hover:text-luxsand transition-colors duration-300 text-sm uppercase tracking-wider"
+                className="font-avenir text-luxpearl hover:text-luxocean transition-colors duration-300 text-sm uppercase tracking-wider"
               >
                 {item.label}
               </Link>
@@ -75,7 +75,7 @@ export default function Navbar() {
           ))}
           <motion.a 
             href="tel:+18005893466" 
-            className="bg-gradient-to-r from-luxice to-luxdsnd text-luxcedar px-6 py-2 rounded-full font-avenir hover:from-luxcopper hover:to-luxsand transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-luxpearl to-luxsand text-luxocean px-6 py-2 rounded-full font-avenir hover:bg-luxocean transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -92,7 +92,7 @@ export default function Navbar() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-luxice hover:text-luxsand transition-colors duration-300"
+              className="text-luxice hover:text-luxocean transition-colors duration-300"
               whileHover={{ scale: 1.1, rotate: 10 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -103,7 +103,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <motion.button
-          className="lg:hidden text-luxice hover:text-luxsand transition-colors duration-300"
+          className="lg:hidden text-luxice hover:text-luxocean transition-colors duration-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           whileTap={{ scale: 0.9 }}
         >
