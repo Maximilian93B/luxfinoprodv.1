@@ -89,7 +89,7 @@ const HomePage: React.FC = () => {
   }, []);
 
   if (!isLoaded) {
-    return <LoadingScreen progress={loadingProgress} />
+    return <LoadingScreen progress={loadingProgress} onLoadingComplete={() => {/* handle completion */}} />
   }
 
   return (

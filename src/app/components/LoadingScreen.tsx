@@ -1,13 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import Image from 'next/image'
 
 interface LoadingScreenProps {
   progress: number;
+  onLoadingComplete: () => void;
 }
 
-const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress }) => {
+const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress, onLoadingComplete }) => {
   const controls = useAnimation()
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (progress < 100) {
+        onLoadingComplete()
+      }
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, [progress, onLoadingComplete])
 
   useEffect(() => {
     if (progress === 100) {
@@ -17,7 +28,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress }) => {
 
   return (
     <motion.div 
-      className="fixed inset-0 bg-luxpearl flex flex-col items-center justify-center overflow-hidden"
+      className="fixed inset-0 bg-luxpearl flex flex-col items-center justify-center overflow-hidden px-4"
       animate={controls}
     >
       <motion.div
@@ -30,23 +41,23 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress }) => {
           animate={{ rotate: 360 }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
           className="absolute inset-0 rounded-full border-t-4 border-r-4 border-luxgold opacity-50"
-          style={{ width: '240px', height: '240px', margin: '-20px' }}
+          style={{ width: '180px', height: '180px', margin: '-15px' }}
         />
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="absolute inset-0 rounded-full border-b-4 border-l-4 border-luxnavy opacity-30"
-          style={{ width: '280px', height: '280px', margin: '-40px' }}
+          style={{ width: '210px', height: '210px', margin: '-30px' }}
         />
         <motion.div
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         >
           <Image
-            src="/Lux.Fino.logo.svg"
+            src="/Lux.Fino.Logo2.svg"
             alt="Lux.Fino Logo"
-            width={200}
-            height={200}
+            width={150}
+            height={150}
             className="relative z-10"
           />
         </motion.div>
@@ -56,22 +67,22 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 1.5, ease: "easeOut" }}
-        className="text-5xl font-bold text-luxnavy mt-8 mb-2 font-playfair"
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-luxnavy mt-6 mb-2 font-playfair text-center"
       >
-        Welcome to LuxFino
+        Welcome to Lux Fino
       </motion.h1>
       
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1.2 }}
-        className="text-luxcharcoal font-avenir text-lg mb-8"
+        className="text-luxcharcoal font-avenir text-base sm:text-lg mb-6 text-center"
       >
         Crafting your luxurious experience...
       </motion.p>
       
       <motion.div
-        className="w-64 h-2 bg-luxnavy bg-opacity-10 rounded-full overflow-hidden"
+        className="w-full max-w-xs h-2 bg-luxnavy bg-opacity-10 rounded-full overflow-hidden"
         initial={{ opacity: 0, scaleX: 0 }}
         animate={{ opacity: 1, scaleX: 1 }}
         transition={{ delay: 2, duration: 1.2, ease: "easeOut" }}
@@ -85,7 +96,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress }) => {
       </motion.div>
       
       <motion.div
-        className="mt-8 text-luxcedar font-avenir"
+        className="mt-6 text-luxnavy font-avenir text-sm sm:text-base"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 1.2 }}

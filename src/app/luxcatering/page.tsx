@@ -24,7 +24,7 @@ const galleryImages: GalleryImage[] = [
 const salesSections = [
   {
     title: "Elevate Your Event with Our Signature Catering",
-    imageSrc: "/CateringSale1.JPG",
+    imageSrc: "/Catering1.JPG",
     imageAlt: "LuxCatering Signature Dishes",
     description: "Transform your event into an extraordinary experience with LuxCatering. We tailor every detail to your vision, ensuring a memorable occasion that leaves a lasting impression on your guests.",
     reviewQuote: "LuxCatering turned our wedding into a culinary masterpiece. Unforgettable!",
@@ -32,7 +32,7 @@ const salesSections = [
   },
   {
     title: "Elevate Your Event with Our Signature Catering",
-    imageSrc: "/CateringSale1.JPG",
+    imageSrc: "/Catering2.JPG",
     imageAlt: "LuxCatering Signature Dishes",
     description: "Transform your event into an extraordinary experience with LuxCatering. We tailor every detail to your vision, ensuring a memorable occasion that leaves a lasting impression on your guests.",
     reviewQuote: "LuxCatering turned our wedding into a culinary masterpiece. Unforgettable!",
