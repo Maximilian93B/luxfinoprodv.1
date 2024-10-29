@@ -48,7 +48,7 @@ const PicnicsTestimonials: React.FC = () => {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-5xl font-bold mb-12 md:mb-16 tracking-wide text-luxnavy"
+          className="text-5xl md:text-6xl font-bold mb-12 md:mb-16 tracking-wide text-luxnavy"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
           Enchanting Experiences
@@ -60,7 +60,7 @@ const PicnicsTestimonials: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-luxcream"
+              className="bg-luxpearl p-8 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-luxcream"
             >
               <div className="flex justify-center mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -71,7 +71,7 @@ const PicnicsTestimonials: React.FC = () => {
                 className="text-lg md:text-xl text-luxcharcoal italic leading-relaxed mb-6"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                "{testimonial.feedback}"
+                {testimonial.feedback}
               </p>
               <div className="w-16 h-1 bg-luxcream mx-auto mb-4"></div>
               <p
@@ -91,7 +91,7 @@ const PicnicsTestimonials: React.FC = () => {
         >
           <a 
             href="#book-now" 
-            className="inline-block bg-luxblush text-luxcharcoal font-bold py-4 px-8 rounded-full hover:bg-luxgold hover:text-luxnavy transition-colors duration-300 text-lg tracking-wide"
+            className="inline-block bg-luxocean text-luxpearl font-bold py-4 px-8 rounded-full hover:bg-luxcedar hover:text-luxpearl transition-colors duration-300 text-lg tracking-wide"
             style={{ fontFamily: 'Avenir, sans-serif' }}
           >
             Experience Luxury

@@ -21,7 +21,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
 
   return (
     <motion.div 
-      className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-16 mb-32`}
+      className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-16 mb-8`}
       style={{ opacity, y }}
     >
       <motion.div 
@@ -39,8 +39,8 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
           <Image
             src={imageSrc}
             alt={title}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{objectFit:"cover"}}
             className="transition-transform duration-700 ease-out hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-luxnavy/30 to-transparent" />
@@ -54,7 +54,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
         viewport={{ once: true, margin: "-100px" }}
       >
         <motion.h2 
-          className="text-4xl md:text-4xl font-light mb-6 font-playfair text-luxocedar leading-tight"
+          className="text-4xl md:text-4xl font-light mb-6 font-playfair text-luxpearl leading-tight"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -63,7 +63,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
           {title}
         </motion.h2>
         <motion.p 
-          className="text-xl mb-8 font-avenir text-luxcedar leading-relaxed"
+          className="text-xl mb-8 font-avenir text-luxpearl leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -72,7 +72,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
           {description}
         </motion.p>
         <motion.button
-          className="px-8 py-3 bg-luxsand/80 text-luxcedar rounded-full font-light text-lg hover:bg-luxcopper/80 transition-all duration-300 shadow-md hover:shadow-lg"
+          className="px-8 py-3 bg-luxcopper text-luxcedar rounded-full font-light text-lg hover:bg-luxcopper/80 transition-all duration-300 shadow-md hover:shadow-lg"
           whileHover={{ scale: 1.05, backgroundColor: "rgba(203, 125, 85, 0.8)" }}
           whileTap={{ scale: 0.98 }}
           initial={{ opacity: 0, y: 20 }}
@@ -89,11 +89,11 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
 
 const DiscoverSection: React.FC = () => {
   return (
-    <section id="discover" className="py-32 bg-luxsand/80 overflow-hidden">
-      <div className="container mx-auto px-6 relative">
+    <section id="discover" className="py-24 bg-luxocean overflow-hidden">
+      <div className="container mx-auto px-8 relative">
         <div className="absolute inset-0 bg-[url('/grain.png')] opacity-5" />
         <motion.h1 
-          className="text-4xl md:text-5xl lg:text-6xl font-light text-center mb-24 font-playfair text-luxcedar leading-tight"
+          className="text-5xl md:text-5xl lg:text-6xl font-light text-center  mb-12 font-playfair text-luxpearl leading-tight"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}

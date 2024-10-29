@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface OptionCardProps {
   title: string;
@@ -52,7 +53,12 @@ const CustomizationOptions: React.FC = () => {
               className="card bg-base-100 image-full w-96 shadow-xl mx-auto"
             >
               <figure>
-                <img src={option.imageSrc} alt={option.imageAlt} />
+                <Image 
+                src={option.imageSrc} 
+                alt={option.imageAlt} 
+                width={500}
+                height={500}
+                />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{option.title}</h2>

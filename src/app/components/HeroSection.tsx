@@ -58,7 +58,7 @@ export default function Component() {
   return (
     <motion.div 
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-luxocean"
+      className="relative h-screen w-full overflow-hidden bg-luxsand"
       style={{ opacity }}
     >
       <motion.div
@@ -85,28 +85,28 @@ export default function Component() {
             Your browser does not support the video tag.
           </video>
         )}
-        <div className="absolute inset-0 bg-luxcopper bg-opacity-30" />
+        <div className="absolute inset-0 bg-luxocean bg-opacity-20" />
         <div className="absolute inset-0 bg opacity-5" />
       </motion.div>
 
-      <div className="relative z-10 flex flex-col items-center justify-between h-full px-4 py-24 sm:px-6 lg:px-8">
+      <div className="relative z-10 flex flex-col items-center justify-between h-full px-8 py-24 sm:px-8 lg:px-12 mt-8">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
           className="text-center space-y-6"
         >
-          <h2 className="text-luxsand text-xl sm:text-2xl md:text-3xl font-avenir tracking-widest uppercase">
+         <h2 className="text-luxpearl text-5xl sm:text-3xl md:text-3xl font-avenir tracking-widest  uppercase">
             LuxFino Presents
           </h2>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-luxice font-playfair leading-tight">
-            Seclusion Redefined
-          </h1>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-luxice font-playfair leading-tight">
+          <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-luxpearl font-avenir leading-tight">
            LuxRemote
           </h1>
-          <p className="mt-4 text-xl sm:text-2xl md:text-3xl text-luxsand font-avenir max-w-3xl mx-auto">
-            Experience unparalleled luxury in nature's embrace
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-luxpearl font-avenir leading-tight">
+            Seclusion Redefined
+          </h2>
+          <p className="mt-4 text-2xl sm:text-2xl md:text-3xl text-luxpearl font-playfair max-w-3xl mx-auto">
+            Experience unparalleled luxury in nature&apos;s embrace
           </p>
         </motion.div>
 
@@ -118,7 +118,7 @@ export default function Component() {
         >
           <button
             onClick={handleScroll}
-            className="px-12 py-4 text-lg font-semibold text-luxocean bg-luxsand rounded-full hover:bg-luxcopper duration-300 focus:outline-none focus:ring-2 focus:ring-luxcopper focus:ring-opacity-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+            className="px-12 py-4 text-lg font-semibold text-luxpearl bg-luxocean/80 rounded-full hover:bg-luxcopper duration-300 focus:outline-none focus:ring-2 focus:ring-luxcopper focus:ring-opacity-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
             aria-label="Explore LuxRemote"
           >
             Discover LuxRemote
