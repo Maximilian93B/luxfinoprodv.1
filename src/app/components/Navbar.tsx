@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Instagram, Facebook, Linkedin, Menu, X, Phone } from 'lucide-react'
 
 const menuItems = [
-  { href: "/luxpicnic", label: "Lux Picnics" },
-  { href: "/luxremote", label: "Lux Remote" },
-  { href: "/luxcatering", label: "Exclusive Catering" },
+  { href: "/luxpicnic", label: "Picnics" },
+  { href: "/luxremote", label: "Discover LuxRemote" },
+  { href: "/luxcatering", label: "Catering, Weddings, & Events" },
 ]
 
 const socialIcons = [
@@ -39,7 +39,7 @@ export default function Navbar() {
   return (
     <motion.nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-luxsand/90 backdrop-blur-sm py-2 shadow-lg' : 'bg-transparent py-4'
+        isScrolled ? 'bg-gradient-to-r from-luxsand to-luxpearl/10 py-2 shadow-lg' : 'bg-transparent py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -61,7 +61,7 @@ export default function Navbar() {
             <Link 
               key={item.href}
               href={item.href} 
-              className="font-avenir text-luxpearl hover:text-luxocean transition-all duration-300 text-sm uppercase tracking-wider hover:-translate-y-0.5"
+              className="font-avenir text-luxpearl hover:text-luxocean transition-all duration-300 text-md uppercase tracking-widest"
             >
               {item.label}
             </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-luxice hover:text-luxocean transition-all duration-300 hover:-translate-y-0.5"
+              className="text-luxpearl hover:text-luxcedar transition-all duration-300"
             >
               <Icon size={20} />
             </a>
@@ -90,49 +90,57 @@ export default function Navbar() {
         </div>
 
         <button
-          className="lg:hidden text-luxice hover:text-luxocean transition-colors duration-300"
+          className="lg:hidden text-luxpearl hover:text-luxocean transition-colors duration-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {isMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-luxsand/80 backdrop-blur-sm">
-          <div className="container mx-auto py-4 px-6 space-y-4 bg-gradient-to-b from-luxnavy to-luxsand/50">
-            {menuItems.map((item) => (
-              <Link 
-                key={item.href}
-                href={item.href} 
-                className="block py-2 font-avenir text-luxcedar font-medium hover:text-luxsand transition-all duration-300 text-lg hover:-translate-y-0.5"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <a 
-              href="tel:+18005893466" 
-              className="py-2 font-playfair font-medium text-luxcedar hover:text-luxcopper transition-colors duration-300 text-lg flex items-center space-x-2"
-            >
-              <Phone size={20} />
-              <span>+1 (800) 589-3466</span>
-            </a>
-            <div className="flex justify-center space-x-6 pt-4 border-t border-luxsand/20">
-              {socialIcons.map(({ Icon, href }, index) => (
-                <a
-                  key={index}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-luxcedar hover:text-luxsand transition-colors duration-300"
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden absolute top-full left-0 right-0 bg-gradient-to-b from-luxnavy/90 to-luxsand/90 backdrop-blur-md"
+          >
+            <div className="container mx-auto py-4 px-6 space-y-4">
+              {menuItems.map((item) => (
+                <Link 
+                  key={item.href}
+                  href={item.href} 
+                  className="block py-2 font-avenir text-luxpearl font-medium hover:text-luxocean transition-all duration-300 text-lg hover:-translate-y-0.5"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <Icon size={24} />
-                </a>
+                  {item.label}
+                </Link>
               ))}
+              <a 
+                href="tel:+18005893466" 
+                className="py-2 font-playfair font-medium text-luxpearl hover:text-luxocean transition-colors duration-300 text-lg flex items-center space-x-2"
+              >
+                <Phone size={20} />
+                <span>+1 (800) 589-3466</span>
+              </a>
+              <div className="flex justify-center space-x-6 pt-4 border-t border-luxpearl/20">
+                {socialIcons.map(({ Icon, href }, index) => (
+                  <a
+                    key={index}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-luxpearl hover:text-luxocean transition-colors duration-300"
+                  >
+                    <Icon size={24} />
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }

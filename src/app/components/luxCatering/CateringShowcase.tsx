@@ -61,18 +61,7 @@ const testimonials = [
     image: "/david-sarah.jpg",
     quote: "We couldn&apos;t have asked for a better catering experience. The team&apos;s attention to detail was impeccable!"
   },
-  {
-    name: "Michael",
-    role: "Corporate Event Planner",
-    image: "/michael.jpg",
-    quote: "Their service is unmatched. Every event they&apos;ve catered for us has been absolutely perfect."
-  },
-  {
-    name: "Rachel",
-    role: "Birthday Celebration",
-    image: "/rachel.jpg",
-    quote: "The food was incredible, and the service was even better. They made my special day truly memorable."
-  }
+  
 ];
 
 export default function LuxFinoCateringShowcase() {
