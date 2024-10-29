@@ -39,7 +39,7 @@ export default function Navbar() {
   return (
     <motion.nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gradient-to-r from-luxsand to-luxpearl/10 py-2 shadow-lg' : 'bg-transparent py-4'
+        isScrolled ? 'bg-gradient-to-r from-luxsand to-luxpearl py-2 shadow-lg' : 'bg-transparent py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -61,14 +61,14 @@ export default function Navbar() {
             <Link 
               key={item.href}
               href={item.href} 
-              className="font-avenir text-luxpearl hover:text-luxocean transition-all duration-300 text-md uppercase tracking-widest"
+              className="font-avenir text-luxpearl hover:text-luxcedar transition-all duration-300 text-md uppercase tracking-widest"
             >
               {item.label}
             </Link>
           ))}
           <a 
             href="tel:+18005893466" 
-            className="bg-gradient-to-r from-luxpearl to-luxsand text-luxocean px-6 py-2 rounded-full font-avenir hover:opacity-90 transition-opacity duration-300 flex items-center space-x-2 shadow-lg"
+            className="bg-gradient-to-r from-luxpearl to-luxsand text-luxcedar px-6 py-2 rounded-full font-avenir hover:opacity-90 transition-opacity duration-300 flex items-center space-x-2 shadow-lg"
           >
             <Phone size={16} />
             <span className="font-playfair">+1 (800) 589-3466</span>
@@ -82,7 +82,7 @@ export default function Navbar() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-luxpearl hover:text-luxcedar transition-all duration-300"
+              className="text-luxcedar hover:text-luxcedar transition-all duration-300"
             >
               <Icon size={20} />
             </a>
