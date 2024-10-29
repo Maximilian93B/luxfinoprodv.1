@@ -25,9 +25,9 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, content, icon }) => {
               <Image src={icon} alt={`${title} icon`} width={30} height={30} className="text-luxpearl" />
             </div>
           </div>
-          <h3 className="card-title ml-4 text-2xl font-playfair text-luxpearl">{title}</h3>
+          <h3 className="card-title ml-4 text-2xl font-playfair text-luxcedar">{title}</h3>
         </div>
-        <p className="font-avenir text-luxpearl/80 leading-relaxed">{content}</p>
+        <p className="font-avenir text-luxcedar/80 leading-relaxed">{content}</p>
       </div>
     </motion.div>
   )
@@ -43,7 +43,7 @@ export default function AboutIndex() {
         <section id="about" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.h2 
-          className="text-5xl font-playfair font-bold mb-8 text-center text-luxpearl"
+          className="text-5xl font-playfair font-bold mb-8 text-center text-luxcedar"
           variants={fadeInUpVariants}
           initial="hidden"
           whileInView="visible"
@@ -53,7 +53,7 @@ export default function AboutIndex() {
           About LuxFino
         </motion.h2>
         <motion.p 
-          className="text-xl mb-16 max-w-3xl mx-auto text-center text-luxpearl/80 font-avenir leading-relaxed "
+          className="text-xl mb-16 max-w-3xl mx-auto text-center text-luxcedar/80 font-avenir leading-relaxed "
           variants={fadeInUpVariants}
           initial="hidden"
           whileInView="visible"
@@ -102,12 +102,12 @@ export default function AboutIndex() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="card bg-opacity-20 max-w-2xl mx-4">
+            <div className="card bg-opacity-20 max-w-7xl mx-4 ">
               <div className="card-body">
-                <h3 className="card-title text-4xl font-playfair text-luxpearl justify-center">
+                <h3 className="card-title text-5xl font-playfair text-luxpearl justify-center p-4">
                   Discover Tofino
                 </h3>
-                <p className="text-xl text-center font-avenir text-luxpearl">
+                <p className="text-3xl text-center font-avenir text-luxpearl">
                   Experience the beauty of Tofino with LuxFino&apos;s curated experiences
                 </p>
                 <div className="card-actions justify-center mt-4">

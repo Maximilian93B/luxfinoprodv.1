@@ -36,7 +36,7 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
             />
           </div>
           <motion.div 
-            className="absolute -bottom-14 left-2 transform -translate-x-1/2 bg-luxgold text-luxpearl px-4 py-1 rounded-full font-avenir font-semibold"
+            className="absolute -bottom-14 left-2 transform -translate-x-1/2 bg-luxgold text-luxcedar px-4 py-1 rounded-full font-avenir font-semibold"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
             transition={{ duration: 0.3 }}
@@ -44,8 +44,8 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
             {roles.join(" & ")}
           </motion.div>
         </div>
-        <h3 className="text-3xl font-playfair font-bold mt-8 text-luxpearl">{name}</h3>
-        <p className="text-luxpearl/80 font-avenir leading-relaxed text-center mt-4">{bio}</p>
+        <h3 className="text-3xl font-playfair font-bold mt-8 text-luxcedar">{name}</h3>
+        <p className="text-luxcedar/80 font-avenir leading-relaxed text-center mt-4">{bio}</p>
       </div>
     </motion.div>
   )
@@ -59,7 +59,7 @@ export default function OwnerFounderSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-playfair font-bold mb-8 text-center text-luxpearl"
+          className="text-5xl font-playfair font-bold mb-8 text-center text-luxcedar"
         >
           The Visionaries Behind LuxFino
         </motion.h2>
@@ -67,7 +67,7 @@ export default function OwnerFounderSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl mb-16 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxpearl/90"
+          className="text-xl mb-16 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxcedar/90"
         >
           At the heart of LuxFino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures.
         </motion.p>
