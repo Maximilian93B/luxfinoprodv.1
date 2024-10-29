@@ -36,30 +36,4 @@ yarn-error.log*
 next-env.d.ts
 
 
-<<<<<<< HEAD
-# Media files 
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.bmp
-*.tiff
-*.svg
-*.ico
-*.mp4
-*.avi
-*.mov
-*.mkv
-*.wmv
-*.flv
-*.webm
-=======
-# Media Files 
-*.mp4
-*.mov
-*.avi
-*.JPG
-*.jpeg
 
-
->>>>>>> 717d94bc17da8eae8400441ed6b59f90fe254c95
