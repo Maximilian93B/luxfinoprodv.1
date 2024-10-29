@@ -19,7 +19,7 @@ const TribalParksSection: React.FC = () => {
             width={400}
             height={100}
             alt="Tribal Parks Allies Symbol"
-            className="rounded-lg filter brightness-0 invert"
+            className="rounded-lg filter brightness-100 invert"
           />
         </motion.div>
 
@@ -33,7 +33,7 @@ const TribalParksSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 font-playfair text-luxpearl"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 font-playfair text-luxcedar"
           >
             LuxFino is Proud to Support Tribal Parks
           </motion.h2>
@@ -41,7 +41,7 @@ const TribalParksSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className="max-w-3xl mx-auto text-luxcharcoal text-lg md:text-xl leading-relaxed font-avenir mb-12 text-luxpearl/80"
+            className="max-w-3xl mx-auto text-luxcharcoal text-lg md:text-xl leading-relaxed font-avenir mb-12 text-luxcedar/80"
           >
             LuxFino is proud to work in collaboration with Tribal Parks Allies, supporting initiatives that preserve the natural beauty of Tofino and respecting the rights and traditions of First Nations communities. Our commitment extends beyond luxury experiences—we aim to contribute positively to the environment and the cultural landscape in which we operate, fostering sustainable tourism and community-driven practices.
           </motion.p>

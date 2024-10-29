@@ -36,7 +36,7 @@ export default function ServiceSections() {
           <ServiceSection
             title="Bespoke Culinary Experiences"
             description="Indulge in exquisite flavors crafted by our executive chef. Our bespoke catering service marries the finest local ingredients with global inspiration, creating unparalleled dining experiences that will delight your senses and impress your guests."
-            buttonText="Book Catering and Events with LuxFino"
+            buttonText="Book Catering and Events"
             imageSrc="/LuxCateringCard.JPG"
             imageAlt="Elegantly plated gourmet dish showcasing local ingredients"
             reverse={false}
