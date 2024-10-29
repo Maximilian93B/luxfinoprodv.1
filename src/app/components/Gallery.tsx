@@ -30,14 +30,14 @@ const Gallery: FC<GalleryProps> = ({
     <div className="  py-8 mb-4">
       {/* Header and Sales Title */}
       <div className="text-center mb-8 px-4">
-        <h1 className="text-5xl font-bold text-luxpearl">{headerTitle}</h1>
-        <p className="text-xl text-luxpearl mt-4">{headerSubtitle}</p>
+        <h1 className="text-5xl font-bold text-luxcedar">{headerTitle}</h1>
+        <p className="text-xl text-luxcedar mt-4">{headerSubtitle}</p>
       </div>
 
       {/* Centered Toggleable Button */}
       <div className="flex justify-center mb-6">
         <button
-          className="btn btn-lg flex items-center bg-luxocean text-luxpearl hover:bg-luxice hover:text-luxforest transition-colors duration-300 shadow-xl rounded-full px-6 py-3"
+          className="btn btn-lg flex items-center bg-luxsand text-luxpearl hover:bg-luxice hover:text-luxcedar transition-colors duration-300 shadow-xl rounded-full px-6 py-3"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? '' : 'View our Creations'}

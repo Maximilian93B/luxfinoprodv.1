@@ -45,11 +45,11 @@ const LuxuryExperienceWatch: React.FC = () => {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-luxsand/80 overflow-hidden">
+    <section className="py-16 md:py-24 bg-luxocean overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="absolute inset-0 bg-[url('/grain.png')] opacity-5" />
         <motion.h2 
-          className="text-4xl md:text-5xl lg:text-6xl font-light text-center mb-8 md:mb-12 font-playfair text-luxcedar leading-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-light text-center mb-8 md:mb-12 font-playfair text-luxpearl leading-tight"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -57,7 +57,7 @@ const LuxuryExperienceWatch: React.FC = () => {
           Your Lux Remote Journey
         </motion.h2>
         <motion.p 
-          className="text-xl text-center mb-16 md:mb-24 font-avenir text-luxcedar/80 max-w-3xl mx-auto"
+          className="text-2xl text-center mb-16 md:mb-24 font-avenir text-luxpearl max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

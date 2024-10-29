@@ -18,7 +18,7 @@ const PicnicTable: React.FC = () => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
     }, 5000)
     return () => clearInterval(intervalId)
-  }, [])
+  }, [images.length])
 
   const packages = [
     {
@@ -79,7 +79,7 @@ const PicnicTable: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <p className="text-lg sm:text-xl text-luxcharcoal leading-relaxed text-center lg:text-left font-avenir">
-            Immerse yourself in the pinnacle of outdoor luxury with our meticulously curated picnic experiences. Each setting is a masterpiece, featuring sumptuous seating, premium textiles, and elegant decor that transforms Tofino's natural splendor into your personal haven of indulgence.
+            Immerse yourself in the pinnacle of outdoor luxury with our meticulously curated picnic experiences. Each setting is a masterpiece, featuring sumptuous seating, premium textiles, and elegant decor that transforms Tofino&apos;s natural splendor into your personal haven of indulgence.
           </p>
           <ul className="mt-6 sm:mt-10 space-y-4 sm:space-y-6 text-luxcharcoal font-avenir">
             <li className="flex items-center">

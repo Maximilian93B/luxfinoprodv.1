@@ -106,7 +106,7 @@ export default function Component() {
             Seclusion Redefined
           </h2>
           <p className="mt-4 text-2xl sm:text-2xl md:text-3xl text-luxpearl font-playfair max-w-3xl mx-auto">
-            Experience unparalleled luxury in nature's embrace
+            Experience unparalleled luxury in nature&apos;s embrace
           </p>
         </motion.div>
 

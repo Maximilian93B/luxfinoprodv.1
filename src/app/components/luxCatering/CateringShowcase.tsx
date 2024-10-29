@@ -3,17 +3,18 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const showcaseItems = [
   {
     title: "Tofino-Inspired Cuisine",
     description: "Experience the flavors of Tofino with our locally-inspired dishes that capture the essence of the Pacific Northwest.",
-    image: "/luxfino-tofino-dish.jpg",
+    image: "/LuxCateringCard.JPG",
   },
   {
     title: "Local, Sustainable Ingredients",
     description: "We source the freshest ingredients from local Tofino farmers, fishers, and foragers to create our exquisite menus.",
-    image: "/luxfino-local-ingredients.jpg",
+    image: "/LuxCatering2.JPG",
   },
   {
     title: "Oceanfront Event Catering",
@@ -35,19 +36,66 @@ const localSpecialties = [
   "House-smoked salmon and other delicacies",
 ];
 
+const testimonials = [
+  {
+    name: "Sarah & Tom",
+    role: "Newlyweds",
+    image: "/sarah-tom.jpg",
+    quote: "LuxFino Catering captured the essence of Tofino in every bite. Our wedding guests are still raving about the locally-sourced seafood!"
+  },
+  {
+    name: "Mark",
+    role: "Tofino Surf Co.",
+    image: "/mark.jpg",
+    quote: "As a local business owner, I appreciate LuxFino&apos;s commitment to using Tofino&apos;s finest ingredients. They&apos;ve catered all our corporate events with excellence."
+  },
+  {
+    name: "Emily",
+    role: "Local Food Critic",
+    image: "/emily.jpg",
+    quote: "LuxFino Catering consistently delivers an authentic Tofino experience through their innovative and delicious creations."
+  },
+  {
+    name: "David & Sarah",
+    role: "Wedding Couple",
+    image: "/david-sarah.jpg",
+    quote: "We couldn&apos;t have asked for a better catering experience. The team&apos;s attention to detail was impeccable!"
+  },
+  {
+    name: "Michael",
+    role: "Corporate Event Planner",
+    image: "/michael.jpg",
+    quote: "Their service is unmatched. Every event they&apos;ve catered for us has been absolutely perfect."
+  },
+  {
+    name: "Rachel",
+    role: "Birthday Celebration",
+    image: "/rachel.jpg",
+    quote: "The food was incredible, and the service was even better. They made my special day truly memorable."
+  }
+];
+
 export default function LuxFinoCateringShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const nextSlide = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % showcaseItems.length);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex((prevIndex) => (prevIndex - 1 + showcaseItems.length) % showcaseItems.length);
+  };
+
   return (
-    <div className="bg-gradient-to-b from-luxforest to-luxocean py-8 sm:py-16 px-4 sm:px-8 lg:px-12">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-luxpearl text-center mb-8 sm:mb-16">
+    <div className="bg-gradient-to-b from-luxpearl  to-luxpsand1 sm:py-16 lg:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-luxcedar text-center mb-10 sm:mb-14 lg:mb-16">
           Taste the Best of Tofino with LuxFino Catering
         </h2>
         
-        <div className="flex flex-col lg:flex-row gap-6 sm:gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14">
           <div className="lg:w-1/2">
-            <div className="carousel w-full h-[300px] sm:h-[450px] rounded-box shadow-2xl">
+            <div className="relative w-full h-[350px] sm:h-[450px] rounded-xl shadow-2xl overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -55,7 +103,7 @@ export default function LuxFinoCateringShowcase() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="carousel-item relative w-full h-full"
+                  className="absolute inset-0"
                 >
                   <Image
                     src={showcaseItems[activeIndex].image}
@@ -63,118 +111,106 @@ export default function LuxFinoCateringShowcase() {
                     fill
                     style={{ objectFit: 'cover' }}
                   />
-                  <div className="absolute inset-0 bg-luxpearl to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 text-luxcedar">
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3">{showcaseItems[activeIndex].title}</h3>
-                    <p className="text-base sm:text-lg">{showcaseItems[activeIndex].description}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-luxpearl">{showcaseItems[activeIndex].title}</h3>
+                    <p className="text-sm sm:text-base text-luxpearl/90">{showcaseItems[activeIndex].description}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>
+              <button onClick={prevSlide} className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-luxpearl/60 hover:bg-luxpearl/80 rounded-full p-2 transition-colors duration-300">
+                <ChevronLeft className="w-6 h-6 text-luxocean" />
+              </button>
+              <button onClick={nextSlide} className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-luxpearl/60 hover:bg-luxpearl/80 rounded-full p-2 transition-colors duration-300">
+                <ChevronRight className="w-6 h-6 text-luxocean" />
+              </button>
             </div>
-            <div className="flex justify-center mt-4 sm:mt-6 space-x-2 sm:space-x-3">
+            
+            <div className="flex justify-center mt-6 gap-3">
               {showcaseItems.map((_, index) => (
                 <button
                   key={index}
-                  className={`btn btn-circle ${
-                    index === activeIndex ? 'btn-primary' : 'btn-ghost'
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === activeIndex ? 'bg-luxpearl w-8' : 'bg-luxpearl/40 hover:bg-luxpearl/60'
                   }`}
                   onClick={() => setActiveIndex(index)}
-                >
-                  {index + 1}
-                </button>
+                />
               ))}
             </div>
           </div>
           
-          <div className="lg:w-1/2 space-y-6 sm:space-y-8">
-            <div className="stats shadow-xl bg-gr p-4 sm:p-6">
-              <div className="stat">
-                <div className="stat-figure text-luxsand">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-10 h-10 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <div className="stat-title text-base sm:text-lg">Years in Tofino</div>
-                <div className="stat-value text-4xl sm:text-5xl py-1 sm:py-2">5+</div>
-                <div className="stat-desc text-sm sm:text-base">Serving the local community</div>
+          <div className="lg:w-1/2 space-y-8">
+            <div className="grid grid-cols-2 gap-6 bg-luxpearl rounded-xl p-8 shadow-lg">
+              <div className="text-center">
+                <div className="text-4xl sm:text-5xl font-bold text-luxcedar mb-2">5+</div>
+                <div className="text-base sm:text-lg text-luxcedar font-semibold">Years in Tofino</div>
+                <div className="text-sm text-luxcedar">Serving the community</div>
               </div>
-              
-              <div className="stat">
-                <div className="stat-figure text-luxsand">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-10 h-10 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                </div>
-                <div className="stat-title text-base sm:text-lg">Local Suppliers</div>
-                <div className="stat-value text-4xl sm:text-5xl py-1 sm:py-2">30+</div>
-                <div className="stat-desc text-sm sm:text-base">Supporting Tofino's economy</div>
+              <div className="text-center">
+                <div className="text-4xl sm:text-5xl font-bold text-luxcedar mb-2">30+</div>
+                  <div className="text-base sm:text-lg text-luxcedar font-semibold">Local Suppliers</div>
+                <div className="text-sm text-luxcedar">Supporting Tofino</div>
               </div>
             </div>
             
-            <div className="card bg-luxpearl text-luxcedar font-bold shadow-xl">
-              <div className="card-body p-6 sm:p-8">
-                <h3 className="card-title text-xl sm:text-2xl mb-3 sm:mb-4">Tofino's Finest Ingredients</h3>
-                <ul className="list-disc list-inside space-y-2 sm:space-y-3 text-base sm:text-lg">
+            <div className="bg-luxpearl rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-luxsand text-luxpearl py-4 px-6">
+                <h3 className="text-xl sm:text-2xl font-bold">Tofino&apos;s Finest Ingredients</h3>
+              </div>
+              <div className="p-6">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {localSpecialties.map((specialty, index) => (
-                    <li key={index}>{specialty}</li>
+                    <li key={index} className="flex items-center">
+                      <div className="w-2 h-2 bg-luxsand rounded-full mr-3" />
+                      <span className="text-sm sm:text-base text-luxcedar">{specialty}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
             </div>
             
-            <button className="btn btn-block rounded-lg bg-luxpearl hover:bg-luxforest hover:text-luxpearl text-lg sm:text-xl py-2">
+            <button className="w-full rounded-xl bg-luxsand hover:bg-luxforest text-luxpearl text-lg sm:text-xl py-4 transition-colors duration-300 shadow-lg hover:shadow-xl">
               Plan Your Tofino Event
             </button>
           </div>
         </div>
 
-        <div className="py-8 sm:py-16 bg-gradient-to-b from-luxpearl to-luxice my-4 sm:my-8">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl sm:text-4xl font-bold text-luxcedar text-center mb-6 sm:mb-10">
-                Voices from Tofino
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {[
-                    {
-                    name: "Sarah & Tom",
-                    role: "Newlyweds",
-                    image: "/sarah-tom.jpg",
-                    quote: "LuxFino Catering captured the essence of Tofino in every bite. Our wedding guests are still raving about the locally-sourced seafood!"
-                    },
-                    {
-                    name: "Mark",
-                    role: "Tofino Surf Co.",
-                    image: "/mark.jpg",
-                    quote: "As a local business owner, I appreciate LuxFino's commitment to using Tofino's finest ingredients. They've catered all our corporate events with excellence."
-                    }
-                ].map((testimonial, index) => (
-                    <div key={index} className="card bg-luxpearl shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                    <div className="card-body p-6">
-                        <div className="flex items-center mb-4">
-                        <div className="avatar">
-                            <div className="w-14 rounded-full ring ring-luxocean ring-offset-2">
-                            <img src={testimonial.image} alt={testimonial.name} />
-                            </div>
-                        </div>
-                        <div className="ml-4">
-                            <h3 className="text-lg font-semibold text-luxforest">{testimonial.name}</h3>
-                            <p className="text-sm text-luxocean">{testimonial.role}</p>
-                        </div>
-                        </div>
-                        <p className="text-luxcedar mb-4">{testimonial.quote}</p>
-                        <div className="flex justify-end">
-                        <div className="rating rating-sm">
-                            {[...Array(5)].map((_, i) => (
-                            <input key={i} type="radio" name={`rating-${index}`} className="mask mask-star-2 bg-luxocean" checked readOnly />
-                            ))}
-                        </div>
-                        </div>
+        <div className="mt-20">
+          <h2 className="text-4xl sm:text-5xl font-semibold text-luxcedar text-center mb-10">
+            Voices from LuxFino
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="card bg-luxpearl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="card-body p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="avatar">
+                      <div className="w-16 h-16 rounded-full ring-2 ring-luxcedar">
+                        <Image  
+                        src={testimonial.image} 
+                        alt={testimonial.name} 
+                        width={500}
+                        height={500}
+                        />
+                      </div>
                     </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-semibold text-luxcedar">{testimonial.name}</h3>
+                      <p className="text-sm text-luxcedar">{testimonial.role}</p>
                     </div>
-                ))}
+                  </div>
+                  <p className="text-luxcedar mb-4 italic">&ldquo;{testimonial.quote}&rdquo;</p>
+                  <div className="flex justify-end">
+                    <div className="rating rating-sm">
+                      {[...Array(5)].map((_, i) => (
+                        <input key={i} type="radio" name={`rating-${index}`} className="mask mask-star-2 bg-luxcedar" checked readOnly />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center mt-8">
-                <button className="btn btn-primary bg-luxocean hover:bg-luxforest text-luxpearl">
-                    Read More Reviews
-                </button>
-                </div>
-            </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

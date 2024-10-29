@@ -129,20 +129,24 @@ const HeroSection: React.FC<{ openQuoteDrawer: () => void }> = ({ openQuoteDrawe
   const [direction, setDirection] = useState(0)
   const slideCount = slides.length
 
+  const nextSlide = useCallback(() => {
+    setDirection(1)
+    setCurrentSlide((current) => (current + 1) % slideCount)
+  }, [slideCount])
+
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide()
     }, 7000)
 
     return () => clearInterval(interval)
-  }, [currentSlide])
+  }, [nextSlide])
 
   const goToSlide = useCallback((index: number) => {
     setDirection(index > currentSlide ? 1 : -1)
     setCurrentSlide((index + slideCount) % slideCount)
   }, [currentSlide, slideCount])
 
-  const nextSlide = () => goToSlide(currentSlide + 1)
   const prevSlide = () => goToSlide(currentSlide - 1)
 
   const slideVariants = {
@@ -379,23 +383,23 @@ const AboutSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Lux.Fino is Tofino's premier provider of luxury pop-up picnics, in-house catering, and remote glamping. We create unforgettable moments with locally inspired touches that showcase the natural beauty of Tofino.
+          LuxFino is Tofino&apos;s premier provider of luxury pop-up picnics, in-house catering, and remote glamping. We create unforgettable moments with locally inspired touches that showcase the natural beauty of Tofino.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           <InfoCard
             title="Our Mission"
-            content="At Lux.Fino, we blend luxury and nature to offer unique experiences that bring people together. Whether it's a beach picnic or a remote glamping retreat, our services celebrate the stunning landscapes of Tofino."
+            content={`At LuxFino, we blend luxury and nature to offer unique experiences that bring people together. Whether it&apos;s a beach picnic or a remote glamping retreat, our services celebrate the stunning landscapes of Tofino.`}
             icon="/Lux.Fino.Logo2.svg"
           />
           <InfoCard
             title="Services"
-            content="Lux.Fino offers tailored luxury picnics, gourmet catering with local flavors, and exclusive remote glamping experiences. Our partnerships with local artisans ensure that every detail, from charcuterie boards to floral arrangements, is thoughtfully crafted."
+            content="LuxFino offers tailored luxury picnics, gourmet catering with local flavors, and exclusive remote glamping experiences. Our partnerships with local artisans ensure that every detail, from charcuterie boards to floral arrangements, is thoughtfully crafted."
             icon="/services-icon.svg"
           />
           <InfoCard
             title="Unique Experiences"
-            content="Experience the best of Tofino with personalized luxury services, including pop-up beach picnics and off-grid glamping escapes. We combine adventure with elegance to create unforgettable memories in one of the world's most stunning locations."
+            content={`Experience the best of Tofino with personalized luxury services, including pop-up beach picnics and off-grid glamping escapes. We combine adventure with elegance to create unforgettable memories in one of the world&apos;s most stunning locations.`}
             icon="/experiences-icon.svg"
           />
         </div>
@@ -416,7 +420,7 @@ const AboutSection: React.FC = () => {
           />
           <div className="absolute inset-0 bg-luxnavy bg-opacity-40 flex items-center justify-center backdrop-blur-sm">
             <p className="text-luxice text-4xl font-playfair font-semibold text-center px-4 max-w-4xl leading-tight">
-              Discover the beauty of Tofino with LuxFino's curated experiences
+              Discover the beauty of Tofino with LuxFino&apos;s curated experiences
             </p>
           </div>
         </motion.div>
@@ -440,7 +444,7 @@ const ServiceSections: React.FC = () => {
         </motion.h2>
         <ServiceSection
           title="Luxury Pop-up Picnics"
-          description="Immerse yourself in Tofino's breathtaking landscapes with our meticulously curated luxury picnics. Each experience is a perfect blend of elegance, comfort, and unforgettable moments, designed to elevate your outdoor dining adventure."
+          description="Immerse yourself in Tofino&apos;s breathtaking landscapes with our meticulously curated luxury picnics. Each experience is a perfect blend of elegance, comfort, and unforgettable moments."
           buttonText="Explore LuxFino Picnics"
           imageSrc="/LuxPicMain.jpeg"
           imageAlt="Luxury beachside picnic setup with elegant decor and gourmet food"
@@ -543,7 +547,7 @@ const OwnerFounderSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg mb-16 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxnavy/80"
         >
-          At the heart of Lux.Fino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures. Their unique talents and vision are the foundation of Lux.Fino, making every experience feel personal, thoughtful, and truly special.
+          At the heart of LuxFino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures. Their unique talents and vision are the foundation of LuxFino, making every experience feel personal, thoughtful, and truly special.
         </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -618,7 +622,7 @@ const SpecialEventsSection: React.FC<{ openQuoteDrawer: () => void }> = ({ openQ
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-3xl mx-auto text-lg text-luxnavy/80 mb-16 text-center font-avenir leading-relaxed"
         >
-          Elevate your special occasions with unforgettable experiences at Lux Remote. Whether you're hosting a corporate meeting or celebrating a wedding, arrive in style, conduct your event in the serene wilderness, enjoy gourmet meals, and create memories that last a lifetime.
+          Elevate your special occasions with unforgettable experiences at Lux Remote. Whether you&apos;re hosting a corporate meeting or celebrating a wedding, arrive in style, conduct your event in the serene wilderness, enjoy gourmet meals, and create memories that last a lifetime.
         </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

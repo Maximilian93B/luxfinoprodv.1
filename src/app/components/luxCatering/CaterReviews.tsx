@@ -18,7 +18,7 @@ export default function ReviewsSection({
   reviews = [
     {
       name: 'John Doe',
-      text: "Lux Fino's catering made our event unforgettable. The food was exquisite!",
+      text: "Lux Fino&apos catering made our event unforgettable. The food was exquisite!",
     },
     {
       name: 'Jane Smith',
@@ -39,20 +39,8 @@ export default function ReviewsSection({
             key={index} 
             className="bg-white rounded-lg p-6 mb-6 md:mb-0 flex-1 shadow-md"
           >
-            {/* Commented out image section preserved for future use */}
-            {/* {review.imageSrc && (
-              <div className="flex justify-center mb-4">
-                <Image
-                  src={review.imageSrc}
-                  alt={`Photo of ${review.name}`}
-                  width={80}
-                  height={80}
-                  className="rounded-full"
-                />
-              </div>
-            )} */}
-            <p className="text-gray-600 italic mb-4 text-xl">"{review.text}"</p>
-            <p className="text-gray-800 font-bold text-right">- {review.name}</p>
+            <p className="text-gray-600 italic mb-4 text-xl">{review.text}</p>
+            <p className="text-gray-800 font-bold text-right">{review.name}</p>
           </div>
         ))}
       </div>

@@ -71,7 +71,7 @@ const PicnicsTestimonials: React.FC = () => {
                 className="text-lg md:text-xl text-luxcharcoal italic leading-relaxed mb-6"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                "{testimonial.feedback}"
+                {testimonial.feedback}
               </p>
               <div className="w-16 h-1 bg-luxcream mx-auto mb-4"></div>
               <p

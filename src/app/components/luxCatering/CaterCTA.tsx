@@ -21,15 +21,15 @@ export default function ReviewsSection({
   reviews = [
     {
       name: 'John Doe',
-      text: "Lux Fino's catering made our event unforgettable. The food was exquisite!",
+      text: "&ldquo;Lux Fino&apos;s catering made our event unforgettable. The food was exquisite!&rdquo;",
     },
     {
       name: 'Jane Smith',
-      text: 'Exceptional service and delicious dishes. Highly recommend Lux Fino!',
+      text: "&ldquo;Exceptional service and delicious dishes. Highly recommend Lux Fino!&rdquo;",
     },
     {
       name: 'Emily Johnson',
-      text: 'Our guests were blown away by the culinary experience provided by Lux Fino.',
+      text: "&ldquo;Our guests were blown away by the culinary experience provided by Lux Fino.&rdquo;",
     },
   ]
 }: ReviewsSectionProps) {
@@ -44,7 +44,6 @@ export default function ReviewsSection({
             key={index} 
             className="bg-white rounded-lg p-6 mb-6 md:mb-0 flex-1 shadow-md"
           >
-            {/* Image section preserved for future use */}
             {review.imageSrc && (
               <div className="flex justify-center mb-4">
                 <Image
@@ -56,7 +55,7 @@ export default function ReviewsSection({
                 />
               </div>
             )}
-            <p className="text-gray-600 italic mb-4 text-xl">"{review.text}"</p>
+            <p className="text-gray-600 italic mb-4 text-xl">&ldquo;{review.text}&rdquo;</p>
             <p className="text-gray-800 font-bold text-right">- {review.name}</p>
           </div>
         ))}

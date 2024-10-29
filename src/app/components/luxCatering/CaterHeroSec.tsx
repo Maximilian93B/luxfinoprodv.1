@@ -22,7 +22,7 @@ export default function CateringHeroSection({
   chefTitle = "Crafting culinary masterpieces with passion and precision"
 }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-luxforest to-luxocean overflow-hidden flex items-center justify-center">
+    <section className="relative min-h-screen bg-gradient-to-b from-luxsand to-luxpearl overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 opacity-5 bg-luxsand" />
       <div className="container mx-auto px-4 py-12 sm:py-24">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24">
@@ -45,14 +45,14 @@ export default function CateringHeroSection({
               />
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-bold text-luxpearl mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-bold text-luxcedar mb-6 leading-tight">
               {title}
             </h1>
-            <p className="text-lg sm:text-xl text-luxpearl mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl text-luxcedar mb-8 leading-relaxed">
               {description}
             </p>
             <motion.button
-              className="rounded-full font-semibold text-lg bg-luxocean text-luxpearl px-8 py-4 shadow-lg hover:bg-luxforest hover:shadow-xl transition-all duration-300"
+              className="rounded-full font-semibold text-lg bg-luxsand text-luxpearl px-8 py-4 shadow-lg hover:bg-luxforest hover:shadow-xl transition-all duration-300"
             >
               Explore Our Menu
             </motion.button>
@@ -77,7 +77,7 @@ export default function CateringHeroSection({
                 blurDataURL="/placeholder.png"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-luxocean/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-luxsand/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-luxpearl">
                 <h2 className="text-2xl font-semibold mb-2">{chefName}</h2>
                 <p className="text-sm">{chefTitle}</p>

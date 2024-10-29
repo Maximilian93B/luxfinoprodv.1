@@ -35,16 +35,11 @@ const salesSections = [
 
 export default function LuxCateringPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-luxforest/90 to-luxocean">
+      <div className="bg-luxsand">
       <main className="flex flex-col">
         <CateringHeroSection />
-      
-        <section className="py-6 sm:py-8 lg:py-16">
           <LuxFinoCateringShowcase />
-        </section>
-
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-16">
-          <div className="space-y-6 sm:space-y-8 lg:space-y-12">
+          <div className="flex justify-center py-12 px-2">
             {salesSections.map((section, index) => (
               <SalesSection
                 key={index}
@@ -56,21 +51,10 @@ export default function LuxCateringPage() {
                 reviewAuthor={section.reviewAuthor}
               />
             ))}
-          </div>
-        </section>
-
-        <div className="w-full h-px bg-luxocean" />
-        
-        <section className="bg-luxocean py-6 sm:py-8 lg:py-16">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold text-luxpearl mb-4 sm:mb-6 lg:mb-10 text-center">
-              Our Culinary Creations
-            </h2>
-            <Gallery images={galleryImages} />
-          </div>
-        </section>
-        
-        <div className="w-full h-px bg-luxforest" />
+            </div>
+             <Gallery images={galleryImages} />
+     
+            
 
         <section className="py-6 sm:py-8 lg:py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,6 +64,6 @@ export default function LuxCateringPage() {
       </main>
       
       <Footer />
-    </div>
+      </div>
   );
 }
