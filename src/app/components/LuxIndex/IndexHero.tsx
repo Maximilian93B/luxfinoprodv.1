@@ -1,238 +1,183 @@
+'use client'
 
-
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useState, useEffect, useCallback } from 'react'
+import Link from 'next/link'
+import { ArrowRight, ArrowDown } from 'lucide-react'
 
-const slides = [
+const services = [
   {
     id: 1,
     image: '/LuxPicMain.jpeg',
     alt: 'Luxury Pop-up Picnics in Tofino',
-    title: 'Exquisite Pop-up Picnics',
-    subtitle: 'LuxFino Picnics',
-    description:
-      'Immerse yourself in Tofinos breathtaking landscapes with our meticulously curated luxury picnics. Each experience is a perfect blend of elegance, comfort, and unforgettable moments.',
+    title: 'Pop-up Picnics',
+    subtitle: 'Dine in Nature',
+    description: 'Immerse yourself in Tofino&apos;s breathtaking landscapes with our meticulously curated luxury picnics. Each experience is a perfect blend of elegance, comfort, and unforgettable moments.',
+    link: '/luxpicnic'
   },
   {
     id: 2,
     image: '/LuxRemoteIndex.JPG',
     alt: 'Wild Luxury Escapes in Tofino',
-    title: 'Exclusive Off-Grid Adventures',
-    subtitle: 'Lux Remote Escapes',
-    description:
-      'Embark on an extraordinary journey into Tofinos wilderness. Our off-grid luxury experiences combine rugged beauty with unparalleled comfort, offering a unique escape from the ordinary.',
+    title: 'Off-Grid Adventures',
+    subtitle: 'Escape the Ordinary',
+    description: 'Embark on an extraordinary journey into Tofino&apos;s wilderness. Our off-grid luxury experiences combine rugged beauty with unparalleled comfort, offering a unique escape from the ordinary.',
+    link: '/luxremote'
   },
   {
     id: 3,
     image: '/Catering1.JPG',
     alt: 'Luxury Catering in Tofino',
-    title: 'Bespoke Culinary Experiences',
-    subtitle: 'LuxFino Catering',
-    description:
-      'Indulge in exquisite flavors crafted by our executive chef. Our bespoke menus blend the finest local ingredients with global inspiration, creating unparalleled dining experiences in the heart of Tofino.',
+    title: 'Bespoke Catering',
+    subtitle: 'Culinary Excellence',
+    description: 'Indulge in exquisite flavors crafted by our executive chef. Our bespoke menus blend the finest local ingredients with global inspiration, creating unparalleled dining experiences in the heart of Tofino.',
+    link: '/luxcatering'
   },
 ]
 
-const slideVariants = {
-  enter: (direction: number) => ({
-    opacity: 0,
-    scale: 1.05,
-  }),
-  center: {
-    zIndex: 1,
-    opacity: 1,
-    scale: 1,
-    transition: {
-      opacity: { duration: 0.8, ease: 'easeInOut' },
-      scale: { duration: 1.2, ease: [0.34, 1.56, 0.64, 1] },
-    },
-  },
-}
-
-const textVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (custom: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { 
-      delay: custom * 0.2,
-      duration: 0.8,
-      ease: [0.34, 1.56, 0.64, 1],
-    },
-  }),
-  exit: { 
-    opacity: 0,
-    y: -20,
-    transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] },
-  },
+const ServiceDrawer = ({ service, isExpanded, toggleExpand }: { service: any, isExpanded: boolean, toggleExpand: () => void }) => {
+  return (
+    <motion.div
+      className="relative cursor-pointer overflow-hidden"
+      initial={{ flex: 1 }}
+      animate={{ flex: isExpanded ? 2 : 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      onClick={toggleExpand}
+    >
+      <Image
+        src={service.image}
+        alt={service.alt}
+        width={1920}
+        height={1080}
+        className="transition-transform duration-500 ease-in-out transform hover:scale-110"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-luxocean opacity-40" />
+      <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 md:p-10 text-luxpearl">
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              className="mb-4"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Link 
+                href={service.link}
+                className="inline-block bg-luxocean text-luxpearl px-4 py-2 rounded-full font-avenir font-semibold text-sm transition-all duration-300 hover:bg-luxpearl hover:text-luxcedar"
+              >
+                Learn More
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.h2
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-playfair leading-tight"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -50, opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {service.title}
+            </motion.h2>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.h3
+              className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 font-avenir"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -50, opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              {service.subtitle}
+            </motion.h3>
+          )}
+        </AnimatePresence>
+        {!isExpanded && (
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 font-playfair">{service.title}</h2>
+        )}
+        <motion.p
+          className="text-base sm:text-lg md:text-xl font-avenir overflow-hidden leading-relaxed"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {service.description}
+        </motion.p>
+      </div>
+    </motion.div>
+  )
 }
 
 export default function HeroIndex({ openQuoteDrawer }: { openQuoteDrawer: () => void }) {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [direction, setDirection] = useState(0)
-  const slideCount = slides.length
-
-  const nextSlide = useCallback(() => {
-    setDirection(1)
-    setCurrentSlide((current) => (current + 1) % slideCount)
-  }, [slideCount])
-
-  const prevSlide = useCallback(() => {
-    setDirection(-1)
-    setCurrentSlide((current) => (current - 1 + slideCount) % slideCount)
-  }, [slideCount])
-
-  const goToSlide = useCallback((index: number) => {
-    setDirection(index > currentSlide ? 1 : -1)
-    setCurrentSlide(index)
-  }, [currentSlide])
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 7000)
-    return () => clearInterval(interval)
-  }, [nextSlide])
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
-      <AnimatePresence initial={false} custom={direction}>
-        {slides.map((slide, index) => (
-          index === currentSlide && (
-            <motion.div
-              key={slide.id}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="absolute inset-0"
-            >
-              <Image
-                src={slide.image}
-                alt={slide.alt}
-                layout="fill"
-                objectFit="cover"
-                priority
-                className="transition-all duration-1000 ease-in-out"
-              />
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-b from-luxforest/30 to-luxocean/40"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-              />
-            </motion.div>
-          )
-        ))}
-      </AnimatePresence>
-      
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            className="text-center max-w-7xl"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <motion.h2 
-              className="text-3xl font-semibold text-luxgold mb-2 font-avenir text-luxpearl tracking-widest uppercase"
-              variants={textVariants}
-              custom={0}
-            >
-              {slides[currentSlide].subtitle}
-            </motion.h2>
-            <motion.h1 
-              className="text-4xl font-bold tracking-tight text-luxpearl sm:text-5xl md:text-6xl mb-6 font-playfair leading-tight"
-              variants={textVariants}
-              custom={1}
-            >
-              {slides[currentSlide].title}
-            </motion.h1>
-            <motion.p 
-              className="mt-3 text-lg text-luxpearl sm:text-lg sm:max-w-4xl sm:mx-auto md:text-xl leading-relaxed font-avenir"
-              variants={textVariants}
-              custom={2}
-            >
-              {slides[currentSlide].description}
-            </motion.p>
-            <motion.div 
-              className="mt-10 sm:flex sm:justify-center"
-              variants={textVariants}
-              custom={3}
-            >
-              <motion.button
-                onClick={openQuoteDrawer}
-                className="bg-luxpearl text-luxnavy hover:bg-luxsand transition-all duration-300 text-lg px-10 py-4 rounded-full font-avenir font-semibold tracking-wide shadow-lg hover:shadow-xl flex items-center justify-center"
-                whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(255,255,255,0.3)' }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Request a Quote
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <motion.div 
-        className="absolute bottom-0 left-0 right-0 pb-8"
-        initial={{ opacity: 0, y: 20 }}
+    <section className="relative h-screen overflow-hidden bg-luxcopper">
+      <motion.div
+        className="absolute top-[10%] sm:top-1/4 left-0 right-0 z-30 p-4 sm:p-6 md:p-8 transform -translate-y-1/2"
+        initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
+        transition={{ duration: 1, delay: 0.2 }}
       >
-        <div className="mb-6 mx-10">
-          <motion.div 
-            className="h-1"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 7, ease: 'linear', repeat: Infinity }}
+        <div className="max-w-7xl mx-auto flex flex-col items-center justify-center">
+          <motion.h1
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-center mb-2 sm:mb-4 font-playfair text-luxpearl sm:text-inherit"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.div
-              className="h-full bg-transparent"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 7, ease: 'linear', repeat: Infinity }}
-            />
-          </motion.div>
-        </div>
-
-        <div className="flex justify-center items-center space-x-3">
-          {slides.map((_, index) => (
-            <motion.button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-luxgold w-12' : 'bg-luxcream bg-opacity-50 hover:bg-opacity-75'
-              }`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+            <span className="sm:text-luxcedar">Welcome t</span>
+            <span className="sm:text-luxpearl">o</span>
+            <span className="sm:text-luxcedar"> </span>
+            <span className="sm:text-luxpearl">LuxFino</span>
+          </motion.h1>
+          <motion.p
+            className="text-xl sm:text-3xl md:text-4xl text-luxpearl font-avenir text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            Luxury Experiences in Tofino
+          </motion.p>
         </div>
       </motion.div>
 
-      <motion.button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-luxnavy bg-opacity-50 text-luxice p-3 rounded-full hover:bg-opacity-75 transition-all duration-300"
-        whileHover={{ scale: 1.1, backgroundColor: 'rgba(26, 43, 60, 0.75)' }}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Previous slide"
+      <div className="h-full flex flex-col sm:flex-row mt-24 sm:mt-0">
+        {services.map((service, index) => (
+          <ServiceDrawer
+            key={service.id}
+            service={service}
+            isExpanded={expandedIndex === index}
+            toggleExpand={() => setExpandedIndex(expandedIndex === index ? null : index)}
+          />
+        ))}
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="absolute bottom-6 sm:bottom-10 left-0 right-0 text-center z-10"
       >
-        <ChevronLeft className="w-8 h-8" />
-      </motion.button>
-      <motion.button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-luxnavy bg-opacity-50 text-luxice p-3 rounded-full hover:bg-opacity-75 transition-all duration-300"
-        whileHover={{ scale: 1.1, backgroundColor: 'rgba(26, 43, 60, 0.75)' }}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-8 h-8" />
-      </motion.button>
+        <div
+          onClick={() => {
+            document.getElementById('services-section')?.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start' 
+            })
+          }}
+          className="cursor-pointer hover:scale-110 transition-transform duration-300"
+        >
+          <ArrowDown className="h-8 w-8 sm:h-10 sm:w-10 text-luxpearl" />
+        </div>
+      </motion.div>
     </section>
   )
 }

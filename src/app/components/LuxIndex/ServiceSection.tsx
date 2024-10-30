@@ -11,9 +11,9 @@ export default function ServiceSections() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-playfair font-bold mb-16 text-center text-luxpearl"
+            className="text-5xl font-playfair font-bold mb-16 text-center text-luxcedar"
           >
-            Exquisite Experiences in Tofino
+            Look Further into LuxFino
           </motion.h2>
           <ServiceSection
             title="Luxury Pop-up Picnics"
@@ -85,8 +85,8 @@ export default function ServiceSections() {
             
           </div>
           <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <h3 className="text-4xl font-playfair font-bold mb-6 text-luxpearl">{title}</h3>
-            <p className="text-luxpearl mb-8 font-avenir leading-relaxed text-xl">{description}</p>
+            <h3 className="text-4xl font-playfair font-bold mb-6 text-luxcedar">{title}</h3>
+            <p className="text-luxcedar/80 mb-8 font-avenir leading-relaxed text-xl">{description}</p>
             <Link href={linkHref}>
               <motion.button 
                 whileHover={{ scale: 1.05 }}

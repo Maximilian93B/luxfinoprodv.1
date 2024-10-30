@@ -39,7 +39,7 @@ export default function Navbar() {
   return (
     <motion.nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gradient-to-r from-luxsand to-luxpearl py-2 shadow-lg' : 'bg-transparent py-4'
+        isScrolled ? 'bg-luxpearl/90 py-2 shadow-lg' : 'bg-transparent py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -48,10 +48,10 @@ export default function Navbar() {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link href="/" className="flex-shrink-0">
           <Image
-            src="/Lux.Fino.logo.svg"
+            src="/lux fino-icon.pdf.svg"
             alt="LuxFino Logo"
-            width={80}
-            height={80}
+            width={100}
+            height={100}
             className={`transition-all duration-300 ${isScrolled ? 'h-12 w-auto' : 'h-16 w-auto'}`}
           />
         </Link>
@@ -61,7 +61,7 @@ export default function Navbar() {
             <Link 
               key={item.href}
               href={item.href} 
-              className="font-avenir text-luxpearl hover:text-luxcedar transition-all duration-300 text-md uppercase tracking-widest"
+              className="font-avenir text-luxcedar hover:text-luxcedar transition-all duration-300 text-md uppercase tracking-widest"
             >
               {item.label}
             </Link>
@@ -90,7 +90,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="lg:hidden text-luxpearl hover:text-luxocean transition-colors duration-300"
+          className="lg:hidden text-luxcedar hover:text-luxocean transition-colors duration-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -111,7 +111,7 @@ export default function Navbar() {
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className="block py-2 font-avenir text-luxpearl font-medium hover:text-luxocean transition-all duration-300 text-lg hover:-translate-y-0.5"
+                  className="block py-2 font-avenir text-luxcedar font-medium hover:text-luxocean transition-all duration-300 text-lg hover:-translate-y-0.5"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
@@ -119,19 +119,19 @@ export default function Navbar() {
               ))}
               <a 
                 href="tel:+18005893466" 
-                className="py-2 font-playfair font-medium text-luxpearl hover:text-luxocean transition-colors duration-300 text-lg flex items-center space-x-2"
+                className="py-2 font-playfair font-medium text-luxcedar hover:text-luxocean transition-colors duration-300 text-lg flex items-center space-x-2"
               >
                 <Phone size={20} />
                 <span>+1 (800) 589-3466</span>
               </a>
-              <div className="flex justify-center space-x-6 pt-4 border-t border-luxpearl/20">
+              <div className="flex justify-center space-x-6 pt-4 border-t border-luxpearl/90">
                 {socialIcons.map(({ Icon, href }, index) => (
                   <a
                     key={index}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-luxpearl hover:text-luxocean transition-colors duration-300"
+                    className="text-luxcedar hover:text-luxocean transition-colors duration-300"
                   >
                     <Icon size={24} />
                   </a>
