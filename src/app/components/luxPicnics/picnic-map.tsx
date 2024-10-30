@@ -34,14 +34,14 @@ const LuxuryPicnicMap: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center bg-transparent">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-5xl sm:text-6xl font-bold mb-8 text-center font-playfair text-luxnavy"
+          className="text-5xl sm:text-6xl font-bold mb-8 text-center font-playfair text-luxcedar"
         >
-          Discover Our Exquisite Picnic Locations
+          Discover and Choose Your Location
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: -20 }}
@@ -51,11 +51,11 @@ const LuxuryPicnicMap: React.FC = () => {
         >
           Explore our handpicked locations for an unforgettable luxury picnic experience in the heart of Tofino&apos;s natural beauty.
         </motion.p>
-        <div className="relative w-full h-[600px] bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div className="relative w-full h-[800px] bg-white rounded-3xl shadow-2xl overflow-hidden">
           <div className="absolute top-4 right-4 z-10">
             <motion.button
               onClick={() => setIsMapView(!isMapView)}
-              className="px-6 py-3 bg-luxocean text-luxpearl font-avenir font-semibold rounded-full hover:bg-luxgold hover:text-luxnavy transition-all duration-300 shadow-lg"
+              className="px-6 py-3 bg-luxcopper text-luxcedar font-avenir font-semibold rounded-full hover:bg-luxgold hover:text-luxnavy transition-all duration-300 shadow-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -84,7 +84,7 @@ const LuxuryPicnicMap: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="w-full h-full overflow-y-auto p-8 bg-white"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
                   {locations.map((location) => (
                     <motion.div
                       key={location.id}
@@ -112,11 +112,11 @@ const LuxuryPicnicMap: React.FC = () => {
                         <p className="text-luxcharcoal mb-4 font-avenir text-sm">{location.subtext}</p>
                         <div className="flex items-center justify-between text-sm">
                           <div className="flex items-center text-luxnavy">
-                            <MapPin className="w-4 h-4 mr-1" />
+                            <MapPin className="w-4 h-4 mr-" />
                             <span>Tofino, BC</span>
                           </div>
                           <div className="flex items-center text-luxnavy">
-                            <Calendar className="w-2 h-2 mr-1" />
+                            <Calendar className="w-4 h-4 mr-1" />
                             <span>Available Year-round</span>
                           </div>
                         </div>
@@ -148,8 +148,8 @@ const LuxuryPicnicMap: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="absolute inset-0 flex items-center justify-center bg-luxnavy bg-opacity-90 p-4"
               >
-                <div className="bg-luxpearl rounded-2xl shadow-2xl overflow-hidden max-w-2xl w-full">
-                  <div className="relative h-64">
+                <div className="bg-luxpearl rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
+                  <div className="relative h-96">
                     <Image
                       src={locations[selectedLocation - 1].image}
                       alt={locations[selectedLocation - 1].name}
@@ -164,35 +164,35 @@ const LuxuryPicnicMap: React.FC = () => {
                       <X className="w-6 h-6 text-luxnavy" />
                     </button>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-luxnavy mb-2 font-playfair">
+                  <div className="p-8">
+                    <h3 className="text-3xl font-bold text-luxnavy mb-4 font-playfair">
                       {locations[selectedLocation - 1].name}
                     </h3>
-                    <p className="text-luxcharcoal mb-4 font-avenir">
+                    <p className="text-luxcharcoal mb-6 font-avenir text-lg">
                       {locations[selectedLocation - 1].subtext}
                     </p>
-                    <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="grid grid-cols-2 gap-6 mb-8">
                       <div className="flex items-center text-luxnavy">
-                        <MapPin className="w-5 h-5 mr-2" />
-                        <span className="font-avenir">Tofino, BC</span>
+                        <MapPin className="w-6 h-6 mr-3" />
+                        <span className="font-avenir text-lg">Tofino, BC</span>
                       </div>
                       <div className="flex items-center text-luxnavy">
-                        <Calendar className="w-5 h-5 mr-2" />
-                        <span className="font-avenir">Available Year-round</span>
+                        <Calendar className="w-6 h-6 mr-3" />
+                        <span className="font-avenir text-lg">Available Year-round</span>
                       </div>
                       <div className="flex items-center text-luxnavy">
-                        <Clock className="w-5 h-5 mr-2" />
-                        <span className="font-avenir">2-3 hours</span>
+                        <Clock className="w-6 h-6 mr-3" />
+                        <span className="font-avenir text-lg">2-3 hours</span>
                       </div>
                       {locations[selectedLocation - 1].extraFee && (
                         <div className="flex items-center text-luxgold">
-                          <DollarSign className="w-5 h-5 mr-2" />
-                          <span className="font-avenir">Extra fee applies</span>
+                          <DollarSign className="w-6 h-6 mr-3" />
+                          <span className="font-avenir text-lg">Extra fee applies</span>
                         </div>
                       )}
                     </div>
                     <motion.button
-                      className="w-full bg-luxocean text-luxpearl font-bold py-3 px-6 rounded-full  transition-colors duration-300 font-avenir"
+                      className="w-full bg-luxcopper text-luxcedar font-bold py-4 px-8 rounded-full transition-colors duration-300 font-avenir text-xl"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -202,17 +202,17 @@ const LuxuryPicnicMap: React.FC = () => {
                 </div>
                 <button
                   onClick={handlePrevLocation}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-luxsand rounded-full p-2 hover:bg-luxcedar transition-colors duration-300"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-luxsand rounded-full p-3 hover:bg-luxcedar transition-colors duration-300"
                   aria-label="Previous location"
                 >
-                  <ChevronLeft className="w-6 h-6 text-luxnavy" />
+                  <ChevronLeft className="w-8 h-8 text-luxnavy" />
                 </button>
                 <button
                   onClick={handleNextLocation}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-luxsand rounded-full p-2 hover:bg-luxcedar transition-colors duration-300"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-luxsand rounded-full p-3 hover:bg-luxcedar transition-colors duration-300"
                   aria-label="Next location"
                 >
-                  <ChevronRight className="w-6 h-6 text-luxnavy" />
+                  <ChevronRight className="w-8 h-8 text-luxnavy" />
                 </button>
               </motion.div>
             )}

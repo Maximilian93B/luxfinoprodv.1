@@ -8,6 +8,7 @@ import PicnicsTestimonials from '../components/luxPicnics/PicnicsTestimonials'
 import Footer from '../components/Footer'
 import LuxuryPicnicMap from '../components/luxPicnics/picnic-map'
 import LuxuryPicnicCTA from '../components/luxPicnics/PicnicCTA'
+import HowItWorks from '../components/luxPicnics/how-it-works'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -30,8 +31,26 @@ const LuxPicnicsPage: React.FC = () => {
         transition={{ duration: 0.8 }}
         className="space-y-12 py-20"
       >
-         {/** SECTION 1 */}
+        {/** SECTION 1 */}
         <section className="container mx-auto px-4">
+          <motion.h2
+            {...fadeInUp}
+            className="text-4xl md:text-5xl font-bold text-center mb-16 text-luxnavy font-playfair"
+          >
+            How It Works
+          </motion.h2>
+
+          <motion.div
+            {...fadeInUp}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="shadow-2xl rounded-lg overflow-hidden"
+          >
+           <HowItWorks />
+          </motion.div>
+        </section>  
+
+         {/** SECTION 2 */}
+        <section id="glimpse-tables" className="container mx-auto px-4">
           <motion.h2
             {...fadeInUp}
             className="text-4xl md:text-5xl font-bold text-center mb-16 text-luxnavy font-playfair"

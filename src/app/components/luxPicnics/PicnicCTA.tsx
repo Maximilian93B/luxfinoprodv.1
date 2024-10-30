@@ -55,7 +55,7 @@ const LuxuryPicnicCTA: React.FC = () => {
             >
               <Link 
                 href="#book-now" 
-                className="inline-block bg-luxocean text-luxpearl font-bold py-3 px-8 rounded-full hover:bg-luxgold transition-colors duration-300 font-avenir"
+                className="inline-block bg-luxcopper text-luxcedar font-bold py-3 px-8 rounded-full hover:bg-luxgold transition-colors duration-300 font-avenir"
               >
                 Book Your Luxury Picnic
               </Link>

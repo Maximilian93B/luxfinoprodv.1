@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from "framer-motion"
+import React, { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { useState } from "react"
 
 interface BioCardProps {
   name: string
@@ -18,34 +18,59 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="bg-luxcream p-8 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="bg-gradient-to-br from-luxcream to-luxpearl p-1 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex flex-col items-center">
-        <div className="mb-6 relative">
-          <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-luxocean">
-            <Image
-              src={imageSrc}
-              alt={name}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-              className="transition-transform duration-500 hover:scale-110"
-            />
-          </div>
+      <div className="bg-luxpearl p-8 rounded-2xl h-full">
+        <div className="flex flex-col items-center">
           <motion.div 
-            className="absolute -bottom-14 left-2 transform -translate-x-1/2 bg-luxgold text-luxcedar px-4 py-1 rounded-full font-avenir font-semibold"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
+            className="mb-8 relative"
+            whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            {roles.join(" & ")}
+            <div className="relative w-72 h-72 rounded-full overflow-hidden border-4 border-luxgold shadow-lg">
+              <Image
+                src={imageSrc}
+                alt={name}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+                className="transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            <AnimatePresence>
+              {isHovered && (
+                <motion.div 
+                  className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-luxgold text-luxcedar px-6 py-2 rounded-full font-avenir font-semibold shadow-md"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {roles.join(" & ")}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
+          <motion.h3 
+            className="text-4xl font-playfair font-bold mb-4 text-luxnavy"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            {name}
+          </motion.h3>
+          <motion.p 
+            className="text-luxcedar/90 font-avenir leading-relaxed text-center text-lg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
+            {bio}
+          </motion.p>
         </div>
-        <h3 className="text-3xl font-playfair font-bold mt-8 text-luxcedar">{name}</h3>
-        <p className="text-luxcedar/80 font-avenir leading-relaxed text-center mt-4">{bio}</p>
       </div>
     </motion.div>
   )
@@ -53,26 +78,26 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
 
 export default function OwnerFounderSection() {
   return (
-    <section className="py-24">
+    <section className="py-32 bg-luxpearl">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
+          className="text-5xl md:text-6xl font-bold mb-12 text-center font-playfair text-luxnavy"
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl font-playfair font-bold mb-8 text-center text-luxcedar"
+          transition={{ duration: 0.8 }}
         >
           The Visionaries Behind LuxFino
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl mb-16 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxcedar/90"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-xl mb-20 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxcedar"
         >
           At the heart of LuxFino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures.
         </motion.p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <BioCard
             name="Morgan"
             roles={["Co-Founder", "Experience Curator"]}
@@ -82,7 +107,7 @@ export default function OwnerFounderSection() {
 
           <BioCard
             name="Andres"
-            roles={["CEO","Executive Chef"]}
+            roles={["CEO", "Executive Chef"]}
             imageSrc="/DreHeadShot.JPG" 
             bio="Chef Andres, known as Dre, made his way to Tofino seven years ago, drawn by a deep passion for luxury and culinary artistry. His journey began at the stunning Clayoquot Wilderness Resort, where he infused his Latin American roots into every dish, blending comfort food with vibrant global influences. With over a decade of experience, nothing brings him more joy than seeing a smile after the first bite."
           />

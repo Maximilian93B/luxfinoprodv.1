@@ -91,7 +91,7 @@ const PicnicsTestimonials: React.FC = () => {
         >
           <a 
             href="#book-now" 
-            className="inline-block bg-luxocean text-luxpearl font-bold py-4 px-8 rounded-full hover:bg-luxcedar hover:text-luxpearl transition-colors duration-300 text-lg tracking-wide"
+            className="inline-block bg-luxcopper text-luxcedar font-bold py-4 px-8 rounded-full hover:bg-luxcedar hover:text-luxpearl transition-colors duration-300 text-lg tracking-wide"
             style={{ fontFamily: 'Avenir, sans-serif' }}
           >
             Experience Luxury
