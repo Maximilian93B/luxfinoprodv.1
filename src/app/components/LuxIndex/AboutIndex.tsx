@@ -3,17 +3,17 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { ArrowRight, Eye } from 'lucide-react'
+import { ArrowRight, Eye, ChevronRight } from 'lucide-react'
 
 const services = [
   {
     title: "Pop Up Picnics",
-    description: "Experience gourmet dining in Tofino&apos;s most breathtaking locations. Our eco-friendly setups and locally-sourced cuisine create unforgettable moments in nature.",
+    description: "Experience gourmet dining in Tofino's most breathtaking locations. Our eco-friendly setups and locally-sourced cuisine create unforgettable moments in nature.",
     image: "/LuxPicMain.jpeg"
   },
   {
     title: "Lux Remote",
-    description: "Escape to secluded paradises with our luxury glamping experiences. Indulge in comfort while immersing yourself in Tofino&apos;s pristine wilderness.",
+    description: "Escape to secluded paradises with our luxury glamping experiences. Indulge in comfort while immersing yourself in Tofino's pristine wilderness.",
     image: "/LuxRemotePic2.JPG"
   },
   {
@@ -23,7 +23,7 @@ const services = [
   },
   {
     title: "Weddings",
-    description: "Say 'I do' in nature's embrace. Our sustainable wedding experiences blend romance with Tofino&apos;s raw beauty for a truly magical celebration.",
+    description: "Say 'I do' in nature's embrace. Our sustainable wedding experiences blend romance with Tofino's raw beauty for a truly magical celebration.",
     image: "/WeddingPIc.JPG"
   },
   {
@@ -40,7 +40,7 @@ const fadeIn = {
   transition: { duration: 0.5 }
 }
 
-const LuxFinoServices: React.FC = () => {
+export default function LuxFinoServices() {
   const [activeService, setActiveService] = useState(0)
   const [hoveredService, setHoveredService] = useState<number | null>(null)
 
@@ -50,7 +50,7 @@ const LuxFinoServices: React.FC = () => {
     <section className="bg-transparent py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-4xl md:text-5xl font-playfair font-light mb-12 text-center text-luxnavy"
+          className="text-4xl md:text-5xl font-playfair font-light mb-12 text-center text-luxcedar"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -66,8 +66,8 @@ const LuxFinoServices: React.FC = () => {
                   key={service.title}
                   className={`w-full text-left py-4 px-6 rounded-lg transition-all duration-300 relative overflow-hidden ${
                     index === activeService
-                      ? 'bg-luxgold text-luxnavy'
-                      : 'bg-luxnavy/5 text-luxnavy hover:bg-luxgold/20'
+                      ? 'bg-luxgold text-luxcedar'
+                      : 'bg-luxnavy/5 text-luxcedar hover:bg-luxpearl/20'
                   }`}
                   onClick={() => setActiveService(index)}
                   onMouseEnter={() => setHoveredService(index)}
@@ -75,20 +75,30 @@ const LuxFinoServices: React.FC = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <h3 className="text-2xl font-playfair mb-2">{service.title}</h3>
-                  <p className="font-avenir text-sm opacity-80">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-2xl font-playfair mb-2">{service.title}</h3>
+                    <motion.div
+                      className="text-luxcedar"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileHover={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronRight size={20} />
+                    </motion.div>
+                  </div>
+                  <p className="font-avenir text-md opacity-80">
                     {service.description.substring(0, 60)}...
                   </p>
                   <motion.div
-                    className="absolute top-2 right-2 text-luxpearl"
+                    className="absolute top-5 right-2 text-luxocean"
                     initial={{ opacity: 0, scale: 0 }}
                     whileHover={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Eye size={20} />
+                    <Eye size={50} className='text-luxocean'/>
                   </motion.div>
                   <motion.div
-                    className="absolute bottom-0 left-0 h-1 bg-luxgold"
+                    className="absolute bottom-0 left-0 h-1 bg-luxocean"
                     initial={{ width: 0 }}
                     whileHover={{ width: '100%' }}
                     transition={{ duration: 0.3 }}
@@ -114,8 +124,8 @@ const LuxFinoServices: React.FC = () => {
                   layout="fill"
                   objectFit="cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-luxnavy/70 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-luxpearl">
+                <div className="absolute inset-0 bg-gradient-to-t from-luxocean/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-luxpearl/90">
                   <h3 className="text-3xl font-playfair mb-4">{services[currentService].title}</h3>
                   <p className="font-avenir text-lg leading-relaxed">
                     {services[currentService].description}
@@ -127,14 +137,14 @@ const LuxFinoServices: React.FC = () => {
         </div>
 
         <motion.div
-          className="mt-16 text-center"
+          className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <p className="text-luxcharcoal font-avenir mb-8 text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-luxcharcoal font-avenir mb-8 text-xl leading-relaxed max-w-5xl mx-auto">
             Discover the perfect blend of luxury and nature with our bespoke experiences. 
-            Let us craft unforgettable moments for you in Tofino&apos;s breathtaking landscapes.
+            Let us craft unforgettable moments for you in Tofino's breathtaking landscapes.
           </p>
           <motion.button 
             className="bg-luxcedar text-luxpearl hover:bg-luxgold transition-all duration-300 text-lg px-10 py-4 rounded-full font-avenir font-light tracking-wide shadow-md hover:shadow-lg relative overflow-hidden group"
@@ -150,5 +160,3 @@ const LuxFinoServices: React.FC = () => {
     </section>
   )
 }
-
-export default LuxFinoServices
