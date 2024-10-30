@@ -1,123 +1,154 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { ArrowRight, Eye } from 'lucide-react'
 
-interface InfoCardProps {
-  title: string
-  content: string
-  icon: string
-}
-
-const InfoCard: React.FC<InfoCardProps> = ({ title, content, icon }) => {
-  return (
-    <motion.div 
-      className="card bg-luxcopper/20 shadow-xl hover:shadow-2xl transition-all duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="card-body">
-        <div className="flex items-center mb-4">
-          <div className="avatar">
-            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-luxpearl">
-              <Image src={icon} alt={`${title} icon`} width={30} height={30} className="text-luxpearl" />
-            </div>
-          </div>
-          <h3 className="card-title ml-4 text-2xl font-playfair text-luxcedar">{title}</h3>
-        </div>
-        <p className="font-avenir text-luxcedar/80 leading-relaxed">{content}</p>
-      </div>
-    </motion.div>
-  )
-}
-
-export default function AboutIndex() {
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+const services = [
+  {
+    title: "Pop Up Picnics",
+    description: "Experience gourmet dining in Tofino&apos;s most breathtaking locations. Our eco-friendly setups and locally-sourced cuisine create unforgettable moments in nature.",
+    image: "/LuxPicMain.jpeg"
+  },
+  {
+    title: "Lux Remote",
+    description: "Escape to secluded paradises with our luxury glamping experiences. Indulge in comfort while immersing yourself in Tofino&apos;s pristine wilderness.",
+    image: "/LuxRemotePic2.JPG"
+  },
+  {
+    title: "Events",
+    description: "From corporate retreats to milestone celebrations, we transform your vision into reality. Our bespoke event planning ensures every detail is perfection.",
+    image: "/Catering2.JPG"
+  },
+  {
+    title: "Weddings",
+    description: "Say 'I do' in nature's embrace. Our sustainable wedding experiences blend romance with Tofino&apos;s raw beauty for a truly magical celebration.",
+    image: "/WeddingPIc.JPG"
+  },
+  {
+    title: "Catering",
+    description: "Savor the flavors of the Pacific Northwest with our artisanal catering. Our chefs craft exquisite menus using the finest local and sustainable ingredients.",
+    image: "/LuxCateringCard.JPG"
   }
+]
+
+const fadeIn = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.5 }
+}
+
+const LuxFinoServices: React.FC = () => {
+  const [activeService, setActiveService] = useState(0)
+  const [hoveredService, setHoveredService] = useState<number | null>(null)
+
+  const currentService = hoveredService !== null ? hoveredService : activeService
 
   return (
-        <section id="about" className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <motion.h2 
-          className="text-5xl font-playfair font-bold mb-8 text-center text-luxcedar"
-          variants={fadeInUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-        >
-          About LuxFino
-        </motion.h2>
-        <motion.p 
-          className="text-xl mb-16 max-w-3xl mx-auto text-center text-luxcedar/80 font-avenir leading-relaxed "
-          variants={fadeInUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          LuxFino is Tofino&apos;s premier provider of luxury pop-up picnics, in-house catering, and remote glamping. We create unforgettable moments with locally inspired touches that showcase the natural beauty of Tofino.
-        </motion.p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <InfoCard
-            title="Our Mission"
-            content={`At LuxFino, we blend luxury and nature to offer unique experiences that bring people together. Whether it's a beach picnic or a remote glamping retreat, our services celebrate the stunning landscapes of Tofino.`}
-            icon="/Lux.Fino.Logo2.svg"
-          />
-          <InfoCard
-            title="Services"
-            content="LuxFino offers tailored luxury picnics, gourmet catering with local flavors, and exclusive remote glamping experiences. Our partnerships with local artisans ensure that every detail, from charcuterie boards to floral arrangements, is thoughtfully crafted."
-            icon="/services-icon.svg"
-          />
-          <InfoCard
-            title="Unique Experiences"
-            content={`Experience the best of Tofino with personalized luxury services, including pop-up beach picnics and off-grid glamping escapes. We combine adventure with elegance to create unforgettable memories in one of the world's most stunning locations.`}
-            icon="/experiences-icon.svg"
-          />
-        </div>
-
-        <motion.div 
-          className="relative h-[600px] rounded-xl overflow-hidden shadow-2xl bg-transparent"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
+    <section className="bg-transparent py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <motion.h2
+          className="text-4xl md:text-5xl font-playfair font-light mb-12 text-center text-luxnavy"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Image
-            src="/LuxRemotePic2.JPG"
-            alt="Tofino's beautiful landscape"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-xl"
-          />
-          <motion.div 
-            className="absolute inset-0 bg-opacity-10 flex items-center justify-center "
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}     
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <div className="card bg-opacity-20 max-w-7xl mx-4 ">
-              <div className="card-body">
-                <h3 className="card-title text-5xl font-playfair text-luxpearl justify-center p-4">
-                  Discover Tofino
-                </h3>
-                <p className="text-3xl text-center font-avenir text-luxpearl">
-                  Experience the beauty of Tofino with LuxFino&apos;s curated experiences
-                </p>
-                <div className="card-actions justify-center mt-4">
-                  <button className="btn-primary bg-luxsand text-luxcedar hover:bg-luxocean hover:text-luxpearl transition-all duration-300 text-lg px-8 py-3 rounded-full font-avenir font-semibold tracking-wide">Explore Our Services</button>
+          LuxFino offers a range of services to make your experience unforgettable
+        </motion.h2>
+
+        <div className="flex flex-col lg:flex-row gap-12">
+          <div className="lg:w-1/3">
+            <nav className="space-y-4">
+              {services.map((service, index) => (
+                <motion.button
+                  key={service.title}
+                  className={`w-full text-left py-4 px-6 rounded-lg transition-all duration-300 relative overflow-hidden ${
+                    index === activeService
+                      ? 'bg-luxgold text-luxnavy'
+                      : 'bg-luxnavy/5 text-luxnavy hover:bg-luxgold/20'
+                  }`}
+                  onClick={() => setActiveService(index)}
+                  onMouseEnter={() => setHoveredService(index)}
+                  onMouseLeave={() => setHoveredService(null)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <h3 className="text-2xl font-playfair mb-2">{service.title}</h3>
+                  <p className="font-avenir text-sm opacity-80">
+                    {service.description.substring(0, 60)}...
+                  </p>
+                  <motion.div
+                    className="absolute top-2 right-2 text-luxpearl"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileHover={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Eye size={20} />
+                  </motion.div>
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-1 bg-luxgold"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: '100%' }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.button>
+              ))}
+            </nav>
+          </div>
+
+          <div className="lg:w-2/3">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentService}
+                variants={fadeIn}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl"
+              >
+                <Image
+                  src={services[currentService].image}
+                  alt={services[currentService].title}
+                  layout="fill"
+                  objectFit="cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-luxnavy/70 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-luxpearl">
+                  <h3 className="text-3xl font-playfair mb-4">{services[currentService].title}</h3>
+                  <p className="font-avenir text-lg leading-relaxed">
+                    {services[currentService].description}
+                  </p>
                 </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <p className="text-luxcharcoal font-avenir mb-8 text-lg leading-relaxed max-w-2xl mx-auto">
+            Discover the perfect blend of luxury and nature with our bespoke experiences. 
+            Let us craft unforgettable moments for you in Tofino&apos;s breathtaking landscapes.
+          </p>
+          <motion.button 
+            className="bg-luxcedar text-luxpearl hover:bg-luxgold transition-all duration-300 text-lg px-10 py-4 rounded-full font-avenir font-light tracking-wide shadow-md hover:shadow-lg relative overflow-hidden group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="relative z-10">Explore Our Services</span>
+            <ArrowRight className="inline-block ml-2 transition-transform group-hover:translate-x-1" />
+            <span className="absolute inset-0 bg-luxgold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+          </motion.button>
         </motion.div>
       </div>
     </section>
   )
 }
+
+export default LuxFinoServices

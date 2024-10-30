@@ -11,6 +11,7 @@ import OwnerFounderSection from './components/LuxIndex/Founders'
 import TribalParksSection from './components/TribalParksAdvert'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
+import LuxFinoServices from './components/LuxIndex/AboutIndex'
 
 
 
@@ -94,27 +95,33 @@ const HomePage: React.FC = () => {
 
   return (
     <motion.div 
-      className="bg-gradient-to-b from-luxsand to-luxpearl min-h-screen"
+      className="bg-luxcopper min-h-screen"
       initial="hidden"
       animate="visible"
       variants={fadeInVariants}
     >
       <Navbar />
-      <HeroIndex openQuoteDrawer={openQuoteDrawer} />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection>
-          <AboutIndex />
-        </AnimatedSection>
         
+      <HeroIndex openQuoteDrawer={openQuoteDrawer} />
+      <main className="max-w-7xl mx-auto my-auto px-4 sm:px-6 lg:px-8">
+      
+        <AnimatedSection>
+          <div id="services-section">
+            <LuxFinoServices />
+          </div>
+        </AnimatedSection>
+
+
+
         <AnimatedSection>
           <ServiceSections />
         </AnimatedSection>
         
+        
         <AnimatedSection>
           <OwnerFounderSection />
         </AnimatedSection>
-      </main>
       
       <AnimatedSection>
         <section className="text-luxnavy py-16 md:py-24">
@@ -123,9 +130,8 @@ const HomePage: React.FC = () => {
           </div>
         </section>
       </AnimatedSection>
-      
+      </main>
       <Footer />
-
       <AnimatePresence>
         {isQuoteDrawerOpen && (
           <QuoteRequestDrawer isOpen={isQuoteDrawerOpen} onClose={closeQuoteDrawer} />
