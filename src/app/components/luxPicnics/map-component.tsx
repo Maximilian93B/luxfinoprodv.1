@@ -18,8 +18,8 @@ const MapComponent = ({ selectedLocation, setSelectedLocation }: {
       html: renderToString(
         <MapPin
           size={32}
-          color="#0A4B5E" // Lux.Fino gold color
-          fill="#0A4B5E"
+          color="#F0F3F4" // Lux.Fino gold color
+          fill="#CB7D55"
           strokeWidth={2}
         />
       ),
@@ -43,7 +43,8 @@ const MapComponent = ({ selectedLocation, setSelectedLocation }: {
           key={location.id}
           position={[location.lat, location.lng]}
           eventHandlers={{
-            click: () => setSelectedLocation(location.id),
+            click: () => setSelectedLocation(location.id)
+            ,
           }}
         >
           <Popup>{location.name}</Popup>

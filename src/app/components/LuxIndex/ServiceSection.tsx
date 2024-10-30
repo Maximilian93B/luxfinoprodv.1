@@ -59,15 +59,15 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
 export default function ServiceSections() {
   return (
-    <section className="py-24">
+    <section className=" bg-luxpearl  rounded-xl py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-playfair font-semibold mb-8 text-center text-luxcedar"
+          className="text-5xl md:text-5xl font-playfair font-semibold mb-8 text-center text-luxcedar"
         >
-          Detailed Service Information
+          Explore Our Services
         </motion.h2>
         <p className="text-luxcedar/80 text-center mb-16 font-avenir text-lg max-w-3xl mx-auto">
           Dive deeper into our exclusive offerings and discover how LuxFino can transform your Tofino experience into an unforgettable journey of luxury and natural beauty.

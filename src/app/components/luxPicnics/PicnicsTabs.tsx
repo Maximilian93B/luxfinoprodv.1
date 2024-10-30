@@ -69,7 +69,7 @@ const PicnicsSection: React.FC = () => {
   }, [])
 
   return (
-    <div className="relative w-full bg-transparent">
+    <div className="relative w-full bg-luxpearl">
       <div className="container mx-auto px-4 py-12 sm:py-24">
         <motion.h2 
           initial={{ y: -20, opacity: 0 }}
@@ -77,7 +77,7 @@ const PicnicsSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-12 text-luxnavy font-playfair"
         >
-          Exquisite Picnic Experiences
+          Choose Your Picnic
         </motion.h2>
 
         <motion.div 
@@ -92,7 +92,7 @@ const PicnicsSection: React.FC = () => {
               className={`text-md sm:text-lg md:text-xl font-semibold py-2 px-4 rounded-full transition-all duration-300 mb-2 sm:mb-0 ${
                 index === currentTab
                   ? 'bg-luxnavy text-luxcedar shadow-lg'
-                  : 'bg-luxpearl text-luxcedar hover:bg-luxblush'
+                  : 'bg-luxcopper text-luxcedar hover:bg-luxblush'
               }`}
               onClick={() => setCurrentTab(index)}
               whileHover={{ scale: 1.05 }}
@@ -166,7 +166,7 @@ const PicnicsSection: React.FC = () => {
             >
               <Link 
                 href={picnicPackages[currentTab].link}
-                className="inline-block px-6 py-3 bg-luxocean text-luxpearl text-base md:text-lg rounded-full hover:bg-luxnavy hover:text-white transition-all duration-300 shadow-md"
+                className="inline-block px-6 py-3 bg-luxcopper text-luxcedar text-base md:text-lg rounded-full hover:bg-luxnavy hover:text-white transition-all duration-300 shadow-md"
               >
                 <motion.div
                   whileHover={{ scale: 1.05, boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)' }}
@@ -255,7 +255,7 @@ const PicnicsSection: React.FC = () => {
           >
             <Link 
               href="#book-now"
-              className="inline-block px-6 py-3 bg-luxocean text-luxpearl text-base md:text-lg rounded-full hover:bg-luxnavy hover:text-white transition-all duration-300 shadow-md tracking-wide"
+              className="inline-block px-6 py-3 bg-luxcopper text-luxcedar text-base md:text-lg rounded-full hover:bg-luxnavy hover:text-white transition-all duration-300 shadow-md tracking-wide"
             >
               Reserve Your Luxury Picnic
             </Link>

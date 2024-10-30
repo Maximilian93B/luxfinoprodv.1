@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from 'framer-motion'
-import { Instagram, Facebook, Linkedin, Menu, X, Phone } from 'lucide-react'
-
+import { Instagram, Linkedin, Menu, X, Phone, Home} from 'lucide-react'
 const menuItems = [
   { href: "/luxpicnic", label: "Picnics" },
   { href: "/luxremote", label: "Discover LuxRemote" },
@@ -15,15 +14,7 @@ const menuItems = [
 const socialIcons = [
   { Icon: Linkedin, href: "https://www.linkedin.com" },
   { Icon: Instagram, href: "https://www.instagram.com" },
-  { Icon: Facebook, href: "https://www.facebook.com" },
-  { 
-    Icon: () => (
-      <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2L2 8l10 6 10-6-10-6zM2 18l10 6 10-6M2 13l10 6 10-6"/>
-      </svg>
-    ), 
-    href: "https://www.airbnb.com" 
-  },
+  { Icon: Home, href: "https://www.airbnb.com" },
 ]
 
 export default function Navbar() {
