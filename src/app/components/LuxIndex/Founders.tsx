@@ -26,11 +26,11 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
       <div className="bg-luxpearl p-8 rounded-2xl h-full">
         <div className="flex flex-col items-center">
           <motion.div 
-            className="mb-8 relative"
+            className="mb-12 relative"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="relative w-72 h-72 rounded-full overflow-hidden border-4 border-luxgold shadow-lg">
+            <div className="relative w-72 h-72 rounded-full overflow-hidden border-4 border-luxsand shadow-lg">
               <Image
                 src={imageSrc}
                 alt={name}
@@ -43,7 +43,7 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
             <AnimatePresence>
               {isHovered && (
                 <motion.div 
-                  className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-luxgold text-luxcedar px-6 py-2 rounded-full font-avenir font-semibold shadow-md"
+                  className="absolute -bottom-12 left-1/4 transform -translate-x-1/2 bg-luxgold text-luxcedar px-4 py-1 rounded-full font-avenir font-semibold shadow-md"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -55,7 +55,7 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
             </AnimatePresence>
           </motion.div>
           <motion.h3 
-            className="text-4xl font-playfair font-bold mb-4 text-luxnavy"
+            className="text-4xl font-playfair font-bold mb-8 text-luxnavy"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -78,7 +78,7 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
 
 export default function OwnerFounderSection() {
   return (
-    <section className="py-32 bg-luxpearl">
+    <section className="py-32 bg-luxpearl rounded-2xl">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           className="text-5xl md:text-6xl font-bold mb-12 text-center font-playfair text-luxnavy"
@@ -86,7 +86,7 @@ export default function OwnerFounderSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          The Visionaries Behind LuxFino
+          The People Behind LuxFino
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}

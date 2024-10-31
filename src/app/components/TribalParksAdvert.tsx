@@ -55,7 +55,7 @@ const TribalParksSection: React.FC = () => {
         >
           <Link
             href="#learn-more"
-            className="inline-block bg-luxocean text-luxpearl font-bold py-5 px-10 rounded-full transition-all duration-300 font-avenir text-xl hover:bg-luxpearl hover:text-luxcedar hover:shadow-lg transform hover:-translate-y-1"
+            className="inline-block bg-luxpearl/70 text-luxcedar font-bold py-5 px-10 rounded-full transition-all duration-300 font-avenir text-xl hover:bg-luxpearl hover:text-luxcedar hover:shadow-lg transform hover:-translate-y-1"
           >
             Discover Our Commitment
           </Link>

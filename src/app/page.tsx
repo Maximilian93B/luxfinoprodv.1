@@ -56,13 +56,9 @@ const AnimatedSection: React.FC<{ children: React.ReactNode }> = ({ children }) 
       variants={staggerChildrenVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1 }}
     >
-      {React.Children.map(children, child => (
-        <motion.div variants={fadeInVariants}>
-          {child}
-        </motion.div>
-      ))}
+      {children}
     </motion.div>
   )
 }
@@ -113,6 +109,7 @@ const HomePage: React.FC = () => {
       <HeroIndex openQuoteDrawer={openQuoteDrawer} />
       
       <main className="max-w-7xl mx-auto my-auto px-4 sm:px-6 lg:px-8">
+        
         <AnimatedSection>
           <div id="services-section" className="py-24">
             <LuxFinoServices />
@@ -120,11 +117,13 @@ const HomePage: React.FC = () => {
         </AnimatedSection>
 
         <AnimatedSection>
-          <div className="py-24">
+          <div  id="details-section" className="py-24">
             <ServiceSections />
           </div>
         </AnimatedSection>
         
+
+
         <AnimatedSection>
 
             <OwnerFounderSection />

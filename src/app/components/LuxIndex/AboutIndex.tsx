@@ -49,7 +49,7 @@ export default function LuxFinoServices() {
   }, [])
 
   return (
-    <section className="bg-luxpearl py-24 px-4 sm:px-6 lg:px-8 rounded-3xl shadow-2xl">
+    <section className="bg-luxpearl py-24 px-4 sm:px-6 lg:px-8 rounded-2xl shadow-2xl">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           className="text-5xl md:text-6xl font-playfair font-light mb-16 text-center text-luxcedar"
