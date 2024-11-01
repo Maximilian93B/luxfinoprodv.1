@@ -57,7 +57,7 @@ const SimpleBooking: React.FC = () => {
           >
             <a 
               href="/book-now" 
-              className="inline-block px-8 py-4 bg-luxsand text-luxpearl rounded-full font-avenir text-lg sm:text-xl font-semibold hover:bg-luxpearl hover:text-luxcedar transition-all duration-300 shadow-md hover:shadow-xl"
+              className="inline-block px-4 py-2 bg-luxsand text-luxpearl rounded-full font-avenir text-lg sm:text-xl font-semibold hover:bg-luxpearl hover:text-luxcedar transition-all duration-300 shadow-md hover:shadow-xl"
             >
               Book Your LuxRemote Experience
             </a>
