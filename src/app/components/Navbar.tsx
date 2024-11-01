@@ -43,6 +43,7 @@ export default function Navbar() {
             alt="LuxFino Logo"
             width={100}
             height={100}
+            priority
             className={`transition-all duration-300 ${isScrolled ? 'h-12 w-auto' : 'h-16 w-auto'}`}
           />
         </Link>

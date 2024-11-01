@@ -35,9 +35,8 @@ export default function PicnicHero({
         <Image
           src='/LuxIndexPicnic.JPG'
           alt="Luxurious picnic setting"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
           priority
           className="transition-transform duration-300 ease-out hover:scale-105"
         />

@@ -155,8 +155,8 @@ export default function Component() {
             <Image
               src="/LuxRemoteIndex.JPG"
               alt="Luxury Remote Experience"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
               priority
             />
           </div>

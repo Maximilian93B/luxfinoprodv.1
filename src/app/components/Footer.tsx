@@ -25,8 +25,9 @@ export default function Footer() {
         <Image
           src="/LuxRemotePic2.JPG"
           alt="Tofino landscape"
-          layout="fill"
-          objectFit="cover"
+          fill
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
           className="opacity-40"
         />
       </div>

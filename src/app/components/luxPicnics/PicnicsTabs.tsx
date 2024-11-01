@@ -199,7 +199,7 @@ const PicnicsSection: React.FC = () => {
                       <Image
                         src={pkg.imageSrc}
                         alt={pkg.imageAlt}
-                        layout="fill"
+                        fill
                         objectFit="cover"
                         objectPosition="center"
                         className="rounded-lg"

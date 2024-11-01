@@ -36,11 +36,12 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
             alt={imageAlt}
             width={800}
             height={600}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
             className="object-cover w-full h-[500px] transition-transform duration-700 hover:scale-110"
           />
         </div>
         <div className="w-full lg:w-1/2 text-center lg:text-left">
-          <h3 className="text-4xl font-playfair font-bold mb-6 text-luxcedar">{title}</h3>
+          <h3 className="text-5xl font-playfair font-bold mb-6 text-luxcedar">{title}</h3>
           <p className="text-luxcedar/80 mb-8 font-avenir leading-relaxed text-xl">{description}</p>
           <Link href={linkHref}>
             <motion.button 
@@ -65,7 +66,7 @@ export default function ServiceSections() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-5xl font-playfair font-semibold mb-8 text-center text-luxcedar"
+          className="text-6xl md:text-6xl font-playfair font-semibold mb-8 text-center text-luxcedar"
         >
           Explore Our Services
         </motion.h2>

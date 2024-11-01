@@ -36,33 +36,6 @@ const localSpecialties = [
   "House-smoked salmon and other delicacies",
 ];
 
-const testimonials = [
-  {
-    name: "Sarah & Tom",
-    role: "Newlyweds",
-    image: "/sarah-tom.jpg",
-    quote: "LuxFino Catering captured the essence of Tofino in every bite. Our wedding guests are still raving about the locally-sourced seafood!"
-  },
-  {
-    name: "Mark",
-    role: "Tofino Surf Co.",
-    image: "/mark.jpg",
-    quote: "As a local business owner, I appreciate LuxFino&apos;s commitment to using Tofino&apos;s finest ingredients. They&apos;ve catered all our corporate events with excellence."
-  },
-  {
-    name: "Emily",
-    role: "Local Food Critic",
-    image: "/emily.jpg",
-    quote: "LuxFino Catering consistently delivers an authentic Tofino experience through their innovative and delicious creations."
-  },
-  {
-    name: "David & Sarah",
-    role: "Wedding Couple",
-    image: "/david-sarah.jpg",
-    quote: "We couldn&apos;t have asked for a better catering experience. The team&apos;s attention to detail was impeccable!"
-  },
-  
-];
 
 export default function LuxFinoCateringShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -163,45 +136,7 @@ export default function LuxFinoCateringShowcase() {
             </button>
           </div>
         </div>
-
-        <div className="mt-20">
-          <h2 className="text-4xl sm:text-5xl font-semibold text-luxcedar text-center mb-10">
-            Voices from LuxFino
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="card bg-luxpearl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                <div className="card-body p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="avatar">
-                      <div className="w-16 h-16 rounded-full ring-2 ring-luxcedar">
-                        <Image  
-                        src={testimonial.image} 
-                        alt={testimonial.name} 
-                        width={500}
-                        height={500}
-                        />
-                      </div>
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="text-lg font-semibold text-luxcedar">{testimonial.name}</h3>
-                      <p className="text-sm text-luxcedar">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  <p className="text-luxcedar mb-4 italic">&ldquo;{testimonial.quote}&rdquo;</p>
-                  <div className="flex justify-end">
-                    <div className="rating rating-sm">
-                      {[...Array(5)].map((_, i) => (
-                        <input key={i} type="radio" name={`rating-${index}`} className="mask mask-star-2 bg-luxcedar" checked readOnly />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
-      </div>
-    </div>
   );
 }

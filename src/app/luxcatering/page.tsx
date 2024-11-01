@@ -30,22 +30,16 @@ const salesSections = [
     reviewQuote: "LuxCatering turned our wedding into a culinary masterpiece. Unforgettable!",
     reviewAuthor: "Emily & James, Newlyweds"
   },
-  {
-    title: "Elevate Your Event with Our Signature Catering",
-    imageSrc: "/Catering2.JPG",
-    imageAlt: "LuxCatering Signature Dishes",
-    description: "Transform your event into an extraordinary experience with LuxCatering. We tailor every detail to your vision, ensuring a memorable occasion that leaves a lasting impression on your guests.",
-    reviewQuote: "LuxCatering turned our wedding into a culinary masterpiece. Unforgettable!",
-    reviewAuthor: "Emily & James, Newlyweds"
-  },
 ];
 
 export default function LuxCateringPage() {
   return (
       <div className="">
       <main className="flex flex-col">
-        <CateringHeroSection />
-        <div className="flex justify-center py-12 px-2 gap-4">
+        <CateringHeroSection />  
+          <LuxFinoCateringShowcase />
+          <Gallery images={galleryImages} />
+          <div className="flex justify-center py-12 px-2 gap-4 bg-gradient-to-br from-luxpearl to-luxsand">
             {salesSections.map((section, index) => (
               <SalesSection
                 key={index}
@@ -57,13 +51,8 @@ export default function LuxCateringPage() {
                 reviewAuthor={section.reviewAuthor}
               />
             ))}
-            </div>  
-          <LuxFinoCateringShowcase />
-          <Gallery images={galleryImages} />
-          <section className="py-6 sm:py-8 lg:py-16">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            </div>
-          </section>
+          </div>  
+       
       </main>
       <Footer />
       </div>

@@ -49,8 +49,8 @@ const ServiceDrawer = ({ service, isExpanded, toggleExpand, isMobile }: { servic
         <Image
           src={service.image}
           alt={service.alt}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
           className="transition-transform duration-500 ease-in-out transform hover:scale-110"
           priority
         />

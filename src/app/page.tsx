@@ -141,7 +141,7 @@ const HomePage: React.FC = () => {
       
       <Footer />
       
-      <AnimatePresence>
+      <AnimatePresence mode="sync">
         {isQuoteDrawerOpen && (
           <QuoteRequestDrawer isOpen={isQuoteDrawerOpen} onClose={closeQuoteDrawer} />
         )}
