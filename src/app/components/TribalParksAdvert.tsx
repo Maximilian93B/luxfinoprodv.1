@@ -55,21 +55,11 @@ const TribalParksSection: React.FC = () => {
         >
           <Link
             href="#learn-more"
-            className="inline-block bg-luxocean text-luxpearl font-bold py-5 px-10 rounded-full transition-all duration-300 font-avenir text-xl hover:bg-luxpearl hover:text-luxcedar hover:shadow-lg transform hover:-translate-y-1"
+            className="inline-block bg-luxocean text-luxpearl font-semibold py-2 px-6 rounded-full transition-all duration-300 font-avenir text-xl hover:bg-luxpearl hover:text-luxcedar hover:shadow-lg transform hover:-translate-y-1"
           >
             Discover Our Commitment
           </Link>
         </motion.div>
-      </div>
-
-      <div className="absolute inset-0 bg-luxnavy opacity-5 z-0">
-        <Image
-          src="/tribal-pattern.png"
-          layout="fill"
-          objectFit="cover"
-          alt="Tribal pattern background"
-          className="mix-blend-overlay"
-        />
       </div>
 
       <motion.div

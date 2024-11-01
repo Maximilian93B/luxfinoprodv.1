@@ -20,13 +20,14 @@ const SocialIcon: React.FC<{ href: string; icon: React.ReactNode }> = ({ href, i
 
 export default function Footer() {
   return (
-    <footer className="bg-luxcedar relative overflow-hidden pt-24 pb-12">
+    <footer className="bg-luxcedar/80 relative overflow-hidden pt-24 pb-12">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/LuxRemotePic2.JPG"
+          src="/Lux.Fino.Logo2.svg"
           alt="Tofino landscape"
-          layout="fill"
-          objectFit="cover"
+          fill
+          priority
+          style={{ objectFit: 'contain', objectPosition: 'center' }}
           className="opacity-40"
         />
       </div>

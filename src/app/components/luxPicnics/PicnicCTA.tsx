@@ -70,8 +70,8 @@ const LuxuryPicnicCTA: React.FC = () => {
             <Image
               src="/LuxIndexPicnic.JPG"
               alt="Luxury Picnic Setup"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
               className="rounded-lg shadow-2xl"
             />
             <div className="absolute inset-0 bg-luxice bg-opacity-20 rounded-lg"></div>

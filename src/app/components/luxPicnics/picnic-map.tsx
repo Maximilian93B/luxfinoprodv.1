@@ -98,8 +98,8 @@ const LuxuryPicnicMap: React.FC = () => {
                         <Image
                           src={location.image}
                           alt={location.name}
-                          layout="fill"
-                          objectFit="cover"
+                          fill
+                          style={{ objectFit: 'cover', objectPosition: 'center' }}
                         />
                         {location.extraFee && (
                           <div className="absolute top-2 right-2 bg-luxgold text-luxnavy text-xs font-bold px-2 py-1 rounded-full">
@@ -153,8 +153,8 @@ const LuxuryPicnicMap: React.FC = () => {
                     <Image
                       src={locations[selectedLocation - 1].image}
                       alt={locations[selectedLocation - 1].name}
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                     <button
                       onClick={() => setSelectedLocation(null)}

@@ -1,64 +1,38 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 
-type Review = {
-  name: string;
-  text: string;
-  imageSrc?: string;
-};
-
-type ReviewsSectionProps = {
-  title?: string;
-  reviews?: Review[];
-  className?: string;
-};
-
-export default function ReviewsSection({
-  title = "What Our Guests Are Saying",
-  className = "container mx-auto mt-12 px-4 min-h-[30vh]",
-  reviews = [
-    {
-      name: 'John Doe',
-      text: "&ldquo;Lux Fino&apos;s catering made our event unforgettable. The food was exquisite!&rdquo;",
-    },
-    {
-      name: 'Jane Smith',
-      text: "&ldquo;Exceptional service and delicious dishes. Highly recommend Lux Fino!&rdquo;",
-    },
-    {
-      name: 'Emily Johnson',
-      text: "&ldquo;Our guests were blown away by the culinary experience provided by Lux Fino.&rdquo;",
-    },
-  ]
-}: ReviewsSectionProps) {
+export default function EventBookingCTA() {
   return (
-    <section className={className}>
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        {title}
-      </h2>
-      <div className="flex flex-col md:flex-row justify-center items-stretch md:space-x-6">
-        {reviews.map((review, index) => (
-          <div 
-            key={index} 
-            className="bg-white rounded-lg p-6 mb-6 md:mb-0 flex-1 shadow-md"
+    <section className="bg-luxsand py-16 sm:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-luxpearl">
+            Let Lux Fino Cater Your Next Event
+          </h2>
+          <p className="text-lg sm:text-xl mb-8 text-luxpearl/80 max-w-2xl mx-auto">
+            Whether you&apos;re planning a wedding, corporate event, or special celebration, our team is here to bring your vision to life with exquisite cuisine and impeccable service.
+          </p>
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
           >
-            {review.imageSrc && (
-              <div className="flex justify-center mb-4">
-                <Image
-                  src={review.imageSrc}
-                  alt={`Photo of ${review.name}`}
-                  width={80}
-                  height={80}
-                  className="rounded-full"
-                />
-              </div>
-            )}
-            <p className="text-gray-600 italic mb-4 text-xl">&ldquo;{review.text}&rdquo;</p>
-            <p className="text-gray-800 font-bold text-right">- {review.name}</p>
-          </div>
-        ))}
+            <button className="rounded-full font-semibold text-lg bg-luxpearl text-luxsand px-8 py-4 shadow-lg hover:bg-luxcopper hover:text-luxsand hover:shadow-xl transition-all duration-300">
+              Book a Consultation
+            </button>
+            <button className="rounded-full font-semibold text-lg border-2 border-luxpearl text-luxpearl px-8 py-4 shadow-lg hover:bg-luxpearl hover:text-luxsand hover:shadow-xl transition-all duration-300">
+              Download Our Brochure
+            </button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
