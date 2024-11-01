@@ -17,11 +17,6 @@ const services: ServiceItem[] = [
     description: "Exclusive aerial transfer with breathtaking coastal views"
   },
   {
-    icon: <Utensils className="w-12 h-12" />,
-    title: "Custom Menus",
-    description: "Personalized gourmet experiences by world-class chefs"
-  },
-  {
     icon: <Tent className="w-12 h-12" />,
     title: "Luxury Retreats",
     description: "Opulent wilderness accommodations with modern comforts"
@@ -32,9 +27,9 @@ const services: ServiceItem[] = [
     description: "Tailored expeditions unveiling Tofino's hidden wonders"
   },
   {
-    icon: <Calendar className="w-12 h-12" />,
-    title: "Tailored Itineraries",
-    description: "Perfectly balanced journeys crafted to your desires"
+    icon: <Utensils className="w-12 h-12" />,
+    title: "Custom Menus",
+    description: "Personalized gourmet experiences by world-class chefs"
   },
   {
     icon: <Sparkles className="w-12 h-12" />,
@@ -84,7 +79,7 @@ const AllInclusiveExperience: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          Effortless Luxury Awaits
+          Effortlessy Escape with LuxRemote
         </motion.h2>
         <motion.p 
           className="text-2xl md:text-3xl text-center mb-20 font-avenir max-w-3xl mx-auto leading-relaxed"

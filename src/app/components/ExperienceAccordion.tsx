@@ -53,7 +53,7 @@ const LuxuryExperienceWatch: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          The Lux Remote Experience
+          The Lux Remote Journey
         </motion.h2>
         <motion.p 
           className="text-xl md:text-2xl text-center mb-16 md:mb-24 font-avenir text-luxpearl max-w-3xl mx-auto leading-relaxed"
@@ -78,7 +78,9 @@ const LuxuryExperienceWatch: React.FC = () => {
                 src={experienceData[activeDay].imageSrc}
                 alt={experienceData[activeDay].title}
                 fill
-                style={{objectFit:"cover"}}
+                priority
+                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                className='object-cover'
               />
               <div className="absolute inset-0 bg-luxocean/60" />
             </motion.div>

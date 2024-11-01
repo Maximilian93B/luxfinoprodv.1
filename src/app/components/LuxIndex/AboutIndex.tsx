@@ -157,7 +157,11 @@ export default function LuxFinoServices() {
                         {service.description}
                       </p>
                       <motion.a
-                        href={service.link}
+                        href="#details-section"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
                         className="inline-flex items-center text-luxpearl hover:text-luxgold transition-colors duration-300 group"
                         whileHover={{ x: 5 }}
                       >
@@ -186,10 +190,14 @@ export default function LuxFinoServices() {
         >
           <p className="text-luxcharcoal font-avenir mb-10 text-2xl leading-relaxed max-w-5xl mx-auto">
             Immerse yourself in the perfect blend of luxury and nature with our bespoke experiences. 
-            Let us craft unforgettable moments for you in Tofino's breathtaking landscapes.
+            Let us craft unforgettable moments for you in Tofino&apos;s breathtaking landscapes.
           </p>
           <motion.a 
-            href="/services"
+            href="#details-section"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="inline-block bg-luxocean text-luxpearl hover:bg-luxgold transition-all duration-300 text-xl px-6 py-3 rounded-full font-avenir font-light tracking-wide shadow-md hover:shadow-lg relative overflow-hidden group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}

@@ -100,7 +100,7 @@ const DiscoverSection: React.FC = () => {
         <DiscoverItem
           title="Where Luxury Meets Wilderness"
           imageSrc="/LuxRemotePic2.JPG"
-                   description="Experience refined elegance seamlessly integrated with untamed beauty. Enjoy breathtaking vistas, exquisite cuisine, and bespoke services in harmony with nature."
+          description="Experience refined elegance seamlessly integrated with untamed beauty. Enjoy breathtaking vistas, exquisite cuisine, and bespoke services in harmony with nature."
           reverse
         />
         

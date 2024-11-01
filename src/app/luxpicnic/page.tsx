@@ -32,7 +32,7 @@ const LuxPicnicsPage: React.FC = () => {
         className="space-y-12 py-20"
       >
         {/** SECTION 1 */}
-        <section className="container mx-auto px-4">
+        <section id="how-it-works" className="container mx-auto px-4">
           <motion.h2
             {...fadeInUp}
             className="text-4xl md:text-5xl font-bold text-center mb-16 text-luxnavy font-playfair"

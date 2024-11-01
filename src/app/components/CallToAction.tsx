@@ -40,7 +40,7 @@ const SimpleBooking: React.FC = () => {
             <div className="text-center">
               <Briefcase className="w-12 h-12 mx-auto mb-4 text-luxgold" />
               <h3 className="text-xl font-playfair mb-2">Tailored Experience</h3>
-              <p className="font-avenir">We'll craft a bespoke itinerary just for you</p>
+              <p className="font-avenir">We&apos;ll craft a bespoke itinerary just for you</p>
             </div>
             <div className="text-center">
               <Sparkles className="w-12 h-12 mx-auto mb-4 text-luxgold" />
@@ -57,7 +57,7 @@ const SimpleBooking: React.FC = () => {
           >
             <a 
               href="/book-now" 
-              className="inline-block px-4 py-2 bg-luxsand text-luxpearl rounded-full font-avenir text-lg sm:text-xl font-semibold hover:bg-luxpearl hover:text-luxcedar transition-all duration-300 shadow-md hover:shadow-xl"
+              className="inline-block px-4 py-2 bg-luxsand text-luxpearl rounded-full font-avenir text-lg sm:text-xl font-md hover:bg-luxpearl hover:text-luxcedar transition-all duration-300 shadow-md hover:shadow-xl"
             >
               Book Your LuxRemote Experience
             </a>

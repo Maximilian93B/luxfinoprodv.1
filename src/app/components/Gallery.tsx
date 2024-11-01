@@ -37,7 +37,7 @@ const Gallery: FC<GalleryProps> = ({
       {/* Centered Toggleable Button */}
       <div className="flex justify-center mb-6">
         <button
-          className="btn btn-lg flex items-center bg-luxsand text-luxpearl hover:bg-luxice hover:text-luxcedar transition-colors duration-300 shadow-xl rounded-full px-6 py-3"
+          className="btn btn-lg flex items-center bg-luxsand text-luxpearl hover:text-luxcedar transition-colors duration-300 shadow-xl rounded-full px-6 py-3"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? '' : 'View our Creations'}
@@ -53,8 +53,8 @@ const Gallery: FC<GalleryProps> = ({
       {isOpen && (
         <div className="px-4">
           <div className="text-center mb-6">
-            <h2 className="text-4xl font-bold text-luxpearl">{title}</h2>
-            <p className="text-lg text-luxpearl mt-4">{description}</p>
+            <h2 className="text-4xl font-bold text-luxcedar">{title}</h2>
+            <p className="text-lg text-luxcedar mt-4">{description}</p>
           </div>
 
           {/* Gallery Grid */}
@@ -73,7 +73,7 @@ const Gallery: FC<GalleryProps> = ({
                   className="rounded-lg"
                   quality={100}
                   placeholder="blur"
-                  blurDataURL="/placeholder.png"
+                  blurDataURL="/lux fino-icon.svg"
                 />
               </div>
             ))}

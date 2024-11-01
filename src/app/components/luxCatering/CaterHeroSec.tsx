@@ -13,13 +13,13 @@ type HeroSectionProps = {
   chefTitle?: string;
 };
 
-export default function CateringHeroSection({
+export default function EventsWeddingsCateringHeroSection({
   chefImageSrc = '/DreCatingBio.JPG',
   logoSrc = '/Lux.CateringLogo.svg',
-  title = "Experience Tofino's Flavours with Us",
-  description = "At Lux Fino, our Executive Chef doesn't just prepare meals—he crafts unforgettable culinary experiences. With a passion for innovation and a commitment to using the finest ingredients, every dish is a masterpiece designed to delight your senses.",
+  title = "Elevate Your Events with Tofino's Finest Catering",
+  description = "From intimate weddings to grand corporate gatherings, Lux Fino brings exquisite flavors and impeccable service to your special occasions. Our Executive Chef and team craft unforgettable culinary experiences that celebrate Tofino's unique coastal essence.",
   chefName = "Meet Our Executive Chef",
-  chefTitle = "Crafting culinary masterpieces with passion and precision"
+  chefTitle = "Crafting memorable experiences through innovative cuisine"
 }: HeroSectionProps) {
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-luxsand to-luxpearl overflow-hidden flex items-center justify-center">
@@ -51,11 +51,18 @@ export default function CateringHeroSection({
             <p className="text-lg sm:text-xl text-luxcedar mb-8 leading-relaxed">
               {description}
             </p>
-            <motion.button
-              className="rounded-full font-semibold text-lg bg-luxsand text-luxpearl px-8 py-4 shadow-lg hover:bg-luxforest hover:shadow-xl transition-all duration-300"
-            >
-              Explore Our Menu
-            </motion.button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <motion.button
+                className="rounded-full font-semibold text-lg bg-luxsand text-luxpearl px-8 py-4 shadow-lg hover:bg-luxforest hover:shadow-xl transition-all duration-300"
+              >
+                Plan Your Event
+              </motion.button>
+              <motion.button
+                className="rounded-full font-semibold text-lg border-2 border-luxsand text-luxcedar px-8 py-4 shadow-lg hover:bg-luxsand hover:text-luxpearl hover:shadow-xl transition-all duration-300"
+              >
+                View Wedding Packages
+              </motion.button>
+            </div>
           </motion.div>
 
           {/* Executive Chef Image */}
@@ -70,6 +77,7 @@ export default function CateringHeroSection({
                 src={chefImageSrc}
                 alt="Executive Chef at LuxFino"
                 fill
+                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                 style={{ objectFit: 'cover' }}
                 className="rounded-2xl"
                 quality={100}
