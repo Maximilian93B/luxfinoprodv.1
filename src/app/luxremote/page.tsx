@@ -6,13 +6,19 @@ import HeroSection from '../components/HeroSection';
 import DiscoverSection from '../components/DiscoverLuxRemote';
 import ExperienceAccordion from '../components/ExperienceAccordion';
 import CallToAction from '../components/CallToAction';
+import TribalParksAdvert from '../components/TribalParksAdvert';
+import RemoteInclusive from '../components/Remote-inclusive';
+
 
 const LuxRemotePage: React.FC = () => {
   return (
-    <div>
+    <div className='bg-luxocean'>
       <Navbar />
       <HeroSection />
-      <DiscoverSection />
+      <RemoteInclusive />
+      <div id="discover-section">
+        <DiscoverSection />
+      </div>
       <ExperienceAccordion />
       <CallToAction />
       <Footer />

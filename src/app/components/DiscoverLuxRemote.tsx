@@ -21,7 +21,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
 
   return (
     <motion.div 
-      className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-16 mb-8`}
+      className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-16 mb-24`}
       style={{ opacity, y }}
     >
       <motion.div 
@@ -32,7 +32,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
         viewport={{ once: true, margin: "-100px" }}
       >
         <motion.div 
-          className="relative h-[500px] overflow-hidden rounded-2xl shadow-2xl"
+          className="relative h-[500px] overflow-hidden rounded-2xl shadow-md shadow-luxpearl/30"
           whileHover={{ scale: 1.03 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
@@ -43,7 +43,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
             style={{objectFit:"cover"}}
             className="transition-transform duration-700 ease-out hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-luxnavy/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-luxpearl/30 to-transparent" />
         </motion.div>
       </motion.div>
       <motion.div 
@@ -71,17 +71,6 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
         >
           {description}
         </motion.p>
-        <motion.button
-          className="px-8 py-3 bg-luxcopper text-luxcedar rounded-full font-light text-lg hover:bg-luxcopper/80 transition-all duration-300 shadow-md hover:shadow-lg"
-          whileHover={{ scale: 1.05, backgroundColor: "rgba(203, 125, 85, 0.8)" }}
-          whileTap={{ scale: 0.98 }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-        >
-          Discover More
-        </motion.button>
       </motion.div>
     </motion.div>
   )
@@ -91,9 +80,8 @@ const DiscoverSection: React.FC = () => {
   return (
     <section id="discover" className="py-24 bg-luxocean overflow-hidden">
       <div className="container mx-auto px-8 relative">
-        <div className="absolute inset-0 bg-[url('/grain.png')] opacity-5" />
         <motion.h1 
-          className="text-5xl md:text-5xl lg:text-6xl font-light text-center  mb-12 font-playfair text-luxpearl leading-tight"
+          className="text-5xl md:text-5xl lg:text-6xl font-light text-center mb-20 font-playfair text-luxpearl leading-tight"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -102,23 +90,37 @@ const DiscoverSection: React.FC = () => {
         </motion.h1>
         
         <DiscoverItem
-          title="Escape to Ultimate Seclusion"
+          title="Ultimate Seclusion"
           imageSrc="/DiscoverLuxRemote.JPG"
-          description="Uncover a haven untouched by time, where solitude reigns supreme. Nestled in Tofino's pristine wilderness, our exclusive retreat offers unparalleled privacy. Immerse yourself in nature's raw beauty while indulging in the pinnacle of luxury, leaving the world far behind."
+          description="Escape to a pristine wilderness haven where luxury meets solitude. Immerse in nature's raw beauty while indulging in unparalleled privacy and opulence."
         />
         
         <DiscoverItem
-          title="Where Luxury Embraces Wilderness"
+          title="Where Luxury Meets Wilderness"
           imageSrc="/LuxRemotePic2.JPG"
-          description="Experience the harmonious blend of untamed beauty and refined elegance. Our secluded accommodations seamlessly integrate with their natural surroundings, offering breathtaking panoramas, exquisite cuisine, and bespoke services. Every detail is meticulously curated to forge an intimate bond with nature without compromising on comfort."
+                   description="Experience refined elegance seamlessly integrated with untamed beauty. Enjoy breathtaking vistas, exquisite cuisine, and bespoke services in harmony with nature."
           reverse
         />
         
         <DiscoverItem
-          title="Your Personal Sanctuary Beckons"
-          imageSrc="/LuxRemote3.JPG"
-          description="In this timeless sanctuary, find the space to unwind, rejuvenate, and rediscover your essence. Whether seeking peaceful solitude, a romantic retreat, or an extraordinary adventure, our remote haven adapts to your desires. Immerse yourself in personalized experiences that nourish your soul and craft enduring memories."
+          title="Work and Create in Nature's Office"
+          imageSrc="/LuxWork.JPG"
+         description="Elevate your work in a tranquil sanctuary. With Starlink connectivity, blend productivity and serenity in your private wilderness office, where inspiration knows no bounds."
         />
+
+        <DiscoverItem
+          title="Your Personal Sanctuary"
+          imageSrc="/LuxRemote3.JPG"
+          description="Unwind, rejuvenate, and rediscover yourself in our adaptable haven. From solitude to romance to adventure, immerse in tailored experiences that nourish your soul."
+          reverse
+        />
+            
+        <DiscoverItem
+          title="Ultimate Wellness "
+          imageSrc="/LuxRemoteExp.JPG"
+          description="Embark on a transformative journey of self-care. Indulge in bespoke wellness experiences, from forest bathing to gourmet nutrition, designed to revitalize body and mind."
+        />
+
       </div>
     </section>
   )

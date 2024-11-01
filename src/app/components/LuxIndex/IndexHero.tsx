@@ -185,9 +185,9 @@ export default function HeroIndex({ openQuoteDrawer }: { openQuoteDrawer: () => 
               block: 'start' 
             })
           }}
-          className="cursor-pointer hover:scale-110 transition-transform duration-300 flex justify-center items-center bg-luxocean bg-opacity-50 rounded-full p-2"
+          className="cursor-pointer hover:scale-110 transition-transform duration-300 flex justify-center items-center bg-luxpearl rounded-full p-2"
         >
-          <ArrowDown className="h-5 w-5 sm:h-6 sm:w-6 text-luxpearl" />
+          <ArrowDown className="h-5 w-5 sm:h-6 sm:w-6 text-luxcedar" />
         </div>
       </motion.div>
     </section>

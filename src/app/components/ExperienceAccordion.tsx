@@ -27,7 +27,7 @@ const experienceData: ExperienceItem[] = [
   },
   {
     id: 'day3',
-    title: 'Day 3: Farewell & Memories',
+    title: 'Day 3: Tranquility',
     content: 'After a leisurely morning, capture the last moments of tranquility before your departure. We\'ll handle all the details to ensure a smooth journey home, leaving you with cherished memories and a renewed spirit.',
     imageSrc: '/LuxRemotePic2.JPG',
   },
@@ -46,18 +46,17 @@ const LuxuryExperienceWatch: React.FC = () => {
 
   return (
     <section className="py-16 md:py-24 bg-luxocean overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="absolute inset-0 bg-[url('/grain.png')] opacity-5" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative max-w-6xl">
         <motion.h2 
-          className="text-4xl md:text-5xl lg:text-6xl font-light text-center mb-8 md:mb-12 font-playfair text-luxpearl leading-tight"
+          className="text-5xl md:text-5xl lg:text-6xl font-light text-center mb-8 font-playfair text-luxpearl leading-tight"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          Your Lux Remote Journey
+          The Lux Remote Experience
         </motion.h2>
         <motion.p 
-          className="text-2xl text-center mb-16 md:mb-24 font-avenir text-luxpearl max-w-3xl mx-auto"
+          className="text-xl md:text-2xl text-center mb-16 md:mb-24 font-avenir text-luxpearl max-w-3xl mx-auto leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -66,7 +65,6 @@ const LuxuryExperienceWatch: React.FC = () => {
         </motion.p>
         
         <div className="relative w-full max-w-3xl mx-auto aspect-square">
-          {/* Circular background with image */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeDay}
@@ -82,16 +80,14 @@ const LuxuryExperienceWatch: React.FC = () => {
                 fill
                 style={{objectFit:"cover"}}
               />
-              <div className="absolute inset-0 bg-luxocean/30" />
+              <div className="absolute inset-0 bg-luxocean/60" />
             </motion.div>
           </AnimatePresence>
           
-          {/* Circular borders */}
           <div className="absolute inset-0 rounded-full border-8 border-luxsand/40 shadow-lg" />
           <div className="absolute inset-4 rounded-full border border-luxsand/30" />
           <div className="absolute inset-8 rounded-full border border-luxsand/20" />
           
-          {/* Center content */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeDay}
@@ -102,10 +98,10 @@ const LuxuryExperienceWatch: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="text-center text-luxcharcoal">
-                <h3 className="text-2xl sm:text-3xl font-light mb-4 sm:mb-6 font-playfair text-luxpearl">{experienceData[activeDay].title}</h3>
-                <p className="text-base sm:text-lg mb-6 sm:mb-8 font-avenir leading-relaxed text-luxpearl">{experienceData[activeDay].content}</p>
+                <h3 className="text-3xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6 font-playfair text-luxpearl leading-tight">{experienceData[activeDay].title}</h3>
+                <p className="text-md sm:text-base md:text-lg mb-6 sm:mb-8 font-avenir leading-relaxed text-luxpearl max-w-md mx-auto">{experienceData[activeDay].content}</p>
                 <motion.button
-                  className="px-6 sm:px-8 py-2 sm:py-3 bg-luxocean/80 text-luxpearl rounded-full font-light text-base sm:text-lg hover:bg-luxcopper/80 transition-all duration-300 shadow-md hover:shadow-lg"
+                  className="px-6 sm:px-8 py-2 sm:py-3 bg-luxsand/80 text-luxcedar rounded-full font-light text-base sm:text-lg hover:bg-luxcopper/80 transition-all duration-300 shadow-md hover:shadow-lg"
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(203, 125, 85, 0.8)" }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -115,12 +111,12 @@ const LuxuryExperienceWatch: React.FC = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation buttons */}
           <motion.button
             className="absolute top-1/2 -left-4 sm:-left-6 transform -translate-y-1/2 bg-luxsand/80 text-luxocean rounded-full p-2 shadow-md hover:bg-luxcopper/80 transition-all duration-300"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={prevDay}
+            aria-label="Previous day"
           >
             <ChevronLeft size={24} />
           </motion.button>
@@ -129,6 +125,7 @@ const LuxuryExperienceWatch: React.FC = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={nextDay}
+            aria-label="Next day"
           >
             <ChevronRight size={24} />
           </motion.button>
