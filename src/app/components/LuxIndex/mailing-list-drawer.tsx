@@ -41,7 +41,7 @@ const MailingListDrawer: React.FC<MailingListDrawerProps> = ({ isOpen, onClose }
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black bg-opacity-80 z-drawer-backdrop"
+            className="fixed inset-0 bg-black bg-opacity-80 z-drawer-backdrop pointer-events-none"
             onClick={onClose}
           />
           <motion.div
@@ -52,7 +52,7 @@ const MailingListDrawer: React.FC<MailingListDrawerProps> = ({ isOpen, onClose }
             className="fixed right-0 h-[calc(100vh-4rem)] w-full sm:w-[90vw] md:w-[70vw] lg:w-[50vw] xl:w-[40vw] bg-luxpearl shadow-2xl z-drawer overflow-hidden flex flex-col scroll-smooth scrollbar-hide"
             style={{ top: `calc(${scrollY}px + 4rem)` }}
           >
-            <div className="relative w-full h-1/2 sm:h-2/3 overflow-hidden rounded-sm">
+            <div className="relative w-full h-1/2 sm:h-2/3 overflow-hidden rounded-sm pointer-events-auto">
               <Image
                 src="/LuxCateringCard.JPG"
                 alt="LuxFino Culinary Experience"
@@ -69,7 +69,7 @@ const MailingListDrawer: React.FC<MailingListDrawerProps> = ({ isOpen, onClose }
               </button>
             </div>
             <div className="flex-grow overflow-y-auto">
-              <div className="relative p-16 sm:p-16 flex flex-col space-y-8">
+              <div className="relative p-16 sm:p-16 flex flex-col space-y-8 mb-12">
                 <h2 className="text-5xl sm:text-4xl font-bold text-luxcedar">Join Our Exclusive Mailing List</h2>
                 
                 <p className="text-lg text-luxcedar">
@@ -92,7 +92,7 @@ const MailingListDrawer: React.FC<MailingListDrawerProps> = ({ isOpen, onClose }
                   </div>
                   <button 
                     type="submit"
-                    className="btn w-full bg-luxocean text-luxpearl hover:bg-luxforest transition-colors duration-300 py-3 px-4 text-lg rounded-full"
+                    className="btn w-full bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar transition-colors duration-300 py-2 px-4 text-lg rounded-full"
                   >
                     Subscribe to LuxFino
                   </button>

@@ -6,8 +6,9 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 const TribalParksSection: React.FC = () => {
+  
   return (
-    <section className="bg-gradient-to-b from-luxpearl to-luxsand rounded-3xl shadow-2xl py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+    <section className="bg-gradient-to-b from-luxpearl to-luxcopper rounded-3xl shadow-2xl py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
       <div className="container mx-auto text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -52,10 +53,12 @@ const TribalParksSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
         >
           <Link
             href="#learn-more"
-            className="inline-block bg-luxocean text-luxpearl font-semibold py-2 px-6 rounded-full transition-all duration-300 font-avenir text-xl hover:bg-luxpearl hover:text-luxcedar hover:shadow-lg transform hover:-translate-y-1"
+            className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
           >
             Discover Our Commitment
           </Link>
@@ -63,7 +66,7 @@ const TribalParksSection: React.FC = () => {
       </div>
 
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-luxgold via-luxocean to-luxsand"
+        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, delay: 1.5 }}

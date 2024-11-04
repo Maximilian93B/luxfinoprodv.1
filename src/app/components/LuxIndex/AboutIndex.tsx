@@ -38,6 +38,7 @@ export default function LuxFinoServices() {
   const [hoveredService, setHoveredService] = useState<number | null>(null)
   const [progress, setProgress] = useState(0)
 
+
   const currentService = hoveredService !== null ? hoveredService : activeService
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function LuxFinoServices() {
   }, [])
 
   return (
-    <section className="bg-luxpearl py-24 px-4 sm:px-6 lg:px-8 rounded-2xl shadow-2xl">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 rounded-2xl shadow-2xl">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           className="text-5xl md:text-6xl font-playfair font-light mb-16 text-center text-luxcedar"
@@ -70,14 +71,14 @@ export default function LuxFinoServices() {
 
         <div className="flex flex-col lg:flex-row gap-16">
           <div className="lg:w-1/3">
-            <nav className="space-y-6" role="tablist">
+            <nav className="space-y-6 " role="tablist">
               {services.map((service, index) => (
                 <motion.button
                   key={service.title}
-                  className={`w-full text-left py-6 px-8 rounded-xl transition-all duration-300 relative overflow-hidden ${
+                  className={`w-full text-left py-6 px-8 rounded-xl transition-all duration-300 relative overflow-hidden  bg-luxpearl to-[#CB7D55] text-luxcedar  ${
                     index === activeService
-                      ? 'bg-luxgold text-luxcedar shadow-lg'
-                      : 'bg-luxnavy/5 text-luxcedar hover:bg-luxpearl/20'
+                      ? 'bg-luxocean text-luxcedar shadow-lg'
+                      : 'bg-luxpearl/5 text-luxcedar hover:bg-luxpearl/20'
                   }`}
                   onClick={() => setActiveService(index)}
                   onMouseEnter={() => setHoveredService(index)}
@@ -198,13 +199,11 @@ export default function LuxFinoServices() {
               e.preventDefault();
               document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="inline-block bg-luxocean text-luxpearl hover:bg-luxgold transition-all duration-300 text-xl px-6 py-3 rounded-full font-avenir font-light tracking-wide shadow-md hover:shadow-lg relative overflow-hidden group"
+            className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="relative z-10">Explore All Our Services</span>
-            <ArrowRight className="inline-block ml-2 transition-transform group-hover:translate-x-2" size={24} aria-hidden="true" />
-            <span className="absolute inset-0 bg-luxgold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+            <span className="relative z-10">Explore LuxFino Services</span>
           </motion.a>
         </motion.div>
       </div>

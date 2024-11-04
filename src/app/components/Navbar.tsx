@@ -33,60 +33,60 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-luxsand/45 to-luxpearl/95 backdrop-blur-md shadow-lg"
+      className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar backdrop-blur-md shadow-lg"
     >
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="container mx-auto px-6 py-2 flex justify-between items-center">
         <Link href="/" className="flex-shrink-0">
           <Image
-            src="/lux fino-icon.pdf.svg"
+            src="/Lux.Fino.Logo2.svg"
             alt="LuxFino Logo"
-            width={isScrolled ? 100 : 100}
-            height={isScrolled ? 100 : 100}
+            width={isScrolled ? 150 : 150}
+            height={isScrolled ? 150 : 150}
             priority
             quality={100}
-            className="w-auto transition-all duration-300"
+            className="w-auto transition-all duration-300 brightness-0 invert"
             style={{
-              height: isScrolled ? '56px' : '72px',
+              height: isScrolled ? '72px' : '72px',
               objectFit: 'contain',
             }}
           />
         </Link>
 
-        <div className="hidden lg:flex items-center space-x-12">
+        <div className="hidden lg:flex items-center space-x-8">
           {menuItems.map((item) => (
             <Link 
               key={item.href}
               href={item.href} 
-              className="font-avenir text-luxcedar hover:text-luxocean transition-all duration-300 text-sm uppercase tracking-widest border-b-2 border-transparent hover:border-luxocean pb-1"
+              className="font-avenir text-luxpearl hover:text-luxocean transition-all duration-300 text-xs uppercase tracking-widest border-b-2 border-transparent hover:border-luxocean"
             >
               {item.label}
             </Link>
           ))}
           <a 
             href="tel:+18005893466" 
-            className="bg-gradient-to-r from-luxpearl to-luxsand text-luxcedar px-6 py-3 rounded-full font-avenir hover:opacity-90 transition-all duration-300 flex items-center space-x-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+            className="bg-gradient-to-r from-luxcopper to-luxpearl text-luxcedar px-4 py-2 rounded-full font-avenir hover:opacity-90 transition-all duration-300 flex items-center space-x-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
           >
-            <Phone size={16} />
-            <span className="font-playfair text-sm">+1 (800) 589-3466</span>
+            <Phone size={14} />
+            <span className="font-playfair text-xs">+1 (800) 589-3466</span>
           </a>
         </div>
 
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-4">
           {socialIcons.map(({ Icon, href }, index) => (
             <a
               key={index}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-luxcedar hover:text-luxocean transition-all duration-300 transform hover:scale-110"
+              className="text-luxpearl hover:text-luxocean transition-all duration-300 transform hover:scale-110"
             >
-              <Icon size={18} />
+              <Icon size={16} />
             </a>
           ))}
         </div>
 
         <button
-          className="lg:hidden text-luxcedar hover:text-luxocean transition-colors duration-300"
+          className="lg:hidden text-luxpearl hover:text-luxocean transition-colors duration-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X size={24} /> : <MoreHorizontal size={24} />}
@@ -100,14 +100,14 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-gradient-to-b from-luxnavy/95 to-luxsand/95 backdrop-blur-md shadow-lg"
+            className="lg:hidden absolute top-full left-0 right-0 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxpearl backdrop-blur-md shadow-lg"
           >
-            <div className="container mx-auto py-6 px-8 space-y-6">
+            <div className="container mx-auto py-6 px-8 space-y-6 flex flex-col items-center">
               {menuItems.map((item) => (
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className="block py-2 font-avenir text-luxcedar font-medium hover:text-luxocean transition-all duration-300 text-lg hover:-translate-x-2"
+                  className="text-center py-2 font-avenir text-luxpearl font-medium hover:text-luxocean transition-all duration-300 text-lg hover:-translate-x-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
@@ -115,19 +115,19 @@ export default function Navbar() {
               ))}
               <a 
                 href="tel:+18005893466" 
-                className="py-2 font-playfair font-medium text-luxcedar hover:text-luxocean transition-colors duration-300 text-lg flex items-center space-x-2"
+                className="text-center py-2 font-playfair font-medium text-luxpearl hover:text-luxocean transition-colors duration-300 text-lg flex items-center space-x-2"
               >
                 <Phone size={20} />
                 <span>+1 (800) 589-3466</span>
               </a>
-              <div className="flex justify-start space-x-8 pt-6 border-t border-luxpearl/20">
+              <div className="flex justify-center space-x-8 pt-6 border-t border-luxpearl/20 w-full">
                 {socialIcons.map(({ Icon, href }, index) => (
                   <a
                     key={index}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-luxcedar hover:text-luxocean transition-colors duration-300"
+                    className="text-luxpearl hover:text-luxocean transition-colors duration-300"
                   >
                     <Icon size={22} />
                   </a>

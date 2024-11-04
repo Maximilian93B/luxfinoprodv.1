@@ -105,7 +105,7 @@ const HomePage: React.FC = () => {
 
   return (
     <motion.div 
-      className="bg-gradient-to-b from-luxcopper to-luxsand min-h-screen"
+      className="bg-gradient-to-b from-luxcopper to-luxpearl min-h-screen overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={fadeInVariants}
@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
       
       <HeroIndex showQuoteDrawer={openQuoteDrawer} />
       
-      <main className="max-w-7xl mx-auto my-auto px-4 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mx-auto my-auto py-12 sm:px-6 lg:px-8">
         
         <AnimatedSection>
           <div id="services-section" className="py-24" ref={servicesSectionRef}>

@@ -45,9 +45,9 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           <p className="text-luxcedar/80 mb-8 font-avenir leading-relaxed text-xl">{description}</p>
           <Link href={linkHref}>
             <motion.button 
+              className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-luxocean text-luxpearl hover:bg-luxsand hover:text-luxpearl transition-all duration-300 text-lg px-8 py-3 rounded-full font-avenir font-semibold tracking-wide"
+              whileTap={{ scale: 0.98 }}
             >
               {buttonText}
             </motion.button>
