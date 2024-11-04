@@ -11,6 +11,9 @@ import OwnerFounderSection from './components/LuxIndex/Founders'
 import TribalParksSection from './components/TribalParksAdvert'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
+import MailingListDrawer from './components/LuxIndex/mailing-list-drawer'
+import { useInView } from 'react-intersection-observer'
+
 
 const QuoteRequestDrawer = dynamic(() => import('./components/FormDrawer'), {
   ssr: false,
@@ -67,23 +70,26 @@ const HomePage: React.FC = () => {
   const [isQuoteDrawerOpen, setIsQuoteDrawerOpen] = useState(false)
   const [showMainContent, setShowMainContent] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
+  const [showMailingList, setShowMailingList] = useState(false)
+
+
+  const { ref: servicesSectionRef, inView: ServicesSectionInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+})
 
   const openQuoteDrawer = useCallback(() => setIsQuoteDrawerOpen(true), [])
   const closeQuoteDrawer = useCallback(() => setIsQuoteDrawerOpen(false), [])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setLoadingProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 40);
 
-    return () => clearInterval(timer);
-  }, []);
+  useEffect(() => {
+    if (ServicesSectionInView) {
+      const timer = setTimeout(() => {
+        setShowMailingList(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [ServicesSectionInView]);
 
   const handleEnter = useCallback(() => {
     setShowMainContent(true);
@@ -106,12 +112,12 @@ const HomePage: React.FC = () => {
     >
       <Navbar />
       
-      <HeroIndex openQuoteDrawer={openQuoteDrawer} />
+      <HeroIndex showQuoteDrawer={openQuoteDrawer} />
       
       <main className="max-w-7xl mx-auto my-auto px-4 sm:px-6 lg:px-8">
         
         <AnimatedSection>
-          <div id="services-section" className="py-24">
+          <div id="services-section" className="py-24" ref={servicesSectionRef}>
             <LuxFinoServices />
           </div>
         </AnimatedSection>
@@ -146,6 +152,11 @@ const HomePage: React.FC = () => {
           <QuoteRequestDrawer isOpen={isQuoteDrawerOpen} onClose={closeQuoteDrawer} />
         )}
       </AnimatePresence>
+
+      <MailingListDrawer 
+        isOpen={showMailingList} 
+        onClose={() => setShowMailingList(false)} 
+      />
     </motion.div>
   )
 }

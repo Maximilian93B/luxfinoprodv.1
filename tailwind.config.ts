@@ -22,6 +22,13 @@ const config: Config = {
         luxice: '#6B6B6B',
         luxcopper: '#E0D6C8',
       },
+      zIndex: {
+        'navigation': '50',
+        'modal-backdrop': '100',
+        'modal': '110',
+        'drawer-backdrop': '120',
+        'drawer': '130',
+      }
     },
   },
   plugins: [
