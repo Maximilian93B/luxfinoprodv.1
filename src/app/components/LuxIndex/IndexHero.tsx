@@ -117,7 +117,7 @@ const ServiceDrawer = ({ service, isExpanded, toggleExpand, isMobile }: { servic
   )
 }
 
-export default function HeroIndex({ openQuoteDrawer }: { openQuoteDrawer: () => void }) {
+export default function HeroIndex({ showQuoteDrawer }: { showQuoteDrawer: () => void }) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
   const [isMobile, setIsMobile] = useState(false)
 
