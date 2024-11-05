@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import EventsWeddingsCateringHeroSection from '../components/luxCatering/CaterHeroSec';
 import LuxFinoEventsShowcase from '../components/luxCatering/CateringShowcase';
 import WeddingPackagesSection from '../components/luxCatering/SalesSection';
-import Gallery from '../components/Gallery';
+import Gallery from '../components/luxCatering/Gallery';
 import ReviewsSection from '../components/luxCatering/CaterReviews';
 import EventBookingCTA from '../components/luxCatering/CaterCTA';
 

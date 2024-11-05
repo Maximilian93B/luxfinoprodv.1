@@ -22,7 +22,7 @@ export default function WeddingPackagesSection({
   reviewAuthor = "Sarah & James, Newlyweds"
 }: SalesSectionProps) {
   return (
-    <section className="bg-gradient-to-b from-luxsand to-luxpearl text-luxpearl py-8 sm:py-24">
+    <section className="bg-white text-luxcopper py-8 sm:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="flex flex-col lg:flex-row items-center"
@@ -64,7 +64,7 @@ export default function WeddingPackagesSection({
                 ].map((item, index) => (
                   <li key={index} 
                   className="flex items-center">
-                    <div className="w-2 h-2 bg-luxpearl rounded-full mr-3" />
+                    <div className="w-2 h-2 bg-luxcedar rounded-full mr-3" />
                     <span className="text-base text-luxcedar sm:text-lg">{item}</span>
                   </li>
                 ))}
@@ -75,12 +75,12 @@ export default function WeddingPackagesSection({
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.5 }}
             >
-              <div className="relative bg-luxsand/30 rounded-lg p-6 sm:p-8">
-                <Quote className="absolute top-3 left-3 w-8 h-8 sm:w-10 sm:h-10 text-luxcedar opacity-50" />
-                <p className="relative z-10 text-lg text-luxcedar sm:text-xl italic mb-4 sm:mb-6 text-center">
+              <div className="relative bg-gray-400 rounded-lg p-4 sm:p-6 md:p-8 text-luxcedar">
+                <Quote className="absolute top-2 sm:top-3 left-2 sm:left-3 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10r opacity-50" />
+                <p className="relative z-10 text-base sm:text-lg md:text-xl italic mb-3 sm:mb-4 md:mb-6 text-center pl-4 sm:pl-6">
                   {reviewQuote}
                 </p>
-                <p className="text-right font-semibold text-base text-luxcedar sm:text-lg">— {reviewAuthor}</p>
+                <p className="text-right font-semibold text-sm sm:text-base md:text-lg">— {reviewAuthor}</p>
               </div>
             </motion.div>
           </div>

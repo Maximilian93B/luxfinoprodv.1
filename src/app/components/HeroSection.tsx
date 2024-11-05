@@ -117,7 +117,7 @@ export default function Component() {
         >
           <button
             onClick={handleScroll}
-            className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-luxpearl bg-luxocean/80 rounded-full hover:bg-luxcopper duration-300 focus:outline-none focus:ring-2 focus:ring-luxcopper focus:ring-opacity-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+            className="px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-luxpearl bg-black rounded-full hover:bg-luxcopper duration-300 focus:outline-none focus:ring-2 focus:ring-luxcopper focus:ring-opacity-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
             aria-label="Explore LuxRemote"
           >
             Discover LuxRemote
@@ -128,10 +128,10 @@ export default function Component() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 space-y-4 sm:space-y-6"
+          className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 space-y-4 sm:space-y-6 flex flex-col items-center"
         >
-          <div className="w-px h-16 sm:h-24 bg-luxsand opacity-50" />
-          <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 text-luxsand animate-bounce" />
+          
+          <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 mt-2  text-luxsand animate-bounce" />
         </motion.div>
       </div>
 

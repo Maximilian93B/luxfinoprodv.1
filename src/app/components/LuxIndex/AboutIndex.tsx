@@ -58,7 +58,7 @@ export default function LuxFinoServices() {
   }, [])
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 rounded-2xl shadow-2xl">
+    <section className="py-24 px-4 sm:px-6 lg:px-8  bg-transparent">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           className="text-5xl md:text-6xl font-playfair font-light mb-16 text-center text-luxcedar"
@@ -199,7 +199,7 @@ export default function LuxFinoServices() {
               e.preventDefault();
               document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+            className="relative btn px-8 sm:px-8 sm:py-2 bg-black text-luxpearl font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >

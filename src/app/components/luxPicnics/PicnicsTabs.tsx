@@ -254,7 +254,7 @@ const PicnicsSection: React.FC = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Link 
-              href="#book-now"
+              href="/bookings"
               className="inline-block px-6 py-3 bg-luxcopper text-luxcedar text-base md:text-lg rounded-full hover:bg-luxnavy hover:text-white transition-all duration-300 shadow-md tracking-wide"
             >
               Reserve Your Luxury Picnic

@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'  
+import Link from 'next/link'    
 
 interface HeroSectionProps {
   quote: string
@@ -43,7 +44,7 @@ export default function PicnicHero({
           className="transition-transform duration-300 ease-out hover:scale-105"
         />
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-luxcopper/40 to-luxpearl/40"
+          className="absolute inset-0 bg-gradient-to-b from-luxcopper/20 to-luxpearl/20"
           style={{ opacity }}
         ></motion.div>
       </motion.div>
@@ -59,7 +60,7 @@ export default function PicnicHero({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl sm:text-6xl md:text-7xl font-bold text-luxcedar mb-4 font-playfair"
+            className="text-5xl sm:text-6xl md:text-7xl font-bold text-luxpearl mb-4 font-playfair"
           >
             Lux Picnics
           </motion.h1>
@@ -82,7 +83,7 @@ export default function PicnicHero({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl sm:text-2xl md:text-3xl text-luxcedar/80 font-medium mb-6 max-w-3xl font-playfair italic"
+              className="text-xl sm:text-2xl md:text-3xl text-luxcedar font-medium mb-6 max-w-3xl font-playfair italic"
             >
               &quot;{quote}&quot;
             </motion.h3>
@@ -94,7 +95,7 @@ export default function PicnicHero({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-lg sm:text-xl text-luxcedar/80 mb-8 max-w-2xl font-avenir"
+            className="text-lg sm:text-xl text-luxcedar mb-8 max-w-2xl font-avenir"
           >
             {subtitle}
           </motion.p>
@@ -107,14 +108,17 @@ export default function PicnicHero({
             transition={{ duration: 0.8, delay: 1 }}
             className="space-x-4"
           >
-            <motion.a
-              href="#contact"
-              className="inline-block bg-luxpearl text-luxnavy font-semibold px-8 py-4 rounded-full hover:bg-luxgold hover:text-white transition-all duration-300 text-lg font-avenir"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Book Now
-            </motion.a>
+            <motion.div className="inline-block">
+              <Link href="/bookings">
+                <motion.span
+                  className="inline-block bg-luxpearl text-luxnavy font-semibold px-8 py-4 rounded-full hover:bg-luxgold hover:text-white transition-all duration-300 text-lg font-avenir"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Book Now
+                </motion.span>
+              </Link>
+            </motion.div>
             <motion.a
               href="#how-it-works"
               className="inline-block border-2 bg-luxcedar border-luxcedar text-luxpearl font-semibold px-8 py-4 rounded-full hover:bg-luxcedar hover:text-luxnavy transition-all duration-300 text-lg font-avenir"

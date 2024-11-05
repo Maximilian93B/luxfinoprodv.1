@@ -22,8 +22,7 @@ export default function EventsWeddingsCateringHeroSection({
   chefTitle = "Crafting memorable experiences through innovative cuisine"
 }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-luxsand to-luxpearl overflow-hidden flex items-center justify-center">
-      <div className="absolute inset-0 opacity-5 bg-luxsand" />
+    <section className="relative min-h-screen bg-white overflow-hidden flex items-center justify-center">
       <div className="container mx-auto px-4 py-12 sm:py-24">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24">
           {/* Hero Text Content */}
@@ -53,7 +52,7 @@ export default function EventsWeddingsCateringHeroSection({
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <motion.button
-                className="rounded-full font-semibold text-lg bg-luxsand text-luxpearl px-8 py-4 shadow-lg hover:bg-luxforest hover:shadow-xl transition-all duration-300"
+                className="rounded-full font-semibold text-lg bg-black text-luxpearl px-8 py-4 shadow-lg hover:bg-luxforest hover:shadow-xl transition-all duration-300"
               >
                 Plan Your Event
               </motion.button>

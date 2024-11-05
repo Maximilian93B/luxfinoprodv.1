@@ -47,7 +47,7 @@ const AllInclusiveExperience: React.FC = () => {
   }
 
   return (
-    <section className="py-32 bg-gradient-to-b from-luxocean to-luxnavy text-luxpearl overflow-hidden">
+    <section className="py-32 bg-white text-luxcedar overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
           className="absolute top-0 left-0 w-96 h-96 bg-luxgold opacity-10 rounded-full blur-3xl"
@@ -94,7 +94,7 @@ const AllInclusiveExperience: React.FC = () => {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className="bg-luxpearl/5 p-6 rounded-2xl backdrop-blur-lg border border-luxpearl/10 hover:border-luxgold/30 transition-all duration-300 flex flex-col items-center text-center"
+              className="bg-luxpearl/5 p-6 rounded-2xl backdrop-blur-lg border border-luxcedar/10 hover:border-luxgold/30 transition-all duration-300 flex flex-col items-center text-center"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -108,7 +108,7 @@ const AllInclusiveExperience: React.FC = () => {
                 {service.icon}
               </motion.div>
               <h3 className="text-xl font-playfair mb-2">{service.title}</h3>
-              <p className="text-sm font-avenir text-luxpearl/80">{service.description}</p>
+              <p className="text-sm font-avenir text-luxcedar">{service.description}</p>
             </motion.div>
           ))}
         </div>

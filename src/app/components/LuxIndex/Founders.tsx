@@ -77,7 +77,7 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
 
 export default function OwnerFounderSection() {
   return (
-    <section className="py-32 bg-luxpearl rounded-2xl">
+    <section className="py-32 bg-transparent rounded-2xl">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           className="text-5xl md:text-6xl font-bold mb-12 text-center font-playfair text-luxnavy"
