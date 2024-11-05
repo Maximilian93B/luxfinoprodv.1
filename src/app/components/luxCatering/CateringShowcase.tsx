@@ -48,7 +48,7 @@ export default function LuxFinoEventsShowcase() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-luxpearl to-luxpsand1 sm:py-16 lg:py-24">
+    <div className="bg-white sm:py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-luxcedar text-center mb-10 sm:mb-14 lg:mb-16">
           Unforgettable Events, Exquisite Catering
@@ -92,7 +92,7 @@ export default function LuxFinoEventsShowcase() {
                 <button
                   key={index}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === activeIndex ? 'bg-luxpearl w-8' : 'bg-luxpearl/40 hover:bg-luxpearl/60'
+                    index === activeIndex ? 'bg-luxcedar w-8' : 'bg-luxcedar/40 hover:bg-luxcedar/60'
                   }`}
                   onClick={() => setActiveIndex(index)}
                 />
@@ -101,7 +101,7 @@ export default function LuxFinoEventsShowcase() {
           </div>
           
           <div className="lg:w-1/2 space-y-8">
-            <div className="grid grid-cols-2 gap-6 bg-luxpearl rounded-xl p-8 shadow-lg">
+            <div className="grid grid-cols-2 gap-6 bg-white rounded-xl p-8 shadow-lg">
               <div className="text-center">
                 <div className="text-4xl sm:text-5xl font-bold text-luxcedar mb-2">100+</div>
                 <div className="text-base sm:text-lg text-luxcedar font-semibold">Events Catered</div>
@@ -115,14 +115,14 @@ export default function LuxFinoEventsShowcase() {
             </div>
             
             <div className="bg-luxpearl rounded-xl shadow-lg overflow-hidden">
-              <div className="bg-luxsand text-luxpearl py-4 px-6">
+              <div className="bg-black text-luxpearl py-4 px-6">
                 <h3 className="text-xl sm:text-2xl font-bold">Our Event Services</h3>
               </div>
               <div className="p-6">
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {eventSpecialties.map((specialty, index) => (
                     <li key={index} className="flex items-center">
-                      <div className="w-2 h-2 bg-luxsand rounded-full mr-3" />
+                      <div className="w-2 h-2 bg-black rounded-full mr-3" />
                       <span className="text-sm sm:text-base text-luxcedar">{specialty}</span>
                     </li>
                   ))}
@@ -130,7 +130,7 @@ export default function LuxFinoEventsShowcase() {
               </div>
             </div>
             <div className="flex justify-center py-8">
-            <button className="w-full rounded-xl bg-luxsand hover:bg-luxforest text-luxpearl text-lg sm:text-xl py-4 transition-colors duration-300 shadow-lg hover:shadow-xl">
+            <button className="w-full rounded-xl bg-black hover:bg-luxforest text-luxpearl text-lg sm:text-xl py-4 transition-colors duration-300 shadow-lg hover:shadow-xl">
               Request a Custom Quote
             </button>
             </div>

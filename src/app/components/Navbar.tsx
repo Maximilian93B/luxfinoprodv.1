@@ -33,7 +33,7 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar backdrop-blur-md shadow-lg"
+      className="fixed top-0 left-0 right-0 z-50 bg-white text-luxcedar backdrop-blur-md shadow-lg"
     >
       <div className="container mx-auto px-6 py-2 flex justify-between items-center">
         <Link href="/" className="flex-shrink-0">
@@ -44,9 +44,9 @@ export default function Navbar() {
             height={isScrolled ? 150 : 150}
             priority
             quality={100}
-            className="w-auto transition-all duration-300 brightness-0 invert"
+            className="w-auto transition-all duration-300 "
             style={{
-              height: isScrolled ? '72px' : '72px',
+              height: isScrolled ? '60px' : '60px',
               objectFit: 'contain',
             }}
           />
@@ -57,7 +57,7 @@ export default function Navbar() {
             <Link 
               key={item.href}
               href={item.href} 
-              className="font-avenir text-luxpearl hover:text-luxocean transition-all duration-300 text-xs uppercase tracking-widest border-b-2 border-transparent hover:border-luxocean"
+              className="font-avenir text-luxcedar hover:text-luxocean transition-all duration-300 text-xs uppercase tracking-widest border-b-2 border-transparent hover:border-luxocean"
             >
               {item.label}
             </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-luxpearl hover:text-luxocean transition-all duration-300 transform hover:scale-110"
+              className="text-luxcedar hover:text-luxocean transition-all duration-300 transform hover:scale-110"
             >
               <Icon size={16} />
             </a>
@@ -86,7 +86,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="lg:hidden text-luxpearl hover:text-luxocean transition-colors duration-300"
+          className="lg:hidden text-luxcedar hover:text-luxocean transition-colors duration-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X size={24} /> : <MoreHorizontal size={24} />}
@@ -100,14 +100,14 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxpearl backdrop-blur-md shadow-lg"
+            className="lg:hidden absolute top-full left-0 right-0 bg-white text-luxcedar backdrop-blur-md shadow-lg"
           >
             <div className="container mx-auto py-6 px-8 space-y-6 flex flex-col items-center">
               {menuItems.map((item) => (
                 <Link 
                   key={item.href}
                   href={item.href} 
-                  className="text-center py-2 font-avenir text-luxpearl font-medium hover:text-luxocean transition-all duration-300 text-lg hover:-translate-x-2"
+                  className="text-center py-2 font-avenir text-luxcedar font-medium hover:text-luxocean transition-all duration-300 text-lg hover:-translate-x-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
@@ -115,7 +115,7 @@ export default function Navbar() {
               ))}
               <a 
                 href="tel:+18005893466" 
-                className="text-center py-2 font-playfair font-medium text-luxpearl hover:text-luxocean transition-colors duration-300 text-lg flex items-center space-x-2"
+                className="text-center py-2 font-playfair font-medium text-luxcedar hover:text-luxocean transition-colors duration-300 text-lg flex items-center space-x-2"
               >
                 <Phone size={20} />
                 <span>+1 (800) 589-3466</span>
@@ -127,7 +127,7 @@ export default function Navbar() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-luxpearl hover:text-luxocean transition-colors duration-300"
+                    className="text-luxcedar hover:text-luxocean transition-colors duration-300"
                   >
                     <Icon size={22} />
                   </a>

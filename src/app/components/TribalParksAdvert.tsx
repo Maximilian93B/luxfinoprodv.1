@@ -58,7 +58,7 @@ const TribalParksSection: React.FC = () => {
         >
           <Link
             href="#learn-more"
-            className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+            className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-black text-luxpearl font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
           >
             Discover Our Commitment
           </Link>

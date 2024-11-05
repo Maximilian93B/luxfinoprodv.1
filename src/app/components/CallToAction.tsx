@@ -6,7 +6,7 @@ import { Calendar, Briefcase, Sparkles } from 'lucide-react'
 
 const SimpleBooking: React.FC = () => {
   return (
-    <section className="py-24 bg-luxocean text-luxpearl">
+    <section className="py-24 bg-white text-luxcedar">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <motion.h2 
           className="text-4xl sm:text-5xl md:text-6xl font-light text-center mb-8 font-playfair leading-tight"
@@ -57,7 +57,7 @@ const SimpleBooking: React.FC = () => {
           >
             <a 
               href="/book-now" 
-              className="inline-block px-4 py-2 bg-luxsand text-luxpearl rounded-full font-avenir text-lg sm:text-xl font-md hover:bg-luxpearl hover:text-luxcedar transition-all duration-300 shadow-md hover:shadow-xl"
+              className="inline-block px-4 py-2 bg-black text-luxpearl rounded-full font-avenir text-lg sm:text-xl font-md hover:bg-luxpearl hover:text-luxcedar transition-all duration-300 shadow-md hover:shadow-xl"
             >
               Book Your LuxRemote Experience
             </a>

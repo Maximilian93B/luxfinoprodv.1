@@ -45,7 +45,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           <p className="text-luxcedar/80 mb-8 font-avenir leading-relaxed text-xl">{description}</p>
           <Link href={linkHref}>
             <motion.button 
-              className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+              className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-black text-luxpearl font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -60,7 +60,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
 export default function ServiceSections() {
   return (
-    <section className=" bg-luxpearl  rounded-xl py-24">
+    <section className=" bg-transparent  rounded-xl py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

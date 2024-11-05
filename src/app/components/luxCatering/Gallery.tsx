@@ -27,7 +27,7 @@ const Gallery: FC<GalleryProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="  py-8 mb-4">
+    <div className="  py-8 mb-4 bg-white">
       {/* Header and Sales Title */}
       <div className="text-center mb-8 px-4">
         <h1 className="text-5xl font-bold text-luxcedar">{headerTitle}</h1>
@@ -37,7 +37,7 @@ const Gallery: FC<GalleryProps> = ({
       {/* Centered Toggleable Button */}
       <div className="flex justify-center mb-6">
         <button
-          className="btn btn-lg flex items-center bg-luxsand text-luxpearl hover:text-luxcedar transition-colors duration-300 shadow-xl rounded-full px-6 py-3"
+          className="btn btn-lg flex items-center bg-black text-luxpearl hover:text-luxcpearl transition-colors duration-300 shadow-xl rounded-full px-6 py-3"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? '' : 'View our Creations'}

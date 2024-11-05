@@ -2,7 +2,6 @@
 
 import React, { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import dynamic from 'next/dynamic'
 import Navbar from './components/Navbar'
 import HeroIndex from './components/LuxIndex/IndexHero'
 import LuxFinoServices from './components/LuxIndex/AboutIndex'
@@ -14,22 +13,6 @@ import LoadingScreen from './components/LoadingScreen'
 import MailingListDrawer from './components/LuxIndex/mailing-list-drawer'
 import { useInView } from 'react-intersection-observer'
 
-
-const QuoteRequestDrawer = dynamic(() => import('./components/FormDrawer'), {
-  ssr: false,
-  loading: () => (
-    <motion.div 
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-luxnavy bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
-    >
-      <div className="bg-luxsand p-6 rounded-lg shadow-2xl">
-        <p className="text-luxnavy font-avenir text-lg">Loading quote request form...</p>
-      </div>
-    </motion.div>
-  )
-})
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -105,7 +88,7 @@ const HomePage: React.FC = () => {
 
   return (
     <motion.div 
-      className="bg-gradient-to-b from-luxcopper to-luxpearl min-h-screen overflow-hidden"
+      className="bg-white min-h-screen overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={fadeInVariants}
@@ -146,13 +129,7 @@ const HomePage: React.FC = () => {
       </main>
       
       <Footer />
-      
-      <AnimatePresence mode="sync">
-        {isQuoteDrawerOpen && (
-          <QuoteRequestDrawer isOpen={isQuoteDrawerOpen} onClose={closeQuoteDrawer} />
-        )}
-      </AnimatePresence>
-
+     
       <MailingListDrawer 
         isOpen={showMailingList} 
         onClose={() => setShowMailingList(false)} 

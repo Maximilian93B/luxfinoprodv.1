@@ -62,7 +62,7 @@ export default function ReviewsSection({
             <p className="text-luxcedar italic mb-4 text-xl">&ldquo;{review.text}&rdquo;</p>
             <div className="flex justify-between items-center">
               <p className="text-luxcedar font-bold">- {review.name}</p>
-              <span className="text-luxsand text-sm font-medium px-3 py-1 bg-luxpearl rounded-full">{review.eventType}</span>
+              <span className="text-black text-sm font-medium px-3 py-1 bg-luxpearl rounded-full">{review.eventType}</span>
             </div>
           </div>
         ))}
