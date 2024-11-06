@@ -146,7 +146,7 @@ export default function LuxFinoServices() {
                       className="transition-transform duration-500 ease-in-out transform hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-luxice/70 via-luxocean/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-luxice/20 via-luxocean/20 to-transparent" />
                     <motion.div 
                       className="absolute inset-0 flex flex-col justify-end p-8 text-luxpearl z-10"
                       initial={{ y: 50, opacity: 0 }}

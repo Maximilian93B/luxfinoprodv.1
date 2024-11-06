@@ -8,7 +8,7 @@ import Link from 'next/link'
 const TribalParksSection: React.FC = () => {
   
   return (
-    <section className="bg-gradient-to-b from-luxpearl to-luxcopper rounded-3xl shadow-2xl py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+    <section className="bg-transparent rounded-3xl  py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
       <div className="container mx-auto text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ const TribalParksSection: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-luxcharcoal"
+          className="text-luxcedar font-semibold text-md"
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -64,13 +64,6 @@ const TribalParksSection: React.FC = () => {
           </Link>
         </motion.div>
       </div>
-
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D9B88F] to-[#CB7D55] text-luxcedar"
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.5, delay: 1.5 }}
-      />
     </section>
   )
 }
