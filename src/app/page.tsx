@@ -50,7 +50,6 @@ const AnimatedSection: React.FC<{ children: React.ReactNode }> = ({ children }) 
 }
 
 const HomePage: React.FC = () => {
-  const [isQuoteDrawerOpen, setIsQuoteDrawerOpen] = useState(false)
   const [showMainContent, setShowMainContent] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [showMailingList, setShowMailingList] = useState(false)
@@ -60,10 +59,6 @@ const HomePage: React.FC = () => {
     triggerOnce: true,
     threshold: 0.3,
 })
-
-  const openQuoteDrawer = useCallback(() => setIsQuoteDrawerOpen(true), [])
-  const closeQuoteDrawer = useCallback(() => setIsQuoteDrawerOpen(false), [])
-
 
   useEffect(() => {
     if (ServicesSectionInView) {
@@ -95,7 +90,7 @@ const HomePage: React.FC = () => {
     >
       <Navbar />
       
-      <HeroIndex showQuoteDrawer={openQuoteDrawer} />
+      <HeroIndex />
       
       <main className="max-w-7xl mx-auto my-auto py-12 sm:px-6 lg:px-8">
         

@@ -52,7 +52,7 @@ const services: ServiceOption[] = [
   {
     id: 'luxpicnic',
     title: 'Lux Picnics',
-    description: 'Experience gourmet dining in Tofino\'s most breathtaking locations.',
+    description: 'Experience gourmet dining in Tofino&apos;s most breathtaking locations.',
     icon: Sparkles,
     image: '/LuxPicMain.jpeg',
     color: 'bg-luxcopper',
@@ -393,7 +393,7 @@ const BookingConfirmation = ({
         </div>
       </div>
       <p className="text-center text-luxcedar/70 italic">
-        Your LuxFino experience has been crafted with care. We'll be in touch shortly to finalize the details and ensure every moment is perfect.
+        Your LuxFino experience has been crafted with care. We&apos;ll be in touch shortly to finalize the details and ensure every moment is perfect.
       </p>
     </motion.div>
   );
