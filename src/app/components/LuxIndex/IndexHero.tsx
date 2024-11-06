@@ -1,13 +1,12 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
-import { ChevronDown, Mountain, Tent, ChefHat } from 'lucide-react'
+import { ChevronDown, Mountain, Tent, ChefHat, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Particles from "react-tsparticles"
 import { loadSlim } from "tsparticles-slim"
 import type { Engine } from "tsparticles-engine"
 
-// Custom hook for media query
 const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false)
 
@@ -24,7 +23,6 @@ const useMediaQuery = (query: string) => {
   return matches
 }
 
-// Optimized particle options
 const particlesOptions = {
   fullScreen: { enable: false },
   background: { color: { value: "transparent" } },
@@ -36,37 +34,41 @@ const particlesOptions = {
       enable: true,
       outModes: { default: "bounce" as const },
       random: false,
-      speed: 0.3,
+      speed: 0.4,
       straight: false,
     },
     number: {
-      density: { enable: true, area: 800 },
-      value: 50,
+      density: { enable: true, area: 1200 },
+      value: 150,
     },
-    opacity: { value: 0.2 },
+    opacity: { value: 0.3 },
     shape: { type: "circle" },
-    size: { value: { min: 1, max: 2 } },
+    size: { value: { min: 0.5, max: 1.7 } },
   },
   detectRetina: true,
 }
 
-export default function LuxFinoLandingEnhanced() {
-  const [activeService, setActiveService] = useState(0)
+const Divider = () => (
+  <div className="hidden lg:flex flex-col items-center justify-center px-2">
+    <div className="w-px h-16 bg-white opacity-30"></div>
+    <div className="w-3 h-3 rounded-full bg-white opacity-50 my-2"></div>
+    <div className="w-px h-16 bg-white opacity-30"></div>
+  </div>
+)
+
+export default function LuxFinoLandingLargerCards() {
   const [parallaxOffset, setParallaxOffset] = useState(0)
+  const [expandedCard, setExpandedCard] = useState<number | null>(null)
   const parallaxRef = useRef(null)
   const controls = useAnimation()
-  const isMobile = useMediaQuery('(max-width: 767px)')
+  const isMobile = useMediaQuery('(max-width: 1023px)')
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveService((prev) => (prev + 1) % 3)
-    }, 5000)
-
     const handleScroll = () => {
       if (parallaxRef.current && !isMobile) {
         const scrollPosition = window.pageYOffset
-        setParallaxOffset(scrollPosition * 0.3) // Reduced parallax effect
-        controls.start({ y: scrollPosition * 0.2 })
+        setParallaxOffset(scrollPosition * 0.3)
+        controls.start({ y: scrollPosition * 0.15 })
       }
     }
 
@@ -75,7 +77,6 @@ export default function LuxFinoLandingEnhanced() {
     }
 
     return () => {
-      clearInterval(interval)
       if (!isMobile) {
         window.removeEventListener('scroll', handleScroll)
       }
@@ -88,31 +89,31 @@ export default function LuxFinoLandingEnhanced() {
 
   const services = [
     {
-      title: 'Lux Picnics',
-      description: 'Exquisite culinary experiences with breathtaking ocean views.',
-      icon: <Mountain className="w-6 h-6 md:w-8 md:h-8 mb-2 md:mb-4" />,
-      image: '/LuxFinoMain.jpg',
-      href: '/lux-picnics',
-    },
-    {
       title: 'Lux Remote',
       description: 'Luxury glamping retreats nestled in nature\'s embrace.',
-      icon: <Tent className="w-6 h-6 md:w-8 md:h-8 mb-2 md:mb-4" />,
-      image: '/LuxPicMain.jpeg',
+      icon: <Tent className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
+      image: '/LuxFinoMain.jpg',
       href: '/lux-remote',
     },
     {
-      title: 'Elopments , Catering and Events ',
+      title: 'Lux Picnics',
+      description: 'Exquisite culinary experiences with breathtaking ocean views.',
+      icon: <Mountain className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
+      image: '/LuxPicMain.jpeg',
+      href: '/lux-picnics',
+    },
+    {
+      title: 'Elopments, Weddings & Events',
       description: 'Bespoke culinary experiences crafted by seasoned chefs.',
-      icon: <ChefHat className="w-6 h-6 md:w-8 md:h-8 mb-2 md:mb-4" />,
+      icon: <ChefHat className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
       image: '/WeddingPackages.JPG',
       href: '/in-house-chef',
     },
+
   ]
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
-      {/* Optimized Background Image */}
       <div
         ref={parallaxRef}
         className="absolute inset-0"
@@ -123,16 +124,15 @@ export default function LuxFinoLandingEnhanced() {
       >
         <Image
           src="/LuxFinoMain.jpg"
-          alt="Background landscape"
+          alt="Expansive Tofino landscape"
           fill
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
           priority
         />
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
 
-      {/* Conditional Particles Rendering */}
       {!isMobile && (
         <Particles
           id="tsparticles"
@@ -142,105 +142,194 @@ export default function LuxFinoLandingEnhanced() {
         />
       )}
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-12 md:py-24 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl md:text-7xl font-extrabold mb-8 md:mb-10 tracking-tight mt-16"
+      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 lg:px-8 py-8 lg:py-12 text-center">
+        <motion.div 
+          className="flex flex-col items-center justify-center"
+          animate={{ 
+            marginTop: expandedCard !== null ? "-1rem" : "0rem",
+            transition: { duration: 0.3 }
+          }}
         >
-          LuxFino
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="text-lg md:text-2xl mb-12 md:mb-16 max-w-xl md:max-w-2xl px-4"
-        >
-          Immerse yourself in the beauty of Tofino with our exclusive luxury experiences
-        </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-5xl lg:text-7xl font-extrabold mb-4 lg:mb-6 tracking-tight leading-none"
+          >
+            LuxFino
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            className="text-lg lg:text-2xl mb-8 lg:mb-10 max-w-xl lg:max-w-2xl leading-relaxed"
+          >
+            Immerse yourself in the untamed beauty of Tofino with our exclusive luxury experiences
+          </motion.p>
+        </motion.div>
 
-        {/* Services Showcase */}
-        <div id="services" className="w-full max-w-md md:max-w-4xl px-4 md:px-6">
-          <AnimatePresence>
+        <div id="services" className="w-full max-w-[1200px] mb-8 lg:mb-10 flex-grow flex items-center">
+          <div className="flex flex-col lg:flex-row justify-center items-stretch gap-6 lg:gap-4 w-full">
             {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ 
-                  opacity: activeService === index ? 1 : 0.3, 
-                  y: 0,
-                  transition: { duration: 0.6, ease: "easeOut" }
-                }}
-                exit={{ opacity: 0, y: -30, transition: { duration: 0.4 } }}
-                className="mb-8 md:mb-12"
-              >
-                <Link href={service.href} className="block">
+              <React.Fragment key={service.title}>
+                <motion.div
+                  className="relative w-full lg:w-1/3"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
                   <motion.div
-                    className="flex flex-col md:flex-row items-center bg-white bg-opacity-10 rounded-lg overflow-hidden cursor-pointer relative p-2"
-                    whileHover={{ 
-                      scale: isMobile ? 1 : 1.03,
-                      transition: { duration: 0.2, ease: "easeInOut" }
+                    className="block w-full rounded-xl overflow-hidden shadow-lg relative group cursor-pointer"
+                    onHoverStart={() => setExpandedCard(index)}
+                    onHoverEnd={() => setExpandedCard(null)}
+                    animate={{ 
+                      height: expandedCard === index ? "400px" : "350px",
+                      transition: { duration: 0.3 }
                     }}
-                    whileTap={{ scale: 0.98 }}
                   >
-                    <div className="w-full md:w-1/2 relative h-56 md:h-72">
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30"
+                      animate={{
+                        opacity: expandedCard === index ? 0.8 : 0.6
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <div className="absolute inset-0">
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 1023px) 100vw, 33vw"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                         priority
                       />
-                      <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out group-hover:opacity-0"></div>
                     </div>
-                    <div className="w-full md:w-1/2 p-6 md:p-8 text-left">
-                      <h2 className="text-xl md:text-2xl font-bold mb-2 flex items-center">
+                    <motion.div 
+                      className="absolute inset-x-0 bottom-0 p-6 lg:p-8 text-center flex flex-col items-center justify-end h-full"
+                      animate={{
+                        y: expandedCard === index ? -8 : 0
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        animate={{
+                          y: expandedCard === index ? -10 : 0
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
                         {service.icon}
-                        <span className="ml-2">{service.title}</span>
-                      </h2>
-                      <p className="text-sm md:text-base text-gray-300">
+                        <h2 className="text-3xl lg:text-4xl font-bold mt-4">{service.title}</h2>
+                      </motion.div>
+                      <motion.p
+                        className="text-base lg:text-lg mt-4"
+                        animate={{
+                          opacity: expandedCard === index ? 1 : 0.8,
+                          y: expandedCard === index ? 0 : 10
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
                         {service.description}
-                      </p>
-                    </div>
+                      </motion.p>
+                      <motion.div
+                        className="mt-6 inline-flex items-center text-primary-500 font-semibold"
+                        animate={{
+                          opacity: expandedCard === index ? 1 : 0,
+                          y: expandedCard === index ? 0 : 10
+                        }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                      >
+                        <Link href={service.href} passHref>
+                          <span className="mr-2 text-lg">Explore</span>
+                          <ArrowRight className="w-5 h-5" />
+                        </Link>
+                      </motion.div>
+                    </motion.div>
                   </motion.div>
-                </Link>
-              </motion.div>
+                </motion.div>
+                {index < services.length - 1 && <Divider />}
+              </React.Fragment>
             ))}
-          </AnimatePresence>
+          </div>
         </div>
 
-        {/* CTA Button */}
-        <Link href="/book" className="inline-block">
-          <motion.div
-            whileHover={{ scale: isMobile ? 1 : 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-12 md:mt-16 px-8 md:px-10 py-4 bg-white text-black rounded-full font-semibold text-base md:text-lg transition-colors duration-300 hover:bg-gray-200"
-          >
-            Book Your Experience
-          </motion.div>
-        </Link>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          animate={{ 
-            y: [0, 10, 0],
-            opacity: [0.5, 1, 0.5],
-          }}
-          transition={{ 
-            repeat: Infinity, 
-            duration: 2,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <Link href="#services" className="block">
-            <ChevronDown className="w-6 h-6 md:w-8 md:h-8" />
+        <div className="flex flex-col items-center mt-8 lg:mt-12">
+          <Link href="/bookings" className="contents">
+            <motion.button
+              whileHover={{ scale: isMobile ? 1 : 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-6 lg:mt-8 px-12 py-4 mb-8 lg:mb-12 bg-white text-black rounded-full font-semibold text-lg lg:text-xl transition-all duration-300 hover:bg-gray-200 hover:shadow-lg"
+            >
+              Book Your Wild Experience
+            </motion.button>
           </Link>
-        </motion.div>
+
+          <motion.div
+            animate={{ 
+              y: [0, 8, 0],
+              opacity: [0.5, 1, 0.5],
+            }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 2,
+              ease: "easeInOut",
+            }}
+          >
+            <Link href="#services" passHref>
+              <ChevronDown className="w-8 h-8 lg:w-10 lg:h-10" />
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </div>
   )
 }
+{/* 
+
+    {
+      title: 'Lux Remote',
+      description: 'Luxury glamping retreats nestled in nature\'s embrace.',
+      icon: <Tent className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
+      image: '/LuxFinoMain.jpg',
+      href: '/lux-remote',
+    },
+    {
+      title: 'Lux Picnics',
+      description: 'Exquisite culinary experiences with breathtaking ocean views.',
+      icon: <Mountain className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
+      image: '/LuxPicMain.jpeg',
+      href: '/lux-picnics',
+    },
+    {
+      title: 'Elopments, Weddings & Events',
+      description: 'Bespoke culinary experiences crafted by seasoned chefs.',
+      icon: <ChefHat className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
+      image: '/WeddingPackages.JPG',
+      href: '/in-house-chef',
+    },
+
+
+    const particlesOptions = {
+  fullScreen: { enable: false },
+  background: { color: { value: "transparent" } },
+  fpsLimit: 60,
+  particles: {
+    color: { value: "#ffffff" },
+    move: {
+      direction: "none" as const,
+      enable: true,
+      outModes: { default: "bounce" as const },
+      random: false,
+      speed: 0.4,
+      straight: false,
+    },
+    number: {
+      density: { enable: true, area: 1200 },
+      value: 150,
+    },
+    opacity: { value: 0.3 },
+    shape: { type: "circle" },
+    size: { value: { min: 0.5, max: 1.7 } },
+  },
+  detectRetina: true,
+}
+*/}

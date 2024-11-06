@@ -52,7 +52,7 @@ const MailingListDrawer: React.FC<MailingListDrawerProps> = ({ isOpen, onClose }
             className="fixed right-0 h-[calc(100vh-4rem)] w-full sm:w-[90vw] md:w-[70vw] lg:w-[50vw] xl:w-[40vw] bg-luxpearl shadow-2xl z-drawer overflow-hidden flex flex-col scroll-smooth scrollbar-hide"
             style={{ top: `calc(${scrollY}px + 4rem)` }}
           >
-            <div className="relative w-full h-1/2 sm:h-2/3 overflow-hidden rounded-sm pointer-events-auto">
+            <div className="relative w-full h-1/2 bg-luxpearl bg-opacity-20 sm:h-2/3 overflow-hidden rounded-sm pointer-events-auto">
               <Image
                 src="/LuxCateringCard.JPG"
                 alt="LuxFino Culinary Experience"
@@ -68,11 +68,11 @@ const MailingListDrawer: React.FC<MailingListDrawerProps> = ({ isOpen, onClose }
                 <X className="h-6 w-6" />
               </button>
             </div>
-            <div className="flex-grow overflow-y-auto">
+            <div className="flex-grow overflow-y-auto bg-luxpearl">
               <div className="relative p-16 sm:p-16 flex flex-col space-y-8 mb-12">
-                <h2 className="text-5xl sm:text-4xl font-bold text-luxcedar">Join Our Exclusive Mailing List</h2>
+                <h2 className="text-5xl sm:text-4xl font-bold text-luxpearl">Join Our Exclusive Mailing List</h2>
                 
-                <p className="text-lg text-luxcedar">
+                <p className="text-lg text-luxpearl">
                   Be the first to experience LuxFino&apos;s culinary delights, receive exclusive offers, and enter our monthly giveaway for a chance to win an exquisite dining experience.
                 </p>
                 
