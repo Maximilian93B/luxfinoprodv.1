@@ -40,13 +40,13 @@ export default function Navbar() {
           <Image
             src="/Lux.Fino.Logo2.svg"
             alt="LuxFino Logo"
-            width={isScrolled ? 150 : 150}
-            height={isScrolled ? 150 : 150}
+            width={isScrolled ? 100 : 100}
+            height={isScrolled ? 100 : 100}
             priority
             quality={100}
             className="w-auto transition-all duration-300 "
             style={{
-              height: isScrolled ? '60px' : '60px',
+              height: isScrolled ? '72px' : '72px',
               objectFit: 'contain',
             }}
           />
@@ -57,7 +57,7 @@ export default function Navbar() {
             <Link 
               key={item.href}
               href={item.href} 
-              className="font-avenir text-luxcedar hover:text-luxocean transition-all duration-300 text-xs uppercase tracking-widest border-b-2 border-transparent hover:border-luxocean"
+              className="font-avenir text-luxcedar hover:text-luxocean transition-all duration-300 text-sm uppercase tracking-widest border-b-2 border-transparent hover:border-luxocean"
             >
               {item.label}
             </Link>
@@ -67,7 +67,7 @@ export default function Navbar() {
             className="bg-gradient-to-r from-luxcopper to-luxpearl text-luxcedar px-4 py-2 rounded-full font-avenir hover:opacity-90 transition-all duration-300 flex items-center space-x-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
           >
             <Phone size={14} />
-            <span className="font-playfair text-xs">+1 (800) 589-3466</span>
+            <span className="font-playfair text-sm">+1 (800) 589-3466</span>
           </a>
         </div>
 
