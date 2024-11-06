@@ -67,7 +67,7 @@ export default function Navbar() {
             className="bg-gradient-to-r from-luxcopper to-luxpearl text-luxcedar px-4 py-2 rounded-full font-avenir hover:opacity-90 transition-all duration-300 flex items-center space-x-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
           >
             <Phone size={14} />
-            <span className="font-playfair text-xs">+1 (800) 589-3466</span>
+            <span className="font-playfair text-sm">+1 (800) 589-3466</span>
           </a>
         </div>
 

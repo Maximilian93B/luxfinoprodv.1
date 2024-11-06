@@ -177,9 +177,9 @@ const OptionSelection = ({ currentService, selectedOption, setSelectedOption }: 
           whileTap={{ scale: 0.95 }}
         >
           <div>
-            {option.icon && <option.icon className={`w-8 h-8 mb-2 ${selectedOption === option.id ? 'text-luxgold' : 'text-luxnavy'}`} />}
-            <h3 className={`font-playfair text-xl mb-1 ${selectedOption === option.id ? 'text-white' : 'text-luxnavy'}`}>{option.title}</h3>
-            <p className={`text-sm mb-2 ${selectedOption === option.id ? 'text-white/90' : 'text-black/80'}`}>{option.description}</p>
+            {option.icon && <option.icon className={`w-8 h-8 mb-2 ${selectedOption === option.id ? 'text-luxcedar' : 'text-luxcedar'}`} />}
+            <h3 className={`font-playfair text-xl mb-1 ${selectedOption === option.id ? 'text-luxcedar' : 'text-luxcedar'}`}>{option.title}</h3>
+            <p className={`text-sm mb-2 ${selectedOption === option.id ? 'text-cedar/90' : 'text-black/80'}`}>{option.description}</p>
             {option.price && (
               <p className={`text-sm font-bold ${selectedOption === option.id ? 'text-luxgold' : 'text-luxnavy'}`}>{option.price} - {option.duration}</p>
             )}
@@ -241,7 +241,7 @@ const DateAndGuestsSelection = ({
         </select>
       </div>
       {selectedService === 'luxpicnic' && (
-        <div className="flex items-center bg-luxcedar p-3 rounded-lg shadow-md">
+        <div className="flex items-center bg-luxpearl p-3 rounded-lg shadow-md">
           <MapPin className="w-6 h-6 text-luxgold mr-3" />
           <select
             value={location}
@@ -405,7 +405,7 @@ export default function LuxFinoDynamicBooking() {
             {step > 1 && (
               <motion.button
                 onClick={prevStep}
-                className="px-8 py-3 bg-luxcedar text-luxpearl rounded-full hover:bg-white hover:text-luxcedar transition-colors shadow-md"
+                className="px-8 py-3 bg-luxpearl text-luxpearl rounded-full hover:bg-white hover:text-luxcedar transition-colors shadow-md"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -415,7 +415,7 @@ export default function LuxFinoDynamicBooking() {
             {step < 4 ? (
               <motion.button
                 onClick={nextStep}
-                className="px-8 py-3 bg-luxnavy text-luxcedar border border-luxcedar rounded-full  transition-colors shadow-md ml-auto"
+                className="px-8 py-3 bg-luxpearl text-luxcedar border border-luxcedar rounded-full  transition-colors shadow-md ml-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
