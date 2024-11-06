@@ -39,11 +39,11 @@ const particlesOptions = {
     },
     number: {
       density: { enable: true, area: 1200 },
-      value: 150,
+      value: 250,
     },
     opacity: { value: 0.3 },
     shape: { type: "circle" },
-    size: { value: { min: 0.5, max: 1.7 } },
+    size: { value: { min: 0.7, max: 1.5 } },
   },
   detectRetina: true,
 }
@@ -56,7 +56,7 @@ const Divider = () => (
   </div>
 )
 
-export default function LuxFinoLandingLargerCards() {
+export default function LuxFinoLandingDrawerCards() {
   const [parallaxOffset, setParallaxOffset] = useState(0)
   const [expandedCard, setExpandedCard] = useState<number | null>(null)
   const parallaxRef = useRef(null)
@@ -89,47 +89,52 @@ export default function LuxFinoLandingLargerCards() {
 
   const services = [
     {
-      title: 'Lux Remote',
-      description: 'Luxury glamping retreats nestled in nature\'s embrace.',
-      icon: <Tent className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
-      image: '/LuxFinoMain.jpg',
-      href: '/lux-remote',
-    },
-    {
       title: 'Lux Picnics',
-      description: 'Exquisite culinary experiences with breathtaking ocean views.',
-      icon: <Mountain className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
+      description: 'Exquisite culinary experiences with breathtaking ocean views. Indulge in gourmet delights while surrounded by Tofino\'s stunning landscapes.',
+      icon: <Mountain className="w-12 h-12 lg:w-16 lg:h-16" />,
       image: '/LuxPicMain.jpeg',
-      href: '/lux-picnics',
+      href: '/luxpicnic',
     },
     {
-      title: 'Elopments, Weddings & Events',
-      description: 'Bespoke culinary experiences crafted by seasoned chefs.',
-      icon: <ChefHat className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
-      image: '/WeddingPackages.JPG',
-      href: '/in-house-chef',
+      title: 'Lux Remote',
+      description: 'Luxury glamping retreats nestled in nature\'s embrace. Experience the wilderness in comfort and style, with all the amenities you need.',
+      icon: <Tent className="w-12 h-12 lg:w-16 lg:h-16" />,
+      image: '/LuxFinoMain.jpg',
+      href: '/luxremote',
     },
-
+    {
+      title: 'Event Catering & Elopement Packages',
+      description: 'Bespoke culinary experiences crafted by seasoned chefs. Enjoy personalized menus and exquisite dishes in the comfort of your accommodation.',
+      icon: <ChefHat className="w-12 h-12 lg:w-16 lg:h-16" />,
+      image: '/WeddingPackages.JPG',
+      href: '/luxcatering',
+    },
   ]
 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+    <div className="relative min-h-screen lg:min-h-[120vh] bg-black text-white overflow-hidden">
       <div
         ref={parallaxRef}
-        className="absolute inset-0"
+        className="absolute inset-0 h-full w-screen overflow-hidden"
         style={{
           transform: isMobile ? 'none' : `translateY(${parallaxOffset}px)`,
           transition: 'transform 0.1s ease-out',
         }}
       >
-        <Image
-          src="/LuxFinoMain.jpg"
-          alt="Expansive Tofino landscape"
-          fill
-          sizes="100vw"
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          priority
-        />
+        <div className="relative w-[180%] h-[120%] -left-[40%] -top-[10%]">
+          <Image
+            src="/LuxFinoMain.jpg"
+            alt="Expansive Tofino landscape"
+            fill
+            sizes="100vw"
+            style={{ 
+              objectFit: 'cover', 
+              objectPosition: 'center 0%',
+              transform: 'scale(0.85)',
+            }}
+            priority
+          />
+        </div>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
 
@@ -142,19 +147,19 @@ export default function LuxFinoLandingLargerCards() {
         />
       )}
 
-      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 lg:px-8 py-8 lg:py-12 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 lg:px-12 py-8 lg:py-24 text-center">
         <motion.div 
-          className="flex flex-col items-center justify-center"
+          className="hidden lg:flex flex-col items-center justify-center"
           animate={{ 
-            marginTop: expandedCard !== null ? "-1rem" : "0rem",
-            transition: { duration: 0.3 }
+            marginTop: expandedCard !== null ? "-2rem" : "0rem",
+            transition: { duration: 0.5 }
           }}
         >
           <motion.h1
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-5xl lg:text-7xl font-extrabold mb-4 lg:mb-6 tracking-tight leading-none"
+            className="text-4xl lg:text-7xl font-extrabold mb-2 lg:mb-3 tracking-tight leading-none"
           >
             LuxFino
           </motion.h1>
@@ -162,14 +167,20 @@ export default function LuxFinoLandingLargerCards() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="text-lg lg:text-2xl mb-8 lg:mb-10 max-w-xl lg:max-w-2xl leading-relaxed"
+            className="text-base lg:text-2xl mb-4 lg:mb-6 max-w-xl lg:max-w-2xl leading-relaxed px-4"
           >
             Immerse yourself in the untamed beauty of Tofino with our exclusive luxury experiences
           </motion.p>
         </motion.div>
 
-        <div id="services" className="w-full max-w-[1200px] mb-8 lg:mb-10 flex-grow flex items-center">
-          <div className="flex flex-col lg:flex-row justify-center items-stretch gap-6 lg:gap-4 w-full">
+        <div className="flex lg:hidden flex-col items-center justify-center mb-8">
+          <h1 className="text-4xl font-extrabold mb-2 tracking-tight leading-none">
+            LuxFino
+          </h1>
+        </div>
+
+        <div id="services" className="w-full max-w-[1600px] mb-8 lg:mb-20 flex-grow flex items-center">
+          <div className="flex flex-col lg:flex-row justify-center items-stretch gap-6 lg:gap-12 w-full">
             {services.map((service, index) => (
               <React.Fragment key={service.title}>
                 <motion.div
@@ -180,19 +191,20 @@ export default function LuxFinoLandingLargerCards() {
                 >
                   <motion.div
                     className="block w-full rounded-xl overflow-hidden shadow-lg relative group cursor-pointer"
-                    onHoverStart={() => setExpandedCard(index)}
-                    onHoverEnd={() => setExpandedCard(null)}
+                    onClick={() => isMobile && setExpandedCard(expandedCard === index ? null : index)}
+                    onHoverStart={() => !isMobile && setExpandedCard(index)}
+                    onHoverEnd={() => !isMobile && setExpandedCard(null)}
                     animate={{ 
-                      height: expandedCard === index ? "400px" : "350px",
-                      transition: { duration: 0.3 }
+                      height: expandedCard === index ? "400px" : "280px",
+                      transition: { duration: 0.5, ease: "easeInOut" }
                     }}
                   >
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30"
                       animate={{
-                        opacity: expandedCard === index ? 0.8 : 0.6
+                        opacity: expandedCard === index ? 0.9 : 0.6
                       }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.5 }}
                     />
                     <div className="absolute inset-0">
                       <Image
@@ -205,42 +217,51 @@ export default function LuxFinoLandingLargerCards() {
                       />
                     </div>
                     <motion.div 
-                      className="absolute inset-x-0 bottom-0 p-6 lg:p-8 text-center flex flex-col items-center justify-end h-full"
+                      className="absolute inset-x-0 bottom-0 p-4 lg:p-8 text-center flex flex-col items-center"
+                      initial={false}
                       animate={{
-                        y: expandedCard === index ? -8 : 0
+                        justifyContent: expandedCard === index ? "flex-start" : "flex-end",
+                        paddingTop: expandedCard === index ? "3rem" : "1.5rem"
                       }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.5 }}
                     >
                       <motion.div
+                        className="flex flex-col items-center"
                         animate={{
-                          y: expandedCard === index ? -10 : 0
+                          scale: expandedCard === index ? 1.05 : 1
                         }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.5 }}
                       >
                         {service.icon}
-                        <h2 className="text-3xl lg:text-4xl font-bold mt-4">{service.title}</h2>
+                        <h2 className="text-2xl lg:text-4xl font-bold mt-3 lg:mt-4">{service.title}</h2>
                       </motion.div>
                       <motion.p
-                        className="text-base lg:text-lg mt-4"
+                        className="text-base lg:text-lg mt-6 overflow-hidden"
                         animate={{
-                          opacity: expandedCard === index ? 1 : 0.8,
-                          y: expandedCard === index ? 0 : 10
+                          opacity: expandedCard === index ? 1 : 0,
+                          height: expandedCard === index ? "auto" : "0",
+                          marginTop: expandedCard === index ? "1.5rem" : "0"
                         }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ 
+                          duration: 0.4,
+                          opacity: { duration: 0.3 },
+                          height: { duration: 0.4 },
+                          marginTop: { duration: 0.4 }
+                        }}
                       >
                         {service.description}
                       </motion.p>
                       <motion.div
-                        className="mt-6 inline-flex items-center text-primary-500 font-semibold"
+                        className="mt-8 inline-flex items-center text-white font-semibold"
                         animate={{
                           opacity: expandedCard === index ? 1 : 0,
-                          y: expandedCard === index ? 0 : 10
+                          y: expandedCard === index ? 0 : 20
                         }}
-                        transition={{ duration: 0.3, delay: 0.1 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
                       >
-                        <Link href={service.href} passHref>
+                        <Link href={service.href} className="hover:opacity-80 inline-flex items-center">
                           <span className="mr-2 text-lg">Explore</span>
-                          <ArrowRight className="w-5 h-5" />
+                          <ArrowRight className="w-5 h-5 inline" />
                         </Link>
                       </motion.div>
                     </motion.div>
@@ -252,7 +273,13 @@ export default function LuxFinoLandingLargerCards() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center mt-8 lg:mt-12">
+        <motion.div 
+          className="flex flex-col items-center"
+          animate={{ 
+            marginBottom: expandedCard !== null ? "-2rem" : "0rem",
+            transition: { duration: 0.5 }
+          }}
+        >
           <Link href="/bookings" className="contents">
             <motion.button
               whileHover={{ scale: isMobile ? 1 : 1.05 }}
@@ -263,73 +290,11 @@ export default function LuxFinoLandingLargerCards() {
             </motion.button>
           </Link>
 
-          <motion.div
-            animate={{ 
-              y: [0, 8, 0],
-              opacity: [0.5, 1, 0.5],
-            }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 2,
-              ease: "easeInOut",
-            }}
-          >
-            <Link href="#services" passHref>
-              <ChevronDown className="w-8 h-8 lg:w-10 lg:h-10" />
-            </Link>
-          </motion.div>
-        </div>
+          <Link href="#services" className="hover:opacity-80">
+            <ChevronDown className="w-8 h-8 lg:w-10 lg:h-10" />
+          </Link>
+        </motion.div>
       </div>
     </div>
   )
 }
-{/* 
-
-    {
-      title: 'Lux Remote',
-      description: 'Luxury glamping retreats nestled in nature\'s embrace.',
-      icon: <Tent className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
-      image: '/LuxFinoMain.jpg',
-      href: '/lux-remote',
-    },
-    {
-      title: 'Lux Picnics',
-      description: 'Exquisite culinary experiences with breathtaking ocean views.',
-      icon: <Mountain className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
-      image: '/LuxPicMain.jpeg',
-      href: '/lux-picnics',
-    },
-    {
-      title: 'Elopments, Weddings & Events',
-      description: 'Bespoke culinary experiences crafted by seasoned chefs.',
-      icon: <ChefHat className="w-10 h-10 lg:w-14 lg:h-14 text-luxcopper" />,
-      image: '/WeddingPackages.JPG',
-      href: '/in-house-chef',
-    },
-
-
-    const particlesOptions = {
-  fullScreen: { enable: false },
-  background: { color: { value: "transparent" } },
-  fpsLimit: 60,
-  particles: {
-    color: { value: "#ffffff" },
-    move: {
-      direction: "none" as const,
-      enable: true,
-      outModes: { default: "bounce" as const },
-      random: false,
-      speed: 0.4,
-      straight: false,
-    },
-    number: {
-      density: { enable: true, area: 1200 },
-      value: 150,
-    },
-    opacity: { value: 0.3 },
-    shape: { type: "circle" },
-    size: { value: { min: 0.5, max: 1.7 } },
-  },
-  detectRetina: true,
-}
-*/}

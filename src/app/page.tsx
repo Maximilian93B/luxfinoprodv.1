@@ -53,6 +53,8 @@ const HomePage: React.FC = () => {
   const [showMainContent, setShowMainContent] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [showMailingList, setShowMailingList] = useState(false)
+  const [hasShownMailingList, setHasShownMailingList] = useState(false)
+  const [lastMailingListShow, setLastMailingListShow] = useState<number | null>(null)
 
 
   const { ref: servicesSectionRef, inView: ServicesSectionInView } = useInView({
@@ -61,17 +63,30 @@ const HomePage: React.FC = () => {
 })
 
   useEffect(() => {
-    if (ServicesSectionInView) {
-      const timer = setTimeout(() => {
-        setShowMailingList(true);
-      }, 2000);
-      return () => clearTimeout(timer);
+    if (ServicesSectionInView && !hasShownMailingList) {
+      const fiveSeconds = 5 * 1000
+      const lastShown = localStorage.getItem('lastMailingListShow')
+      
+      if (!lastShown || (Date.now() - Number(lastShown)) > fiveSeconds) {
+        const timer = setTimeout(() => {
+          setShowMailingList(true)
+          setHasShownMailingList(true)
+          const currentTime = Date.now()
+          localStorage.setItem('lastMailingListShow', currentTime.toString())
+          setLastMailingListShow(currentTime)
+        }, 500)
+        return () => clearTimeout(timer)
+      }
     }
-  }, [ServicesSectionInView]);
+  }, [ServicesSectionInView, hasShownMailingList])
 
   const handleEnter = useCallback(() => {
     setShowMainContent(true);
   }, []);
+
+  const handleMailingListClose = useCallback(() => {
+    setShowMailingList(false)
+  }, [])
 
   if (!showMainContent) {
     return (
@@ -127,7 +142,7 @@ const HomePage: React.FC = () => {
      
       <MailingListDrawer 
         isOpen={showMailingList} 
-        onClose={() => setShowMailingList(false)} 
+        onClose={handleMailingListClose} 
       />
     </motion.div>
   )
