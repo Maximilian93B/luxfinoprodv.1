@@ -15,19 +15,29 @@ const services = [
 ]
 
 const GoldParticle: React.FC = () => {
-  const randomX = Math.random() * 100 + '%'
-  const randomY = Math.random() * 100 + '%'
-  const randomSize = Math.random() * 2 + 1 // Reduced max size for mobile
-  const randomDuration = Math.random() * 10 + 5
+  const [position, setPosition] = useState({ x: 0, y: 0, size: 0, duration: 0 })
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setPosition({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 1,
+      duration: Math.random() * 10 + 5
+    })
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) return null
 
   return (
     <motion.div
       className="absolute rounded-full bg-[#D4AF37]"
       style={{
-        left: randomX,
-        top: randomY,
-        width: randomSize,
-        height: randomSize,
+        left: `${position.x}%`,
+        top: `${position.y}%`,
+        width: position.size,
+        height: position.size,
       }}
       initial={{ opacity: 0 }}
       animate={{
@@ -35,7 +45,7 @@ const GoldParticle: React.FC = () => {
         y: [0, -20],
       }}
       transition={{
-        duration: randomDuration,
+        duration: position.duration,
         repeat: Infinity,
         ease: "easeInOut",
       }}
@@ -43,11 +53,27 @@ const GoldParticle: React.FC = () => {
   )
 }
 
+const LOADING_SCREEN_KEY = 'luxfino-loading-seen'
+
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
   const [progress, setProgress] = useState(0)
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [cycleCount, setCycleCount] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
+  const [shouldShow, setShouldShow] = useState(true)
+
+  useEffect(() => {
+    setIsMounted(true)
+    const hasSeenLoading = localStorage.getItem(LOADING_SCREEN_KEY)
+    
+    if (hasSeenLoading) {
+      setShouldShow(false)
+      onEnter()
+    } else {
+      localStorage.setItem(LOADING_SCREEN_KEY, 'true')
+    }
+  }, [onEnter])
 
   useEffect(() => {
     const serviceInterval = setInterval(() => {
@@ -58,7 +84,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
         }
         return nextIndex
       })
-    }, 2000)
+    }, 1000)
 
     return () => clearInterval(serviceInterval)
   }, [])
@@ -89,16 +115,16 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
     })
   }
 
+  if (!shouldShow) return null
+
   return (
     <motion.div 
       className="fixed inset-0 bg-black flex flex-col items-center justify-center overflow-hidden px-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.5 }}
     >
-      {/* Gold particles */}
-      {Array.from({ length: 30 }).map((_, index) => (
+      {/* Gold particles - only render on client side */}
+      {isMounted && Array.from({ length: 30 }).map((_, index) => (
         <GoldParticle key={index} />
       ))}
 
@@ -129,6 +155,8 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
             alt="Lux.Fino Logo"
             width={100}
             height={100}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority
             className="relative z-10 brightness-0 invert"
           />
         </motion.div>

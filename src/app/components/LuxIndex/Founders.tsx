@@ -34,7 +34,8 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
               <Image
                 src={imageSrc}
                 alt={name}
-                fill
+                fill  
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
                 className="transition-transform duration-500 hover:scale-110"
               />
