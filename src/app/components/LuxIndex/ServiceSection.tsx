@@ -41,8 +41,8 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           />
         </div>
         <div className="w-full lg:w-1/2 text-center lg:text-left">
-          <h3 className="text-5xl font-playfair font-bold mb-6 text-luxcedar">{title}</h3>
-          <p className="text-luxcedar/80 mb-8 font-avenir leading-relaxed text-xl">{description}</p>
+          <h3 className="text-5xl font-playfair font-bold mb-6 text-luxpearl">{title}</h3>
+          <p className="text-luxpearl/80 mb-8 font-avenir leading-relaxed text-xl">{description}</p>
           <Link href={linkHref}>
             <motion.button 
               className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-black text-luxpearl font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
@@ -66,11 +66,11 @@ export default function ServiceSections() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-6xl md:text-6xl font-playfair font-semibold mb-8 text-center text-luxcedar"
+          className="text-6xl md:text-6xl font-playfair font-semibold mb-8 text-center text-luxpearl"
         >
           Explore Our Services
         </motion.h2>
-        <p className="text-luxcedar/80 text-center mb-16 font-avenir text-lg max-w-3xl mx-auto">
+        <p className="text-luxpearl/80 text-center mb-16 font-avenir text-xl max-w-3xl mx-auto">
           Dive deeper into our exclusive offerings and discover how LuxFino can transform your Tofino experience into an unforgettable journey of luxury and natural beauty.
         </p>
         <ServiceSection
