@@ -115,13 +115,13 @@ export default function LuxFinoLandingDrawerCards() {
     <div className="relative min-h-screen lg:min-h-[120vh] bg-black text-white overflow-hidden">
       <div
         ref={parallaxRef}
-        className="absolute inset-0 h-full w-screen overflow-hidden"
+        className="absolute inset-0 h-[110%] w-screen overflow-hidden"
         style={{
           transform: isMobile ? 'none' : `translateY(${parallaxOffset}px)`,
           transition: 'transform 0.1s ease-out',
         }}
       >
-        <div className="relative w-[180%] h-[120%] -left-[40%] -top-[10%]">
+        <div className="relative w-[120%] h-full -left-[10%]">
           <Image
             src="/LuxFinoMain.jpg"
             alt="Expansive Tofino landscape"
@@ -130,7 +130,7 @@ export default function LuxFinoLandingDrawerCards() {
             style={{ 
               objectFit: 'cover', 
               objectPosition: 'center 0%',
-              transform: 'scale(0.85)',
+              transform: 'scale(0.9)',
             }}
             priority
           />
@@ -147,9 +147,9 @@ export default function LuxFinoLandingDrawerCards() {
         />
       )}
 
-      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 lg:px-12 py-8 lg:py-24 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 lg:px-12 pt-24 lg:pt-32 pb-8 lg:pb-24 text-center">
         <motion.div 
-          className="hidden lg:flex flex-col items-center justify-center"
+          className="hidden lg:flex flex-col items-center justify-center space-y-6"
           animate={{ 
             marginTop: expandedCard !== null ? "-2rem" : "0rem",
             transition: { duration: 0.5 }
@@ -159,7 +159,7 @@ export default function LuxFinoLandingDrawerCards() {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-4xl lg:text-7xl font-extrabold mb-2 lg:mb-3 tracking-tight leading-none"
+            className="text-4xl lg:text-7xl font-extrabold tracking-tight leading-none"
           >
             LuxFino
           </motion.h1>
@@ -167,15 +167,15 @@ export default function LuxFinoLandingDrawerCards() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="text-base lg:text-2xl mb-4 lg:mb-6 max-w-xl lg:max-w-2xl leading-relaxed px-4"
+            className="text-base lg:text-2xl max-w-xl lg:max-w-2xl leading-relaxed px-4 opacity-90"
           >
             Immerse yourself in the untamed beauty of Tofino with our exclusive luxury experiences
           </motion.p>
         </motion.div>
 
-        <div className="flex lg:hidden flex-col items-center justify-center mb-8">
-          <h1 className="text-4xl font-extrabold mb-2 tracking-tight leading-none">
-            LuxFino
+        <div className="flex lg:hidden flex-col items-center justify-center pt-12 mb-8 space-y-4">
+          <h1 className="text-4xl font-extrabold tracking-tight leading-none">
+            Discover Wild Luxury 
           </h1>
         </div>
 

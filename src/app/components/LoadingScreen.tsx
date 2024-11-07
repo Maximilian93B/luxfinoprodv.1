@@ -14,11 +14,51 @@ const services = [
   { title: "Events, Weddings & Catering" }
 ]
 
+const GoldParticle: React.FC = () => {
+  const [style, setStyle] = useState({
+    left: '0%',
+    top: '0%',
+    width: 1,
+    height: 1
+  })
+
+  useEffect(() => {
+    setStyle({
+      left: Math.random() * 100 + '%',
+      top: Math.random() * 100 + '%',
+      width: Math.random() * 3 + 1,
+      height: Math.random() * 3 + 1
+    })
+  }, [])
+
+  return (
+    <motion.div
+      className="absolute rounded-full bg-[#D4AF37]"
+      style={style}
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: [0, 0.5, 0],
+        y: [0, -20],
+      }}
+      transition={{
+        duration: Math.random() * 10 + 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+  )
+}
+
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
   const [progress, setProgress] = useState(0)
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [cycleCount, setCycleCount] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     const serviceInterval = setInterval(() => {
@@ -51,14 +91,28 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
     }
   }, [cycleCount])
 
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.1, duration: 0.5 }
+    })
+  }
+
   return (
     <motion.div 
-      className="fixed inset-0 bg-luxpearl flex flex-col items-center justify-center overflow-hidden px-4"
+      className="fixed inset-0 bg-black flex flex-col items-center justify-center overflow-hidden px-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
+      {/* Gold particles */}
+      {isMounted && Array.from({ length: 50 }).map((_, index) => (
+        <GoldParticle key={index} />
+      ))}
+
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -68,13 +122,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 rounded-full border-t-4 border-r-4 border-luxgold opacity-50"
+          className="absolute inset-0 rounded-full border-t-4 border-r-4 border-[#D4AF37] opacity-50"
           style={{ width: '180px', height: '180px', margin: '-15px' }}
         />
         <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 rounded-full border-b-4 border-l-4 border-luxnavy opacity-30"
+          className="absolute inset-0 rounded-full border-b-4 border-l-4 border-white opacity-30"
           style={{ width: '210px', height: '210px', margin: '-30px' }}
         />
         <motion.div
@@ -91,20 +145,26 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
         </motion.div>
       </motion.div>
       
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-luxnavy mb-4 font-playfair text-center"
-      >
-        Welcome to Lux Fino
+      <motion.h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#D4AF37] mb-4 font-playfair text-center">
+        {Array.from("LuxFino").map((letter, index) => (
+          <motion.span
+            key={index}
+            custom={index}
+            variants={letterVariants}
+            initial="hidden"
+            animate="visible"
+            style={{ display: 'inline-block' }}
+          >
+            {letter}
+          </motion.span>
+        ))}
       </motion.h1>
       
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
-        className="text-luxcharcoal font-avenir text-base sm:text-lg mb-6 text-center max-w-md"
+        transition={{ delay: 1.5, duration: 0.8 }}
+        className="text-white font-avenir text-base sm:text-lg mb-6 text-center max-w-md"
       >
         Crafting unforgettable luxury experiences in Tofino
       </motion.p>
@@ -127,7 +187,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
                   transition={{ duration: 0.3 }}
                   className="text-center"
                 >
-                  <h2 className="text-xl sm:text-2xl font-bold text-luxnavy mb-2 font-playfair">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#D4AF37] mb-2 font-playfair">
                     {services[currentServiceIndex].title}
                   </h2>
                 </motion.div>
@@ -135,13 +195,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
             </div>
             
             <motion.div
-              className="w-full max-w-xs h-2 bg-luxnavy bg-opacity-10 rounded-full overflow-hidden"
+              className="w-full max-w-xs h-2 bg-white bg-opacity-10 rounded-full overflow-hidden"
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: 1, scaleX: 1 }}
               transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
             >
               <motion.div
-                className="h-full bg-gradient-to-r from-luxgold to-luxnavy"
+                className="h-full bg-gradient-to-r from-[#D4AF37] to-white"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -149,19 +209,19 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
             </motion.div>
             
             <motion.div
-              className="mt-4 text-luxnavy font-avenir text-sm sm:text-base"
+              className="mt-4 text-white font-avenir text-sm sm:text-base"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              <p>Preparing your luxurious experience... {Math.round(progress)}%</p>
+              <p>Loading your luxurious experience... {Math.round(progress)}%</p>
             </motion.div>
           </motion.div>
         ) : (
           <motion.button
             key="enter-button"
             onClick={onEnter}
-            className="bg-luxcedar text-luxpearl hover:bg-luxgold transition-all duration-300 text-lg px-8 py-3 rounded-full font-avenir font-semibold tracking-wide shadow-lg hover:shadow-xl"
+            className="bg-[#D4AF37] text-black hover:bg-white transition-all duration-300 text-lg px-8 py-3 rounded-full font-avenir font-semibold tracking-wide shadow-lg hover:shadow-xl"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.05 }}
@@ -173,7 +233,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
       </AnimatePresence>
       
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-luxgold via-luxnavy to-luxgold"
+        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#D4AF37] via-white to-[#D4AF37]"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.5, duration: 1.5, ease: "easeInOut" }}
