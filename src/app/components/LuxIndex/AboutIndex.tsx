@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { ArrowRight, Eye, ChevronRight, ArrowUpRight } from 'lucide-react'
+import { Eye, ChevronRight, ArrowUpRight } from 'lucide-react'
 
 const services = [
   {
@@ -145,6 +145,8 @@ export default function LuxFinoServices() {
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                       className="transition-transform duration-500 ease-in-out transform hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority
+                      loading="eager"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-luxice/20 via-luxocean/20 to-transparent" />
                     <motion.div 

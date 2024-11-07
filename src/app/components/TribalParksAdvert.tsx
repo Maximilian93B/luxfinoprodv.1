@@ -19,9 +19,11 @@ const TribalParksSection: React.FC = () => {
           <Image
             src="/TribalParksLogo.svg"
             width={500}
-            height={125}
+            height={100}
+            style={{ width: 'auto', height: '100%' }}
+            priority  
             alt="Tribal Parks Allies Symbol"
-            className="rounded-lg filter brightness-100 invert"
+            className="rounded-lg filter brightness-0 invert"
           />
         </motion.div>
 
