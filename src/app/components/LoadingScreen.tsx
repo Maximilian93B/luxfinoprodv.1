@@ -140,7 +140,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
             alt="Lux.Fino Logo"
             width={150}
             height={150}
-            className="relative z-10"
+            className="relative z-10 brightness-0 invert"
           />
         </motion.div>
       </motion.div>
