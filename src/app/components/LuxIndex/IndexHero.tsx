@@ -147,7 +147,7 @@ export default function LuxFinoLandingDrawerCards() {
         />
       )}
 
-      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 lg:px-12 pt-24 lg:pt-32 pb-8 lg:pb-24 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 lg:px-12 pt-32 lg:pt-32 pb-12 lg:pb-24 text-center">
         <motion.div 
           className="hidden lg:flex flex-col items-center justify-center space-y-6"
           animate={{ 
@@ -173,14 +173,14 @@ export default function LuxFinoLandingDrawerCards() {
           </motion.p>
         </motion.div>
 
-        <div className="flex lg:hidden flex-col items-center justify-center pt-12 mb-8 space-y-4">
+        <div className="flex lg:hidden flex-col items-center justify-center pt-16 mb-12 space-y-6">
           <h1 className="text-4xl font-extrabold tracking-tight leading-none">
             Discover Wild Luxury 
           </h1>
         </div>
 
-        <div id="services" className="w-full max-w-[1600px] mb-8 lg:mb-20 flex-grow flex items-center">
-          <div className="flex flex-col lg:flex-row justify-center items-stretch gap-6 lg:gap-12 w-full">
+        <div id="services" className="w-full max-w-[1600px] my-8 lg:mb-20 flex-grow flex items-center">
+          <div className="flex flex-col lg:flex-row justify-center items-stretch gap-8 lg:gap-12 w-full">
             {services.map((service, index) => (
               <React.Fragment key={service.title}>
                 <motion.div
@@ -195,7 +195,7 @@ export default function LuxFinoLandingDrawerCards() {
                     onHoverStart={() => !isMobile && setExpandedCard(index)}
                     onHoverEnd={() => !isMobile && setExpandedCard(null)}
                     animate={{ 
-                      height: expandedCard === index ? "400px" : "280px",
+                      height: expandedCard === index ? "450px" : "320px",
                       transition: { duration: 0.5, ease: "easeInOut" }
                     }}
                   >
@@ -217,7 +217,7 @@ export default function LuxFinoLandingDrawerCards() {
                       />
                     </div>
                     <motion.div 
-                      className="absolute inset-x-0 bottom-0 p-4 lg:p-8 text-center flex flex-col items-center"
+                      className="absolute inset-x-0 bottom-0 p-6 lg:p-8 text-center flex flex-col items-center"
                       initial={false}
                       animate={{
                         justifyContent: expandedCard === index ? "flex-start" : "flex-end",
@@ -274,7 +274,7 @@ export default function LuxFinoLandingDrawerCards() {
         </div>
 
         <motion.div 
-          className="flex flex-col items-center"
+          className="flex flex-col items-center mt-8 lg:mt-0"
           animate={{ 
             marginBottom: expandedCard !== null ? "-2rem" : "0rem",
             transition: { duration: 0.5 }
@@ -284,13 +284,13 @@ export default function LuxFinoLandingDrawerCards() {
             <motion.button
               whileHover={{ scale: isMobile ? 1 : 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-6 lg:mt-8 px-12 py-4 mb-8 lg:mb-12 bg-white text-black rounded-full font-semibold text-lg lg:text-xl transition-all duration-300 hover:bg-gray-200 hover:shadow-lg"
+              className="mt-8 lg:mt-8 px-12 py-4 mb-12 lg:mb-12 bg-white text-black rounded-full font-semibold text-lg lg:text-xl transition-all duration-300 hover:bg-gray-200 hover:shadow-lg"
             >
               Book Your Wild Experience
             </motion.button>
           </Link>
 
-          <Link href="#services" className="hover:opacity-80">
+          <Link href="#services" className="hover:opacity-80 mb-4">
             <ChevronDown className="w-8 h-8 lg:w-10 lg:h-10" />
           </Link>
         </motion.div>

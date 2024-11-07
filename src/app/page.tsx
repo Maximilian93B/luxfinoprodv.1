@@ -1,8 +1,7 @@
 'use client'
 
-import React, { useState, useCallback, useEffect } from 'react'
-import { motion, AnimatePresence, useScroll, useSpring, useInView } from 'framer-motion'
-import Image from 'next/image'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
+import { motion, useScroll, useSpring, useInView } from 'framer-motion'
 import Navbar from './components/Navbar'
 import HeroIndex from './components/LuxIndex/IndexHero'
 import LuxFinoServices from './components/LuxIndex/AboutIndex'
@@ -12,6 +11,11 @@ import TribalParksSection from './components/TribalParksAdvert'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
 import MailingListDrawer from './components/LuxIndex/mailing-list-drawer'
+
+// New imports for the particle effect
+import Particles from "react-tsparticles"
+import { loadFull } from "tsparticles"
+import type { Engine, Container } from "tsparticles-engine"
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -73,13 +77,93 @@ const AnimatedSection: React.FC<{ children: React.ReactNode; direction: 'left' |
   )
 }
 
+const ParallaxBackground: React.FC = () => {
+  const particlesInit = useCallback(async (engine: Engine) => {
+    await loadFull(engine)
+  }, [])
+
+  const particlesLoaded = useCallback(async (container: Container | undefined) => {
+    await console.log(container)
+  }, [])
+
+  return (
+    <Particles
+      id="tsparticles"
+      init={particlesInit}
+      loaded={particlesLoaded}
+      options={{
+        background: {
+          color: {
+            value: "#000000",
+          },
+        },
+        fpsLimit: 120,
+        interactivity: {
+          events: {
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            resize: true,
+          },
+          modes: {
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+          },
+        },
+        particles: {
+          color: {
+            value: "#FFD700",
+          },
+          links: {
+            color: "#FFD700",
+            distance: 150,
+            enable: false,
+            opacity: 0.5,
+            width: 1,
+          },
+          move: {
+            direction: "none",
+            enable: true,
+            outModes: {
+              default: "bounce",
+            },
+            random: false,
+            speed: 2,
+            straight: false,
+          },
+          number: {
+            density: {
+              enable: true,
+              area: 800,
+            },
+            value: 80,
+          },
+          opacity: {
+            value: 0.5,
+          },
+          shape: {
+            type: "circle",
+          },
+          size: {
+            value: { min: 0.7, max: 1.3 },
+          },
+        },
+        detectRetina: true,
+      }}
+      className="absolute inset-0 -z-10"
+    />
+  )
+}
+
 const HomePage: React.FC = () => {
   const [showMainContent, setShowMainContent] = useState(false)
-  const [loadingProgress, setLoadingProgress] = useState(0)
   const [showMailingList, setShowMailingList] = useState(false)
   const [hasShownMailingList, setHasShownMailingList] = useState(false)
   const [lastMailingListShow, setLastMailingListShow] = useState<number | null>(null)
-  const servicesSectionRef = React.useRef(null)
+  const servicesSectionRef = useRef(null)
   const isServicesSectionPassed = useInView(servicesSectionRef, {
     amount: 0.3,
     margin: "0px 0px -20% 0px",
@@ -94,7 +178,6 @@ const HomePage: React.FC = () => {
   })
 
   useEffect(() => {
-    // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth'
     return () => {
       document.documentElement.style.scrollBehavior = 'auto'
@@ -102,22 +185,13 @@ const HomePage: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    console.log('Service Section Ref:', servicesSectionRef.current)
-    console.log('Effect running - isServicesSectionPassed:', isServicesSectionPassed)
-    console.log('hasShownMailingList:', hasShownMailingList)
-    
     if (isServicesSectionPassed && !hasShownMailingList) {
       const thirtySeconds = 30 * 1000
       const lastShown = localStorage.getItem('lastMailingListShow')
       const currentTime = Date.now()
       
-      console.log('Last shown time:', lastShown)
-      console.log('Current time:', currentTime)
-      
       if (!lastShown || (currentTime - Number(lastShown)) > thirtySeconds) {
-        console.log('Setting up mailing list timer')
         const timer = setTimeout(() => {
-          console.log('Showing mailing list')
           setShowMailingList(true)
           setHasShownMailingList(true)
           localStorage.setItem('lastMailingListShow', currentTime.toString())
@@ -125,56 +199,40 @@ const HomePage: React.FC = () => {
         }, 300)
         
         return () => clearTimeout(timer)
-      } else {
-        console.log('Skipping mailing list - shown too recently')
       }
     }
   }, [isServicesSectionPassed, hasShownMailingList])
 
   const handleEnter = useCallback(() => {
-    setShowMainContent(true);
-  }, []);
+    setShowMainContent(true)
+  }, [])
 
   const handleMailingListClose = useCallback(() => {
     setShowMailingList(false)
   }, [])
 
   if (!showMainContent) {
-    return (
-      <LoadingScreen 
-        onEnter={handleEnter}
-      />
-    );
+    return <LoadingScreen onEnter={handleEnter} />
   }
 
   return (
     <motion.div 
-      className="bg-white min-h-screen overflow-hidden"
+      className="min-h-screen overflow-hidden relative"
       initial="hidden"
       animate="visible"
       variants={fadeInVariants}
     >
+      <ParallaxBackground />
       <Navbar />
       
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-luxnavy z-50"
+        className="fixed top-0 left-0 right-0 h-1 z-50"
         style={{ scaleX }}
       />
       
       <HeroIndex />
       
       <main className="relative">
-        <div className="absolute inset-0 w-full h-full">
-          <Image
-            src="/LuxFinoMain.jpg"
-            alt="LuxFino background"
-            fill
-            sizes="100vw"
-            style={{ objectFit: 'cover', objectPosition: 'center top' }}
-            quality={100}
-            className="opacity-10"
-          />
-        </div>
         <div className="relative max-w-7xl mx-auto my-auto py-12 sm:px-6 lg:px-8">
           <AnimatedSection direction="left">
             <motion.div 
@@ -210,7 +268,7 @@ const HomePage: React.FC = () => {
         
           <AnimatedSection direction="left">
             <motion.section 
-              className="text-luxnavy py-24"
+              className="text-luxocean py-24"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -227,6 +285,7 @@ const HomePage: React.FC = () => {
       <MailingListDrawer 
         isOpen={showMailingList} 
         onClose={handleMailingListClose} 
+        autoTrigger={true}
       />
     </motion.div>
   )

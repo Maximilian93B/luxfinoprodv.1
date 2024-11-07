@@ -19,7 +19,7 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-gradient-to-br from-luxcream to-luxpearl p-1 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500"
+      className="bg-transparent p-1 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -54,7 +54,7 @@ const BioCard: React.FC<BioCardProps> = ({ name, imageSrc, bio, roles }) => {
             </AnimatePresence>
           </motion.div>
           <motion.h3 
-            className="text-4xl font-playfair font-bold mb-8 text-luxnavy"
+            className="text-4xl font-playfair font-bold mb-8 text-luxcedar"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -80,7 +80,7 @@ export default function OwnerFounderSection() {
     <section className="py-32 bg-transparent rounded-2xl">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
-          className="text-5xl md:text-6xl font-bold mb-12 text-center font-playfair text-luxnavy"
+          className="text-5xl md:text-6xl font-bold mb-12 text-center font-playfair text-luxpearl"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -91,7 +91,7 @@ export default function OwnerFounderSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl mb-20 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxcedar"
+          className="text-xl mb-20 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-luxpearl"
         >
           At the heart of LuxFino are Morgan and Dre, a dynamic duo combining their passions for luxury, food, and unforgettable experiences. Together, they bring their love for Tofino and its natural beauty into everything they create, from breathtaking picnics to immersive glamping adventures.
         </motion.p>

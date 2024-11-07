@@ -61,7 +61,7 @@ export default function LuxFinoServices() {
     <section className="py-24 px-4 sm:px-6 lg:px-8  bg-transparent">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-playfair font-light mb-16 text-center text-luxcedar"
+          className="text-5xl md:text-6xl font-playfair font-light mb-16 text-center text-luxpearl"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -189,7 +189,7 @@ export default function LuxFinoServices() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <p className="text-luxcharcoal font-avenir mb-10 text-2xl leading-relaxed max-w-5xl mx-auto">
+          <p className="text-luxpearl font-avenir mb-10 text-2xl leading-relaxed max-w-5xl mx-auto">
             Immerse yourself in the perfect blend of luxury and nature with our bespoke experiences. 
             Let us craft unforgettable moments for you in Tofino&apos;s breathtaking landscapes.
           </p>
