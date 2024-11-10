@@ -8,19 +8,19 @@ import { Eye, ChevronRight, ArrowUpRight } from 'lucide-react'
 const services = [
   {
     title: "Luxury Remote Escapes",
-    description: "Escape to secluded paradises with our luxury glamping experiences. Indulge in comfort while immersing yourself in Tofino's pristine wilderness.",
+    description: "Discover the ultimate in private wilderness luxury. Our exclusive glamping sanctuaries blend five-star comfort with Tofino's untouched natural beauty, creating your own personal paradise.",
     image: "/LuxRemotePic2.JPG",
     link: "/luxremote"
   },
   {
     title: "Pop Up Picnics",
-    description: "Experience gourmet dining in Tofino's most breathtaking locations. Our eco-friendly setups and locally-sourced cuisine create unforgettable moments in nature.",
+    description: "Elevate your dining experience with our signature luxury picnics. Savor artisanal cuisine amid Tofino's most exclusive locations, where every meal becomes a masterpiece and every moment a cherished memory.",
     image: "/LuxPicMain.jpeg",
     link: "/luxpicnic"
   },
   {
     title: "Events, Weddings & Catering",
-    description: "From corporate retreats to milestone celebrations, we transform your vision into reality. Our bespoke event planning ensures every detail is perfection.",
+    description: "Let us orchestrate your dream celebration. From intimate gatherings to grand affairs, our world-class team crafts bespoke experiences that exceed expectations, ensuring your special day is nothing short of extraordinary.",
     image: "/LuxCateringCard.JPG",
     link: "/luxcatering"
   },
@@ -45,11 +45,11 @@ export default function LuxFinoServices() {
     const interval = setInterval(() => {
       setActiveService((prev) => (prev + 1) % services.length)
       setProgress(0)
-    }, 5000)
+    }, 8000)
 
     const progressInterval = setInterval(() => {
       setProgress((prev) => Math.min(prev + 1, 100))
-    }, 50)
+    }, 80)
 
     return () => {
       clearInterval(interval)
@@ -58,15 +58,15 @@ export default function LuxFinoServices() {
   }, [])
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8  bg-transparent">
+    <section className="py-12 px-4 sm:px-6 lg:px-8  bg-transparent">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-5xl md:text-6xl font-playfair font-light mb-16 text-center text-luxpearl"
+          className="text-7xl md:text-7xl font-playfair font-semibold mb-16 text-center text-lux-gold"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Discover What LuxFino Can Offer
+          Experience Extraordinary Living
         </motion.h2>
 
         <div className="flex flex-col lg:flex-row gap-16">
@@ -75,48 +75,37 @@ export default function LuxFinoServices() {
               {services.map((service, index) => (
                 <motion.button
                   key={service.title}
-                  className={`w-full text-left py-6 px-8 rounded-xl transition-all duration-300 relative overflow-hidden  bg-luxpearl to-[#CB7D55] text-luxcedar  ${
-                    index === activeService
-                      ? 'bg-luxocean text-luxcedar shadow-lg'
-                      : 'bg-luxpearl/5 text-luxcedar hover:bg-luxpearl/20'
-                  }`}
+                  className={`
+                    w-full text-left py-6 px-8 rounded-xl
+                    relative overflow-hidden transition-all duration-500
+                    text-lux-gold
+                    ${index === activeService 
+                      ? 'bg-lux-olive/30 shadow-lg'
+                      : 'bg-transparent hover:bg-lux-olive/15'
+                    }
+                  `}
                   onClick={() => setActiveService(index)}
                   onMouseEnter={() => setHoveredService(index)}
                   onMouseLeave={() => setHoveredService(null)}
-                  whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
-                  whileTap={{ scale: 0.98 }}
                   role="tab"
                   aria-selected={index === activeService}
                   aria-controls={`panel-${index}`}
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-3xl font-playfair">{service.title}</h3>
-                    <motion.div
-                      className="text-luxcedar"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileHover={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ChevronRight size={24} />
-                    </motion.div>
+                    <h3 className="text-3xl font-playfair text-lux-gold">{service.title}</h3>
+                    <ChevronRight size={24} className="text-lux-gold" />
                   </div>
-                  <p className="font-avenir text-lg opacity-80">
+                  <p className="font-avenir text-lux-ivory text-lg opacity-80">
                     {service.description.substring(0, 80)}...
                   </p>
-                  <motion.div
-                    className="absolute top-6 right-4 text-luxocean"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileHover={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Eye size={40} className='text-luxocean' aria-hidden="true" />
-                  </motion.div>
-                  <motion.div
-                    className="absolute bottom-0 left-0 h-1 bg-luxocean"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: '100%' }}
-                    transition={{ duration: 0.3 }}
-                  />
+                  {index === activeService && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 h-1 bg-lux-gold"
+                      initial={{ width: 0 }}
+                      animate={{ width: '100%' }}
+                      transition={{ duration: 5 }}
+                    />
+                  )}
                 </motion.button>
               ))}
             </nav>
@@ -132,7 +121,11 @@ export default function LuxFinoServices() {
                     initial="initial"
                     animate={currentService === index ? "animate" : "initial"}
                     exit="exit"
-                    className="absolute inset-0"
+                    className={`absolute inset-0 ${
+                      currentService === index 
+                        ? 'bg-gradient-to-r from-lux-olive/20 to-lux-gold/10'
+                        : ''
+                    }`}
                     role="tabpanel"
                     id={`panel-${index}`}
                     aria-labelledby={`tab-${index}`}
@@ -143,12 +136,16 @@ export default function LuxFinoServices() {
                       alt={`${service.title} - LuxFino luxury experience in Tofino`}
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
-                      className="transition-transform duration-500 ease-in-out transform hover:scale-105"
+                      className="transition-opacity duration-500"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority
                       loading="eager"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-luxice/20 via-luxocean/20 to-transparent" />
+                    <div className={`absolute inset-0 transition-all duration-500 ${
+                      currentService === index
+                        ? 'bg-gradient-to-t from-black/40 via-black/40 to-black/20'
+                        : 'bg-gradient-to-t from-black/30 via-black/30 to-transparent'
+                    }`} />
                     <motion.div 
                       className="absolute inset-0 flex flex-col justify-end p-8 text-luxpearl z-10"
                       initial={{ y: 50, opacity: 0 }}
@@ -165,10 +162,23 @@ export default function LuxFinoServices() {
                           e.preventDefault();
                           document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' });
                         }}
-                        className="inline-flex items-center text-luxpearl hover:text-luxgold transition-colors duration-300 group"
-                        whileHover={{ x: 5 }}
+                        className="h-14
+                          inline-flex items-center justify-center gap-3
+                          bg-gradient-to-r from-[#7D8A6A] to-[#556B2F] 
+                          hover:from-[#556B2F] hover:to-[#7D8A6A]
+                          text-[#F8F3E3] text-lg font-medium
+                          px-8 rounded-full
+                          shadow-[0_2px_10px_rgba(125,138,106,0.2)]
+                          transition-all duration-300 ease-out
+                          hover:shadow-[0_5px_20px_rgba(125,138,106,0.3)]
+                          hover:translate-y-[-2px]
+                          active:translate-y-[1px]
+                          whitespace-nowrap
+                          group"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <span className="mr-2 text-lg font-semibold">Learn More</span>
+                        <span>Learn More</span>
                         <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={20} aria-hidden="true" />
                       </motion.a>
                     </motion.div>
@@ -191,9 +201,8 @@ export default function LuxFinoServices() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <p className="text-luxpearl font-avenir mb-10 text-2xl leading-relaxed max-w-5xl mx-auto">
-            Immerse yourself in the perfect blend of luxury and nature with our bespoke experiences. 
-            Let us craft unforgettable moments for you in Tofino&apos;s breathtaking landscapes.
+          <p className="text-lux-ivory font-avenir mb-10 text-2xl leading-relaxed max-w-5xl mx-auto">
+            Welcome to LuxFino, where luxury meets the wild beauty of Tofino. Our signature experiences transform your moments into extraordinary memories, curated exclusively for those who seek the finest things in life. Let us introduce you to a world where wild meets luxury.
           </p>
           <motion.a 
             href="#details-section"
@@ -201,11 +210,22 @@ export default function LuxFinoServices() {
               e.preventDefault();
               document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="relative btn px-8 sm:px-8 sm:py-2 bg-black text-luxpearl font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+            className="w-full sm:w-auto h-14 
+              inline-flex items-center justify-center gap-3
+              bg-gradient-to-r from-[#D4AF37] to-[#B8860B] 
+              hover:from-[#B8860B] hover:to-[#D4AF37]
+              text-[#F8F3E3] text-lg font-medium
+              px-8 rounded-full
+              shadow-[0_2px_10px_rgba(212,175,55,0.3)]
+              transition-all duration-300 ease-out 
+              hover:shadow-[0_5px_20px_rgba(212,175,55,0.4)]
+              hover:translate-y-[-2px]
+              active:translate-y-[1px]
+              group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="relative z-10">Explore LuxFino Services</span>
+            <span className="relative z-10">Begin Your LuxFino Journey</span>
           </motion.a>
         </motion.div>
       </div>

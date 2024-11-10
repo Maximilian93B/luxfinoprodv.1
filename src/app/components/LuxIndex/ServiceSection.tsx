@@ -41,11 +41,30 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           />
         </div>
         <div className="w-full lg:w-1/2 text-center lg:text-left">
-          <h3 className="text-5xl font-playfair font-bold mb-6 text-luxpearl">{title}</h3>
-          <p className="text-luxpearl/80 mb-8 font-avenir leading-relaxed text-xl">{description}</p>
+          <h3 className="text-6xl font-playfair font-bold mb-6 text-lux-gold">{title}</h3>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lux-ivory mb-8 font-avenir leading-relaxed text-xl"
+          >
+            {description}
+          </motion.p>
           <Link href={linkHref}>
             <motion.button 
-              className="relative btn px-8 sm:px-12 py-3 sm:py-3 bg-black text-luxpearl font-serif font-light tracking-widest text-base sm:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+              className="h-14
+                inline-flex items-center justify-center gap-3
+                bg-gradient-to-r from-[#7D8A6A] to-[#556B2F] 
+                hover:from-[#556B2F] hover:to-[#7D8A6A]
+                text-[#F8F3E3] text-lg font-medium
+                px-8 rounded-full
+                shadow-[0_2px_10px_rgba(125,138,106,0.2)]
+                transition-all duration-300 ease-out
+                hover:shadow-[0_5px_20px_rgba(125,138,106,0.3)]
+                hover:translate-y-[-2px]
+                active:translate-y-[1px]
+                whitespace-nowrap
+                group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -60,40 +79,40 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
 export default function ServiceSections() {
   return (
-    <section className=" bg-transparent  rounded-xl py-24">
+    <section className=" bg-transparent  rounded-xl py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-6xl md:text-6xl font-playfair font-semibold mb-8 text-center text-luxpearl"
+          className="text-7xl md:text-7xl font-playfair font-semibold mb-8 text-center text-lux-gold"
         >
-          Explore Our Services
+          Your Tofino Adventure Awaits
         </motion.h2>
-        <p className="text-luxpearl/80 text-center mb-16 font-avenir text-xl max-w-3xl mx-auto">
-          Dive deeper into our exclusive offerings and discover how LuxFino can transform your Tofino experience into an unforgettable journey of luxury and natural beauty.
+        <p className="text-lux-ivory text-center mb-16 font-avenir text-2xl max-w-3xl mx-auto">
+          Ready to experience Tofino like never before? Let us create unforgettable moments that blend luxury with the raw beauty of the Pacific Northwest.
         </p>
         <ServiceSection
-          title="Luxury Pop-up Picnics"
-          description="Immerse yourself in Tofino's breathtaking landscapes with our meticulously curated luxury picnics. We handle every detail, from selecting the perfect location to preparing gourmet local cuisine, ensuring a seamless blend of comfort and natural beauty."
-          buttonText="Plan Your Picnic"
+          title="Luxury Picnics"
+          description="Picture this: your own private beach setup, complete with cozy blankets, stunning decor, and a gourmet feast. We'll handle every detail while you soak in those incredible ocean views. Perfect for proposals, celebrations, or just because you deserve something special."
+          buttonText="Plan Your Perfect Picnic"
           imageSrc="/LuxPicMain.jpeg"
           imageAlt="Luxury beachside picnic setup with elegant decor and gourmet food"
           linkHref='/luxpicnic'
         />
         <ServiceSection
-          title="Wild Luxury: Lux Remote Escapes"
-          description="Experience the untamed beauty of Tofino without sacrificing comfort. Our Lux Remote escapes offer exclusive access to pristine wilderness locations, complete with luxurious amenities. It's the perfect balance of adventure and indulgence."
-          buttonText="Book Your Escape"
+          title="Wilderness Retreats"
+          description="Want to wake up to the sound of waves and smell of cedar trees? Our luxury glamping experiences give you the best of both worlds – untouched nature with all the comforts of a five-star hotel. Think plush beds, gourmet meals, and your own personal paradise."
+          buttonText="Explore Retreats"
           imageSrc="/DiscoverLuxRemote.JPG"
           imageAlt="Luxurious glamping setup with stunning ocean views"
           reverse={true}
           linkHref='/luxremote'
         />
         <ServiceSection
-          title="Bespoke Culinary Experiences"
-          description="Elevate your dining experience with our expert catering services. Our executive chef crafts exquisite menus using the finest local ingredients, bringing the flavors of the Pacific Northwest to your table. Perfect for intimate gatherings or grand celebrations."
-          buttonText="Customize Your Menu"
+          title="Private Chef Experiences"
+          description="Let our talented chefs bring the restaurant to you. Whether it's a romantic dinner for two or a celebration with friends, we'll create a custom menu using the finest local ingredients. All you need to do is sit back, relax, and enjoy every bite."
+          buttonText="Start Planning"
           imageSrc="/LuxCateringCard.JPG"
           imageAlt="Elegantly plated gourmet dish showcasing local ingredients"
           linkHref='/luxcatering'

@@ -19,6 +19,11 @@ module.exports = {
         luxcedar: '#1A1A1A',
         luxice: '#6B6B6B',
         luxcopper: '#E0D6C8',
+        'lux-gold': 'var(--lux-gold)',
+        'lux-navy': 'var(--lux-navy)',
+        'lux-ivory': 'var(--lux-ivory)',
+        'lux-charcoal': 'var(--lux-charcoal)',
+        'lux-olive': 'var(--lux-olive)',
       },
       zIndex: {
         'navigation': '50',
