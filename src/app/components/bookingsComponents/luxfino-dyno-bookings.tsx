@@ -41,8 +41,8 @@ const services: ServiceOption[] = [
     description: 'Escape to secluded paradises with our luxury glamping experiences.',
     icon: Tent,
     image: '/LuxRemotePic2.JPG',
-    color: 'bg-luxcopper',
-    hoverColor: 'hover:bg-luxsand',
+    color: 'bg-[var(--lux-olive)]',
+    hoverColor: 'hover:bg-[var(--lux-charcoal)]',
     options: [
       { id: 'day1', title: 'Day 1: Immersion', description: 'Scenic seaplane flight and welcome package.' },
       { id: 'day2', title: 'Day 2: Indulgence', description: 'Gourmet breakfast and choice of adventure.' },
@@ -55,8 +55,8 @@ const services: ServiceOption[] = [
     description: 'Experience gourmet dining in Tofino&apos;s most breathtaking locations.',
     icon: Sparkles,
     image: '/LuxPicMain.jpeg',
-    color: 'bg-luxcopper',
-    hoverColor: 'hover:bg-luxsand',
+    color: 'bg-[var(--lux-olive)]',
+    hoverColor: 'hover:bg-[var(--lux-charcoal)]',
     options: [
       { id: 'cuddle', title: 'The Ultimate Cuddle Puddle', price: '$250', people: '2 people', duration: '2 hours', icon: Sunset, image: '/LuxPicMain.jpeg' },
       { id: 'golden', title: 'Golden Hour', price: '$470', people: '2 people', duration: '2 hours', icon: GlassWater, image: '/Catering2.jpg' },
@@ -70,8 +70,8 @@ const services: ServiceOption[] = [
     description: 'Elevate your events with our bespoke catering services.',
     icon: ChefHat,
     image: '/LuxCateringCard.JPG',
-    color: 'bg-luxcopper',
-    hoverColor: 'hover:bg-luxsand',
+    color: 'bg-[var(--lux-olive)]',
+    hoverColor: 'hover:bg-[var(--lux-charcoal)]',
     options: [
       { id: 'wedding', title: 'Elegant Weddings', description: 'Bespoke wedding catering services.' },
       { id: 'corporate', title: 'Corporate Events', description: 'Professional catering for business events.' },
@@ -98,7 +98,7 @@ const ProgressBar = ({ currentStep, totalSteps }: { currentStep: number; totalSt
         {Array.from({ length: totalSteps }, (_, i) => (
           <div key={i} className="flex flex-col items-center">
             <div className={`w-8 h-8 flex items-center justify-center rounded-full ${
-              i < currentStep ? 'bg-black text-luxpearl' : 'bg-white text-luxcedar'
+              i < currentStep ? 'bg-[var(--lux-charcoal)] text-[var(--lux-ivory)]' : 'bg-[var(--lux-ivory)] text-[var(--lux-navy)]'
             } shadow-lg transition-all duration-300`}>
               {i < currentStep ? (
                 <Check className="w-5 h-5" />
@@ -106,15 +106,15 @@ const ProgressBar = ({ currentStep, totalSteps }: { currentStep: number; totalSt
                 <span className="text-sm font-semibold">{i + 1}</span>
               )}
             </div>
-            <span className="text-xs mt-1 text-luxnavy font-light">
+            <span className="text-xs mt-1 text-[var(--lux-navy)] font-light">
               {i === 0 ? 'Service' : i === 1 ? 'Option' : i === 2 ? 'Details' : 'Confirm'}
             </span>
           </div>
         ))}
       </div>
-      <div className="w-full bg-luxnavy/20 rounded-full h-2">
+      <div className="w-full bg-[var(--lux-navy)]/20 rounded-full h-2">
         <div
-          className="bg-luxgold h-2 rounded-full transition-all duration-300 ease-in-out"
+          className="bg-[var(--lux-gold)] h-2 rounded-full transition-all duration-300 ease-in-out"
           style={{ width: `${(currentStep / totalSteps) * 100}%` }}
         ></div>
       </div>
@@ -127,7 +127,7 @@ const ProgressBar = ({ currentStep, totalSteps }: { currentStep: number; totalSt
 {/* Service Selection */} 
 const ServiceSelection = ({ services, selectedService, setSelectedService }: { services: ServiceOption[]; selectedService: string; setSelectedService: (id: string) => void }) => (
   <motion.div key="step1" {...fadeIn} transition={{ duration: 0.5 }} className="space-y-4">
-    <h2 className="text-3xl font-playfair mb-4 text-luxnavy text-center">Select Your Experience</h2>
+    <h2 className="text-3xl font-playfair mb-4 text-[var(--lux-navy)] text-center">Select Your Experience</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div className="space-y-4">
         {services.map((service) => (
@@ -135,18 +135,18 @@ const ServiceSelection = ({ services, selectedService, setSelectedService }: { s
             key={service.id}
             onClick={() => setSelectedService(service.id)}
             className={`w-full p-6 rounded-lg text-left transition-all shadow-lg ${
-              selectedService === service.id ? service.color : 'bg-luxpearl'
-            } ${service.hoverColor} ${
-              selectedService === service.id ? 'text-white' : 'text-luxnavy'
+              selectedService === service.id ? 'bg-[var(--lux-olive)]' : 'bg-[var(--lux-ivory)]'
+            } hover:bg-[var(--lux-charcoal)] ${
+              selectedService === service.id ? 'text-[var(--lux-ivory)]' : 'text-[var(--lux-navy)]'
             } transform hover:scale-105 relative overflow-hidden`}
             whileHover={{ y: -5 }}
             whileTap={{ scale: 0.95 }}
           >
-            {service.icon && <service.icon className={`w-12 h-12 mb-4 ${selectedService === service.id ? 'text-luxgold' : 'text-luxnavy'}`} />}
+            {service.icon && <service.icon className={`w-12 h-12 mb-4 ${selectedService === service.id ? 'text-[var(--lux-gold)]' : 'text-[var(--lux-navy)]'}`} />}
             <h3 className="font-playfair text-2xl mb-3">{service.title}</h3>
-            <p className={`text-sm ${selectedService === service.id ? 'text-white/90' : 'text-luxnavy/80'}`}>{service.description}</p>
+            <p className={`text-sm ${selectedService === service.id ? 'text-[var(--lux-ivory)]/90' : 'text-[var(--lux-navy)]/80'}`}>{service.description}</p>
             {selectedService === service.id && (
-              <div className="absolute top-2 right-2 bg-luxgold text-luxnavy rounded-full p-1">
+              <div className="absolute top-2 right-2 bg-[var(--lux-gold)] text-[var(--lux-navy)] rounded-full p-1">
                 <Check className="w-4 h-4" />
               </div>
             )}
@@ -175,7 +175,7 @@ const ServiceSelection = ({ services, selectedService, setSelectedService }: { s
 
 const OptionSelection = ({ currentService, selectedOption, setSelectedOption }: { currentService: ServiceOption; selectedOption: string; setSelectedOption: (id: string) => void }) => (
   <motion.div key="step2" {...fadeIn} transition={{ duration: 0.5 }} className="space-y-4">
-    <h2 className="text-3xl font-playfair mb-4 text-luxnavy text-center">Choose Your {currentService.title} Option</h2>
+    <h2 className="text-3xl font-playfair mb-4 text-[var(--lux-navy)] text-center">Choose Your {currentService.title} Option</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {currentService.options?.map((option) => (
         <motion.button
@@ -183,22 +183,22 @@ const OptionSelection = ({ currentService, selectedOption, setSelectedOption }: 
           onClick={() => setSelectedOption(option.id)}
           className={`p-4 rounded-lg text-left transition-all shadow-lg ${
             selectedOption === option.id
-              ? currentService.color
-              : 'bg-luxpearl hover:bg-luxsand/20'
+              ? 'bg-[var(--lux-olive)]'
+              : 'bg-[var(--lux-ivory)] hover:bg-[var(--lux-charcoal)]'
           } transform hover:scale-105 relative overflow-hidden`}
           whileHover={{ y: -5 }}
           whileTap={{ scale: 0.95 }}
         >
           <div>
-            {option.icon && <option.icon className={`w-8 h-8 mb-2 ${selectedOption === option.id ? 'text-luxgold' : 'text-luxnavy'}`} />}
-            <h3 className={`font-playfair text-xl mb-1 ${selectedOption === option.id ? 'text-white' : 'text-luxnavy'}`}>{option.title}</h3>
-            <p className={`text-sm mb-2 ${selectedOption === option.id ? 'text-white/90' : 'text-luxnavy/80'}`}>{option.description}</p>
+            {option.icon && <option.icon className={`w-8 h-8 mb-2 ${selectedOption === option.id ? 'text-[var(--lux-gold)]' : 'text-[var(--lux-navy)]'}`} />}
+            <h3 className={`font-playfair text-xl mb-1 ${selectedOption === option.id ? 'text-[var(--lux-ivory)]' : 'text-[var(--lux-navy)]'}`}>{option.title}</h3>
+            <p className={`text-sm mb-2 ${selectedOption === option.id ? 'text-[var(--lux-ivory)]/90' : 'text-[var(--lux-navy)]/80'}`}>{option.description}</p>
             {option.price && (
-              <p className={`text-sm font-bold ${selectedOption === option.id ? 'text-luxgold' : 'text-luxnavy'}`}>{option.price} - {option.duration}</p>
+              <p className={`text-sm font-bold ${selectedOption === option.id ? 'text-[var(--lux-gold)]' : 'text-[var(--lux-navy)]'}`}>{option.price} - {option.duration}</p>
             )}
           </div>
           {selectedOption === option.id && (
-            <div className="absolute top-2 right-2 bg-luxgold text-luxnavy rounded-full p-1">
+            <div className="absolute top-2 right-2 bg-[var(--lux-gold)] text-[var(--lux-navy)] rounded-full p-1">
               <Check className="w-4 h-4" />
             </div>
           )}
@@ -237,23 +237,23 @@ const DateAndGuestsSelection = ({
   setDietaryRequirements: (requirements: string) => void;
 }) => (
   <motion.div key="step3" {...fadeIn} transition={{ duration: 0.5 }} className="space-y-4">
-    <h2 className="text-3xl font-playfair mb-4 text-luxnavy text-center">Choose Your Details</h2>
+    <h2 className="text-3xl font-playfair mb-4 text-[var(--lux-navy)] text-center">Choose Your Details</h2>
     <div className="space-y-4">
-      <div className="flex items-center bg-luxpearl p-3 rounded-lg shadow-md">
-        <Calendar className="w-6 h-6 text-luxgold mr-3" />
+      <div className="flex items-center bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md">
+        <Calendar className="w-6 h-6 text-[var(--lux-gold)] mr-3" />
         <input
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="w-full bg-transparent text-luxnavy focus:outline-none focus:ring-2 focus:ring-luxgold rounded-md"
+          className="w-full bg-transparent text-[var(--lux-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)] rounded-md"
         />
       </div>
-      <div className="flex items-center bg-luxpearl p-3 rounded-lg shadow-md">
-        <Users className="w-6 h-6 text-luxgold mr-3" />
+      <div className="flex items-center bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md">
+        <Users className="w-6 h-6 text-[var(--lux-gold)] mr-3" />
         <select
           value={guests}
           onChange={(e) => setGuests(e.target.value)}
-          className="w-full bg-transparent text-luxnavy focus:outline-none focus:ring-2 focus:ring-luxgold rounded-md"
+          className="w-full bg-transparent text-[var(--lux-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)] rounded-md"
         >
           <option value="">Number of Guests</option>
           {[1, 2, 3, 4, 5, 6].map((num) => (
@@ -262,12 +262,12 @@ const DateAndGuestsSelection = ({
         </select>
       </div>
       {selectedService === 'luxpicnic' && (
-        <div className="flex items-center bg-luxpearl p-3 rounded-lg shadow-md">
-          <MapPin className="w-6 h-6 text-luxgold mr-3" />
+        <div className="flex items-center bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md">
+          <MapPin className="w-6 h-6 text-[var(--lux-gold)] mr-3" />
           <select
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full bg-transparent text-luxnavy focus:outline-none focus:ring-2 focus:ring-luxgold rounded-md"
+            className="w-full bg-transparent text-[var(--lux-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)] rounded-md"
           >
             <option value="">Select a Location</option>
             {locations.map((loc) => (
@@ -280,12 +280,12 @@ const DateAndGuestsSelection = ({
       )}
       {selectedService === 'luxcatering' && (
         <>
-          <div className="flex items-center bg-luxpearl p-3 rounded-lg shadow-md">
-            <ChefHat className="w-6 h-6 text-luxgold mr-3" />
+          <div className="flex items-center bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md">
+            <ChefHat className="w-6 h-6 text-[var(--lux-gold)] mr-3" />
             <select
               value={eventType}
               onChange={(e) => setEventType(e.target.value)}
-              className="w-full bg-transparent text-luxnavy focus:outline-none focus:ring-2 focus:ring-luxgold rounded-md"
+              className="w-full bg-transparent text-[var(--lux-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)] rounded-md"
             >
               <option value="">Select Event Type</option>
               <option value="wedding">Wedding</option>
@@ -294,12 +294,12 @@ const DateAndGuestsSelection = ({
               <option value="other">Other</option>
             </select>
           </div>
-          <div className="flex items-center bg-luxpearl p-3 rounded-lg shadow-md">
+          <div className="flex items-center bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md">
             <textarea
               value={dietaryRequirements}
               onChange={(e) => setDietaryRequirements(e.target.value)}
               placeholder="Any dietary requirements or special requests?"
-              className="w-full bg-transparent text-luxnavy focus:outline-none focus:ring-2 focus:ring-luxgold rounded-md h-24 resize-none"
+              className="w-full bg-transparent text-[var(--lux-navy)] focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)] rounded-md h-24 resize-none"
             />
           </div>
         </>
@@ -420,23 +420,23 @@ export default function LuxFinoDynamicBooking() {
   const renderSummary = () => {
     if (step === 1) return null;
     return (
-      <div className="mb-6 p-4 bg-luxpearl rounded-lg shadow-md">
-        <h3 className="text-xl font-playfair mb-2 text-luxcedar font-semibold">Your LuxFino Experience:</h3>
-        {selectedService && <p className="text-luxcedar"><span className="font-semibold">Service:</span> {currentService?.title}</p>}
-        {selectedOption && <p className="text-luxcedar"><span className="font-semibold">Option:</span> {currentService?.options?.find(o => o.id === selectedOption)?.title}</p>}
-        {date && <p className="text-luxcedar"><span className="font-semibold">Date:</span> {date}</p>}
-        {guests && <p className="text-luxcedar"><span className="font-semibold">Guests:</span> {guests}</p>}
-        {location && <p className="text-luxcedar"><span className="font-semibold">Location:</span> {location}</p>}
-        {eventType && <p className="text-luxcedar"><span className="font-semibold">Event Type:</span> {eventType}</p>}
+      <div className="mb-6 p-4 bg-[var(--lux-navy)] text-[var(--lux-ivory)] rounded-lg shadow-md border border-[var(--lux-gold)]/30">
+        <h3 className="text-xl font-playfair mb-2 text-[var(--lux-gold)] font-semibold">Your LuxFino Experience:</h3>
+        {selectedService && <p><span className="font-semibold text-[var(--lux-gold)]">Service:</span> {currentService?.title}</p>}
+        {selectedOption && <p><span className="font-semibold text-[var(--lux-gold)]">Option:</span> {currentService?.options?.find(o => o.id === selectedOption)?.title}</p>}
+        {date && <p><span className="font-semibold text-[var(--lux-gold)]">Date:</span> {date}</p>}
+        {guests && <p><span className="font-semibold text-[var(--lux-gold)]">Guests:</span> {guests}</p>}
+        {location && <p><span className="font-semibold text-[var(--lux-gold)]">Location:</span> {location}</p>}
+        {eventType && <p><span className="font-semibold text-[var(--lux-gold)]">Event Type:</span> {eventType}</p>}
       </div>
     );
   };
 
   return (
-    <div className="bg-white min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+    <div className="bg-[var(--lux-navy)] min-h-screen py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <motion.h1 
-          className="text-6xl sm:text-7xl font-playfair font-light text-center mb-16 text-luxnavy"
+          className="text-6xl sm:text-7xl font-playfair font-light text-center mb-16 text-[var(--lux-ivory)]"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -444,7 +444,7 @@ export default function LuxFinoDynamicBooking() {
           Craft Your LuxFino Experience
         </motion.h1>
 
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-12 border-2 border-luxcedar">
+        <div className="bg-[var(--lux-ivory)]/95 backdrop-blur-sm rounded-3xl shadow-2xl p-12 border-2 border-[var(--lux-gold)]">
           <ProgressBar currentStep={step} totalSteps={4} />
           {renderSummary()}
           <AnimatePresence mode="wait">
@@ -497,7 +497,7 @@ export default function LuxFinoDynamicBooking() {
             {step > 1 && (
               <motion.button
                 onClick={prevStep}
-                className="px-8 py-3 bg-luxcedar text-luxpearl rounded-full hover:bg-luxsand transition-colors shadow-md"
+                className="px-8 py-3 bg-[var(--lux-navy)] text-[var(--lux-gold)] rounded-full hover:bg-[var(--lux-charcoal)] transition-colors shadow-md"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -507,7 +507,7 @@ export default function LuxFinoDynamicBooking() {
             {step < 4 ? (
               <motion.button
                 onClick={nextStep}
-                className="px-8 py-3 bg-luxpearl text-luxcedar rounded-full hover:bg-luxgold transition-colors shadow-md ml-auto"
+                className="px-8 py-3 bg-[var(--lux-navy)] text-[var(--lux-gold)] rounded-full hover:bg-[var(--lux-charcoal)] transition-colors shadow-md ml-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -516,7 +516,7 @@ export default function LuxFinoDynamicBooking() {
             ) : (
               <motion.button
                 onClick={() => alert('Booking confirmed! We will contact you soon.')}
-                className="px-8 py-3 bg-luxgold text-luxnavy rounded-full hover:bg-luxnavy hover:text-luxgold transition-colors shadow-md ml-auto"
+                className="px-8 py-3 bg-[var(--lux-gold)] text-[var(--lux-navy)] rounded-full hover:bg-[var(--lux-ivory)] hover:text-[var(--lux-navy)] transition-colors shadow-md ml-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

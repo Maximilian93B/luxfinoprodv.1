@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Navbar from './components/Navbar'
 import HeroIndex from './components/LuxIndex/IndexHero'
@@ -95,7 +95,7 @@ const ParallaxBackground: React.FC = () => {
       options={{
         fullScreen: {
           enable: true,
-          zIndex: -1
+          zIndex: 0
         },
         background: {
           color: {
@@ -132,7 +132,7 @@ const ParallaxBackground: React.FC = () => {
           links: {
             color: "#D4AF37", // Gold links
             distance: 150,
-            enable: true,
+            enable: false,
             opacity: 0.3,
             width: 1,
           },
@@ -168,23 +168,15 @@ const ParallaxBackground: React.FC = () => {
         },
         detectRetina: true,
       }}
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full pointer-events-none"
     />
   )
 }
 
 // Home Page Component
 const HomePage: React.FC = () => {
-  const [showMainContent, setShowMainContent] = useState(true)
+  const [showMainContent, setShowMainContent] = useState(false)
   const [isMailingDrawerOpen, setIsMailingDrawerOpen] = useState(false)
-
-  useEffect(() => {
-    // Check if user has seen loading screen
-    const hasSeenLoading = localStorage.getItem('luxfino-loading-seen')
-    if (hasSeenLoading) {
-      setShowMainContent(true)
-    }
-  }, [])
 
   const handleEnter = useCallback(() => {
     setShowMainContent(true)
@@ -196,9 +188,11 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-lux-navy">
-      <ParallaxBackground />
+      <div className="absolute inset-0 z-0">
+        <ParallaxBackground />
+      </div>
       <motion.div 
-        className="relative z-1 min-h-screen"
+        className="relative z-10 min-h-screen"
         initial="hidden"
         animate="visible"
         variants={fadeInVariants}

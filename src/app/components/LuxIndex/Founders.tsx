@@ -122,7 +122,7 @@ export default function OwnerFounderSection() {
         <motion.p 
           className="text-2xl mb-10 max-w-3xl mx-auto text-center font-avenir leading-relaxed text-lux-ivory"
         >
-          Hey there! We're Morgan and Dre, two Tofino locals who love creating magical moments. We combined our passions – Morgan's eye for beautiful spaces and Dre's incredible culinary skills – to bring you something truly special here in our slice of paradise.
+          Hey there! We&apos;re Morgan and Dre, two Tofino locals who love creating magical moments. We combined our passions – Morgan&apos;s eye for beautiful spaces and Dre&apos;s incredible culinary skills – to bring you something truly special here in our slice of paradise.
         </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">

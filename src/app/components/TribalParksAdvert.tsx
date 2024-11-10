@@ -55,7 +55,7 @@ export default function TribalParksSection() {
               >
                 <h3 className="text-2xl font-bold mb-4">Tribal Parks Allies: Protecting Indigenous Lands and Cultures</h3>
                 <p className="text-lg mb-4">
-                  Our partnership with Tribal Parks Allies goes beyond luxury experiences. We're committed to preserving Tofino's natural beauty and respecting First Nations communities' rights and traditions.
+                  Our partnership with Tribal Parks Allies goes beyond luxury experiences. We&apos;re committed to preserving Tofino&apos;s natural beauty and respecting First Nations communities&apos; rights and traditions.
                 </p>
                 <ul className="text-left list-disc list-inside mb-4">
                   <li>Supporting sustainable tourism initiatives</li>

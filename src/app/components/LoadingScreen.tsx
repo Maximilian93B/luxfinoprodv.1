@@ -8,11 +8,29 @@ interface LoadingScreenProps {
   onEnter: () => void;
 }
 
+const getServiceDescription = (index: number) => {
+  const descriptions = [
+    "Immerse yourself in curated outdoor dining experiences",
+    "Discover luxury in nature's most serene settings",
+    "Celebrate life's moments with unparalleled elegance"
+  ];
+  return descriptions[index];
+};
+
 const services = [
-  { title: "Luxury Pop-up Picnics" },
-  { title: "Remote Glamping" },
-  { title: "Events, Weddings & Catering" }
-]
+  { 
+    title: "Luxury Pop-up Picnics",
+    description: "Immerse yourself in curated outdoor dining experiences"
+  },
+  { 
+    title: "Remote Glamping",
+    description: "Discover luxury in nature's most serene settings"
+  },
+  { 
+    title: "Events & Celebrations",
+    description: "Celebrate life's moments with unparalleled elegance"
+  }
+];
 
 const GoldParticle: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0, size: 0, duration: 0 })
@@ -41,8 +59,9 @@ const GoldParticle: React.FC = () => {
       }}
       initial={{ opacity: 0 }}
       animate={{
-        opacity: [0, 0.5, 0],
-        y: [0, -20],
+        opacity: [0, 0.7, 0],
+        y: [0, -30],
+        scale: [1, 1.2, 1]
       }}
       transition={{
         duration: position.duration,
@@ -53,27 +72,16 @@ const GoldParticle: React.FC = () => {
   )
 }
 
-const LOADING_SCREEN_KEY = 'luxfino-loading-seen'
-
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
   const [progress, setProgress] = useState(0)
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [cycleCount, setCycleCount] = useState(0)
   const [isMounted, setIsMounted] = useState(false)
-  const [shouldShow, setShouldShow] = useState(true)
 
   useEffect(() => {
     setIsMounted(true)
-    const hasSeenLoading = localStorage.getItem(LOADING_SCREEN_KEY)
-    
-    if (hasSeenLoading) {
-      setShouldShow(false)
-      onEnter()
-    } else {
-      localStorage.setItem(LOADING_SCREEN_KEY, 'true')
-    }
-  }, [onEnter])
+  }, [])
 
   useEffect(() => {
     const serviceInterval = setInterval(() => {
@@ -84,7 +92,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
         }
         return nextIndex
       })
-    }, 1000)
+    }, 1500)
 
     return () => clearInterval(serviceInterval)
   }, [])
@@ -111,58 +119,169 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.1, duration: 0.5 }
+      transition: { 
+        delay: i * 0.08,
+        duration: 0.6,
+        ease: "easeOut"
+      }
     })
   }
 
-  if (!shouldShow) return null
+  const containerVariants = {
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.8, ease: "easeInOut" }
+    }
+  }
+
+  const logoContainerVariants = {
+    initial: { opacity: 0, scale: 0.8 },
+    animate: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { 
+        duration: 1.2,
+        ease: "easeOut"
+      }
+    }
+  }
 
   return (
     <motion.div 
-      className="fixed inset-0 bg-black flex flex-col items-center justify-center overflow-hidden px-4"
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      className="fixed inset-0 bg-lux-navy flex flex-col items-center justify-center overflow-hidden px-4 z-[9999]"
+      variants={containerVariants}
+      exit="exit"
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
     >
-      {/* Gold particles - only render on client side */}
-      {isMounted && Array.from({ length: 30 }).map((_, index) => (
+      {isMounted && Array.from({ length: 40 }).map((_, index) => (
         <GoldParticle key={index} />
       ))}
 
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
-        className="relative mb-6 sm:mb-8"
+        variants={logoContainerVariants}
+        initial="initial"
+        animate="animate"
+        className="relative flex items-center justify-center"
+        style={{ width: '280px', height: '280px' }}
       >
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 rounded-full border-t-2 sm:border-t-4 border-r-2 sm:border-r-4 border-[#D4AF37] opacity-50"
-          style={{ width: '120px', height: '120px', margin: '-10px' }}
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 rounded-full border-b-2 sm:border-b-4 border-l-2 sm:border-l-4 border-white opacity-30"
-          style={{ width: '140px', height: '140px', margin: '-20px' }}
-        />
-        <motion.div
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Image
-            src="/Lux.Fino.Logo2.svg"
-            alt="Lux.Fino Logo"
-            width={100}
-            height={100}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority
-            className="relative z-10 brightness-0 invert"
+        {/* Container for all rotating elements */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {/* Outer rotating ring */}
+          <motion.div
+            animate={{ 
+              rotate: 360,
+              transition: {
+                duration: 30,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
+              }
+            }}
+            className="absolute rounded-full border-t-2 sm:border-t-4 border-r-2 sm:border-r-4 border-[#D4AF37] opacity-40"
+            style={{ 
+              width: '280px', 
+              height: '280px',
+            }}
           />
-        </motion.div>
+
+          {/* Middle rotating ring */}
+          <motion.div
+            animate={{ 
+              rotate: -360,
+              transition: {
+                duration: 25,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
+              }
+            }}
+            className="absolute rounded-full border-b-2 sm:border-b-4 border-l-2 sm:border-l-4 border-white opacity-25"
+            style={{ 
+              width: '240px', 
+              height: '240px',
+            }}
+          />
+
+          {/* Inner rotating ring */}
+          <motion.div
+            animate={{ 
+              rotate: 180,
+              transition: {
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
+              }
+            }}
+            className="absolute rounded-full border-t-2 sm:border-t-4 border-r-2 sm:border-r-4 border-[#D4AF37] opacity-30"
+            style={{ 
+              width: '200px', 
+              height: '200px',
+            }}
+          />
+
+          {/* Glow effect */}
+          <motion.div
+            className="absolute rounded-full bg-[#D4AF37] blur-[40px] opacity-20"
+            style={{ 
+              width: '160px', 
+              height: '160px',
+            }}
+            animate={{
+              opacity: [0.1, 0.2, 0.1],
+              scale: [0.8, 1, 0.8],
+            }}
+            transition={{
+              duration: 3,
+              ease: "easeInOut",
+              repeat: Infinity,
+            }}
+          />
+
+          {/* Logo container with floating effect (removed spin) */}
+          <motion.div
+            animate={{ 
+              y: [-4, 4, -4],
+              scale: [1, 1.05, 1],
+            }}
+            transition={{
+              y: {
+                repeat: Infinity,
+                duration: 3,
+                ease: "easeInOut",
+                repeatType: "reverse"
+              },
+              scale: {
+                repeat: Infinity,
+                duration: 3,
+                ease: "easeInOut",
+                repeatType: "reverse"
+              }
+            }}
+            className="absolute flex items-center justify-center"
+            style={{
+              width: '160px',
+              height: '160px',
+            }}
+          >
+            <Image
+              src="/Lux.Fino.Logo2.svg"
+              alt="Lux.Fino Logo"
+              width={160}
+              height={160}
+              priority
+              className="brightness-0 invert drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+            />
+          </motion.div>
+        </div>
       </motion.div>
       
-      <motion.h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#D4AF37] mb-2 sm:mb-4 font-playfair text-center">
+      <motion.h1 
+        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#D4AF37] mb-4 sm:mb-6 font-playfair text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+      >
         {Array.from("LuxFino").map((letter, index) => (
           <motion.span
             key={index}
@@ -181,76 +300,85 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onEnter }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="text-white font-avenir text-sm sm:text-base mb-4 sm:mb-6 text-center max-w-md px-2"
+        className="text-white font-avenir text-lg sm:text-xl mb-8 sm:mb-10 text-center max-w-md px-4 leading-relaxed"
       >
-        Crafting unforgettable luxury experiences in Tofino
+        Elevating Moments into Unforgettable Experiences in Tofino
       </motion.p>
       
       <AnimatePresence mode="wait">
         {isLoading ? (
           <motion.div
             key="loading"
-            initial={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="flex flex-col items-center"
           >
-            <div className="h-16 sm:h-20 mb-4 sm:mb-8">
+            <div className="h-20 sm:h-24 mb-6 sm:mb-8">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentServiceIndex}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.5 }}
                   className="text-center"
                 >
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#D4AF37] mb-2 font-playfair">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#D4AF37] mb-3 font-playfair">
                     {services[currentServiceIndex].title}
                   </h2>
+                  <p className="text-white/80 text-sm sm:text-base font-avenir">
+                    {getServiceDescription(currentServiceIndex)}
+                  </p>
                 </motion.div>
               </AnimatePresence>
             </div>
             
             <motion.div
-              className="w-full max-w-xs h-1 sm:h-2 bg-white bg-opacity-10 rounded-full overflow-hidden"
+              className="w-full max-w-sm h-1 sm:h-2 bg-white/5 rounded-full overflow-hidden"
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+              transition={{ delay: 0.3, duration: 0.8 }}
             >
               <motion.div
-                className="h-full bg-gradient-to-r from-[#D4AF37] to-white"
+                className="h-full bg-gradient-to-r from-[#D4AF37] via-[#F5E6CC] to-[#D4AF37]"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.3 }}
               />
             </motion.div>
             
-            <motion.div
-              className="mt-2 sm:mt-4 text-white font-avenir text-xs sm:text-sm"
+            <motion.p
+              className="mt-4 text-white/70 font-avenir text-sm sm:text-base italic"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.5 }}
             >
-              <p>Loading your luxurious experience... {Math.round(progress)}%</p>
-            </motion.div>
+              Curating your bespoke experience... {Math.round(progress)}%
+            </motion.p>
           </motion.div>
         ) : (
           <motion.button
             key="enter-button"
             onClick={onEnter}
-            className=" mt-5 bg-[#D4AF37] text-black hover:bg-white transition-all duration-300 text-base sm:text-lg px-6 sm:px-8 py-2 sm:py-3 rounded-full font-avenir font-semibold tracking-wide shadow-lg hover:shadow-xl"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.05 }}
+            className="mt-8 bg-[#D4AF37] text-black hover:bg-white transition-all duration-300 
+                     text-lg sm:text-xl px-8 sm:px-10 py-3 sm:py-4 rounded-full 
+                     font-avenir font-semibold tracking-wide shadow-lg hover:shadow-xl"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 0 25px rgba(212, 175, 55, 0.5)"
+            }}
             whileTap={{ scale: 0.95 }}
           >
-            Enter LuxFino
+            Begin Your Journey
           </motion.button>
         )}
       </AnimatePresence>
       
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-[#D4AF37] via-white to-[#D4AF37]"
+        className="absolute bottom-0 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-[#D4AF37] via-[#F5E6CC] to-[#D4AF37]"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.5, duration: 1.5, ease: "easeInOut" }}
