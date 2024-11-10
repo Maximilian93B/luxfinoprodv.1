@@ -45,7 +45,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
             style={{objectFit:"cover"}}
             className="transition-transform duration-700 ease-out hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-luxpearl/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-lux-ivory/30 to-lux-ivory/50" />
         </motion.div>
       </motion.div>
       <motion.div 
@@ -80,10 +80,10 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
 
 const DiscoverSection: React.FC = () => {
   return (
-    <section id="discover" className="py-24 bg-white overflow-hidden">
+    <section id="discover" className="py-12 bg-lux-navy overflow-hidden">
       <div className="container mx-auto px-8 relative">
         <motion.h1 
-          className="text-5xl md:text-5xl lg:text-6xl font-light text-center mb-20 font-playfair text-luxcedar leading-tight"
+          className="text-5xl md:text-5xl lg:text-6xl font-light text-center mb-20 font-playfair text-luxpearl leading-tight"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}

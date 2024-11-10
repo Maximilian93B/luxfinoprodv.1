@@ -1,21 +1,21 @@
 'use client'
 
-import React, { useState, useCallback, useEffect } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import React, { useState, useCallback } from 'react'
+import { motion, useInView } from 'framer-motion'
 import Navbar from './components/Navbar'
 import HeroIndex from './components/LuxIndex/IndexHero'
 import LuxFinoServices from './components/LuxIndex/AboutIndex'
 import ServiceSections from './components/LuxIndex/ServiceSection'
 import OwnerFounderSection from './components/LuxIndex/Founders'
 import TribalParksSection from './components/TribalParksAdvert'
-import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
 
 // New imports for the particle effect
 import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
-import type { Engine, Container } from "tsparticles-engine"
+import type { Engine } from "tsparticles-engine"
 import MailingListDrawer from './components/LuxIndex/mailing-list-drawer'
+import LuxCTA from './components/luxCTA'
 
 
 // Framer Motion Variants
@@ -95,11 +95,11 @@ const ParallaxBackground: React.FC = () => {
       options={{
         fullScreen: {
           enable: true,
-          zIndex: -1 // Ensure it stays behind content
+          zIndex: 0
         },
         background: {
           color: {
-            value: "#000000",
+            value: "#0C2233", // Deep Navy
           },
         },
         fpsLimit: 120,
@@ -117,27 +117,27 @@ const ParallaxBackground: React.FC = () => {
           },
           modes: {
             repulse: {
-              distance: 200,
+              distance: 150,
               duration: 0.4,
             },
             push: {
-              quantity: 4,
+              quantity: 2,
             },
           },
         },
         particles: {
           color: {
-            value: "#D4AF37", // Updated to match loading screen gold
+            value: ["#D4AF37", "#F8F3E3"], // Gold and Ivory particles
           },
           links: {
-            color: "luxpearl",
+            color: "#D4AF37", // Gold links
             distance: 150,
             enable: false,
-            opacity: 0.5,
+            opacity: 0.3,
             width: 1,
           },
           collisions: {
-            enable: true,
+            enable: false,
           },
           move: {
             direction: "none",
@@ -145,8 +145,8 @@ const ParallaxBackground: React.FC = () => {
             outModes: {
               default: "bounce",
             },
-            random: false,
-            speed: 1,
+            random: true,
+            speed: 0.5,
             straight: false,
           },
           number: {
@@ -163,28 +163,20 @@ const ParallaxBackground: React.FC = () => {
             type: "circle",
           },
           size: {
-            value: { min: 0.4, max: 1.7 },
+            value: { min: 0.5, max: 2.5 },
           },
         },
         detectRetina: true,
       }}
-      className="fixed inset-0"
+      className="absolute inset-0 w-full h-full pointer-events-none"
     />
   )
 }
 
 // Home Page Component
 const HomePage: React.FC = () => {
-  const [showMainContent, setShowMainContent] = useState(true)
+  const [showMainContent, setShowMainContent] = useState(false)
   const [isMailingDrawerOpen, setIsMailingDrawerOpen] = useState(false)
-
-  useEffect(() => {
-    // Check if user has seen loading screen
-    const hasSeenLoading = localStorage.getItem('luxfino-loading-seen')
-    if (hasSeenLoading) {
-      setShowMainContent(true)
-    }
-  }, [])
 
   const handleEnter = useCallback(() => {
     setShowMainContent(true)
@@ -195,10 +187,12 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <>
-      <ParallaxBackground />
+    <div className="relative min-h-screen bg-lux-navy">
+      <div className="absolute inset-0 z-0">
+        <ParallaxBackground />
+      </div>
       <motion.div 
-        className="min-h-screen relative"
+        className="relative z-10 min-h-screen"
         initial="hidden"
         animate="visible"
         variants={fadeInVariants}
@@ -237,6 +231,7 @@ const HomePage: React.FC = () => {
               </motion.div>
             </AnimatedSection>
           
+    
             <AnimatedSection direction="left">
               <motion.section 
                 className="text-luxocean py-24"
@@ -248,10 +243,22 @@ const HomePage: React.FC = () => {
                 </div>
               </motion.section>
             </AnimatedSection>
+
+
+
+           
+            <AnimatedSection direction="right">
+              <motion.div 
+                className="py-24" 
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+               <LuxCTA />
+              </motion.div>
+            </AnimatedSection>
+           
           </div>
         </main>
-        
-        <Footer />
       </motion.div>
       
       <MailingListDrawer 
@@ -259,7 +266,7 @@ const HomePage: React.FC = () => {
         onClose={() => setIsMailingDrawerOpen(false)}
         autoTrigger={true}
       />
-    </>
+    </div>
   )
 }
 

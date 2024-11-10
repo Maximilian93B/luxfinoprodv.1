@@ -2,37 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* LuxFino Colors */
-/* 
-luxocean: '#0A4B5E',
-luxsand: '#D9B88F',
-luxforest: '#1E4D40',
-luxpearl: '#F0F3F4',
-luxcedar: '#3A3229',
-luxice: '#FAFCFD',
-luxcopper: '#CB7D55',*/
+:root {
+  --lux-gold: #D4AF37;
+  --lux-navy: #0C2233;
+  --lux-ivory: #F8F3E3;
+  --lux-charcoal: #333333;
+  --lux-olive: #7D8A6A;
+}
 
-
-
-
+/* Replace the existing color variables */
+@layer base {
+  :root {
+    --foreground-rgb: 51, 51, 51;  /* Charcoal */
+    --background-start-rgb: 248, 243, 227;  /* Ivory */
+    --background-end-rgb: 248, 243, 227;  /* Ivory */
+  }
+}
 
 html {
   scroll-behavior: smooth;
-}
-
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
 }
 
 /* Consolidated body styles */
