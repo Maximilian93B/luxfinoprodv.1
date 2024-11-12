@@ -115,7 +115,7 @@ export default function LuxFinoLandingDrawerCards() {
   }
 
   return (
-    <div className="relative min-h-screen lg:min-h-[120vh] bg-lux-navy text-lux-ivory overflow-hidden">
+    <div className="relative min-h-screen lg:min-h-[120vh] bg-lux-ocean text-lux-ivory overflow-hidden">
       <div
         ref={parallaxRef}
         className="absolute inset-0 h-[110%] w-screen overflow-hidden"
@@ -281,27 +281,37 @@ export default function LuxFinoLandingDrawerCards() {
               </div>
             </div>
 
-            <motion.div className="flex flex-col items-center w-full px-4 sm:px-0">  
-              <Link href="/bookings" className="w-full sm:w-auto">
+            <motion.div 
+              className="flex flex-col items-center w-full px-4 sm:px-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >  
+              <Link href="/bookings" className="w-full max-w-[280px] sm:max-w-none sm:w-auto">
                 <motion.button
-                  whileHover={{ scale: isMobile ? 1 : 1.05 }}
+                  whileHover={{ 
+                    scale: isMobile ? 1 : 1.03,
+                    backgroundColor: '#D4AF37',
+                  }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-5 
-                    mb-8 lg:mb-10 
-                    bg-lux-olive hover:bg-lux-gold 
+                  initial={{ backgroundColor: '#606C5D' }}
+                  className="w-full sm:w-auto 
+                    px-6 sm:px-8 lg:px-12 
+                    py-3 sm:py-4 
+                    mb-6 sm:mb-8 lg:mb-10 
                     text-lux-ivory 
                     rounded-full 
-                    text-base sm:text-xl lg:text-2xl 
-                    font-medium sm:font-semibold 
+                    text-sm sm:text-base lg:text-lg
+                    font-medium 
                     transition-all duration-300 
-                    shadow-md hover:shadow-lg"
+                    shadow-md sm:shadow-lg hover:shadow-xl
+                    relative
+                    overflow-hidden
+                    bg-lux-olive
+                    border border-lux-gold/20"
                 >
-                  Book Your Experience
+                  <span className="relative z-10">Book Your Experience</span>
                 </motion.button>
-              </Link>
-
-              <Link href="#services" className="hover:opacity-80 mb-2">
-                <ChevronDown className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" />
               </Link>
             </motion.div>
           </div>

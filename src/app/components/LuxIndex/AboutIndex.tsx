@@ -38,7 +38,6 @@ export default function LuxFinoServices() {
   const [hoveredService, setHoveredService] = useState<number | null>(null)
   const [progress, setProgress] = useState(0)
 
-
   const currentService = hoveredService !== null ? hoveredService : activeService
 
   useEffect(() => {
@@ -58,10 +57,10 @@ export default function LuxFinoServices() {
   }, [])
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8  bg-transparent">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-7xl md:text-7xl font-playfair font-semibold mb-16 text-center text-lux-gold"
+          className="text-5xl sm:text-6xl md:text-7xl font-playfair font-semibold mb-8 sm:mb-16 text-center text-lux-gold"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -69,14 +68,14 @@ export default function LuxFinoServices() {
           Experience Extraordinary Living
         </motion.h2>
 
-        <div className="flex flex-col lg:flex-row gap-16">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           <div className="lg:w-1/3">
-            <nav className="space-y-6 " role="tablist">
+            <nav className="space-y-4 lg:space-y-6" role="tablist">
               {services.map((service, index) => (
                 <motion.button
                   key={service.title}
                   className={`
-                    w-full text-left py-6 px-8 rounded-xl
+                    w-full text-left py-4 lg:py-6 px-6 lg:px-8 rounded-xl
                     relative overflow-hidden transition-all duration-500
                     text-lux-gold
                     ${index === activeService 
@@ -91,11 +90,11 @@ export default function LuxFinoServices() {
                   aria-selected={index === activeService}
                   aria-controls={`panel-${index}`}
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-3xl font-playfair text-lux-gold">{service.title}</h3>
-                    <ChevronRight size={24} className="text-lux-gold" />
+                  <div className="flex items-center justify-between mb-2 lg:mb-3">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-playfair text-lux-gold">{service.title}</h3>
+                    <ChevronRight className="w-6 h-6 lg:w-8 lg:h-8 text-lux-gold" />
                   </div>
-                  <p className="font-avenir text-lux-ivory text-lg opacity-80">
+                  <p className="font-avenir text-lux-ivory text-base sm:text-lg lg:text-xl opacity-80">
                     {service.description.substring(0, 80)}...
                   </p>
                   {index === activeService && (
@@ -112,7 +111,7 @@ export default function LuxFinoServices() {
           </div>
 
           <div className="lg:w-2/3">
-            <div className="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-[600px] sm:h-[600px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
               <AnimatePresence mode="sync">
                 {services.map((service, index) => (
                   <motion.div
@@ -138,22 +137,23 @@ export default function LuxFinoServices() {
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                       className="transition-opacity duration-500"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      priority
-                      loading="eager"
+                      loading="lazy"
                     />
                     <div className={`absolute inset-0 transition-all duration-500 ${
                       currentService === index
-                        ? 'bg-gradient-to-t from-black/40 via-black/40 to-black/20'
-                        : 'bg-gradient-to-t from-black/30 via-black/30 to-transparent'
+                        ? 'bg-gradient-to-t from-black/60 via-black/40 to-black/20'
+                        : 'bg-gradient-to-t from-black/50 via-black/30 to-transparent'
                     }`} />
                     <motion.div 
-                      className="absolute inset-0 flex flex-col justify-end p-8 text-luxpearl z-10"
+                      className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 text-luxpearl z-10"
                       initial={{ y: 50, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.5 }}
                     >
-                      <h3 className="text-4xl font-playfair mb-4">{service.title}</h3>
-                      <p className="font-avenir text-xl leading-relaxed mb-6 max-w-2xl">
+                      <h3 className="text-3xl sm:text-4xl lg:text-5xl font-playfair mb-3 sm:mb-4">
+                        {service.title}
+                      </h3>
+                      <p className="font-avenir text-base sm:text-lg lg:text-xl leading-tight sm:leading-relaxed mb-4 sm:mb-6 max-w-2xl">
                         {service.description}
                       </p>
                       <motion.a
@@ -162,24 +162,30 @@ export default function LuxFinoServices() {
                           e.preventDefault();
                           document.getElementById('details-section')?.scrollIntoView({ behavior: 'smooth' });
                         }}
-                        className="h-14
-                          inline-flex items-center justify-center gap-3
-                          bg-gradient-to-r from-[#7D8A6A] to-[#556B2F] 
+                        className="h-8 sm:h-10
+                          inline-flex items-center justify-center gap-1.5
+                          bg-gradient-to-r from-[#7D8A6A]/90 to-[#556B2F]/90 
                           hover:from-[#556B2F] hover:to-[#7D8A6A]
-                          text-[#F8F3E3] text-lg font-medium
-                          px-8 rounded-full
-                          shadow-[0_2px_10px_rgba(125,138,106,0.2)]
+                          text-[#F8F3E3] text-xs sm:text-sm font-medium
+                          px-3 sm:px-4 rounded-full
+                          shadow-[0_2px_8px_rgba(125,138,106,0.15)]
+                          backdrop-blur-sm
                           transition-all duration-300 ease-out
-                          hover:shadow-[0_5px_20px_rgba(125,138,106,0.3)]
-                          hover:translate-y-[-2px]
-                          active:translate-y-[1px]
+                          hover:shadow-[0_4px_12px_rgba(125,138,106,0.25)]
+                          hover:translate-y-[-1px]
+                          active:translate-y-[0.5px]
                           whitespace-nowrap
-                          group"
-                        whileHover={{ scale: 1.05 }}
+                          group
+                          border border-[#7D8A6A]/20"
+                        whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <span>Learn More</span>
-                        <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" size={20} aria-hidden="true" />
+                        <span className="tracking-wide">Learn More</span>
+                        <ArrowUpRight 
+                          className="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-300 
+                            group-hover:translate-x-0.5 group-hover:-translate-y-0.5" 
+                          aria-hidden="true" 
+                        />
                       </motion.a>
                     </motion.div>
                   </motion.div>
@@ -201,7 +207,7 @@ export default function LuxFinoServices() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <p className="text-lux-ivory font-avenir mb-10 text-2xl leading-relaxed max-w-5xl mx-auto">
+          <p className="text-lux-ivory mb-10 text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-5xl mx-auto font-avenir">
             Welcome to LuxFino, where luxury meets the wild beauty of Tofino. Our signature experiences transform your moments into extraordinary memories, curated exclusively for those who seek the finest things in life. Let us introduce you to a world where wild meets luxury.
           </p>
           <motion.a 
@@ -214,7 +220,7 @@ export default function LuxFinoServices() {
               inline-flex items-center justify-center gap-3
               bg-gradient-to-r from-[#D4AF37] to-[#B8860B] 
               hover:from-[#B8860B] hover:to-[#D4AF37]
-              text-[#F8F3E3] text-lg font-medium
+              text-[#F8F3E3] text-lg sm:text-xl font-medium
               px-8 rounded-full
               shadow-[0_2px_10px_rgba(212,175,55,0.3)]
               transition-all duration-300 ease-out 

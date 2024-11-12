@@ -43,8 +43,10 @@ const MailingListDrawer: React.FC<MailingListDrawerProps> = ({
 
   const handleClose = () => {
     setIsOpen(false)
-    setHasBeenClosed(true)
-    localStorage.setItem('mailingListDrawerClosed', 'true')
+    if (autoTrigger) {
+      setHasBeenClosed(true)
+      localStorage.setItem('mailingListDrawerClosed', 'true')
+    }
     onClose()
   }
 
@@ -208,8 +210,7 @@ const MailingListDrawer: React.FC<MailingListDrawerProps> = ({
         )}
       </AnimatePresence>
 
-      {/* Floating button to reopen the drawer */}
-      {!isOpen && hasBeenClosed && (
+      {autoTrigger && !isOpen && hasBeenClosed && (
         <motion.button
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}

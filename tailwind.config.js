@@ -24,6 +24,7 @@ module.exports = {
         'lux-ivory': 'var(--lux-ivory)',
         'lux-charcoal': 'var(--lux-charcoal)',
         'lux-olive': 'var(--lux-olive)',
+        'lux-ocean': 'var(--lux-ocean)',
       },
       zIndex: {
         'navigation': '50',

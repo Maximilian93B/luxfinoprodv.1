@@ -32,7 +32,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
         viewport={{ once: true, margin: "-100px" }}
       >
         <motion.div 
-          className="relative h-[500px] overflow-hidden rounded-2xl shadow-md shadow-luxpearl/30"
+          className="relative h-[500px] overflow-hidden rounded-2xl shadow-md shadow-lux-ivory"
           whileHover={{ scale: 1.03 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
@@ -56,7 +56,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
         viewport={{ once: true, margin: "-100px" }}
       >
         <motion.h2 
-          className="text-4xl md:text-4xl font-light mb-6 font-playfair text-luxcedar leading-tight"
+          className="text-5xl md:text-5xl font-light mb-6 font-playfair text-lux-gold leading-tight"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -65,7 +65,7 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
           {title}
         </motion.h2>
         <motion.p 
-          className="text-xl mb-8 font-avenir text-luxcedar leading-relaxed"
+          className="text-xl md:text-2xl mb-8 font-avenir text-lux-ivory leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -80,10 +80,10 @@ const DiscoverItem: React.FC<DiscoverItemProps> = ({ title, imageSrc, descriptio
 
 const DiscoverSection: React.FC = () => {
   return (
-    <section id="discover" className="py-12 bg-lux-navy overflow-hidden">
+    <section id="discover" className="py-24 bg-lux-ocean overflow-hidden">
       <div className="container mx-auto px-8 relative">
         <motion.h1 
-          className="text-5xl md:text-5xl lg:text-6xl font-light text-center mb-20 font-playfair text-luxpearl leading-tight"
+          className="text-6xl md:text-7xl lg:text-7xl font-light text-center mb-20 font-playfair text-lux-gold leading-tight mt-12"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}

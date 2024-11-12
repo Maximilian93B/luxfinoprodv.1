@@ -3,8 +3,6 @@
 import React, { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import HeroSection from '../components/HeroSection'
 import DiscoverSection from '../components/DiscoverLuxRemote'
 import ExperienceAccordion from '../components/ExperienceAccordion'
@@ -43,8 +41,7 @@ const FadeInSection: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
 const LuxRemotePage: React.FC = () => {
   return (
-    <div className='bg-luxocean min-h-screen'>
-      <Navbar />
+    <div className='bg-lux-ocean min-h-screen'>
       <main>
         <HeroSection />
         <FadeInSection>
@@ -62,7 +59,6 @@ const LuxRemotePage: React.FC = () => {
           <CallToAction />
         </FadeInSection>
       </main>
-      <Footer />
     </div>
   )
 }
