@@ -16,6 +16,7 @@ import { loadFull } from "tsparticles"
 import type { Engine } from "tsparticles-engine"
 import MailingListDrawer from './components/LuxIndex/mailing-list-drawer'
 import LuxCTA from './components/luxCTA'
+import { Mail } from 'lucide-react'
 
 
 // Framer Motion Variants
@@ -261,13 +262,27 @@ const HomePage: React.FC = () => {
         </main>
       </motion.div>
       
+      <motion.button
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        onClick={() => setIsMailingDrawerOpen(true)}
+        className="fixed bottom-4 right-4 z-50 
+          bg-[var(--lux-gold)] text-[var(--lux-navy)]
+          px-4 py-2 rounded-full shadow-lg 
+          hover:bg-[var(--lux-navy)] hover:text-[var(--lux-gold)]
+          transition-colors duration-200
+          flex items-center gap-2"
+      >
+        <Mail className="h-5 w-5" />
+        <span className="hidden sm:inline">Subscribe</span>
+      </motion.button>
+
       <MailingListDrawer 
         isOpen={isMailingDrawerOpen}
         onClose={() => setIsMailingDrawerOpen(false)}
-        autoTrigger={true}
+        autoTrigger={false}
       />
-    </div>
-  )
+    </div> )
 }
 
 export default HomePage
