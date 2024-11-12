@@ -45,7 +45,7 @@ export default function LuxFinoCTA() {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
     }, 5000)
     return () => clearInterval(interval)
-  }, [])
+  }, [images.length])
 
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
