@@ -2,14 +2,12 @@
 
 import React, { useState, useCallback } from 'react'
 import { motion, useInView } from 'framer-motion'
-import Navbar from './components/Navbar'
 import HeroIndex from './components/LuxIndex/IndexHero'
 import LuxFinoServices from './components/LuxIndex/AboutIndex'
 import ServiceSections from './components/LuxIndex/ServiceSection'
 import OwnerFounderSection from './components/LuxIndex/Founders'
 import TribalParksSection from './components/TribalParksAdvert'
 import LoadingScreen from './components/LoadingScreen'
-
 // New imports for the particle effect
 import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles"
@@ -197,9 +195,7 @@ const HomePage: React.FC = () => {
         initial="hidden"
         animate="visible"
         variants={fadeInVariants}
-      >
-        <Navbar />
-        
+      >        
         <HeroIndex />
         
         <main className="relative">

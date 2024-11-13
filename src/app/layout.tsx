@@ -1,6 +1,7 @@
+import React from 'react';
 import { Playfair_Display } from 'next/font/google';
 import { Metadata } from 'next';
-import Navbar from './components/Navbar';
+import NavBar from './components/Navbar';
 import './globals.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Footer from './components/Footer';
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfairDisplay.className} avenir-font min-h-screen flex flex-col`}>
-        <Navbar />
+        <NavBar />
         {children}
         <Footer />
       </body>

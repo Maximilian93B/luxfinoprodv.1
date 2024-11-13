@@ -18,7 +18,7 @@ const socialIcons = [
   { Icon: Home, href: "https://www.airbnb.com" },
 ]
 
-export default function Navbar() {
+export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
