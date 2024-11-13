@@ -84,7 +84,7 @@ export default function LuxFinoCateringPage() {
           </h2>
           <div className="space-y-6 text-center">
             <p className="text-xl md:text-3xl font-light max-w-2xl mx-auto leading-relaxed">
-              <span className="text-luxsand italic">Tofino's</span> finest private culinary experiences
+              <span className="text-luxsand italic">Tofino&rsquo;s</span> finest private culinary experiences
             </p>
             <div className="flex items-center justify-center gap-3">
               <div className="w-8 h-[1px] bg-gradient-to-r from-transparent via-luxsand to-transparent opacity-50"></div>
@@ -119,19 +119,19 @@ export default function LuxFinoCateringPage() {
               { 
                 icon: ChefHat, 
                 title: "Personalized Menus", 
-                description: "Tailored to your refined palate and dietary preferences, crafted with precision",
+                description: "Tailored to your refined palate and dietary preferences, crafted with precision.",
                 gradient: "from-luxsand/20 to-luxocean/30"
               },
               { 
                 icon: Leaf, 
                 title: "Local Ingredients", 
-                description: "Sourcing the finest seasonal produce from Tofino's local artisans and farmers",
+                description: "Sourcing the finest seasonal produce from Tofino's local artisans and farmers.",
                 gradient: "from-luxsand/30 to-luxocean/40"
               },
               { 
                 icon: Users, 
                 title: "Intimate to Grand", 
-                description: "Expertly scaling from intimate private dinners to magnificent celebrations",
+                description: "Expertly scaling from intimate private dinners to magnificent celebrations.",
                 gradient: "from-luxsand/20 to-luxocean/30"
               },
             ].map((feature, index) => (
@@ -300,7 +300,7 @@ export default function LuxFinoCateringPage() {
 
             {/* Optional: Additional Text */}
             <p className="text-sm sm:text-base text-luxpearl/80 font-light tracking-wider max-w-2xl mx-auto">
-              Experience culinary artistry on your own terms in Tofino
+              Experience culinary artistry on your own terms in Tofino.
             </p>
           </div>
         </div>
