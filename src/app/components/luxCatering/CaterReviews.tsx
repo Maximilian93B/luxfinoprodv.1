@@ -39,14 +39,14 @@ export default function ReviewsSection({
 }: ReviewsSectionProps) {
   return (
     <section className={className}>
-      <h2 className="text-3xl font-bold text-center mb-8 text-luxcedar">
+      <h2 className="text-3xl font-bold text-center mb-8 text-[#0C2233]">
         {title}
       </h2>
       <div className="flex flex-col md:flex-row justify-center items-stretch md:space-x-6">
         {reviews.map((review, index) => (
           <div 
             key={index} 
-            className="bg-white rounded-lg p-6 mb-6 md:mb-0 flex-1 shadow-md"
+            className="bg-[#F8F3E3] rounded-lg p-6 mb-6 md:mb-0 flex-1 shadow-lg border border-[#D4AF37]/20"
           >
             {review.imageSrc && (
               <div className="flex justify-center mb-4">
@@ -59,10 +59,10 @@ export default function ReviewsSection({
                 />
               </div>
             )}
-            <p className="text-luxcedar italic mb-4 text-xl">&ldquo;{review.text}&rdquo;</p>
+            <p className="text-[#333333] italic mb-4 text-xl">&ldquo;{review.text}&rdquo;</p>
             <div className="flex justify-between items-center">
-              <p className="text-luxcedar font-bold">- {review.name}</p>
-              <span className="text-black text-sm font-medium px-3 py-1 bg-luxpearl rounded-full">{review.eventType}</span>
+              <p className="text-[#0C2233] font-bold">- {review.name}</p>
+              <span className="text-[#F8F3E3] text-sm font-medium px-3 py-1 bg-[#0C2233] rounded-full">{review.eventType}</span>
             </div>
           </div>
         ))}

@@ -27,17 +27,17 @@ const Gallery: FC<GalleryProps> = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="  py-8 mb-4 bg-white">
+    <div className="py-8 mb-4 bg-gradient-to-b from-white via-luxpearl to-white">
       {/* Header and Sales Title */}
       <div className="text-center mb-8 px-4">
-        <h1 className="text-5xl font-bold text-luxcedar">{headerTitle}</h1>
-        <p className="text-xl text-luxcedar mt-4">{headerSubtitle}</p>
+        <h1 className="text-4xl md:text-5xl font-serif font-bold text-luxforest">{headerTitle}</h1>
+        <p className="text-lg md:text-xl font-sans text-luxforest mt-4">{headerSubtitle}</p>
       </div>
 
       {/* Centered Toggleable Button */}
       <div className="flex justify-center mb-6">
         <button
-          className="btn btn-lg flex items-center bg-black text-luxpearl hover:text-luxcpearl transition-colors duration-300 shadow-xl rounded-full px-6 py-3"
+          className="btn btn-lg flex items-center bg-luxforest text-luxpearl hover:bg-luxocean hover:scale-105 transition-all duration-300 shadow-xl rounded-full px-6 py-3"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? '' : 'View our Creations'}
@@ -51,10 +51,10 @@ const Gallery: FC<GalleryProps> = ({
 
       {/* Gallery Content */}
       {isOpen && (
-        <div className="px-4">
+        <div className="px-4 transition-all duration-300">
           <div className="text-center mb-6">
-            <h2 className="text-4xl font-bold text-luxcedar">{title}</h2>
-            <p className="text-lg text-luxcedar mt-4">{description}</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-luxforest">{title}</h2>
+            <p className="text-md md:text-lg font-sans text-luxforest mt-4">{description}</p>
           </div>
 
           {/* Gallery Grid */}
@@ -62,7 +62,7 @@ const Gallery: FC<GalleryProps> = ({
             {images.map((image, index) => (
               <div
                 key={index}
-                className="rounded-lg overflow-hidden shadow-xl transform transition-transform duration-300 hover:scale-105"
+                className="rounded-lg overflow-hidden shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 <Image
                   src={image.src}

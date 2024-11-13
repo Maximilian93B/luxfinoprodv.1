@@ -22,7 +22,7 @@ export default function EventsWeddingsCateringHeroSection({
   chefTitle = "Crafting memorable experiences through innovative cuisine"
 }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen bg-white overflow-hidden flex items-center justify-center">
+    <section className="relative min-h-screen bg-[#F8F3E3] overflow-hidden flex items-center justify-center">
       <div className="container mx-auto px-4 py-12 sm:py-24">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24">
           {/* Hero Text Content */}
@@ -44,20 +44,20 @@ export default function EventsWeddingsCateringHeroSection({
               />
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-bold text-luxcedar mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-bold text-[#0C2233] mb-6 leading-tight">
               {title}
             </h1>
-            <p className="text-lg sm:text-xl text-luxcedar mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl text-[#333333] mb-8 leading-relaxed">
               {description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <motion.button
-                className="rounded-full font-semibold text-lg bg-black text-luxpearl px-8 py-4 shadow-lg hover:bg-luxforest hover:shadow-xl transition-all duration-300"
+                className="rounded-full font-semibold text-lg bg-[#0C2233] text-[#F8F3E3] px-8 py-4 shadow-lg hover:bg-[#7D8A6A] hover:shadow-xl transition-all duration-300"
               >
                 Plan Your Event
               </motion.button>
               <motion.button
-                className="rounded-full font-semibold text-lg border-2 border-luxsand text-luxcedar px-8 py-4 shadow-lg hover:bg-luxsand hover:text-luxpearl hover:shadow-xl transition-all duration-300"
+                className="rounded-full font-semibold text-lg border-2 border-[#D4AF37] text-[#0C2233] px-8 py-4 shadow-lg hover:bg-[#D4AF37] hover:text-[#F8F3E3] hover:shadow-xl transition-all duration-300"
               >
                 View Wedding Packages
               </motion.button>
@@ -84,8 +84,8 @@ export default function EventsWeddingsCateringHeroSection({
                 blurDataURL="/placeholder.png"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-luxsand/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-luxpearl">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#D4AF37]/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-[#F8F3E3]">
                 <h2 className="text-2xl font-semibold mb-2">{chefName}</h2>
                 <p className="text-sm">{chefTitle}</p>
               </div>

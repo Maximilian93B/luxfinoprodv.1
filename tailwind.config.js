@@ -32,6 +32,15 @@ module.exports = {
         'modal': '110',
         'drawer-backdrop': '120',
         'drawer': '130',
+      },
+      animation: {
+        'expandLine': 'expandLine 1.5s ease forwards'
+      },
+      keyframes: {
+        expandLine: {
+          '0%': { width: '0' },
+          '100%': { width: '16rem' }
+        }
       }
     },
   },
