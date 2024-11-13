@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { ChefHat, Leaf, Users } from 'lucide-react'
 import Link from 'next/link'
 import React, { useRef } from 'react';
+import NavBar from '../components/NavBar';
 
 export default function LuxFinoCateringPage() {
   const foodImages = [
@@ -53,6 +54,7 @@ export default function LuxFinoCateringPage() {
 
   return (
     <div className="min-h-screen bg-black text-lux-ivory">
+      <NavBar />
       {/* Hero Section - Enhanced typography and overlay */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <Image
