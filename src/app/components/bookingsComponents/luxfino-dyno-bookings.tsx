@@ -402,6 +402,17 @@ const BookingConfirmation = ({
 
 {/* LuxFino Dynamic Booking Multiple Step Form Version 2 */} 
 
+// Add types for the form state
+interface BookingFormState {
+  selectedService: string;
+  selectedOption: string;
+  date: string;
+  guests: string;
+  location: string;
+  eventType: string;
+  dietaryRequirements: string;
+}
+
 export default function LuxFinoDynamicBooking() {
   const [step, setStep] = useState(1)
   const [selectedService, setSelectedService] = useState('')
@@ -411,11 +422,44 @@ export default function LuxFinoDynamicBooking() {
   const [location, setLocation] = useState('')
   const [eventType, setEventType] = useState('')
   const [dietaryRequirements, setDietaryRequirements] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const nextStep = () => setStep(step + 1)
   const prevStep = () => setStep(step - 1)
 
   const currentService = services.find(s => s.id === selectedService)
+
+  const isStepValid = () => {
+    switch (step) {
+      case 1:
+        return selectedService !== ''
+      case 2:
+        return selectedOption !== ''
+      case 3:
+        if (selectedService === 'luxpicnic') {
+          return date !== '' && guests !== '' && location !== ''
+        }
+        if (selectedService === 'luxcatering') {
+          return date !== '' && guests !== '' && eventType !== ''
+        }
+        return date !== '' && guests !== ''
+      default:
+        return true
+    }
+  }
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true)
+    try {
+      // Add your booking submission logic here
+      await new Promise(resolve => setTimeout(resolve, 1500)) // Simulate API call
+      alert('Booking confirmed! We will contact you soon.')
+    } catch (error) {
+      alert('There was an error submitting your booking. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   const renderSummary = () => {
     if (step === 1) return null;
@@ -497,7 +541,8 @@ export default function LuxFinoDynamicBooking() {
             {step > 1 && (
               <motion.button
                 onClick={prevStep}
-                className="px-8 py-3 bg-[var(--lux-navy)] text-[var(--lux-gold)] rounded-full hover:bg-[var(--lux-charcoal)] transition-colors shadow-md"
+                disabled={isSubmitting}
+                className="px-8 py-3 bg-[var(--lux-navy)] text-[var(--lux-gold)] rounded-full hover:bg-[var(--lux-charcoal)] transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -507,7 +552,8 @@ export default function LuxFinoDynamicBooking() {
             {step < 4 ? (
               <motion.button
                 onClick={nextStep}
-                className="px-8 py-3 bg-[var(--lux-navy)] text-[var(--lux-gold)] rounded-full hover:bg-[var(--lux-charcoal)] transition-colors shadow-md ml-auto"
+                disabled={!isStepValid()}
+                className="px-8 py-3 bg-[var(--lux-navy)] text-[var(--lux-gold)] rounded-full hover:bg-[var(--lux-charcoal)] transition-colors shadow-md ml-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -515,12 +561,23 @@ export default function LuxFinoDynamicBooking() {
               </motion.button>
             ) : (
               <motion.button
-                onClick={() => alert('Booking confirmed! We will contact you soon.')}
-                className="px-8 py-3 bg-[var(--lux-gold)] text-[var(--lux-navy)] rounded-full hover:bg-[var(--lux-ivory)] hover:text-[var(--lux-navy)] transition-colors shadow-md ml-auto"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="px-8 py-3 bg-[var(--lux-gold)] text-[var(--lux-navy)] rounded-full hover:bg-[var(--lux-ivory)] hover:text-[var(--lux-navy)] transition-colors shadow-md ml-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Confirm Booking
+                {isSubmitting ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </span>
+                ) : (
+                  'Confirm Booking'
+                )}
               </motion.button>
             )}
           </div>
