@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getBookingById, updateBookingStatus } from '@/app/lib/db/repositories/bookings';
-import { BookingStatus } from '@prisma/client';
+import { BookingStatus } from '@/app/lib/types/prisma';
 
 /**
  * PATCH handler for updating booking status
