@@ -10,6 +10,15 @@ function getEnvVar(key: string): string {
   return value;
 }
 
+function getBaseUrl(): string {
+  // Vercel provides these environment variables automatically
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  // Fallback for local development
+  return process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+}
+
 export class SquarePaymentService {
   // Square API client instance
   private client: Client;
@@ -57,7 +66,7 @@ export class SquarePaymentService {
         },
         // Configure post-payment redirect
         checkoutOptions: {
-          redirectUrl: `${getEnvVar('NEXT_PUBLIC_BASE_URL')}/booking/confirmation/${booking.id}`,
+          redirectUrl: `${getBaseUrl()}/booking/confirmation/${booking.id}`,
           askForShippingAddress: false,
           acceptedPaymentMethods: {
             applePay: true,
