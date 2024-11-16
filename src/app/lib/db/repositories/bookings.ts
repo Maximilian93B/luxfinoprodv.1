@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { ServiceType, BookingStatus, } from '@prisma/client'
+import { BookingStatus, ServiceType } from '@/app/lib/types/prisma'
 
 // Initialize database connection
 const prisma = new PrismaClient()
@@ -38,6 +38,7 @@ interface CateringBookingInput extends BaseBookingInput {
   eventTitle: string
   dietaryRequirements?: string  // Optional field
 }
+
 
 // Function to create a new booking of any type
 export async function createBooking(data: PicnicBookingInput | RemoteBookingInput | CateringBookingInput) {

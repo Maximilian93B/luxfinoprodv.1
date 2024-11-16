@@ -1,5 +1,7 @@
 import { z } from 'zod';
-import { ServiceType, BookingStatus } from '@prisma/client';
+import { ServiceType, BookingStatus } from '@/app/lib/types/prisma';
+
+
 
 // Base booking schema with common fields
 export const baseBookingSchema = z.object({

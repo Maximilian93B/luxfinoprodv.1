@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Calendar, Users, MapPin, ChefHat, Tent, Sparkles, Sunset, GlassWater, HeartHandshake, Check } from 'lucide-react'
 import { locations } from '../luxPicnics/picnic-locationsl'
-import { ServiceType } from '@prisma/client';
 
 
 

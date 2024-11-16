@@ -1,4 +1,6 @@
-import { PrismaClient, ServiceType, BookingStatus } from '@prisma/client';
+import {  ServiceType, BookingStatus } from '@/app/lib/types/prisma';
+import { PrismaClient, Prisma } from '@prisma/client';
+
 
 // Interface for common booking fields
 interface BaseBookingInput {
@@ -41,7 +43,7 @@ export class BookingService {
   
   // Method to create a LuxPicnic booking
   async createPicnicBooking(data: PicnicBookingInput) {
-    return await prisma.$transaction(async (tx) => {
+    return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Convert price to number if it's a string with currency symbol
       const totalAmount = typeof data.price === 'string' 
         ? parseFloat(data.price.replace(/[^0-9.]/g, ''))
@@ -81,7 +83,7 @@ export class BookingService {
   // Method to create a LuxRemote booking
   async createRemoteBooking(data: RemoteBookingInput) {
     // Same transaction pattern as picnic booking
-    return await prisma.$transaction(async (tx) => {
+    return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Step 1: Create base booking
       const baseBooking = await tx.baseBooking.create({
         data: { 
@@ -114,7 +116,7 @@ export class BookingService {
   // Method to create a LuxCatering booking
   async createCateringBooking(data: CateringBookingInput) {
     // Same transaction pattern
-    return await prisma.$transaction(async (tx) => {
+    return await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Step 1: Create base booking
       const baseBooking = await tx.baseBooking.create({
         data: {

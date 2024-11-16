@@ -1,5 +1,5 @@
 import { Client, Environment, ApiError } from 'square';
-import { BaseBooking } from '@prisma/client';
+import { BaseBooking } from '@/app/lib/types/prisma';
 
 // Utility function to safely retrieve environment variables
 function getEnvVar(key: string): string {
