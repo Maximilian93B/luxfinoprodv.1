@@ -15,7 +15,7 @@ export enum BookingStatus {
   COMPLETED = 'COMPLETED'
 }
 
-// Define types for the Prisma models at the app level
+// Define types for the Prisma models
 export type BaseBooking = Prisma.BaseBookingGetPayload<{}>
 export type PicnicBooking = Prisma.PicnicBookingGetPayload<{}>
 export type RemoteBooking = Prisma.RemoteBookingGetPayload<{}>
