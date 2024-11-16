@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import { BaseBooking as PrismaBaseBooking, PicnicBooking as PrismaPicnicBooking, RemoteBooking as PrismaRemoteBooking, CateringBooking as PrismaCateringBooking } from '@prisma/client'
 
 // Define service types
 export enum ServiceType {
@@ -16,7 +16,7 @@ export enum BookingStatus {
 }
 
 // Define types for the Prisma models
-export type BaseBooking = Prisma.BaseBookingGetPayload<{}>
-export type PicnicBooking = Prisma.PicnicBookingGetPayload<{}>
-export type RemoteBooking = Prisma.RemoteBookingGetPayload<{}>
-export type CateringBooking = Prisma.CateringBookingGetPayload<{}>
+export type BaseBooking = PrismaBaseBooking
+export type PicnicBooking = PrismaPicnicBooking
+export type RemoteBooking = PrismaRemoteBooking
+export type CateringBooking = PrismaCateringBooking
