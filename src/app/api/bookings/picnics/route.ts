@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { BookingService } from '@/app/lib/db/repositories/service';
-import { SquarePaymentService } from '@/app/lib/db/repositories/sqaure-payment-service';
+import { SquarePaymentService } from '@/app/lib/db/repositories/square-payment-service';
 
 const bookingService = new BookingService();
 const paymentService = new SquarePaymentService();
