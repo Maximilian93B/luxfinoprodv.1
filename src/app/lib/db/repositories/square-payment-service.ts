@@ -2,9 +2,12 @@ import { Client, Environment, ApiError } from 'square';
 import { BaseBooking } from '@/app/lib/types/prisma';
 
 // Utility function to safely retrieve environment variables
-function getEnvVar(key: string): string {
+function getEnvVar(key: string, defaultValue?: string): string {
   const value = process.env[key];
   if (!value) {
+    if (defaultValue !== undefined) {
+      return defaultValue;
+    }
     throw new Error(`Environment variable ${key} is not defined`);
   }
   return value;
@@ -29,7 +32,7 @@ export class SquarePaymentService {
     // Initialize Square client with access token and environment settings
     this.client = new Client({
       accessToken: getEnvVar('SQUARE_ACCESS_TOKEN_SANDBOX'),
-      environment: getEnvVar('SQUARE_ENVIRONMENT') === 'production' 
+      environment: getEnvVar('SQUARE_ENVIRONMENT', 'sandbox') === 'production' 
         ? Environment.Production 
         : Environment.Sandbox
     });
