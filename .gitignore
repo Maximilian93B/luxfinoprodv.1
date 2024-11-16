@@ -38,7 +38,6 @@ next-env.d.ts
 
 # prisma
 /prisma/.env
-/prisma/schema.prisma
 *.db
 /prisma/db.sqlite
 /prisma/db.sqlite-journal
@@ -46,7 +45,7 @@ next-env.d.ts
 .env*.local
 
 # Prisma generated files
-/prisma/generated/
+
 
 
 

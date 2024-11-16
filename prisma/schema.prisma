@@ -1,0 +1,118 @@
+// Configure Prisma Client generator
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Database connection configuration
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")  // URL stored in environment variables
+}
+
+// Base model for all booking types
+// Contains common fields shared across all booking types
+model BaseBooking {
+  id              String           @id @default(cuid())  // Unique identifier
+  createdAt       DateTime         @default(now())       // Timestamp of creation
+  updatedAt       DateTime         @updatedAt            // Timestamp of last update
+  serviceType     ServiceType      // Type of service (enum)
+  date            DateTime         // Date of the booking
+  guests          Int             // Number of guests
+  customerFirstName String?
+  customerLastName String?
+  customerEmail   String          // Customer's email
+  totalAmount     Decimal?       // Total amount of the booking
+  customerPhone   String?         // Optional phone number
+  // One-to-one relations with specific booking types
+  cateringBooking CateringBooking?
+  picnicBooking   PicnicBooking?
+  remoteBooking   RemoteBooking?
+}
+
+// Picnic-specific booking details
+model PicnicBooking {
+  id            String         @id @default(cuid())
+  status        BookingStatus  @default(PENDING)
+  packageType   String        // Type of picnic package
+  packageTitle  String        // Title of the package
+  price         String        // Price of the booking
+  duration      String        // Duration of the picnic
+  location      String        // Location of the picnic
+  // Relation to base booking
+  baseBookingId String         @unique
+  baseBooking   BaseBooking    @relation(fields: [baseBookingId], references: [id])
+  // Relation to payment
+  payment       SquarePayment?
+}
+
+// Remote service booking details
+model RemoteBooking {
+  id              String        @id @default(cuid())
+  status          BookingStatus @default(PENDING)
+  packageType     String       // Type of remote service
+  packageTitle    String       // Title of the service
+  additionalNotes String?      // Optional notes
+  // Relation to base booking
+  baseBookingId   String        @unique
+  baseBooking     BaseBooking   @relation(fields: [baseBookingId], references: [id])
+}
+
+// Catering service booking details
+model CateringBooking {
+  id                  String        @id @default(cuid())
+  status              BookingStatus @default(PENDING)
+  eventType           String       // Type of catering event
+  eventTitle          String       // Title of the event
+  dietaryRequirements String?      // Optional dietary requirements
+  // Relation to base booking
+  baseBookingId       String        @unique
+  baseBooking         BaseBooking   @relation(fields: [baseBookingId], references: [id])
+}
+
+// Payment processing through Square
+model SquarePayment {
+  id              String        @id @default(cuid())
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  orderId         String        @unique    // Square order ID
+  checkoutId      String        @unique    // Square checkout ID
+  amount          Int          // Payment amount in cents
+  currency        String        @default("AUD")
+  status          PaymentStatus @default(PENDING)
+  // Relation to picnic booking
+  picnicBookingId String        @unique
+  picnicBooking   PicnicBooking @relation(fields: [picnicBookingId], references: [id])
+}
+
+// Webhook events from Square
+model SquareWebhook {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  eventType   String    // Type of webhook event
+  payload     Json      // Raw webhook payload
+  processedAt DateTime? // When the webhook was processed
+  status      String    // Status of webhook processing
+}
+
+// Enum for different types of services
+enum ServiceType {
+  LUX_PICNIC
+  LUX_REMOTE
+  LUX_CATERING
+}
+
+// Enum for booking status
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+// Enum for payment status
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
