@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Calendar, Users, MapPin, ChefHat, Tent, Sparkles, Sunset, GlassWater, HeartHandshake, Check } from 'lucide-react'
 import { locations } from '../luxPicnics/picnic-locationsl'
+import { ServiceType } from '@prisma/client';
 
 
 
@@ -319,7 +320,10 @@ const BookingConfirmation = ({
   guests, 
   location,
   eventType,
-  dietaryRequirements
+  dietaryRequirements,
+  customerName,
+  customerEmail,
+  customerPhone
 }: {
   currentService: ServiceOption | undefined;
   selectedOption: string;
@@ -328,6 +332,9 @@ const BookingConfirmation = ({
   location: string;
   eventType: string;
   dietaryRequirements: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
 }) => {
   const selectedOptionDetails = currentService?.options?.find(o => o.id === selectedOption);
 
@@ -400,6 +407,62 @@ const BookingConfirmation = ({
 }
 
 
+{/* Customer Information */}
+const CustomerInformation = ({ 
+  customerFirstName,
+  setCustomerFirstName,
+  customerLastName,
+  setCustomerLastName,
+  customerEmail,
+  setCustomerEmail,
+  customerPhone,
+  setCustomerPhone
+}: {
+  customerFirstName: string;
+  setCustomerFirstName: (value: string) => void;
+  customerLastName: string;
+  setCustomerLastName: (value: string) => void;
+  customerEmail: string;
+  setCustomerEmail: (value: string) => void;
+  customerPhone: string;
+  setCustomerPhone: (value: string) => void;
+}) => (
+  <motion.div key="step3" {...fadeIn} transition={{ duration: 0.5 }} className="space-y-4">
+    <h2 className="text-3xl font-playfair mb-4 text-[var(--lux-navy)] text-center">Your Details</h2>
+    <div className="space-y-4">
+      <input
+        type="text"
+        value={customerFirstName}
+        onChange={(e) => setCustomerFirstName(e.target.value)}
+        placeholder="First Name"
+        className="w-full bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)]"
+      />
+      <input
+        type="text"
+        value={customerLastName}
+        onChange={(e) => setCustomerLastName(e.target.value)}
+        placeholder="Last Name"
+        className="w-full bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)]"
+      />
+      <input
+        type="email"
+        value={customerEmail}
+        onChange={(e) => setCustomerEmail(e.target.value)}
+        placeholder="Email"
+        className="w-full bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)]"
+      />
+      <input
+        type="tel"
+        value={customerPhone}
+        onChange={(e) => setCustomerPhone(e.target.value)}
+        placeholder="Phone Number"
+        className="w-full bg-[var(--lux-ivory)] p-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--lux-gold)]"
+      />
+    </div>
+  </motion.div>
+)
+
+
 {/* LuxFino Dynamic Booking Multiple Step Form Version 2 */} 
 
 // Add types for the form state
@@ -411,9 +474,14 @@ interface BookingFormState {
   location: string;
   eventType: string;
   dietaryRequirements: string;
+  customerFirstName: string;
+  customerLastName: string;
+  customerEmail: string;
+  customerPhone: string;
 }
 
 export default function LuxFinoDynamicBooking() {
+  // All state declarations should be here at the top of the component
   const [step, setStep] = useState(1)
   const [selectedService, setSelectedService] = useState('')
   const [selectedOption, setSelectedOption] = useState('')
@@ -422,7 +490,25 @@ export default function LuxFinoDynamicBooking() {
   const [location, setLocation] = useState('')
   const [eventType, setEventType] = useState('')
   const [dietaryRequirements, setDietaryRequirements] = useState('')
+  const [customerFirstName, setCustomerFirstName] = useState('')
+  const [customerLastName, setCustomerLastName] = useState('')
+  const [customerEmail, setCustomerEmail] = useState('')
+  const [customerPhone, setCustomerPhone] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [feedback, setFeedback] = useState<{
+    message: string;
+    type: 'success' | 'error';
+  } | null>(null);
+
+  // Auto-dismiss feedback after 5 seconds
+  useEffect(() => {
+    if (feedback) {
+      const timer = setTimeout(() => {
+        setFeedback(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [feedback]);
 
   const nextStep = () => setStep(step + 1)
   const prevStep = () => setStep(step - 1)
@@ -436,13 +522,12 @@ export default function LuxFinoDynamicBooking() {
       case 2:
         return selectedOption !== ''
       case 3:
-        if (selectedService === 'luxpicnic') {
-          return date !== '' && guests !== '' && location !== ''
-        }
-        if (selectedService === 'luxcatering') {
-          return date !== '' && guests !== '' && eventType !== ''
-        }
-        return date !== '' && guests !== ''
+        return customerFirstName !== '' && 
+               customerLastName !== '' && 
+               customerEmail !== '' && 
+               /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail); // Basic email validation
+      case 4:
+        return true;
       default:
         return true
     }
@@ -451,13 +536,107 @@ export default function LuxFinoDynamicBooking() {
   const handleSubmit = async () => {
     setIsSubmitting(true)
     try {
-      // Add your booking submission logic here
-      await new Promise(resolve => setTimeout(resolve, 1500)) // Simulate API call
-      alert('Booking confirmed! We will contact you soon.')
+      const currentOption = currentService?.options?.find(o => o.id === selectedOption)
+      
+      if (selectedService === 'luxcatering') {
+        const bookingData = {
+          date: new Date(date).toISOString(),
+          guests: Number(guests) || 1,
+          customerFirstName,
+          customerLastName,
+          customerEmail,
+          customerPhone,
+          eventType: eventType,
+          eventTitle: currentOption?.title || '',
+          dietaryRequirements
+        }
+
+        const response = await fetch('/api/bookings/catering', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(bookingData),
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to submit booking');
+        }
+
+        setFeedback({
+          message: `Thank you ${customerFirstName}! Your catering inquiry has been received. We will contact you at ${customerEmail} within 24-48 hours to discuss your event details.`,
+          type: 'success'
+        });
+
+        // Wait 3 seconds before resetting form
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        // Reset form
+        setStep(1);
+        setSelectedService('');
+        setSelectedOption('');
+        setDate('');
+        setGuests('');
+        setEventType('');
+        setDietaryRequirements('');
+        setCustomerFirstName('');
+        setCustomerLastName('');
+        setCustomerEmail('');
+        setCustomerPhone('');
+      } 
+      else if (selectedService === 'luxremote') {
+        const bookingData = {
+          date: new Date(date).toISOString(),
+          guests: Number(guests) || 1,
+          customerFirstName,
+          customerLastName,
+          customerEmail,
+          customerPhone,
+          packageType: selectedOption,
+          packageTitle: currentOption?.title || '',
+          additionalNotes: dietaryRequirements // reusing the dietary requirements field for notes
+        }
+
+        const response = await fetch('/api/bookings/remote', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(bookingData),
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to submit booking');
+        }
+
+        setFeedback({
+          message: `Thank you ${customerFirstName}! Your LuxRemote inquiry has been received. We will contact you at ${customerEmail} within 24-48 hours to discuss your adventure details.`,
+          type: 'success'
+        });
+
+        // Wait 3 seconds before resetting form
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        // Reset form
+        setStep(1);
+        setSelectedService('');
+        setSelectedOption('');
+        setDate('');
+        setGuests('');
+        setDietaryRequirements('');
+        setCustomerFirstName('');
+        setCustomerLastName('');
+        setCustomerEmail('');
+        setCustomerPhone('');
+      }
     } catch (error) {
-      alert('There was an error submitting your booking. Please try again.')
+      console.error('Error submitting booking:', error);
+      setFeedback({
+        message: 'Something went wrong. Please try again or contact us directly.',
+        type: 'error'
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
 
@@ -476,8 +655,38 @@ export default function LuxFinoDynamicBooking() {
     );
   };
 
+  // Add feedback component to render
+  const FeedbackMessage = () => {
+    if (!feedback) return null;
+
+    return (
+      <div
+        className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg ${
+          feedback.type === 'success' 
+            ? 'bg-[var(--lux-olive)] text-[var(--lux-ivory)]' 
+            : 'bg-red-500 text-white'
+        }`}
+        role="alert"
+      >
+        <p>{feedback.message}</p>
+      </div>
+    );
+  };
+
   return (
     <div className="bg-[var(--lux-navy)] min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+      {feedback && (
+        <div
+          className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
+            feedback.type === 'success' 
+              ? 'bg-[var(--lux-olive)] text-[var(--lux-ivory)]' 
+              : 'bg-red-500 text-white'
+          }`}
+          role="alert"
+        >
+          <p>{feedback.message}</p>
+        </div>
+      )}
       <div className="max-w-5xl mx-auto">
         <motion.h1 
           className="text-6xl sm:text-7xl font-playfair font-light text-center mb-16 text-[var(--lux-ivory)]"
@@ -509,6 +718,19 @@ export default function LuxFinoDynamicBooking() {
             )}
 
             {step === 3 && (
+              <CustomerInformation
+                customerFirstName={customerFirstName}
+                setCustomerFirstName={setCustomerFirstName}
+                customerLastName={customerLastName}
+                setCustomerLastName={setCustomerLastName}
+                customerEmail={customerEmail}
+                setCustomerEmail={setCustomerEmail}
+                customerPhone={customerPhone}
+                setCustomerPhone={setCustomerPhone}
+              />
+            )}
+
+            {step === 4 && (
               <DateAndGuestsSelection
                 date={date}
                 setDate={setDate}
@@ -524,7 +746,7 @@ export default function LuxFinoDynamicBooking() {
               />
             )}
 
-            {step === 4 && (
+            {step === 5 && (
               <BookingConfirmation
                 currentService={currentService}
                 selectedOption={selectedOption}
@@ -533,6 +755,9 @@ export default function LuxFinoDynamicBooking() {
                 location={location}
                 eventType={eventType}
                 dietaryRequirements={dietaryRequirements}
+                customerName={`${customerFirstName} ${customerLastName}`}
+                customerEmail={customerEmail}
+                customerPhone={customerPhone}
               />
             )}
           </AnimatePresence>

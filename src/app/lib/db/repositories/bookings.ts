@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { ServiceType, BookingStatus } from '@prisma/client'
+import { ServiceType, BookingStatus, } from '@prisma/client'
 
 // Initialize database connection
 const prisma = new PrismaClient()
@@ -9,9 +9,11 @@ interface BaseBookingInput {
   serviceType: ServiceType
   date: Date
   guests: number
-  customerName: string
+  customerFirstName: string
+  customerLastName: string
   customerEmail: string
   customerPhone?: string  // Optional field
+  totalAmount: number  // Added this field
 }
 
 // Specific fields for picnic bookings
@@ -45,30 +47,33 @@ export async function createBooking(data: PicnicBookingInput | RemoteBookingInpu
       serviceType: data.serviceType,
       date: data.date,
       guests: data.guests,
-      customerName: data.customerName,
+      customerFirstName: data.customerFirstName,
+      customerLastName: data.customerLastName,
       customerEmail: data.customerEmail,
       customerPhone: data.customerPhone,
+      totalAmount: data.totalAmount,  // Use the provided totalAmount
     },
   })
 
   // Based on the service type, create the specific booking details
   switch (data.serviceType) {
-    case 'LUXPICNIC':
+    case ServiceType.LUX_PICNIC:
       if ('price' in data) {  // Check if it's a picnic booking
         await prisma.picnicBooking.create({
           data: {
+            baseBookingId: baseBooking.id,
             packageType: data.packageType,
             packageTitle: data.packageTitle,
             price: data.price,
             duration: data.duration,
             location: data.location,
-            baseBookingId: baseBooking.id,  // Link to the base booking
+            status: BookingStatus.PENDING,
           },
         })
       }
       break
 
-    case 'LUXREMOTE':
+    case ServiceType.LUX_REMOTE:
       if ('additionalNotes' in data) {  // Check if it's a remote booking
         await prisma.remoteBooking.create({
           data: {
@@ -81,7 +86,7 @@ export async function createBooking(data: PicnicBookingInput | RemoteBookingInpu
       }
       break
 
-    case 'LUXCATERING':
+    case ServiceType.LUX_CATERING:
       if ('eventType' in data) {  // Check if it's a catering booking
         await prisma.cateringBooking.create({
           data: {

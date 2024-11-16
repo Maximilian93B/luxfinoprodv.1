@@ -1,4 +1,5 @@
 import React from 'react';
+import { Providers } from './providers';
 import { Playfair_Display } from 'next/font/google';
 import { Metadata } from 'next';
 import NavBar from './components/Navbar';
@@ -32,9 +33,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfairDisplay.className} avenir-font min-h-screen flex flex-col`}>
-        <NavBar />
-        {children}
-        <Footer />
+        <Providers>
+          <NavBar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

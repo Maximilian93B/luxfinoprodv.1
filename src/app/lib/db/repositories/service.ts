@@ -4,7 +4,8 @@ import { PrismaClient, ServiceType, BookingStatus } from '@prisma/client';
 interface BaseBookingInput {
   date: Date
   guests: number
-  customerName: string
+  customerFirstName: string
+  customerLastName: string
   customerEmail: string
   customerPhone?: string
 }
@@ -13,7 +14,7 @@ interface BaseBookingInput {
 interface PicnicBookingInput extends BaseBookingInput {
   packageType: string
   packageTitle: string
-  price: string
+  price: string | number
   duration: string
   location: string
 }
@@ -40,17 +41,22 @@ export class BookingService {
   
   // Method to create a LuxPicnic booking
   async createPicnicBooking(data: PicnicBookingInput) {
-    // Use transaction to ensure both operations succeed or both fail
     return await prisma.$transaction(async (tx) => {
-      // Step 1: Create the base booking record with common fields
+      // Convert price to number if it's a string with currency symbol
+      const totalAmount = typeof data.price === 'string' 
+        ? parseFloat(data.price.replace(/[^0-9.]/g, ''))
+        : data.price;
+
       const baseBooking = await tx.baseBooking.create({
         data: {
-          serviceType: ServiceType.LUXPICNIC,
+          serviceType: ServiceType.LUX_PICNIC,
           date: data.date,
           guests: data.guests,
-          customerName: data.customerName,
+          customerFirstName: data.customerFirstName,
+          customerLastName: data.customerLastName,
           customerEmail: data.customerEmail,
           customerPhone: data.customerPhone,
+          totalAmount: totalAmount
         },
       })
 
@@ -60,7 +66,7 @@ export class BookingService {
           baseBookingId: baseBooking.id,
           packageType: data.packageType,
           packageTitle: data.packageTitle,
-          price: data.price,
+          price: data.price.toString(),
           duration: data.duration,
           location: data.location,
           status: BookingStatus.PENDING,
@@ -79,12 +85,14 @@ export class BookingService {
       // Step 1: Create base booking
       const baseBooking = await tx.baseBooking.create({
         data: { 
-          serviceType: 'LUXREMOTE',
+          serviceType: ServiceType.LUX_REMOTE,
           date: data.date,
           guests: data.guests,
-          customerName: data.customerName,
+          customerFirstName: data.customerFirstName,
+          customerLastName: data.customerLastName,
           customerEmail: data.customerEmail,
           customerPhone: data.customerPhone,
+          totalAmount: 0
         },
       })
 
@@ -110,12 +118,14 @@ export class BookingService {
       // Step 1: Create base booking
       const baseBooking = await tx.baseBooking.create({
         data: {
-          serviceType: 'LUXCATERING',
+          serviceType: ServiceType.LUX_CATERING,
           date: data.date,
           guests: data.guests,
-          customerName: data.customerName,
+          customerFirstName: data.customerFirstName,
+          customerLastName: data.customerLastName,
           customerEmail: data.customerEmail,
           customerPhone: data.customerPhone,
+          totalAmount: 0
         },
       })
 
