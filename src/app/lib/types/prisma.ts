@@ -16,7 +16,7 @@ export enum BookingStatus {
 }
 
 // Define types for the Prisma models
-export type BaseBooking = Prisma.$BaseBookingPayload
-export type PicnicBooking = Prisma.$PicnicBookingPayload
-export type RemoteBooking = Prisma.$RemoteBookingPayload
-export type CateringBooking = Prisma.$CateringBookingPayload
+export type BaseBooking = Prisma.BaseBookingGetPayload<{}>;
+export type PicnicBooking = Prisma.PicnicBookingGetPayload<{}>;
+export type RemoteBooking = Prisma.RemoteBookingGetPayload<{}>;
+export type CateringBooking = Prisma.CateringBookingGetPayload<{}>;
