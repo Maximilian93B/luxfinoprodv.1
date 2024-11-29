@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
@@ -34,6 +35,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prisma
+/prisma/.env
+*.db
+/prisma/db.sqlite
+/prisma/db.sqlite-journal
+.env
+.env*.local
+
+# Prisma generated files
+
 
 
 
